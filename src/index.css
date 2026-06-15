@@ -1,0 +1,366 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────
+   DESIGN TOKENS
+   Palette sourced from hero photo:
+     Mocha/Taupe hijab  → primary accent (light) / surface (dark)
+     Warm ivory blazer  → background (light)
+     Terracotta rose    → CTA / gradient accent
+     Gold glints        → secondary accent / glow
+     Espresso brown     → foreground / dark bg
+   ───────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    /* Surfaces */
+    --background:        35 42% 97%;   /* warm ivory */
+    --foreground:        25 35% 12%;   /* deep espresso */
+
+    --card:              35 30% 98%;
+    --card-foreground:   25 35% 12%;
+
+    --popover:           35 42% 97%;
+    --popover-foreground:25 35% 12%;
+
+    /* Brand */
+    --primary:           25 32% 30%;   /* mocha brown */
+    --primary-foreground:35 42% 97%;
+
+    --secondary:         35 22% 91%;   /* warm sand */
+    --secondary-foreground:25 32% 22%;
+
+    --muted:             35 15% 93%;
+    --muted-foreground:  25 15% 44%;
+
+    /* Accent: terracotta rose */
+    --accent:            12 52% 56%;
+    --accent-foreground: 35 42% 97%;
+
+    /* Gold highlight */
+    --gold:              38 65% 52%;
+    --gold-foreground:   25 35% 12%;
+
+    --destructive:       0 72% 46%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border:            35 22% 86%;
+    --input:             35 22% 86%;
+    --ring:              12 52% 56%;
+
+    --radius:            0.8rem;
+
+    /* CTA: terracotta */
+    --cta:               12 52% 56%;
+    --cta-foreground:    35 42% 97%;
+  }
+
+  .dark {
+    /* Surfaces */
+    --background:        25 22% 7%;    /* deep espresso */
+    --foreground:        35 25% 92%;   /* warm cream */
+
+    --card:              25 20% 11%;
+    --card-foreground:   35 25% 92%;
+
+    --popover:           25 22% 7%;
+    --popover-foreground:35 25% 92%;
+
+    /* Brand */
+    --primary:           38 62% 62%;   /* warm gold */
+    --primary-foreground:25 22% 7%;
+
+    --secondary:         25 16% 17%;   /* mocha surface */
+    --secondary-foreground:35 25% 88%;
+
+    --muted:             25 14% 14%;
+    --muted-foreground:  35 10% 58%;
+
+    /* Accent: terracotta rose (slightly brighter in dark) */
+    --accent:            12 55% 62%;
+    --accent-foreground: 35 25% 92%;
+
+    /* Gold */
+    --gold:              38 62% 62%;
+    --gold-foreground:   25 22% 7%;
+
+    --destructive:       0 62% 52%;
+    --destructive-foreground: 35 25% 92%;
+
+    --border:            25 16% 20%;
+    --input:             25 16% 20%;
+    --ring:              38 62% 62%;
+
+    --cta:               12 55% 62%;
+    --cta-foreground:    35 25% 92%;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   BASE RESETS
+   ───────────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   GRADIENT TEXT
+   Light: espresso → terracotta → gold
+   Dark:  cream → gold → terracotta
+   ───────────────────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    hsl(25, 35%, 14%) 0%,
+    hsl(12, 52%, 52%) 50%,
+    hsl(38, 65%, 48%) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .gradient-text {
+  background: linear-gradient(
+    135deg,
+    hsl(35, 25%, 92%) 0%,
+    hsl(38, 62%, 66%) 45%,
+    hsl(12, 55%, 65%) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CTA BUTTON
+   ───────────────────────────────────────────────────────────── */
+.btn-cta {
+  background-color: hsl(var(--cta));
+  color: hsl(var(--cta-foreground));
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+.btn-cta:hover {
+  background-color: hsl(var(--cta) / 0.88);
+  box-shadow: 0 6px 24px hsl(12 52% 56% / 0.30);
+  transform: translateY(-1px);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CARD GLOW / HOVER EFFECTS
+   ───────────────────────────────────────────────────────────── */
+.neon-glow {
+  box-shadow:
+    0 2px 12px hsl(12 52% 56% / 0.06),
+    0 1px 3px  hsl(38 65% 52% / 0.04);
+}
+
+.neon-glow-hover {
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+.neon-glow-hover:hover {
+  transform: translateY(-4px) scale(1.015);
+  box-shadow:
+    0 12px 36px hsl(12 52% 56% / 0.12),
+    0  4px 14px hsl(38 65% 52% / 0.08);
+}
+
+/* Gold glow variant for primary cards */
+.gold-glow-hover {
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+.gold-glow-hover:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 12px 36px hsl(38 65% 52% / 0.18),
+    0  4px 14px hsl(38 65% 52% / 0.10);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   GRADIENT BORDER CARD
+   ───────────────────────────────────────────────────────────── */
+.gradient-border {
+  position: relative;
+  background-clip: padding-box;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(135deg,
+    hsl(12 52% 56% / 0.5),
+    hsl(38 65% 52% / 0.3),
+    hsl(25 32% 30% / 0.2)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SECTION LABEL
+   ───────────────────────────────────────────────────────────── */
+.section-label {
+  @apply inline-block text-xs uppercase tracking-[0.22em] font-semibold;
+  color: hsl(var(--accent));
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SCROLLBAR
+   ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 5px; height: 5px; }
+::-webkit-scrollbar-track  { background: hsl(var(--muted)); }
+::-webkit-scrollbar-thumb  {
+  background: linear-gradient(180deg, hsl(var(--accent)), hsl(var(--gold)));
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--accent));
+}
+
+/* ─────────────────────────────────────────────────────────────
+   ANIMATIONS
+   ───────────────────────────────────────────────────────────── */
+
+/* Float */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+.animate-float { animation: float 5s ease-in-out infinite; }
+
+/* Fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+.animate-fade-in           { animation: fadeIn 0.7s ease-out forwards; }
+.animate-fade-in-delay-1   { animation: fadeIn 0.7s ease-out 0.2s forwards; opacity: 0; }
+.animate-fade-in-delay-2   { animation: fadeIn 0.7s ease-out 0.4s forwards; opacity: 0; }
+.animate-fade-in-delay-3   { animation: fadeIn 0.7s ease-out 0.6s forwards; opacity: 0; }
+
+/* Pulse glow ring */
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0   hsl(12 52% 56% / 0.4); }
+  70%  { box-shadow: 0 0 0 14px hsl(12 52% 56% / 0);   }
+  100% { box-shadow: 0 0 0 0   hsl(12 52% 56% / 0);   }
+}
+.animate-pulse-ring { animation: pulse-ring 2.5s ease-out infinite; }
+
+/* Gold shimmer sweep */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--foreground)) 0%,
+    hsl(38 65% 62%) 40%,
+    hsl(12 52% 60%) 60%,
+    hsl(var(--foreground)) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3.5s linear infinite;
+}
+
+/* Marquee */
+@keyframes marquee {
+  0%   { transform: translateX(0);    }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 32s linear infinite; }
+.animate-marquee:hover { animation-play-state: paused; }
+
+/* Terminal cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.animate-blink { animation: blink 1s step-end infinite; }
+
+/* ─────────────────────────────────────────────────────────────
+   BACKGROUNDS
+   ───────────────────────────────────────────────────────────── */
+
+/* Subtle dot-grid pattern */
+.bg-dot-pattern {
+  background-image: radial-gradient(
+    hsl(var(--border)) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+}
+
+/* Warm diagonal stripe (hero accent) */
+.bg-warm-mesh {
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, hsl(12 52% 56% / 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 80%, hsl(38 65% 52% / 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 10%, hsl(25 32% 30% / 0.05) 0%, transparent 50%);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   MISC UTILITIES
+   ───────────────────────────────────────────────────────────── */
+
+/* Photo frame */
+.photo-frame {
+  @apply relative overflow-hidden rounded-2xl;
+  border: 1.5px solid hsl(38 65% 52% / 0.3);
+}
+
+/* Accent underline for section headings */
+.accent-underline {
+  position: relative;
+  display: inline-block;
+}
+.accent-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, hsl(var(--accent)), hsl(var(--gold)));
+}
+
+/* Spin (for conic ring in Hero portrait) */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.tech-tag {
+  @apply text-xs font-medium px-2.5 py-1 rounded-md border;
+  background: hsl(var(--secondary));
+  border-color: hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+.tech-tag:hover {
+  background: hsl(var(--accent) / 0.12);
+  border-color: hsl(var(--accent) / 0.4);
+  color: hsl(var(--accent));
+}
