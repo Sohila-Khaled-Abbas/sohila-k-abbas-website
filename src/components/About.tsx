@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import { ChartBar, Code, Award, Users, Zap, Database } from "lucide-react";
+import { ChartBar, Code, Award, Users, Zap, Database, FileText } from "lucide-react";
 import type { ComponentType } from "react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 // ─── Types ────────────────────────────────────────────────────
 
@@ -76,6 +78,21 @@ const About = () => (
         professionals and Top 200 Arabic-speaking influencer in data literacy.
       </motion.p>
 
+      {/* ── CV Button ── */}
+      <motion.div className="flex justify-center mb-8" {...fadeUp(0.15)}>
+        <Button size="lg" className="btn-cta font-semibold shadow-md" asChild>
+          <a
+            href="https://drive.google.com/file/d/134BGo0ox7ClojNGwiT6IKX0eZKIjjncd/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center"
+          >
+            <FileText className="mr-2 h-5 w-5" />
+            View Resume
+          </a>
+        </Button>
+      </motion.div>
+
       {/* ── Quote ── */}
       <motion.blockquote
         className="border-l-[3px] pl-5 italic text-foreground/75 my-8 max-w-2xl mx-auto text-center"
@@ -104,6 +121,25 @@ const About = () => (
           </motion.div>
         ))}
       </div>
+
+      {/* ── Key Recent Courses & Diplomas ── */}
+      <motion.div className="mt-12 border-t border-border pt-10" {...fadeUp(0.25)}>
+        <h3 className="text-xl font-bold text-center mb-6">Key Recent Courses &amp; Diplomas</h3>
+        <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
+          <Badge variant="outline" className="px-3.5 py-1.5 bg-card border-border hover:border-accent text-foreground text-xs rounded-full transition-colors cursor-default">
+            Data Analytics Diploma (Ahmed Ali / Friendly Analysis) — 2026
+          </Badge>
+          <Badge variant="outline" className="px-3.5 py-1.5 bg-card border-border hover:border-accent text-foreground text-xs rounded-full transition-colors cursor-default">
+            Data Warehouse: The Ultimate Guide (Udemy) — 2026
+          </Badge>
+          <Badge variant="outline" className="px-3.5 py-1.5 bg-card border-border hover:border-accent text-foreground text-xs rounded-full transition-colors cursor-default">
+            Build with AI: Masr Edition (ITI) — 2026
+          </Badge>
+          <Badge variant="outline" className="px-3.5 py-1.5 bg-card border-border hover:border-accent text-foreground text-xs rounded-full transition-colors cursor-default">
+            365 Data Science / IBM / GCP / LinkedIn Learning — 2024-2025
+          </Badge>
+        </div>
+      </motion.div>
     </div>
   </section>
 );

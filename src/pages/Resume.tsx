@@ -57,7 +57,7 @@ const Resume = () => {
           {/* Top Controls */}
           <div className="flex justify-center flex-wrap gap-4 mb-8">
             <a 
-              href="https://drive.google.com/file/d/1if0J_RnboOnE2s9ZKIKUD3DbKVad9lrs/view?usp=sharing" 
+              href="https://drive.google.com/file/d/134BGo0ox7ClojNGwiT6IKX0eZKIjjncd/view?usp=sharing" 
               target="_blank" 
               rel="noopener noreferrer"
               className="bg-primary text-primary-foreground px-5 py-2 rounded hover:bg-primary/90 transition-colors inline-flex items-center gap-2"
@@ -151,17 +151,76 @@ const Resume = () => {
             {/* Work Experience */}
             <section className="mb-8">
               <h2 className="text-xl font-semibold mb-3 border-b-2 border-primary pb-1">WORK EXPERIENCE</h2>
-              <div className="mb-4">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="font-semibold">Freelance Data Analyst</h3>
+              
+              {/* FlyRank AI */}
+              <div className="mb-5">
+                <div className="flex justify-between items-start mb-1">
+                  <h3 className="font-semibold text-base">Machine Learning Engineer (Intern)</h3>
+                  <span className="text-sm text-muted-foreground">July 2026 - Present</span>
+                </div>
+                <div className="text-sm text-primary font-medium mb-2">FlyRank AI (Remote)</div>
+                <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground pl-2">
+                  <li>Developed feature engineering workflows and model-ready datasets using Python, Workbench, and JupyterLab</li>
+                  <li>Applied machine learning techniques alongside analytics engineering practices to improve data preparation and deployment readiness</li>
+                  <li>Collaborated on integrating predictive models into broader data and BI ecosystems</li>
+                </ul>
+              </div>
+
+              {/* Data Pill DE */}
+              <div className="mb-5">
+                <div className="flex justify-between items-start mb-1">
+                  <h3 className="font-semibold text-base">Data Engineer (Intern)</h3>
+                  <span className="text-sm text-muted-foreground">March 2026 - Present</span>
+                </div>
+                <div className="text-sm text-primary font-medium mb-2">Data Pill (Remote)</div>
+                <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground pl-2">
+                  <li>Designed ELT workflows and dimensional data models in Databricks, leveraging dbt</li>
+                  <li>Engineered distributed Apache Spark pipelines to process large-scale datasets</li>
+                  <li>Built enterprise ETL solutions using SSIS and Informatica</li>
+                  <li>Implemented warehouse-ready data models aligned with Kimball principles</li>
+                </ul>
+              </div>
+
+              {/* Freelance BI */}
+              <div className="mb-5">
+                <div className="flex justify-between items-start mb-1">
+                  <h3 className="font-semibold text-base">Business Intelligence Developer</h3>
                   <span className="text-sm text-muted-foreground">December 2024 - Present</span>
                 </div>
-                <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                  <li>Designed and deployed 10+ interactive Power BI dashboards, increasing reporting efficiency by 30%</li>
-                  <li>Automated reporting workflows using Python scripts, reducing task completion time by 40%</li>
-                  <li>Developed SQL queries to extract and transform data, improving retrieval speed by 25%</li>
-                  <li>Created Excel reporting templates with pivot tables and macros, saving clients 6+ hours weekly</li>
-                  <li>Implemented custom DAX measures to enhance analytical capabilities and provide deeper insights</li>
+                <div className="text-sm text-primary font-medium mb-2">Freelance (Remote)</div>
+                <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground pl-2">
+                  <li>Architected 10+ Power BI solutions using dimensional modeling</li>
+                  <li>Automated data ingestion and ELT workflows with Python and Apache Airflow</li>
+                  <li>Optimized Power BI semantic models and DAX measures, reducing refresh latency</li>
+                  <li>Refactored legacy T-SQL workloads, reducing query execution times by 25%</li>
+                </ul>
+              </div>
+
+              {/* DEPI Coach */}
+              <div className="mb-5">
+                <div className="flex justify-between items-start mb-1">
+                  <h3 className="font-semibold text-base">Technical Coach</h3>
+                  <span className="text-sm text-muted-foreground">September 2025 - June 2026</span>
+                </div>
+                <div className="text-sm text-primary font-medium mb-2">Digital Egypt Pioneers Initiative (DEPI) (Part-Time, Remote)</div>
+                <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground pl-2">
+                  <li>Mentored 50+ professionals in analytics solutions (SQL, Python, Power BI)</li>
+                  <li>Conducted 100+ technical reviews improving code quality</li>
+                  <li>Guided optimization initiatives and developed frameworks for statistical interpretation</li>
+                </ul>
+              </div>
+
+              {/* Data Pill Mentor */}
+              <div className="mb-4">
+                <div className="flex justify-between items-start mb-1">
+                  <h3 className="font-semibold text-base">Data Analytics Mentor</h3>
+                  <span className="text-sm text-muted-foreground">July 2025 - April 2026</span>
+                </div>
+                <div className="text-sm text-primary font-medium mb-2">Data Pill (Part-Time, Remote)</div>
+                <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground pl-2">
+                  <li>Reviewed and optimized SQL queries, Python workflows, and data models</li>
+                  <li>Designed realistic business intelligence scenarios for learners</li>
+                  <li>Coached learners on analytics engineering best practices and dimensional modeling</li>
                 </ul>
               </div>
             </section>
@@ -225,16 +284,38 @@ const Resume = () => {
 
             {/* Certifications */}
             <section className="mb-4">
-              <h2 className="text-xl font-semibold mb-3 border-b-2 border-primary pb-1">CERTIFICATIONS & RECOGNITION</h2>
-              <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                <li>SQL Certifications (Basic, Intermediate, Advanced) — HackerRank</li>
-                <li>Data Analytics Essentials — Cisco</li>
-                <li>Data Literacy Certificate — DataCamp</li>
-                <li>Associate Data Scientist in Python - Career Track</li>
-                <li><strong>Top 2 Data Science Creator – Egypt | Favikon (June 2025)</strong></li>
-                <li>Built a community of 25K+ data professionals</li>
-                <li>Demonstrated thought leadership in data visualization</li>
-              </ul>
+              <h2 className="text-xl font-semibold mb-3 border-b-2 border-primary pb-1">CERTIFICATIONS, DIPLOMAS & RECOGNITION</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-muted-foreground">
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Certifications:</h3>
+                  <ul className="list-disc list-inside space-y-1 pl-1">
+                    <li>Python (Basic) — HackerRank (Apr 2026)</li>
+                    <li>SQL Associate — DataCamp (Sep 2025)</li>
+                    <li>Data Engineer Associate — DataCamp (Sep 2025)</li>
+                    <li>Python Data Associate — DataCamp (Sep 2025)</li>
+                    <li>Data Analyst Associate — DataCamp (Sep 2025)</li>
+                    <li>Top SQL 50 — LeetCode (Jan 2025)</li>
+                    <li>Data Scientist Associate — DataCamp (Sep 2025)</li>
+                    <li>SQL (Basic, Intermediate, Advanced) — HackerRank (Dec 2024)</li>
+                    <li>Data Analytics Essentials — Cisco</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Key Recent Courses & Diplomas:</h3>
+                  <ul className="list-disc list-inside space-y-1 pl-1 mb-3">
+                    <li>Data Analytics Diploma (Ahmed Ali / Friendly Analysis) — Mar 2026 – May 2026</li>
+                    <li>Data Warehouse: The Ultimate Guide (Udemy) — Dec 2026</li>
+                    <li>Build with AI: Masr Edition (ITI) — May 2026</li>
+                    <li>Various courses via 365 Data Science, IBM, Google Cloud, and LinkedIn Learning</li>
+                  </ul>
+                  <h3 className="font-semibold text-foreground mb-1">Recognition:</h3>
+                  <ul className="list-disc list-inside space-y-1 pl-1">
+                    <li><strong>Top 2 Data Science Creator – Egypt | Favikon (June 2025)</strong></li>
+                    <li>Built a community of 60K+ data professionals on LinkedIn</li>
+                    <li>Demonstrated thought leadership in data visualization</li>
+                  </ul>
+                </div>
+              </div>
             </section>
           </CardContent>
         </Card>

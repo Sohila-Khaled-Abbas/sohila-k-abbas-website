@@ -58,6 +58,10 @@ const BOTTOM_BADGES = [
   "6+ Hours Weekly Saved",
   "40% Faster Reporting",
   "50+ Mentored",
+  "Friendly Analysis: Data Analytics Diploma",
+  "Udemy: Data Warehouse Ultimate Guide",
+  "ITI: Build with AI (Masr Edition)",
+  "60K+ Community Followers",
 ];
 
 // ─── Animation helper ─────────────────────────────────────────

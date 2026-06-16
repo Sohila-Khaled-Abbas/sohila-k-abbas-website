@@ -106,7 +106,7 @@ const Hero = () => (
           <Button size="lg" className="btn-cta font-semibold shadow-md" asChild>
             <a href="#projects">
               <BarChart3 className="mr-2 h-4 w-4" />
-              View Dashboards
+              View Projects Hub
             </a>
           </Button>
 

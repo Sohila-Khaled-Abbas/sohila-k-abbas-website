@@ -27,17 +27,27 @@ const CERT_GROUPS: CertGroup[] = [
   {
     category: "BI & Analytics",
     color:    "hsl(25 32% 44%)",   // mocha
-    certs:    ["DataCamp: Data Scientist Associate", "DataCamp: Data Analyst Associate", "DataCamp: Data Literacy", "edX: Verified Certificates"],
+    certs:    ["DataCamp: Data Scientist Associate", "DataCamp: Data Analyst Associate", "DataCamp: Python Data Associate", "DataCamp: Data Literacy", "edX: Verified Certificates"],
   },
   {
-    category: "SQL & Databases",
+    category: "SQL & Programming",
     color:    "hsl(12 52% 56%)",
-    certs:    ["HackerRank: SQL (Basic)", "HackerRank: SQL (Intermediate)", "HackerRank: SQL (Advanced)"],
+    certs:    ["HackerRank: SQL (Basic)", "HackerRank: SQL (Intermediate)", "HackerRank: SQL (Advanced)", "HackerRank: Python (Basic)", "DataCamp: SQL Associate", "LeetCode: Top SQL 50"],
   },
   {
     category: "Cloud & Platforms",
     color:    "hsl(38 65% 52%)",
     certs:    ["Google Cloud Skills Boost", "Microsoft Learn", "Cisco: Data Analytics Essentials", "LinkedIn Learning"],
+  },
+  {
+    category: "Diplomas & Key Courses",
+    color:    "hsl(25 32% 44%)",
+    certs:    [
+      "Friendly Analysis: Data Analytics Diploma",
+      "Udemy: Data Warehouse Ultimate Guide",
+      "ITI: Build with AI (Masr Edition)",
+      "365 Data Science / IBM / GCP / LinkedIn Learning Courses"
+    ],
   },
 ];
 

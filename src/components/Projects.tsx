@@ -226,7 +226,7 @@ const Projects = () => {
       <section id="projects" className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-            <span className="gradient-text">The Dashboards Hub</span>
+            <span className="gradient-text">The Projects Hub</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {[...Array(6)].map((_, i) => (
@@ -253,7 +253,7 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="gradient-text">The Dashboards Hub</span>
+          <span className="gradient-text">The Projects Hub</span>
         </motion.h2>
         <p className="text-center text-muted-foreground mb-8">Interactive, expanding project cards — hover to explore</p>
 
