@@ -78,8 +78,8 @@ const About = () => (
         professionals and Top 200 Arabic-speaking influencer in data literacy.
       </motion.p>
 
-      {/* ── CV Button ── */}
-      <motion.div className="flex justify-center mb-8" {...fadeUp(0.15)}>
+      {/* ── CTA Buttons ── */}
+      <motion.div className="flex flex-wrap justify-center gap-4 mb-8" {...fadeUp(0.15)}>
         <Button size="lg" className="btn-cta font-semibold shadow-md" asChild>
           <a
             href="https://drive.google.com/file/d/134BGo0ox7ClojNGwiT6IKX0eZKIjjncd/view?usp=sharing"
@@ -90,6 +90,14 @@ const About = () => (
             <FileText className="mr-2 h-5 w-5" />
             View Resume
           </a>
+        </Button>
+        <Button
+          size="lg"
+          variant="outline"
+          className="border-border text-foreground hover:bg-secondary hover:border-[hsl(var(--accent))] transition-colors"
+          asChild
+        >
+          <a href="#experience">View Experience</a>
         </Button>
       </motion.div>
 

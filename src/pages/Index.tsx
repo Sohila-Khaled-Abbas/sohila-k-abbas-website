@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import About from "@/components/About";
+import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Community from "@/components/Community";
@@ -170,6 +171,7 @@ const Index = () => {
 
         {/* Existing in-page sections preserved for navigation */}
         <About />
+        <Experience />
         <Skills />
         <Projects />
         <Community />
