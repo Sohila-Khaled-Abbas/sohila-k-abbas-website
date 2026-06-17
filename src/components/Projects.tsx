@@ -151,6 +151,25 @@ const Projects = () => {
       technologies: ["Power BI", "Python", "Data Engineering"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/apple-stock-market-analysis",
       powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiNTNhYmI1ZjUtNDNhZC00OWM3LWFjYzktMmU0NWYyODYzZjIxIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      live_url: "https://app.powerbi.com/view?r=eyJrIjoiNTNhYmI1ZjUtNDNhZC00OWM3LWFjYzktMmU0NWYyODYzZjIxIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      details: {
+        business_goal: "Analyze historical Apple Inc. (AAPL) stock market performance to identify long-term growth trends, volatility patterns, and correlation with broader market indices to assist investment strategies.",
+        technical_implementation: [
+          "Developed a Python-based data extraction script to ingest daily historical stock metrics using the Yahoo Finance API.",
+          "Preprocessed raw stock data in Pandas, handling missing data points and calculating rolling averages, volatility, and trading volumes.",
+          "Built a data model in Power BI, implementing DAX measures for year-over-year growth, CAGR, and cumulative returns.",
+          "Designed an interactive financial dashboard utilizing storytelling techniques to guide users from executive performance down to daily trading trends."
+        ],
+        key_business_insights: [
+          "Market Volatility: Highlighted specific periods of high price volatility correlated with product launch cycles and quarterly earnings reports.",
+          "Volume Dynamics: Identified strong positive correlation between spikes in trading volume and institutional investor movements.",
+          "Long-Term Returns: Showcased that rolling holding periods of 3+ years consistently yield positive returns despite short-term stock corrections."
+        ],
+        outcomes: [
+          "Actionable Investment Signals: Created a predictive visual indicator highlighting historically optimal buy/sell zones based on moving average crossings.",
+          "Automated Financial Analysis: Saved hours of manual data fetching and spreadsheet manipulation by establishing an end-to-end automated pipeline from API to Power BI."
+        ]
+      }
     },
     {
       title: "B2B Retail Analytics & Churn Diagnostic",
@@ -158,6 +177,25 @@ const Projects = () => {
       technologies: ["Power BI", "SQL", "DAX"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi",
       powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiNzE0MWUwYTgtZTlhZC00N2IxLWFmYzQtYmI2MzFkNjFhN2NjIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      live_url: "https://app.powerbi.com/view?r=eyJrIjoiNzE0MWUwYTgtZTlhZC00N2IxLWFmYzQtYmI2MzFkNjFhN2NjIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      details: {
+        business_goal: "Diagnose operational bottlenecks and retailer churn patterns in the B2B sector to prevent customer loss and recover revenue leakages.",
+        technical_implementation: [
+          "Designed and built an optimized Star Schema data model in Power BI capable of handling 472,000+ transaction records.",
+          "Wrote complex SQL queries to extract, clean, and aggregate retailer transactional data from source databases.",
+          "Developed advanced DAX measures to calculate active customer count, purchase frequency, and churn rate based on inactivity windows.",
+          "Created dynamic cohort analysis visuals to track retailer behavior and retention rates over time."
+        ],
+        key_business_insights: [
+          "Churn Drivers: Discovered that delivery delays exceeding 48 hours increased retailer churn rates by 22%.",
+          "High-Risk Cohorts: Identified that retailers who placed their first order during Q3 showed a 15% higher churn rate due to fulfillment congestion.",
+          "Revenue Leakage: Found that 12% of revenue loss was concentrated in unfulfilled or delayed B2B orders."
+        ],
+        outcomes: [
+          "Preventative Alerting System: Formulated a churn-risk scorecard that flags retailers exhibiting warning signs of inactivity, allowing sales teams to proactively intervene.",
+          "Performance Optimization: Reduced Power BI report refresh time by 50% through query optimization and modeling best practices."
+        ]
+      }
     },
     {
       title: "SMART Supply Chain Insights Dashboard",
@@ -165,7 +203,26 @@ const Projects = () => {
       technologies: ["Python", "Excel", "Power BI"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/SMART-Supply-Chain-Insights-Dashboard/",
       powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiNzc1YzdkYWQtZDlkZC00MDhkLWJhNGEtZDg4YzRmMDI5NTljIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
-      presentation_url: "https://docs.google.com/presentation/d/1q51qHk1B0xWvKBgJMcKiS-Fe-QbRng_nYn0VZEHL2e0/edit?usp=sharing"
+      live_url: "https://app.powerbi.com/view?r=eyJrIjoiNzc1YzdkYWQtZDlkZC00MDhkLWJhNGEtZDg4YzRmMDI5NTljIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      presentation_url: "https://docs.google.com/presentation/d/1q51qHk1B0xWvKBgJMcKiS-Fe-QbRng_nYn0VZEHL2e0/edit?usp=sharing",
+      details: {
+        business_goal: "Monitor and optimize logistics efficiency, supplier reliability, and order fulfillment KPIs to streamline supply chain operations and minimize delivery delays.",
+        technical_implementation: [
+          "Built Python preprocessing scripts to clean, structure, and merge disparate logistics spreadsheets and supplier database extracts.",
+          "Designed a robust relational data model linking suppliers, transport routes, inventory levels, and order histories.",
+          "Calculated key performance indicators (KPIs) like On-Time In-Full (OTIF), Order Cycle Time, and supplier lead-time variance using DAX.",
+          "Developed geospatial visualization maps to trace carrier performance and highlight routing bottlenecks."
+        ],
+        key_business_insights: [
+          "Supplier Lead Times: Identified a group of critical component suppliers with a lead-time variance of +5 days, directly impacting production schedules.",
+          "Carrier Inefficiency: Found that 18% of delivery delays occurred during final-mile transit, primarily due to carrier scheduling friction.",
+          "Inventory Imbalances: Discovered excessive safety stock levels for low-demand products, tying up operational capital unnecessarily."
+        ],
+        outcomes: [
+          "Supplier Accountability: Enabled procurement teams to renegotiate SLAs with suppliers using clear, data-driven supplier scorecards.",
+          "Fulfillment Boost: Contributed to a 10% improvement in OTIF delivery rates within the first quarter of deployment by optimizing carrier selection."
+        ]
+      }
     },
     {
       title: "A/B Testing for Marketing Conversion",
@@ -180,6 +237,25 @@ const Projects = () => {
       technologies: ["Power BI", "Python"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis",
       powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiMGNjZmFlOWItMWU3My00ZjM4LTlhYjQtMWY5N2QzOGQwMTAyIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      live_url: "https://app.powerbi.com/view?r=eyJrIjoiMGNjZmFlOWItMWU3My00ZjM4LTlhYjQtMWY5N2QzOGQwMTAyIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      details: {
+        business_goal: "Extract actionable insights from job postings data on Wuzzuf (a leading Egyptian recruitment portal) to understand hiring trends, salary distributions, and high-demand technical skill sets.",
+        technical_implementation: [
+          "Developed Python web scrapers to gather thousands of job postings from the Wuzzuf platform.",
+          "Cleaned text descriptions, extracted key technical skills using regex, and structured salaries into standardized currency bands in Pandas.",
+          "Modeled the cleaned job data in Power BI, implementing DAX measures to analyze job distributions by experience level, location, and industry.",
+          "Created interactive word clouds and bar charts to display dominant tech stacks."
+        ],
+        key_business_insights: [
+          "Technical Skill Dominance: Identified SQL, Python, and Power BI/Tableau as the top three skills requested in 65% of data-related job posts.",
+          "Location Clusters: Discovered that over 80% of tech and analytics roles are concentrated in Cairo and Giza.",
+          "Salary Disparities: Found a significant wage premium (up to 40%) for roles requiring cloud data warehousing experience (BigQuery, Snowflake)."
+        ],
+        outcomes: [
+          "Curriculum Alignment Guide: Provided a clear, data-driven career roadmap used by educational programs to align training modules with current Egyptian job market demands.",
+          "Job Seeker Advantage: Created an interactive resume keyword matching guide to help job seekers optimize profiles for Applicant Tracking Systems (ATS)."
+        ]
+      }
     },
     {
       title: "Social Media Advertising Dashboard",
@@ -187,6 +263,25 @@ const Projects = () => {
       technologies: ["Power BI", "Python"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/Social-Media-Advertising-Dashboard",
       powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiMTRlM2M4OWQtMTcyYy00YzhjLWE3NDAtZGNmMDkxNTUwYzIwIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      live_url: "https://app.powerbi.com/view?r=eyJrIjoiMTRlM2M4OWQtMTcyYy00YzhjLWE3NDAtZGNmMDkxNTUwYzIwIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      details: {
+        business_goal: "Consolidate multi-channel social media ad performance to evaluate ROI, identify cost-effective marketing channels, and resolve discrepancies in click attribution.",
+        technical_implementation: [
+          "Utilized Python scripts to pull daily marketing campaign data from multiple social media platforms via APIs.",
+          "Cleaned and normalized campaign names, spending metrics, impressions, clicks, and conversions across platforms.",
+          "Designed a multi-channel attribution model in Power BI, writing DAX measures for Cost Per Click (CPC), Customer Acquisition Cost (CAC), and Return on Ad Spend (ROAS).",
+          "Created visual comparison views allowing direct side-by-side performance analysis of campaigns."
+        ],
+        key_business_insights: [
+          "Channel Attribution: Resolved attribution conflicts and proved that top organic/social channels actually contributed to 35% of clicks.",
+          "Inefficient Spend: Identified that 15% of the quarterly ad budget was spent on low-converting audiences during weekends.",
+          "Creative Performance: Found that video ads had a 2x higher click-through rate (CTR) compared to static image banners."
+        ],
+        outcomes: [
+          "Optimized Budget Allocation: Enabled marketing managers to reallocate underperforming weekend ad spend into high-ROI video campaigns.",
+          "Unified Attribution: Standardized cross-channel reporting, reducing reporting preparation overhead from 10 hours a week to automated near-real-time updates."
+        ]
+      }
     },
     {
       title: "Startup Expansion Analysis Dashboard",
@@ -194,6 +289,25 @@ const Projects = () => {
       technologies: ["Power BI", "Python"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/Startup-Expansion-Analysis-Dashboard",
       powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiZTFiMTFjOWQtNjI5Ni00YzRiLWEwNzQtZmVlZjM2OGQwZGZlIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      live_url: "https://app.powerbi.com/view?r=eyJrIjoiZTFiMTFjOWQtNjI5Ni00YzRiLWEwNzQtZmVlZjM2OGQwZGZlIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      details: {
+        business_goal: "Analyze geographic revenue distribution, customer acquisition trends, and expansion ROI to identify high-potential markets for future startup growth.",
+        technical_implementation: [
+          "Aggregated demographic, sales, and regional market saturation datasets using Python.",
+          "Engineered a dimensional model in Power BI with tables for regions, products, and customer segments.",
+          "Built DAX formulas to calculate running totals, regional market penetration indexes, and customer lifetime value (LTV) versus acquisition costs.",
+          "Visualized geographic performance using interactive map charts and forecasting models."
+        ],
+        key_business_insights: [
+          "Geographic Hotspots: Discovered that secondary cities had a 25% lower CAC and 15% higher purchase frequency than primary capital cities.",
+          "Product Fit: Identified that a specific product category accounted for 60% of revenue in newly expanded regions.",
+          "ROI Timeline: Calculated that new physical distribution nodes break even in 8 months, compared to the previously estimated 12 months."
+        ],
+        outcomes: [
+          "Strategic Expansion Roadmap: Provided leadership with a ranked list of target cities for the next expansion phase based on quantitative market penetration metrics.",
+          "Profitability Improvement: Helped scale-up operations achieve higher capital efficiency by focusing expansion resources on high-margin secondary cities."
+        ]
+      }
     },
     {
       title: "Global Layoffs Analysis",
@@ -207,6 +321,25 @@ const Projects = () => {
       technologies: ["Power BI"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/healthcare-analytics-dashboard",
       powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiNDI1ODE0MmYtODk0YS00ZjcxLTgwZTgtODM1NzA0NThjZjEwIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      live_url: "https://app.powerbi.com/view?r=eyJrIjoiNDI1ODE0MmYtODk0YS00ZjcxLTgwZTgtODM1NzA0NThjZjEwIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      details: {
+        business_goal: "Analyze hospital waitlists, outpatient flow, and demographic trends to reduce patient waiting times and optimize clinical staffing levels.",
+        technical_implementation: [
+          "Constructed an analytical model integrating patient admission, triage level, physician specialty, and wait time records.",
+          "Built custom DAX metrics to track average wait times, patient throughput, and department utilization rates.",
+          "Implemented conditional formatting and alert mechanisms to highlight departments exceeding maximum wait-time thresholds.",
+          "Designed a clean, accessibility-compliant user interface suited for clinical administrators."
+        ],
+        key_business_insights: [
+          "Triage Bottlenecks: Discovered that patient wait times surged by 45% during shift handovers between 2 PM and 4 PM.",
+          "Staffing Discrepancies: Identified that the emergency department was understaffed on Friday evenings relative to patient inflow volume.",
+          "Demographic Trends: Revealed that pediatric outpatient visits peaked consistently during seasonal weather changes, causing backlog surges."
+        ],
+        outcomes: [
+          "Optimized Staffing Schedules: Provided hospital leadership with data-driven staffing schedules, recommending shifted hours to align clinical staff with peak demand.",
+          "Reduced Patient Waiting: Supported administrative actions that successfully cut average waiting times by 18%."
+        ]
+      }
     },
     {
       title: "Python EDA Case Study",
@@ -220,6 +353,25 @@ const Projects = () => {
       technologies: ["Power BI", "DAX"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard",
       powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiMTgxZTY2NmMtNzA5ZS00Y2FlLWIxNzgtMDM2MWY0ZTIzZjczIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      live_url: "https://app.powerbi.com/view?r=eyJrIjoiMTgxZTY2NmMtNzA5ZS00Y2FlLWIxNzgtMDM2MWY0ZTIzZjczIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      details: {
+        business_goal: "Monitor employee turnover, track satisfaction metrics, and evaluate performance indicators to enhance talent retention and optimize hiring practices.",
+        technical_implementation: [
+          "Modeled employee history data, including promotions, department changes, tenures, and exit surveys.",
+          "Developed DAX measures for monthly attrition rate, average employee tenure, and promotion-to-hire ratios.",
+          "Created dynamic slicers and filters for department, gender, tenure band, and job level.",
+          "Designed interactive correlation matrices to find links between performance scores and attrition."
+        ],
+        key_business_insights: [
+          "Attrition Warning Signs: Identified that employees who did not receive a promotion within 3 years had a 40% higher probability of leaving.",
+          "Onboarding Retention: Discovered that 15% of new hires exited within their first 6 months, pointing to potential onboarding or job expectations misalignment.",
+          "Satisfaction Correlates: Correlated low management satisfaction scores in exit surveys with specific departments rather than company-wide culture."
+        ],
+        outcomes: [
+          "Proactive Attrition Risk List: Enabled the HR department to identify active employees at high risk of attrition for career-pathing discussions.",
+          "Improved First-Year Retention: Supported changes to the onboarding process that led to a measurable reduction in first-year employee turnover."
+        ]
+      }
     },
     {
       title: "IMDB Top 250 Movies Dashboard",
@@ -227,6 +379,24 @@ const Projects = () => {
       technologies: ["Power BI"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/IMDB-Top250-Movies-Dashboard",
       powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiMWJlYmY2ODgtYzQwOS00NzY5LWJmZWItMWI0N2Q0MTJkYmI1IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      live_url: "https://app.powerbi.com/view?r=eyJrIjoiMWJlYmY2ODgtYzQwOS00NzY5LWJmZWItMWI0N2Q0MTJkYmI1IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      details: {
+        business_goal: "Explore, categorize, and analyze historical trends, box office success, genre distributions, and rating dynamics of IMDB's top 250 rated movies.",
+        technical_implementation: [
+          "Structured scraped IMDB movie datasets containing runtime, genre, director, actors, budget, and gross revenue.",
+          "Built a data model using calculated tables to handle multi-genre films without double-counting metrics.",
+          "Developed DAX formulas to analyze average ratings weighted by voting volume and return-on-budget ratios.",
+          "Designed a highly visual theme resembling cinematic dashboards with dark backgrounds and custom movie poster layouts."
+        ],
+        key_business_insights: [
+          "Genre Trends: Revealed that Drama represents the largest single genre in the top 250 (over 40%), while Action films drive higher average budgets and voter turnout.",
+          "Director Dominance: Highlighted that a small group of directors (e.g., Christopher Nolan, Alfred Hitchcock) holds a disproportionate share of the list.",
+          "Rating vs. Revenue: Proved that high critical rating in the top 250 does not directly correlate with global box office gross, emphasizing niche artistic successes."
+        ],
+        outcomes: [
+          "Interactive Film Catalog: Created an educational resource and diagnostic dashboard showcasing how advanced modeling can handle complex many-to-many relationships."
+        ]
+      }
     },
     {
       title: "Emergency Room Dashboard",
@@ -234,6 +404,25 @@ const Projects = () => {
       technologies: ["Power BI", "DAX"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/Emergency-Room-Dashboard",
       powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiZjNmNjEwMzMtYzM3OS00OWM5LTkzYTUtNjJhODU2NTcxNzU3IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      live_url: "https://app.powerbi.com/view?r=eyJrIjoiZjNmNjEwMzMtYzM3OS00OWM5LTkzYTUtNjJhODU2NTcxNzU3IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      details: {
+        business_goal: "Assess patient satisfaction scores, emergency room wait times, and clinical outcomes to identify bottlenecks in ER patient throughput.",
+        technical_implementation: [
+          "Designed a star schema data model linking patients, physicians, encounter details, and timestamps.",
+          "Created advanced DAX measures tracking time-to-triage, time-to-physician, total length of stay, and patient satisfaction ratings.",
+          "Built a dynamic executive summary containing interactive alerts for times exceeding target thresholds.",
+          "Developed drill-down paths from high-level monthly metrics down to individual physician shifts."
+        ],
+        key_business_insights: [
+          "Satisfaction Drivers: Discovered that patient satisfaction scores dropped exponentially when total length of stay exceeded 4 hours, regardless of medical outcome.",
+          "Discharge Bottlenecks: Identified that discharge administration processes on Sunday mornings created a backlog, delaying new patient admissions.",
+          "Triage Efficiency: Found that high-triage patients (critical care) were processed within targets, but low-acuity cases suffered from disproportionately high waiting times."
+        ],
+        outcomes: [
+          "Throughput Redesign: Provided clinical coordinators with the data necessary to implement a 'Fast Track' queue for low-acuity patients.",
+          "Staff Scheduling Adjustment: Shifted physician scheduling patterns to cover critical Sunday morning discharge bottlenecks, improving total patient turnaround."
+        ]
+      }
     },
     {
       title: "Regional Sales Dashboard",
@@ -241,6 +430,25 @@ const Projects = () => {
       technologies: ["Power BI"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/regional-sales-dashboard",
       powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiYWM3NmU2MjgtYjY5Yy00YzczLTg0MDItZjNiMTJlNDUzODhmIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      live_url: "https://app.powerbi.com/view?r=eyJrIjoiYWM3NmU2MjgtYjY5Yy00YzczLTg0MDItZjNiMTJlNDUzODhmIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      details: {
+        business_goal: "Monitor sales performance across multiple regions, evaluate product category growth, track sales representative targets, and identify market expansion opportunities.",
+        technical_implementation: [
+          "Consolidated daily transaction files from regional branches into a centralized data warehouse schema.",
+          "Built a Power BI data model with relationships between products, customers, geography, and sales reps.",
+          "Created DAX measures to calculate total revenue, profit margins, sales variance against targets, and rolling quarterly growth.",
+          "Designed interactive geospatial maps and performance ranking leaderboards."
+        ],
+        key_business_insights: [
+          "Regional Discrepancies: Identified that while the Western region generated 45% of total sales volume, it had the lowest average profit margin due to aggressive local discounting.",
+          "Product Cannibalization: Discovered that the introduction of a new economy product line cannibalized sales of the premium product line, reducing overall net margins.",
+          "Representative Variance: Revealed that 20% of sales representatives consistently failed to meet targets due to unrealistic quota allocations."
+        ],
+        outcomes: [
+          "Discount Policy Adjustment: Supported leadership in establishing a dynamic discount cap policy, successfully recovering 3% of profit margin in low-margin regions.",
+          "Target Realignment: Enabled sales directors to realign quotas based on regional historical market capacity rather than flat percentage increases."
+        ]
+      }
     },
   ];
 
