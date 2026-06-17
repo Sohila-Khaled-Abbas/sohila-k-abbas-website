@@ -7,6 +7,13 @@ const supabaseAnonKey = 'your-anon-key';
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Type definitions for our tables
+export type ProjectDetails = {
+  business_goal: string;
+  technical_implementation: string[];
+  key_business_insights: string[];
+  outcomes?: string[];
+};
+
 export type Project = {
   id: number;
   title: string;
@@ -17,6 +24,7 @@ export type Project = {
   image_url?: string;
   created_at?: string;
   impact_score?: number; // Added for business impact sorting
+  details?: ProjectDetails; // Added for expanded/detail view
 };
 
 export type Skill = {

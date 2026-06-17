@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
-import { Github, BarChart3, Search, X, Filter, Presentation, ExternalLink } from "lucide-react";
+import { Github, BarChart3, Search, X, Filter, Presentation, ExternalLink, CheckCircle2 } from "lucide-react";
 import { useProjects } from "@/hooks/use-supabase-data";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Project } from "@/lib/supabase";
@@ -72,6 +72,35 @@ const Projects = () => {
   const highlightIfMatched = (t: string) => searchQuery && t.toLowerCase().includes(searchQuery.toLowerCase());
 
   const fallbackProjects = [
+    {
+      title: "Mobile Technical Support – Primary Chat Analytics",
+      description: "Designed a decision-support tool to answer a critical operational question: How can a support organization improve Customer Satisfaction (CSAT) while controlling Average Handle Time (AHT)? The resulting interactive Power BI dashboard provides key insights into agent performance, onboarding gaps, queue quality, and tooling inefficiencies.",
+      technologies: ["Power BI", "DAX", "Star Schema", "Data Modeling"],
+      github_url: "",
+      live_url: "https://app.powerbi.com/view?r=eyJrIjoiOTBlNzM5YTItMGIwMi00NDA2LWE2NDAtYzE0MWEyMmY1Yjg4IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9&pageName=23d12c77ed7de4b074e1",
+      powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiOTBlNzM5YTItMGIwMi00NDA2LWE2NDAtYzE0MWEyMmY1Yjg4IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9&pageName=23d12c77ed7de4b074e1",
+      details: {
+        business_goal: "Designed a decision-support tool to answer a critical operational question: How can a support organization improve Customer Satisfaction (CSAT) while controlling Average Handle Time (AHT)?",
+        technical_implementation: [
+          "Designed a star schema data model tailored for customer support analytics.",
+          "Built advanced DAX measures for CSAT, AHT, Wrap Time, and performance variance versus targets.",
+          "Created a storytelling-driven Power BI report with intuitive drill-downs from executive KPIs to agent-level and issue-type performance analysis.",
+          "Analyzed performance dimensions including Month, Agent Tenure, Language, and Consult Outcome."
+        ],
+        key_business_insights: [
+          "Process vs. Performance: Identified that specific issue types consistently drive lower CSAT and higher AHT, indicating systemic process gaps rather than isolated agent performance issues.",
+          "Onboarding Gaps: Discovered that new agents show significantly higher handling times on complex issues, justifying a need for tenure-based coaching.",
+          "Quality over Speed: Revealed that certain language queues maintain strong CSAT despite longer AHT, proving resolution quality outweighs pure speed.",
+          "Tooling Inefficiencies: Correlated increased wrap time with documentation and tooling friction rather than customer-facing delays."
+        ],
+        outcomes: [
+          "Balanced Efficiency & Satisfaction: Established a new performance framework that prioritizes resolution quality over pure speed, maintaining high CSAT.",
+          "Targeted Training Initiatives: Launched a tenure-based coaching program for new agents handling complex issue types, reducing their ramp-up time.",
+          "Process Improvements: Initiated a workflow review for systemic issue types that were driving high handle times, shifting focus from individual agent metrics to process correction.",
+          "Tooling Optimization Roadmaps: Provided data-backed justification to streamline the internal agent documentation interface, targeting a reduction in post-call Wrap Time."
+        ]
+      }
+    },
     {
       title: "Global Horizon Bank — Enterprise Banking Analytics",
       description: "End-to-End Data Intelligence Architecture. Architected an analytical data model transforming raw operational banking records into an optimized Star Schema for the Egyptian market. Developed an interactive executive dashboard featuring a rule-based insights engine to analyze loan portfolio aging and dynamically flag structural risks.",
@@ -350,19 +379,21 @@ const Projects = () => {
                   </CardContent>
                   <CardFooter className="pt-2 flex flex-col gap-2">
                     {(project as any).live_url && (
-                      <Button variant="default" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => window.open((project as any).live_url, "_blank", "noopener,noreferrer")}>
+                      <Button variant="default" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground animate-pulse hover:animate-none" onClick={() => window.open((project as any).live_url, "_blank", "noopener,noreferrer")}>
                         <ExternalLink className="mr-2 h-4 w-4" />
                         View Live Dashboard
                       </Button>
                     )}
-                    <Button
-                      variant={(project as any).live_url ? "outline" : "default"}
-                      className={`w-full ${(project as any).live_url ? "" : "bg-primary hover:bg-primary/90 text-primary-foreground"}`}
-                      onClick={() => window.open(project.github_url, "_blank", "noopener,noreferrer")}
-                    >
-                      <Github className="mr-2 h-4 w-4" />
-                      {(project as any).live_url ? "View Source Code" : "View on GitHub"}
-                    </Button>
+                    {project.github_url && (
+                      <Button
+                        variant={(project as any).live_url ? "outline" : "default"}
+                        className={`w-full ${(project as any).live_url ? "" : "bg-primary hover:bg-primary/90 text-primary-foreground"}`}
+                        onClick={() => window.open(project.github_url, "_blank", "noopener,noreferrer")}
+                      >
+                        <Github className="mr-2 h-4 w-4" />
+                        {(project as any).live_url ? "View Source Code" : "View on GitHub"}
+                      </Button>
+                    )}
                     {project.presentation_url && (
                       <Button variant="outline" className="w-full" onClick={() => window.open(project.presentation_url, "_blank", "noopener,noreferrer")}>
                         <Presentation className="mr-2 h-4 w-4" />
@@ -372,7 +403,7 @@ const Projects = () => {
                     {project.powerbi_url && (
                       <Button variant="outline" className="w-full" onClick={() => { setSelectedProject(project); setIsModalOpen(true); }}>
                         <BarChart3 className="mr-2 h-4 w-4" />
-                        Preview Dashboard
+                        {project.details ? "Preview & Insights" : "Preview Dashboard"}
                       </Button>
                     )}
                   </CardFooter>
@@ -389,18 +420,88 @@ const Projects = () => {
       </div>
 
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="sm:max-w-[90vw] max-h-[90vh]">
+        <DialogContent className="sm:max-w-[95vw] md:max-w-[90vw] max-h-[95vh] md:max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>{selectedProject?.title} - Dashboard Preview</DialogTitle>
+            <DialogTitle className="text-xl font-bold">{selectedProject?.title}</DialogTitle>
           </DialogHeader>
-          {selectedProject?.powerbi_url && (
-            <div className="relative w-full pt-[56.25%]">
-              <iframe src={selectedProject.powerbi_url} className="absolute top-0 left-0 w-full h-full rounded-xl border border-border" allowFullScreen />
+          
+          {selectedProject && (
+            <div className={`grid grid-cols-1 ${selectedProject.details ? 'lg:grid-cols-12' : ''} gap-6 mt-2`}>
+              {/* Power BI Preview Column */}
+              {selectedProject.powerbi_url && (
+                <div className={`${selectedProject.details ? 'lg:col-span-7' : 'w-full'} flex flex-col justify-center`}>
+                  <div className="relative w-full pt-[56.25%] bg-card rounded-xl border border-border overflow-hidden">
+                    <iframe 
+                      src={selectedProject.powerbi_url} 
+                      className="absolute top-0 left-0 w-full h-full" 
+                      allowFullScreen 
+                      title={`${selectedProject.title} Live Preview`}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Details Column */}
+              {selectedProject.details && (
+                <div className="lg:col-span-5 flex flex-col gap-6 max-h-[55vh] lg:max-h-[65vh] overflow-y-auto pr-2">
+                  <div>
+                    <h4 className="text-sm font-semibold uppercase tracking-wider text-accent mb-2">Business Goal</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {selectedProject.details.business_goal}
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-sm font-semibold uppercase tracking-wider text-accent mb-2">Technical Implementation</h4>
+                    <ul className="space-y-2">
+                      {selectedProject.details.technical_implementation.map((item, index) => (
+                        <li key={index} className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed">
+                          <CheckCircle2 className="h-4 w-4 text-accent/70 flex-shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="text-sm font-semibold uppercase tracking-wider text-accent mb-2">Key Business Insights</h4>
+                    <ul className="space-y-2">
+                      {selectedProject.details.key_business_insights.map((item, index) => (
+                        <li key={index} className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed">
+                          <CheckCircle2 className="h-4 w-4 text-accent/70 flex-shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {selectedProject.details.outcomes && selectedProject.details.outcomes.length > 0 && (
+                    <div>
+                      <h4 className="text-sm font-semibold uppercase tracking-wider text-accent mb-2">Outcomes</h4>
+                      <ul className="space-y-2">
+                        {selectedProject.details.outcomes.map((item, index) => (
+                          <li key={index} className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed">
+                            <CheckCircle2 className="h-4 w-4 text-accent/70 flex-shrink-0 mt-0.5" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           )}
-          <div className="flex justify-end mt-4">
-            <DialogClose asChild><Button variant="outline" className="mr-2">Close</Button></DialogClose>
-            <Button onClick={() => { window.open(selectedProject?.powerbi_url, "_blank", "noopener,noreferrer"); setIsModalOpen(false); }}>Open in New Tab</Button>
+
+          <div className="flex justify-end mt-6 pt-4 border-t border-border">
+            <DialogClose asChild>
+              <Button variant="outline" className="mr-2">Close</Button>
+            </DialogClose>
+            {selectedProject?.powerbi_url && (
+              <Button onClick={() => { window.open(selectedProject.powerbi_url, "_blank", "noopener,noreferrer"); setIsModalOpen(false); }}>
+                Open Dashboard in New Tab
+              </Button>
+            )}
           </div>
         </DialogContent>
       </Dialog>
