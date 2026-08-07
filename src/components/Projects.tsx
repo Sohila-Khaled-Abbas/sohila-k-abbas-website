@@ -947,13 +947,13 @@ const Projects = () => {
                 <div className={`${selectedProject.details ? 'lg:col-span-7' : 'w-full'} flex flex-col justify-center`}>
                   <div className="relative w-full h-[400px] lg:h-[500px] bg-card rounded-xl border border-border overflow-hidden flex flex-col">
                     <div className="bg-muted p-2 border-b border-border flex items-center justify-between text-xs text-muted-foreground">
-                      <span>Local n8n Instance (http://localhost:5678)</span>
-                      <Button variant="ghost" size="sm" className="h-6 text-xs px-2" onClick={() => window.open("http://localhost:5678", "_blank", "noopener,noreferrer")}>
+                      <span>Local n8n Instance (http://localhost)</span>
+                      <Button variant="ghost" size="sm" className="h-6 text-xs px-2" onClick={() => window.open("http://localhost", "_blank", "noopener,noreferrer")}>
                         <ExternalLink className="mr-1 h-3 w-3" /> Open in Tab
                       </Button>
                     </div>
                     <iframe 
-                      src="http://localhost:5678" 
+                      src="http://localhost" 
                       className="w-full flex-grow bg-background" 
                       allowFullScreen 
                       title="Local n8n Dashboard"
