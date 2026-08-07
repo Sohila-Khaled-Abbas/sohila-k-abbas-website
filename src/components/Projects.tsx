@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
-import { Github, BarChart3, Search, X, Filter, Presentation, ExternalLink, CheckCircle2 } from "lucide-react";
+import { Github, BarChart3, Search, X, Filter, Presentation, ExternalLink, CheckCircle2, Zap } from "lucide-react";
 import { useProjects } from "@/hooks/use-supabase-data";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Project } from "@/lib/supabase";
@@ -945,19 +945,31 @@ const Projects = () => {
               {/* n8n Local Preview Column */}
               {!selectedProject.powerbi_url && selectedProject.technologies?.includes("n8n") && (
                 <div className={`${selectedProject.details ? 'lg:col-span-7' : 'w-full'} flex flex-col justify-center`}>
-                  <div className="relative w-full h-[400px] lg:h-[500px] bg-card rounded-xl border border-border overflow-hidden flex flex-col">
-                    <div className="bg-muted p-2 border-b border-border flex items-center justify-between text-xs text-muted-foreground">
-                      <span>Local n8n Instance (http://localhost)</span>
-                      <Button variant="ghost" size="sm" className="h-6 text-xs px-2" onClick={() => window.open("http://localhost", "_blank", "noopener,noreferrer")}>
-                        <ExternalLink className="mr-1 h-3 w-3" /> Open in Tab
-                      </Button>
+                  <div className="relative w-full h-[400px] lg:h-[500px] bg-card rounded-xl border border-border overflow-hidden flex flex-col items-center justify-center p-8 text-center bg-gradient-to-br from-background to-muted">
+                    
+                    <div className="bg-primary/10 p-4 rounded-full mb-6">
+                      <Zap className="h-12 w-12 text-primary" />
                     </div>
-                    <iframe 
-                      src="http://localhost" 
-                      className="w-full flex-grow bg-background" 
-                      allowFullScreen 
-                      title="Local n8n Dashboard"
-                    />
+                    
+                    <h3 className="text-xl font-bold mb-3">Local n8n Workflow</h3>
+                    
+                    <p className="text-muted-foreground text-sm max-w-md mb-8 leading-relaxed">
+                      This workflow is designed to run in your local Docker environment. 
+                      Due to browser security (HTTPS to HTTP) restrictions, live embedding is disabled.
+                    </p>
+                    
+                    <Button 
+                      size="lg"
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8" 
+                      onClick={() => window.open("http://localhost", "_blank", "noopener,noreferrer")}
+                    >
+                      <ExternalLink className="mr-2 h-5 w-5" /> 
+                      Launch Local n8n Dashboard
+                    </Button>
+                    
+                    <p className="text-xs text-muted-foreground mt-6 font-mono bg-background/50 px-3 py-1 rounded">
+                      Endpoint: http://localhost:80
+                    </p>
                   </div>
                 </div>
               )}
