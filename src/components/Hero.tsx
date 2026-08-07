@@ -60,7 +60,7 @@ const Hero = () => (
             transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
           >
             <img
-              src="/images/sohila-hero.png"
+              src="/images/sohila-hero.png?v=20260807_2"
               alt="Sohila Khaled Abbas — BI Developer and Data Analytics Engineer"
               className="w-full h-full object-cover"
               width={380}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,67 +11,7 @@ import { useProjects } from "@/hooks/use-supabase-data";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Project } from "@/lib/supabase";
 
-const Projects = () => {
-  const { data: projects, isLoading, error } = useProjects();
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedTechnology, setSelectedTechnology] = useState("");
-  const [sortBy, setSortBy] = useState("newest");
-  const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [commonTechs, setCommonTechs] = useState<string[]>([]);
-
-  const uniqueTechnologies = projects
-    ? [...new Set(projects.flatMap((p) => p.technologies || []))]
-    : [];
-
-  useEffect(() => {
-    if (projects) {
-      const techCount = new Map<string, number>();
-      projects.forEach((p) =>
-        p.technologies?.forEach((t) => techCount.set(t, (techCount.get(t) || 0) + 1))
-      );
-      setCommonTechs(
-        Array.from(techCount.entries())
-          .filter(([, c]) => c > 1)
-          .sort((a, b) => b[1] - a[1])
-          .map(([t]) => t)
-          .slice(0, 5)
-      );
-    }
-  }, [projects]);
-
-  useEffect(() => {
-    if (!projects) return;
-    let result = [...projects];
-    if (searchQuery) {
-      const q = searchQuery.toLowerCase().trim();
-      const exactTech = uniqueTechnologies.find((t) => t.toLowerCase() === q);
-      if (exactTech && !selectedTechnology) {
-        result = result.filter((p) => p.technologies?.includes(exactTech));
-      } else {
-        result = result.filter(
-          (p) =>
-            p.title.toLowerCase().includes(q) ||
-            p.description?.toLowerCase().includes(q) ||
-            p.technologies?.some((t) => t.toLowerCase().includes(q))
-        );
-      }
-    }
-    if (selectedTechnology) {
-      result = result.filter((p) => p.technologies?.includes(selectedTechnology));
-    }
-    if (sortBy === "newest") {
-      result.sort((a, b) => new Date(b.created_at || "").getTime() - new Date(a.created_at || "").getTime());
-    } else if (sortBy === "tech") {
-      result.sort((a, b) => (a.technologies?.join("") || "").localeCompare(b.technologies?.join("") || ""));
-    }
-    setFilteredProjects(result);
-  }, [projects, searchQuery, selectedTechnology, sortBy, uniqueTechnologies]);
-
-  const highlightIfMatched = (t: string) => searchQuery && t.toLowerCase().includes(searchQuery.toLowerCase());
-
-  const fallbackProjects = [
+const FALLBACK_PROJECTS: Project[] = [
     {
       title: "Gourmet Bistro — Multi-Agent AI Customer Service & Ordering System",
       description: "Enterprise multi-agent automation system in n8n featuring LangChain, Qdrant/Supabase RAG, Google Sheets dynamic pricing, order management with 5-min cancellation grace period, and Telegram kitchen dispatch.",
@@ -691,11 +631,82 @@ const Projects = () => {
     },
   ];
 
-  const displayProjects = filteredProjects.length > 0
-    ? filteredProjects
-    : projects?.length
-    ? projects
-    : fallbackProjects;
+const Projects = () => {
+  const { data: remoteProjects, isLoading, error } = useProjects();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTechnology, setSelectedTechnology] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [sortBy, setSortBy] = useState("newest");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const sourceProjects = useMemo(() => {
+    if (!remoteProjects || remoteProjects.length === 0) {
+      return FALLBACK_PROJECTS;
+    }
+    const combined = [...FALLBACK_PROJECTS];
+    remoteProjects.forEach((rp) => {
+      if (!combined.some((p) => p.title.toLowerCase() === rp.title.toLowerCase())) {
+        combined.push(rp);
+      }
+    });
+    return combined;
+  }, [remoteProjects]);
+
+  const uniqueTechnologies = useMemo(() => {
+    return [...new Set(sourceProjects.flatMap((p) => p.technologies || []))];
+  }, [sourceProjects]);
+
+  const commonTechs = useMemo(() => {
+    const techCount = new Map<string, number>();
+    sourceProjects.forEach((p) =>
+      p.technologies?.forEach((t) => techCount.set(t, (techCount.get(t) || 0) + 1))
+    );
+    return Array.from(techCount.entries())
+      .filter(([, c]) => c > 1)
+      .sort((a, b) => b[1] - a[1])
+      .map(([t]) => t)
+      .slice(0, 10);
+  }, [sourceProjects]);
+
+  const filteredProjects = useMemo(() => {
+    let result = [...sourceProjects];
+
+    if (selectedCategory === "n8n") {
+      result = result.filter((p) => p.technologies?.some((t) => ["n8n", "LangChain", "Qdrant", "RAG", "Telegram API", "OpenAI"].includes(t)));
+    } else if (selectedCategory === "powerbi") {
+      result = result.filter((p) => p.technologies?.some((t) => ["Power BI", "DAX", "Power Query"].includes(t)));
+    } else if (selectedCategory === "engineering") {
+      result = result.filter((p) => p.technologies?.some((t) => ["SQL", "Python", "Apache Spark", "PostgreSQL", "ETL", "MinIO", "Metabase"].includes(t)));
+    }
+
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase().trim();
+      const exactTech = uniqueTechnologies.find((t) => t.toLowerCase() === q);
+      if (exactTech && !selectedTechnology) {
+        result = result.filter((p) => p.technologies?.includes(exactTech));
+      } else {
+        result = result.filter(
+          (p) =>
+            p.title.toLowerCase().includes(q) ||
+            p.description?.toLowerCase().includes(q) ||
+            p.technologies?.some((t) => t.toLowerCase().includes(q))
+        );
+      }
+    }
+    if (selectedTechnology) {
+      result = result.filter((p) => p.technologies?.includes(selectedTechnology));
+    }
+    if (sortBy === "newest") {
+      result.sort((a, b) => new Date(b.created_at || "").getTime() - new Date(a.created_at || "").getTime());
+    } else if (sortBy === "tech") {
+      result.sort((a, b) => (a.technologies?.join("") || "").localeCompare(b.technologies?.join("") || ""));
+    }
+    return result;
+  }, [sourceProjects, selectedCategory, searchQuery, selectedTechnology, sortBy, uniqueTechnologies]);
+
+  const displayProjects = filteredProjects;
+  const highlightIfMatched = (t: string) => searchQuery && t.toLowerCase().includes(searchQuery.toLowerCase());
 
   if (isLoading) {
     return (
@@ -731,7 +742,43 @@ const Projects = () => {
         >
           <span className="gradient-text">The Projects Hub</span>
         </motion.h2>
-        <p className="text-center text-muted-foreground mb-8">Interactive, expanding project cards — hover to explore</p>
+        <p className="text-center text-muted-foreground mb-6">Interactive, expanding project cards & production architectures — hover to explore</p>
+
+        {/* Category Filter Pills */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-6 max-w-4xl mx-auto">
+          <Button
+            variant={selectedCategory === "All" ? "default" : "outline"}
+            size="sm"
+            className="rounded-full text-xs font-semibold px-4"
+            onClick={() => setSelectedCategory("All")}
+          >
+            All Projects ({sourceProjects.length})
+          </Button>
+          <Button
+            variant={selectedCategory === "n8n" ? "default" : "outline"}
+            size="sm"
+            className="rounded-full text-xs font-semibold px-4 border-rose-500/30 text-rose-600 dark:text-rose-400"
+            onClick={() => setSelectedCategory("n8n")}
+          >
+            ⚡ n8n &amp; AI Agents (11)
+          </Button>
+          <Button
+            variant={selectedCategory === "powerbi" ? "default" : "outline"}
+            size="sm"
+            className="rounded-full text-xs font-semibold px-4"
+            onClick={() => setSelectedCategory("powerbi")}
+          >
+            📊 Power BI &amp; DAX
+          </Button>
+          <Button
+            variant={selectedCategory === "engineering" ? "default" : "outline"}
+            size="sm"
+            className="rounded-full text-xs font-semibold px-4"
+            onClick={() => setSelectedCategory("engineering")}
+          >
+            🗄️ ETL &amp; Data Engineering
+          </Button>
+        </div>
 
         {/* Filters */}
         <div className="flex flex-col md:flex-row gap-4 mb-6 max-w-7xl mx-auto">
@@ -788,8 +835,8 @@ const Projects = () => {
               {tech}
             </Badge>
           ))}
-          {(selectedTechnology || searchQuery) && (
-            <Button variant="ghost" size="sm" onClick={() => { setSelectedTechnology(""); setSearchQuery(""); }} className="text-xs h-6 px-2">
+          {(selectedTechnology || searchQuery || selectedCategory !== "All") && (
+            <Button variant="ghost" size="sm" onClick={() => { setSelectedTechnology(""); setSearchQuery(""); setSelectedCategory("All"); }} className="text-xs h-6 px-2">
               Clear filters
             </Button>
           )}
