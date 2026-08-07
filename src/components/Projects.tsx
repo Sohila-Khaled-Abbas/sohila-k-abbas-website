@@ -73,6 +73,245 @@ const Projects = () => {
 
   const fallbackProjects = [
     {
+      title: "Gourmet Bistro — Multi-Agent AI Customer Service & Ordering System",
+      description: "Enterprise multi-agent automation system in n8n featuring LangChain, Qdrant/Supabase RAG, Google Sheets dynamic pricing, order management with 5-min cancellation grace period, and Telegram kitchen dispatch.",
+      technologies: ["n8n", "LangChain", "Qdrant", "Supabase", "Telegram API", "PostgreSQL", "Google Sheets"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gourmet-bistro-customer-service",
+      live_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gourmet-bistro-customer-service",
+      details: {
+        business_goal: "Automate 80% of front-of-house customer service inquiries, dynamic pricing calculations, and order modifications while enforcing business rules and kitchen dispatch.",
+        technical_implementation: [
+          "Engineered a supervisory LangChain multi-agent router dispatching inquiries to 4 role-specialized sub-agents (Front Desk, Menu FAQ, Order Creation, and Cancellation).",
+          "Integrated Qdrant vector database and Supabase PgVector embeddings for grounded allergen and menu Q&A without hallucinations.",
+          "Built order calculation logic querying Google Sheets pricing and persisting draft states into Supabase PostgreSQL.",
+          "Enforced business rules: strict 5-minute order cancellation window and Egyptian phone number validation before dispatching Telegram kitchen alerts."
+        ],
+        key_business_insights: [
+          "Role-Based Agent Decoupling: Delegating specialized roles prevented prompt degradation and improved response accuracy to 99%.",
+          "Idempotency in Ordering: Database upserts prevented duplicate orders during temporary network retries.",
+          "Grace Period Enforcement: Automated cancellation time checking eliminated kitchen food waste caused by late order cancellations."
+        ],
+        outcomes: [
+          "80% Workload Reduction: Handled routine menu questions and draft orders without human staff intervention.",
+          "Instant Kitchen Dispatch: Reduced order-to-kitchen transmission time to under 2 seconds via Telegram alerts."
+        ]
+      }
+    },
+    {
+      title: "Apple Financial & Product Intelligence RAG Agent v2",
+      description: "Autonomous RAG agent indexing Apple's SEC 10-K financial filings and hardware product catalogs into Qdrant using OpenAI embeddings and PostgreSQL buffer memory.",
+      technologies: ["n8n", "LangChain", "OpenAI", "Qdrant", "PostgreSQL", "RAG"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-apple-rag-chatbot-v2",
+      live_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-apple-rag-chatbot-v2",
+      details: {
+        business_goal: "Enable instant, accurate natural-language querying of SEC 10-K annual reports and product specs with strict citation grounding.",
+        technical_implementation: [
+          "Implemented text chunking and vectorization using OpenAI text-embedding-3-small into a high-performance Qdrant vector store.",
+          "Constructed hybrid search retriever with cosine distance scoring to find precise financial metrics across hundreds of pages.",
+          "Integrated PostgreSQL conversational buffer memory to maintain context across multi-turn user dialogues."
+        ],
+        key_business_insights: [
+          "Context Window Efficiency: Chunk-level retrieval reduced prompt token consumption by 70% compared to full document passing.",
+          "Strict Grounding: Prompt constraints prevented hallucinated balance sheet numbers by enforcing source citations."
+        ],
+        outcomes: [
+          "Instant Financial Lookup: Cut analyst query time on 10-K filings from 20 minutes of manual searching to under 3 seconds."
+        ]
+      }
+    },
+    {
+      title: "Upwork AI Automated Proposal & Job Lead Pipeline",
+      description: "Automated freelance lead generation engine scraping high-budget Upwork job postings via Apify, evaluating client requirements with GPT-4, and generating tailored proposals.",
+      technologies: ["n8n", "Apify", "OpenAI", "LangChain", "JavaScript", "Telegram API"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-upwork-ai-proposal-creator",
+      live_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-upwork-ai-proposal-creator",
+      details: {
+        business_goal: "Accelerate freelance lead prospecting and eliminate hours of manual proposal drafting while increasing interview conversion rates.",
+        technical_implementation: [
+          "Configured scheduled Apify scraper actors to harvest new job postings matching targeted keywords and client verification criteria.",
+          "Extracted core client pain points and technical requirements using structured GPT-4 prompt chains.",
+          "Generated tailored proposal drafts including relevant portfolio proofs and pushed them directly to a private Telegram channel for instant review."
+        ],
+        key_business_insights: [
+          "Early Application Advantage: Automated alerts enabled submitting custom proposals within the first 15 minutes of job posting.",
+          "Personalization Impact: Requirement-matched proposals achieved 3x higher response rates than generic templates."
+        ],
+        outcomes: [
+          "10+ Hours Saved Weekly: Transformed a 12-hour weekly prospecting chore into a 20-minute review session."
+        ]
+      }
+    },
+    {
+      title: "Pizza Delivery Bot with MSSQL Session Persistence",
+      description: "Interactive Telegram delivery bot with natural language cart management, LangChain agent, OpenRouter inference, and relational MSSQL session state persistence.",
+      technologies: ["n8n", "Telegram API", "LangChain", "OpenRouter", "MSSQL", "SQL"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-delivery-telegram-bot",
+      live_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-delivery-telegram-bot",
+      details: {
+        business_goal: "Provide a conversational food ordering interface on Telegram with resilient cart state persistence across chat sessions.",
+        technical_implementation: [
+          "Built a Telegram bot trigger capturing user messages and routing to a LangChain agent powered by OpenRouter.",
+          "Implemented custom tool nodes for adding items, calculating subtotals, and removing cart entries.",
+          "Persisted cart sessions and user state into relational MSSQL tables for state recovery."
+        ],
+        key_business_insights: [
+          "Session Resilience: Storing cart data in MSSQL prevented customer cart loss during network disconnections.",
+          "Natural Language Ordering: Handled complex conversational additions ('add extra cheese to second pizza') seamlessly."
+        ],
+        outcomes: [
+          "Zero Cart Drop-Off from Timeouts: Session persistence ensured 100% cart recovery upon user reconnect."
+        ]
+      }
+    },
+    {
+      title: "Emaar Towers Real Estate AI Lead Qualification Agent",
+      description: "Real estate AI lead qualification agent evaluating buyer budgets, property preferences, and down payment readiness with OpenRouter LLM, CRM logging, and VIP broker routing.",
+      technologies: ["n8n", "OpenRouter", "Telegram API", "Google Sheets", "CRM Automation"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-emaar-towers-lead-qualification",
+      live_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-emaar-towers-lead-qualification",
+      details: {
+        business_goal: "Qualify inbound luxury real estate inquiries automatically, filtering low-intent leads and fast-tracking high-net-worth buyers.",
+        technical_implementation: [
+          "Engineered a multi-turn conversational agent asking structured questions on budget, preferred unit type, and payment timeline.",
+          "Classified buyer intent and budget tiers automatically into CRM spreadsheets.",
+          "Dispatched high-priority Telegram alerts to senior sales brokers for qualified luxury buyers."
+        ],
+        key_business_insights: [
+          "Lead Prioritization: Filtering buyers below the threshold saved brokers over 15 hours per week of unproductive calls."
+        ],
+        outcomes: [
+          "Instant Lead Engagement: 100% of inbound inquiries engaged within 5 seconds 24/7."
+        ]
+      }
+    },
+    {
+      title: "Google Drive Automated PDF Ingestion & Qdrant Vector Indexer",
+      description: "Event-driven ETL pipeline monitoring Google Drive for uploaded PDFs, extracting and chunking text with character-aware splitters, and upserting vector embeddings into Qdrant for RAG.",
+      technologies: ["n8n", "Google Drive API", "Qdrant", "OpenAI", "PDF Parser", "ETL"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gdrive-pdf-qdrant-indexer",
+      live_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gdrive-pdf-qdrant-indexer",
+      details: {
+        business_goal: "Automate knowledge base synchronization so newly uploaded company PDFs in Google Drive are instantly searchable by AI agents.",
+        technical_implementation: [
+          "Monitored Google Drive folder for newly uploaded or updated PDF documents via event triggers.",
+          "Extracted raw text, applied Recursive Character Text Splitter, and generated embeddings with OpenAI.",
+          "Upserted vectors into Qdrant collections with metadata payload for document source attribution."
+        ],
+        key_business_insights: [
+          "Automated Synchronization: Eliminated manual batch vector re-indexing scripts."
+        ],
+        outcomes: [
+          "Real-Time Indexing: New corporate documents queryable in RAG systems within 30 seconds of upload."
+        ]
+      }
+    },
+    {
+      title: "Customer Feedback Sentiment Classifier & Real-Time Alert Agent",
+      description: "Real-time customer feedback sentiment classifier logging sentiment scores to Google Sheets and triggering instant priority alerts for negative reviews to mitigate churn.",
+      technologies: ["n8n", "OpenAI", "Google Sheets", "Telegram API", "NLP"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-sentiment-analysis-agent",
+      live_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-sentiment-analysis-agent",
+      details: {
+        business_goal: "Detect negative customer feedback in real-time, log sentiment metrics, and notify support managers instantly to prevent customer churn.",
+        technical_implementation: [
+          "Received customer review webhooks and classified sentiment (Positive, Neutral, Negative) and root cause using OpenAI.",
+          "Logged structured audit records with timestamps and sentiment scores into Google Sheets.",
+          "Triggered urgent Telegram notifications for negative reviews to initiate immediate service recovery."
+        ],
+        key_business_insights: [
+          "Churn Mitigation: Resolving customer complaints within 15 minutes restored 70% of dissatisfied accounts."
+        ],
+        outcomes: [
+          "Rapid Escalation: Reduced critical review response time from 4 hours to under 60 seconds."
+        ]
+      }
+    },
+    {
+      title: "Telegram to Notion AI Knowledge Curation ETL Pipeline",
+      description: "Content curation pipeline extracting links and media from Telegram, generating AI summaries with key takeaways, and persisting structured entries in Notion.",
+      technologies: ["n8n", "Telegram API", "Notion API", "OpenAI", "Web Scraping", "ETL"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-telegram-notion-etl",
+      live_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-telegram-notion-etl",
+      details: {
+        business_goal: "Transform unstructured messages, links, and video URLs shared in Telegram into an organized, AI-tagged Notion knowledge base.",
+        technical_implementation: [
+          "Parsed Telegram message entities to extract URLs, video links, and text notes.",
+          "Fetched webpage OpenGraph metadata and generated concise executive summaries via OpenAI.",
+          "Structured properties (Tags, Category, Summary, URL) and inserted entries into Notion database."
+        ],
+        key_business_insights: [
+          "Knowledge Accessibility: Centralizing scattered chat links increased research asset reuse across teams."
+        ],
+        outcomes: [
+          "Zero-Effort Bookmarking: Turned instant messaging into an automated knowledge repository."
+        ]
+      }
+    },
+    {
+      title: "Serverless GPT-OSS-20B HuggingFace Cloud Inference",
+      description: "Production-ready integration with HuggingFace Inference API for open-source LLMs featuring 503 cold-start retry loops, Wait node backoff, and robust response parsing.",
+      technologies: ["n8n", "HuggingFace API", "Open-Source LLMs", "Cloud Inference", "JavaScript"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gpt-oss-20b-huggingface",
+      live_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gpt-oss-20b-huggingface",
+      details: {
+        business_goal: "Deploy cost-effective open-source LLM inference without dedicated GPU servers while handling serverless cold-start delays reliably.",
+        technical_implementation: [
+          "Connected n8n HTTP Request node with HuggingFace Inference API using header authentication.",
+          "Implemented conditional IF node to catch 503 'Model loading' statuses.",
+          "Added a 30-second Wait node retry loop before re-dispatching requests, preventing dropped user calls.",
+          "Parsed generated text payloads cleanly via JavaScript code nodes."
+        ],
+        key_business_insights: [
+          "Cold-Start Resilience: Handling transient 503 states allowed 100% serverless operation without costly always-on GPU instances."
+        ],
+        outcomes: [
+          "Zero Infrastructure LLM Hosting: Accessible 20B parameter model inference with built-in retry resilience."
+        ]
+      }
+    },
+    {
+      title: "Daily Viral Content Radar & Trend Analysis ETL Pipeline",
+      description: "Automated trend monitoring pipeline scraping viral content, extracting engagement metrics, classifying topics via AI, and generating daily digest reports.",
+      technologies: ["n8n", "Cron Triggers", "HTTP APIs", "AI Classifier", "ETL"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-daily-viral-content-radar",
+      live_url: "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-daily-viral-content-radar",
+      details: {
+        business_goal: "Provide marketing teams with automated daily trend intelligence reports without manual scrolling across platforms.",
+        technical_implementation: [
+          "Scheduled cron trigger fetching trending topics and engagement statistics via public APIs.",
+          "Analyzed content themes and classified viral potential with AI models.",
+          "Compiled formatted Markdown digests and distributed them across communication channels."
+        ],
+        key_business_insights: [
+          "Early Trend Identification: Allowed content creators to jump on emerging viral topics 24 hours earlier."
+        ],
+        outcomes: [
+          "Automated Trend Discovery: Saved 5+ hours weekly in manual market and social media research."
+        ]
+      }
+    },
+    {
+      title: "74 Production n8n Workflows Portfolio Hub",
+      description: "Master open-source architecture hub containing 74 production automation workflows: multi-agent AI, vector search RAG, relational databases (PostgreSQL/MSSQL), and CRM integrations.",
+      technologies: ["n8n", "LangChain", "Qdrant", "PostgreSQL", "MSSQL", "Supabase", "Docker", "CI/CD"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/n8n-production-queue-setup",
+      live_url: "https://github.com/Sohila-Khaled-Abbas/n8n-production-queue-setup",
+      details: {
+        business_goal: "Demonstrate enterprise-grade workflow automation patterns, resilient software engineering standards, and end-to-end AI agent orchestration.",
+        technical_implementation: [
+          "Programmed 74 workflow JSONs organized across 4 major business domains.",
+          "Enforced software engineering standards: single responsibility, idempotent DB upserts, zero hardcoded secrets, and CI validation.",
+          "Incorporated official n8n Academy certifications and comprehensive architecture guides."
+        ],
+        key_business_insights: [
+          "Software Engineering in Automation: Applying CI/CD, modularity, and idempotency to no-code/low-code tools enables true enterprise scalability."
+        ],
+        outcomes: [
+          "Comprehensive Automation Blueprint: Serves as a full-scale reference portfolio for AI workflow engineering."
+        ]
+      }
+    },
+    {
       title: "Mobile Technical Support – Primary Chat Analytics",
       description: "Designed a decision-support tool to answer a critical operational question: How can a support organization improve Customer Satisfaction (CSAT) while controlling Average Handle Time (AHT)? The resulting interactive Power BI dashboard provides key insights into agent performance, onboarding gaps, queue quality, and tooling inefficiencies.",
       technologies: ["Power BI", "DAX", "Star Schema", "Data Modeling"],

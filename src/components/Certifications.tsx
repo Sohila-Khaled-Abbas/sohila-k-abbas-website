@@ -15,8 +15,17 @@ interface CertGroup {
 
 const CERT_GROUPS: CertGroup[] = [
   {
-    category: "AI & LLMs",
+    category: "Workflow & AI Automation",
     color:    "hsl(12 52% 56%)",   // terracotta
+    certs:    [
+      "n8n Academy: n8n Quickstart",
+      "n8n Academy: Essentials: Your First Workflows",
+      "n8n Academy: Integrations: APIs & Connected Workflows",
+    ],
+  },
+  {
+    category: "AI & LLMs",
+    color:    "hsl(38 65% 52%)",   // gold
     certs:    ["Anthropic: AI Fluency", "Anthropic: Claude 101", "Anthropic: Claude Code in Action"],
   },
   {
