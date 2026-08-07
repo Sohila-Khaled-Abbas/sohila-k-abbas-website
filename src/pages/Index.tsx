@@ -38,10 +38,10 @@ const caseStudies = [
   },
   {
     icon: Workflow,
-    title: "Automating Reporting Pipelines",
+    title: "Multi-Agent & RAG AI Automation",
     description:
-      "Replaced days of manual Excel work by syncing disparate API data into a centralized PostgreSQL architecture, reducing overhead by 40%.",
-    tags: ["ETL", "APIs", "Databricks"],
+      "Engineered 74 production workflows in n8n featuring LangChain multi-agents, Qdrant vector search, and relational database persistence, reducing manual overhead by up to 80%.",
+    tags: ["n8n", "LangChain", "RAG", "Qdrant"],
   },
 ];
 
