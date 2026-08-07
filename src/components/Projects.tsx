@@ -942,41 +942,9 @@ const Projects = () => {
                 </div>
               )}
 
-              {/* n8n Local Preview Column */}
-              {!selectedProject.powerbi_url && selectedProject.technologies?.includes("n8n") && (
-                <div className={`${selectedProject.details ? 'lg:col-span-7' : 'w-full'} flex flex-col justify-center`}>
-                  <div className="relative w-full h-[400px] lg:h-[500px] bg-card rounded-xl border border-border overflow-hidden flex flex-col items-center justify-center p-8 text-center bg-gradient-to-br from-background to-muted">
-                    
-                    <div className="bg-primary/10 p-4 rounded-full mb-6">
-                      <Zap className="h-12 w-12 text-primary" />
-                    </div>
-                    
-                    <h3 className="text-xl font-bold mb-3">Local n8n Workflow</h3>
-                    
-                    <p className="text-muted-foreground text-sm max-w-md mb-8 leading-relaxed">
-                      This workflow is designed to run in your local Docker environment. 
-                      Due to browser security (HTTPS to HTTP) restrictions, live embedding is disabled.
-                    </p>
-                    
-                    <Button 
-                      size="lg"
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8" 
-                      onClick={() => window.open("http://localhost", "_blank", "noopener,noreferrer")}
-                    >
-                      <ExternalLink className="mr-2 h-5 w-5" /> 
-                      Launch Local n8n Dashboard
-                    </Button>
-                    
-                    <p className="text-xs text-muted-foreground mt-6 font-mono bg-background/50 px-3 py-1 rounded">
-                      Endpoint: http://localhost:80
-                    </p>
-                  </div>
-                </div>
-              )}
-
               {/* Details Column */}
               {selectedProject.details && (
-                <div className={`${(!selectedProject.powerbi_url && !selectedProject.technologies?.includes("n8n")) ? 'lg:col-span-12' : 'lg:col-span-5'} flex flex-col gap-6 max-h-[55vh] lg:max-h-[65vh] overflow-y-auto pr-2`}>
+                <div className={`${!selectedProject.powerbi_url ? 'lg:col-span-12' : 'lg:col-span-5'} flex flex-col gap-6 max-h-[55vh] lg:max-h-[65vh] overflow-y-auto pr-2`}>
                   <div>
                     <h4 className="text-sm font-semibold uppercase tracking-wider text-accent mb-2">Business Goal</h4>
                     <p className="text-sm text-muted-foreground leading-relaxed">
