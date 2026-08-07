@@ -872,31 +872,38 @@ const Projects = () => {
                     </div>
                   </CardContent>
                   <CardFooter className="pt-2 flex flex-col gap-2">
-                    {(project as any).live_url && (
+                    {/* Live Dashboard Button (Only if live_url exists and is different from github_url) */}
+                    {(project as any).live_url && (project as any).live_url !== project.github_url && (
                       <Button variant="default" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground animate-pulse hover:animate-none" onClick={() => window.open((project as any).live_url, "_blank", "noopener,noreferrer")}>
                         <ExternalLink className="mr-2 h-4 w-4" />
                         View Live Dashboard
                       </Button>
                     )}
+                    
+                    {/* GitHub / Source Code Button */}
                     {project.github_url && (
                       <Button
-                        variant={(project as any).live_url ? "outline" : "default"}
-                        className={`w-full ${(project as any).live_url ? "" : "bg-primary hover:bg-primary/90 text-primary-foreground"}`}
+                        variant={(project as any).live_url && (project as any).live_url !== project.github_url ? "outline" : "default"}
+                        className={`w-full ${(project as any).live_url && (project as any).live_url !== project.github_url ? "" : "bg-primary hover:bg-primary/90 text-primary-foreground"}`}
                         onClick={() => window.open(project.github_url, "_blank", "noopener,noreferrer")}
                       >
                         <Github className="mr-2 h-4 w-4" />
-                        {(project as any).live_url ? "View Source Code" : "View on GitHub"}
+                        {((project as any).live_url && (project as any).live_url !== project.github_url) ? "View Source Code" : "View on GitHub"}
                       </Button>
                     )}
+                    
+                    {/* Presentation Button */}
                     {project.presentation_url && (
                       <Button variant="outline" className="w-full" onClick={() => window.open(project.presentation_url, "_blank", "noopener,noreferrer")}>
                         <Presentation className="mr-2 h-4 w-4" />
                         View Presentation
                       </Button>
                     )}
-                    {project.powerbi_url && (
-                      <Button variant="outline" className="w-full" onClick={() => { setSelectedProject(project); setIsModalOpen(true); }}>
-                        <BarChart3 className="mr-2 h-4 w-4" />
+                    
+                    {/* Preview & Insights Button */}
+                    {(project.powerbi_url || project.details) && (
+                      <Button variant="outline" className="w-full border-primary/20 hover:border-primary/50" onClick={() => { setSelectedProject(project); setIsModalOpen(true); }}>
+                        {project.powerbi_url ? <BarChart3 className="mr-2 h-4 w-4" /> : <Search className="mr-2 h-4 w-4" />}
                         {project.details ? "Preview & Insights" : "Preview Dashboard"}
                       </Button>
                     )}
@@ -935,9 +942,29 @@ const Projects = () => {
                 </div>
               )}
 
+              {/* n8n Local Preview Column */}
+              {!selectedProject.powerbi_url && selectedProject.technologies?.includes("n8n") && (
+                <div className={`${selectedProject.details ? 'lg:col-span-7' : 'w-full'} flex flex-col justify-center`}>
+                  <div className="relative w-full h-[400px] lg:h-[500px] bg-card rounded-xl border border-border overflow-hidden flex flex-col">
+                    <div className="bg-muted p-2 border-b border-border flex items-center justify-between text-xs text-muted-foreground">
+                      <span>Local n8n Instance (http://localhost:5678)</span>
+                      <Button variant="ghost" size="sm" className="h-6 text-xs px-2" onClick={() => window.open("http://localhost:5678", "_blank", "noopener,noreferrer")}>
+                        <ExternalLink className="mr-1 h-3 w-3" /> Open in Tab
+                      </Button>
+                    </div>
+                    <iframe 
+                      src="http://localhost:5678" 
+                      className="w-full flex-grow bg-background" 
+                      allowFullScreen 
+                      title="Local n8n Dashboard"
+                    />
+                  </div>
+                </div>
+              )}
+
               {/* Details Column */}
               {selectedProject.details && (
-                <div className="lg:col-span-5 flex flex-col gap-6 max-h-[55vh] lg:max-h-[65vh] overflow-y-auto pr-2">
+                <div className={`${(!selectedProject.powerbi_url && !selectedProject.technologies?.includes("n8n")) ? 'lg:col-span-12' : 'lg:col-span-5'} flex flex-col gap-6 max-h-[55vh] lg:max-h-[65vh] overflow-y-auto pr-2`}>
                   <div>
                     <h4 className="text-sm font-semibold uppercase tracking-wider text-accent mb-2">Business Goal</h4>
                     <p className="text-sm text-muted-foreground leading-relaxed">
