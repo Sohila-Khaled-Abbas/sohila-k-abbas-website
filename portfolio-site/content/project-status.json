@@ -1,0 +1,12 @@
+{
+  "pixelfed-analytics-engineering": {
+    "label": "In progress",
+    "focus": "Refining ingestion, data-quality rules, and the analytics model.",
+    "source": "Current work discussed with Sohila; repository includes project roadmap."
+  },
+  "n8n-production-queue-setup": {
+    "label": "In progress",
+    "focus": "Improving the queue stack, upgrade workflow, and operational documentation.",
+    "source": "Current work discussed with Sohila; repository includes stack and runbooks."
+  }
+}

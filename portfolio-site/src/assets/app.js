@@ -3,7 +3,7 @@ const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 const externalIcon = '<svg class="icon"><use href="#external"/></svg>';
 
-// Store only the visitor's preferred color theme.
+// Remember the visitor’s preferred color theme.
 const themeButton = $('.theme-toggle');
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
@@ -97,18 +97,19 @@ if($('#year')) $('#year').textContent=String(new Date().getFullYear());
 // Filter the pre-rendered collection; the full directory also works without JavaScript.
 if ($('#repo-grid')) {
   const grid=$('#repo-grid'), cards=$$('.repo-card',grid);
-  const query=$('#repo-query'),kind=$('#repo-kind'),sort=$('#repo-sort');
+  const query=$('#repo-query'),kind=$('#repo-kind'),sort=$('#repo-sort'),status=$('#repo-status-filter');
   const buttons=$$('.repo-filter'),more=$('#repo-more');
   let category='all',limit=12;
   const normalize=value=>value.normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase();
   const params=new URLSearchParams(location.search);
   query.value=params.get('q')||'';
+  if(params.get('status')==='progress')status.value='progress';
   if(['all','original','fork'].includes(params.get('kind')))kind.value=params.get('kind');
   if(['featured','recent','name'].includes(params.get('sort')))sort.value=params.get('sort');
   if(buttons.some(b=>b.dataset.repoFilter===params.get('category')))category=params.get('category');
   function render(updateUrl=true){
     const terms=normalize(query.value.trim()).split(/\s+/).filter(Boolean);
-    const matches=cards.filter(card=>(category==='all'||card.dataset.category===category)&&(kind.value==='all'||card.dataset.kind===kind.value)&&terms.every(term=>normalize(card.dataset.search).includes(term)));
+    const matches=cards.filter(card=>(status.value==='all'||card.dataset.status===status.value)&&(category==='all'||card.dataset.category===category)&&(kind.value==='all'||card.dataset.kind===kind.value)&&terms.every(term=>normalize(card.dataset.search).includes(term)));
     matches.sort((a,b)=>{
       if(sort.value==='name')return a.dataset.name.localeCompare(b.dataset.name);
       if(sort.value==='featured'){const rank=Number(b.dataset.featured==='true')-Number(a.dataset.featured==='true');if(rank)return rank;}
@@ -122,13 +123,13 @@ if ($('#repo-grid')) {
     $('#repo-empty').hidden=matches.length!==0;
     more.hidden=matches.length<=limit;
     if(!more.hidden)more.firstChild.textContent=`Show ${Math.min(12,matches.length-limit)} more repositories `;
-    $('#repo-reset').hidden=!query.value&&kind.value==='all'&&category==='all'&&sort.value==='featured';
-    if(updateUrl){const p=new URLSearchParams();if(query.value)p.set('q',query.value);if(category!=='all')p.set('category',category);if(kind.value!=='all')p.set('kind',kind.value);if(sort.value!=='featured')p.set('sort',sort.value);history.replaceState(null,'',location.pathname+(p.size?'?'+p.toString():'')+location.hash);}
+    $('#repo-reset').hidden=!query.value&&kind.value==='all'&&status.value==='all'&&category==='all'&&sort.value==='featured';
+    if(updateUrl){const p=new URLSearchParams();if(query.value)p.set('q',query.value);if(category!=='all')p.set('category',category);if(kind.value!=='all')p.set('kind',kind.value);if(sort.value!=='featured')p.set('sort',sort.value);if(status.value!=='all')p.set('status',status.value);history.replaceState(null,'',location.pathname+(p.size?'?'+p.toString():'')+location.hash);}
   }
   buttons.forEach(button=>button.addEventListener('click',()=>{category=button.dataset.repoFilter;limit=12;render();}));
-  [kind,sort].forEach(select=>select.addEventListener('change',()=>{limit=12;render();}));
+  [kind,sort,status].forEach(select=>select.addEventListener('change',()=>{limit=12;render();}));
   query.addEventListener('input',()=>{limit=12;render();});
-  const reset=()=>{query.value='';kind.value='all';sort.value='featured';category='all';limit=12;render();query.focus();};
+  const reset=()=>{query.value='';kind.value='all';status.value='all';sort.value='featured';category='all';limit=12;render();query.focus();};
   $('#repo-reset').addEventListener('click',reset);
   $$('[data-reset-repos]').forEach(button=>button.addEventListener('click',reset));
   more.addEventListener('click',()=>{const oldLimit=limit;limit+=12;render();const visible=$$('.repo-card:not([hidden])',grid);const firstNew=visible[oldLimit]?.querySelector('.repo-name');firstNew?.focus();});
