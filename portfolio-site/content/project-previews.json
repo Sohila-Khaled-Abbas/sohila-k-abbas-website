@@ -1,0 +1,494 @@
+{
+  "checked_on": "2026-10-29",
+  "reports": [
+    {
+      "repo": "SMART-Supply-Chain-Insights-Dashboard",
+      "title": "Smart Supply Chain",
+      "description": "Order fulfillment, customer insights, product profitability, and shipping performance.",
+      "format": "Power BI",
+      "live": {
+        "url": "https://app.powerbi.com/view?r=eyJrIjoiNzc1YzdkYWQtZDlkZC00MDhkLWJhNGEtZDg4YzRmMDI5NTljIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+        "access": "public"
+      },
+      "images": [
+        {
+          "src": "/previews/supply-chain.webp",
+          "alt": "Smart Supply Chain — Order fulfillment",
+          "caption": "Order fulfillment"
+        },
+        {
+          "src": "/previews/supply-chain-customers.webp",
+          "alt": "Smart Supply Chain — Customer insights",
+          "caption": "Customer insights"
+        }
+      ],
+      "files": [
+        {
+          "label": "SMART_SupplyChain_Dashboard.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/SMART-Supply-Chain-Insights-Dashboard/blob/main/5_PowerBI_Dashboard/SMART_SupplyChain_Dashboard.pbix",
+          "format": "PBIX"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/SMART-Supply-Chain-Insights-Dashboard",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/SMART-Supply-Chain-Insights-Dashboard/blob/main/README.md"
+    },
+    {
+      "repo": "Wuzzuf-Job-Market-Analysis",
+      "title": "Egypt’s Data Job Market",
+      "description": "Explore job trends, in-demand roles, skills, and hiring companies from Wuzzuf.",
+      "format": "Power BI",
+      "live": {
+        "url": "https://app.powerbi.com/view?r=eyJrIjoiMGNjZmFlOWItMWU3My00ZjM4LTlhYjQtMWY5N2QzOGQwMTAyIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+        "access": "public"
+      },
+      "images": [
+        {
+          "src": "/previews/wuzzuf.webp",
+          "alt": "Egypt’s Data Job Market — Job market overview",
+          "caption": "Job market overview"
+        },
+        {
+          "src": "/previews/wuzzuf-roles.webp",
+          "alt": "Egypt’s Data Job Market — Role analysis",
+          "caption": "Role analysis"
+        }
+      ],
+      "files": [
+        {
+          "label": "wuzzuf_jobs_dashboard.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/report/wuzzuf_jobs_dashboard.pbix",
+          "format": "PBIX"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/README.md"
+    },
+    {
+      "repo": "apple-stock-market-analysis",
+      "title": "Apple Stock Market Analysis",
+      "description": "A historical AAPL analysis connecting Python, market data, MySQL, and Power BI.",
+      "format": "Power BI",
+      "live": {
+        "url": "https://app.powerbi.com/view?r=eyJrIjoiNTNhYmI1ZjUtNDNhZC00OWM3LWFjYzktMmU0NWYyODYzZjIxIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+        "access": "public"
+      },
+      "images": [],
+      "files": [
+        {
+          "label": "Apple-AAPL-Stock-Market-Analysis-Dashboard.pbip",
+          "url": "https://github.com/Sohila-Khaled-Abbas/apple-stock-market-analysis/blob/main/dashboard/Apple-AAPL-Stock-Market-Analysis-Dashboard.pbip",
+          "format": "PBIP"
+        },
+        {
+          "label": "Apple-AAPL-Stock-Market-Analysis-Dashboard.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/apple-stock-market-analysis/blob/main/dashboard/Apple-AAPL-Stock-Market-Analysis-Dashboard.pbix",
+          "format": "PBIX"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/apple-stock-market-analysis",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/apple-stock-market-analysis/blob/main/README.md"
+    },
+    {
+      "repo": "regional-sales-dashboard",
+      "title": "Regional Sales",
+      "description": "A regional view of sales, profit, order trends, and geographic performance.",
+      "format": "Power BI",
+      "live": null,
+      "images": [
+        {
+          "src": "/previews/regional-sales.webp",
+          "alt": "Regional Sales — 2023 sales overview",
+          "caption": "2023 sales overview"
+        }
+      ],
+      "files": [
+        {
+          "label": "Regional Sales Dashboard.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/regional-sales-dashboard/blob/main/Regional%20Sales%20Dashboard.pbix",
+          "format": "PBIX"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/regional-sales-dashboard",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/regional-sales-dashboard/blob/main/README.md"
+    },
+    {
+      "repo": "healthcare-analytics-dashboard",
+      "title": "Healthcare Analytics",
+      "description": "Patient visits, operational trends, and a detailed view of healthcare activity.",
+      "format": "Power BI",
+      "live": null,
+      "images": [
+        {
+          "src": "/previews/healthcare-summary.webp",
+          "alt": "Healthcare Analytics — Healthcare summary",
+          "caption": "Healthcare summary"
+        },
+        {
+          "src": "/previews/healthcare-detail.webp",
+          "alt": "Healthcare Analytics — Detailed patient view",
+          "caption": "Detailed patient view"
+        }
+      ],
+      "files": [
+        {
+          "label": "Healthcare Analytics Project.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/healthcare-analytics-dashboard/blob/main/pbix/Healthcare%20Analytics%20Project.pbix",
+          "format": "PBIX"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/healthcare-analytics-dashboard",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/healthcare-analytics-dashboard/blob/main/README.md"
+    },
+    {
+      "repo": "Emergency-Room-Dashboard",
+      "title": "Emergency Room Visits",
+      "description": "Patient flow, wait times, satisfaction, and emergency-room activity.",
+      "format": "Power BI",
+      "live": null,
+      "images": [
+        {
+          "src": "/previews/emergency-room.webp",
+          "alt": "Emergency Room Visits — Emergency room dashboard — PDF export",
+          "caption": "Emergency room dashboard — PDF export"
+        }
+      ],
+      "files": [
+        {
+          "label": "Emergency-Room-Dashboard.pdf",
+          "url": "https://github.com/Sohila-Khaled-Abbas/Emergency-Room-Dashboard/blob/main/docs/Emergency-Room-Dashboard.pdf",
+          "format": "PDF"
+        },
+        {
+          "label": "Emergency-Room-Dashboard.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/Emergency-Room-Dashboard/blob/main/src/Emergency-Room-Dashboard.pbix",
+          "format": "PBIX"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/Emergency-Room-Dashboard",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Emergency-Room-Dashboard/blob/main/README.md"
+    },
+    {
+      "repo": "HR-Analytics-Dashboard",
+      "title": "HR Attendance & Leave",
+      "description": "Attendance patterns and leave insights, with a shared Power BI report link.",
+      "format": "Power BI",
+      "live": {
+        "url": "https://app.powerbi.com/groups/808869fc-e1b7-4ff5-87ed-b9dcaaf02f4e/reports/b1482fb6-65c8-4257-bcfa-491d319dae89?ctid=27a388d0-1a33-462f-a48b-52c5342daf56&pbi_source=linkShare",
+        "access": "sign-in"
+      },
+      "images": [
+        {
+          "src": "/previews/hr-attendance.webp",
+          "alt": "HR Attendance & Leave — Attendance insights",
+          "caption": "Attendance insights"
+        },
+        {
+          "src": "/previews/hr-leave.webp",
+          "alt": "HR Attendance & Leave — Leave insights",
+          "caption": "Leave insights"
+        }
+      ],
+      "files": [
+        {
+          "label": "HR_Analytics_Report.pdf",
+          "url": "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard/blob/main/docs/HR_Analytics_Report.pdf",
+          "format": "PDF"
+        },
+        {
+          "label": "HR_Analytics.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard/blob/main/src/HR_Analytics.pbix",
+          "format": "PBIX"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard/blob/main/README.md"
+    },
+    {
+      "repo": "Startup-Expansion-Analysis-Dashboard",
+      "title": "Startup Expansion",
+      "description": "Revenue, marketing spend, and location performance for an expansion scenario.",
+      "format": "Power BI",
+      "live": null,
+      "images": [
+        {
+          "src": "/previews/startup.webp",
+          "alt": "Startup Expansion — Expansion overview",
+          "caption": "Expansion overview"
+        }
+      ],
+      "files": [
+        {
+          "label": "Startup-Expansion-Analysis-Dashboard.pdf",
+          "url": "https://github.com/Sohila-Khaled-Abbas/Startup-Expansion-Analysis-Dashboard/blob/main/docs/Startup-Expansion-Analysis-Dashboard.pdf",
+          "format": "PDF"
+        },
+        {
+          "label": "PowerBI-Report.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/Startup-Expansion-Analysis-Dashboard/blob/main/src/PowerBI-Report.pbix",
+          "format": "PBIX"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/Startup-Expansion-Analysis-Dashboard",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Startup-Expansion-Analysis-Dashboard/blob/main/README.md"
+    },
+    {
+      "repo": "Social-Media-Advertising-Dashboard",
+      "title": "Social Media Advertising",
+      "description": "Campaign, channel, audience, and advertising performance in one reporting project.",
+      "format": "Power BI",
+      "live": null,
+      "images": [
+        {
+          "src": "/previews/social-media.webp",
+          "alt": "Social Media Advertising — Campaign overview",
+          "caption": "Campaign overview"
+        }
+      ],
+      "files": [
+        {
+          "label": "Social_Media_Advertising.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/Social-Media-Advertising-Dashboard/blob/main/PowerBI/Social_Media_Advertising.pbix",
+          "format": "PBIX"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/Social-Media-Advertising-Dashboard",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Social-Media-Advertising-Dashboard/blob/main/README.md"
+    },
+    {
+      "repo": "IMDB-Top250-Movies-Dashboard",
+      "title": "IMDb Top 250 Movies",
+      "description": "Explore movie ratings, genres, release years, and the IMDb Top 250 collection.",
+      "format": "Power BI",
+      "live": null,
+      "images": [
+        {
+          "src": "/previews/imdb.webp",
+          "alt": "IMDb Top 250 Movies — Top 250 overview",
+          "caption": "Top 250 overview"
+        }
+      ],
+      "files": [
+        {
+          "label": "IMDB_Top250.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/IMDB-Top250-Movies-Dashboard/blob/main/src/IMDB_Top250.pbix",
+          "format": "PBIX"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/IMDB-Top250-Movies-Dashboard",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/IMDB-Top250-Movies-Dashboard/blob/main/README.md"
+    },
+    {
+      "repo": "fmcg-sales-churn-drop-analysis-powerbi",
+      "title": "FMCG Sales & Retailer Lifecycle",
+      "description": "An Egyptian B2B portfolio scenario exploring sales, churn, delivery, and commercial metrics.",
+      "format": "Power BI",
+      "live": null,
+      "images": [],
+      "files": [
+        {
+          "label": "Maxab Retail Performance & Churn Analytics Dashboard.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/dashboards/Maxab%20Retail%20Performance%20%26%20Churn%20Analytics%20Dashboard.pbix",
+          "format": "PBIX"
+        },
+        {
+          "label": "Maxab Retail Performance & Churn Analytics Dashboard.pbip",
+          "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/src/Maxab%20Retail%20Performance%20%26%20Churn%20Analytics%20Dashboard.pbip",
+          "format": "PBIP"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/README.md"
+    },
+    {
+      "repo": "world-economy-bi-project",
+      "title": "World Economy",
+      "description": "An API-to-report workflow for economic indicators, with a Power BI report file.",
+      "format": "Power BI",
+      "live": null,
+      "images": [],
+      "files": [
+        {
+          "label": "global_economy_dashboard.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project/blob/main/powerbi/global_economy_dashboard.pbix",
+          "format": "PBIX"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project/blob/main/README.md"
+    },
+    {
+      "repo": "O-List-E-Commerce-Data-Analytics",
+      "title": "Olist E-commerce",
+      "description": "A Brazilian e-commerce analysis with a downloadable Power BI report.",
+      "format": "Power BI",
+      "live": null,
+      "images": [],
+      "files": [
+        {
+          "label": "O-List Dashboard.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/O-List-E-Commerce-Data-Analytics/blob/main/report/O-List%20Dashboard.pbix",
+          "format": "PBIX"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/O-List-E-Commerce-Data-Analytics",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/O-List-E-Commerce-Data-Analytics/blob/main/README.md"
+    },
+    {
+      "repo": "S-OP_Dashboard",
+      "title": "Sales & Operations Planning",
+      "description": "A Power BI project exploring the connection between sales and operations planning.",
+      "format": "Power BI",
+      "live": null,
+      "images": [],
+      "files": [
+        {
+          "label": "S&OP_Dashboard.pbip",
+          "url": "https://github.com/Sohila-Khaled-Abbas/S-OP_Dashboard/blob/master/S%26OP_Dashboard.pbip",
+          "format": "PBIP"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/S-OP_Dashboard",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/S-OP_Dashboard/blob/master/README.md"
+    },
+    {
+      "repo": "marketing_campaigns_analysis",
+      "title": "Marketing Campaigns",
+      "description": "Campaign reporting files, reusable report components, and a documented analytics workflow.",
+      "format": "Power BI",
+      "live": null,
+      "images": [],
+      "files": [
+        {
+          "label": "marketing_campagins_dashboard.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis/blob/main/reports/marketing_campagins_dashboard.pbix",
+          "format": "PBIX"
+        },
+        {
+          "label": "Message Bar.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis/blob/main/reports/message_bar/Message%20Bar.pbix",
+          "format": "PBIX"
+        },
+        {
+          "label": "Sidebar.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis/blob/main/reports/side_bar/Sidebar.pbix",
+          "format": "PBIX"
+        },
+        {
+          "label": "Starter Report.pbix",
+          "url": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis/blob/main/reports/theme/Starter%20Report.pbix",
+          "format": "PBIX"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis/blob/main/README.md"
+    },
+    {
+      "repo": "streampulse",
+      "title": "StreamPulse Analytics",
+      "description": "A streaming analytics project with version-controlled Power BI report definitions.",
+      "format": "Power BI",
+      "live": null,
+      "images": [],
+      "files": [
+        {
+          "label": "streamplus_report.pbip",
+          "url": "https://github.com/Sohila-Khaled-Abbas/streampulse/blob/main/streamplus_report.pbip",
+          "format": "PBIP"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/streampulse",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/streampulse/blob/main/README.md"
+    },
+    {
+      "repo": "pixelfed-analytics-engineering",
+      "title": "PixelFed Analytics Engineering",
+      "description": "Multi-format ingestion, dimensional modeling, and a version-controlled Power BI project.",
+      "format": "Power BI",
+      "live": null,
+      "images": [],
+      "files": [
+        {
+          "label": "PixelFed_report.pbip",
+          "url": "https://github.com/Sohila-Khaled-Abbas/pixelfed-analytics-engineering/blob/main/powerbi/PixelFed_report.pbip",
+          "format": "PBIP"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/pixelfed-analytics-engineering",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/pixelfed-analytics-engineering/blob/main/README.md"
+    },
+    {
+      "repo": "kickstarter-analytics-engineering",
+      "title": "Kickstarter Analytics Engineering",
+      "description": "Campaign snapshots, data grains, and an analytics model with Power BI project files.",
+      "format": "Power BI",
+      "live": null,
+      "images": [],
+      "files": [
+        {
+          "label": "kickstarter_analytics.pbip",
+          "url": "https://github.com/Sohila-Khaled-Abbas/kickstarter-analytics-engineering/blob/main/powerbi/kickstarter_analytics.pbip",
+          "format": "PBIP"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/kickstarter-analytics-engineering",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/kickstarter-analytics-engineering/blob/main/README.md"
+    },
+    {
+      "repo": "enterprise-hr-analytics",
+      "title": "Enterprise HR Analytics",
+      "description": "A multi-source HR portfolio scenario with Kimball modeling and Power BI project files.",
+      "format": "Power BI",
+      "live": null,
+      "images": [],
+      "files": [
+        {
+          "label": "employess-report.pbip",
+          "url": "https://github.com/Sohila-Khaled-Abbas/enterprise-hr-analytics/blob/master/powerbi/employess-report.pbip",
+          "format": "PBIP"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/enterprise-hr-analytics",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/enterprise-hr-analytics/blob/master/README.md"
+    },
+    {
+      "repo": "egyptian-cosmetics-market",
+      "title": "Egyptian Cosmetics Analytics",
+      "description": "A local-market data platform with a version-controlled Power BI reporting project.",
+      "format": "Power BI",
+      "live": null,
+      "images": [],
+      "files": [
+        {
+          "label": "Cleopatra_Cosmetics_Report.pbip",
+          "url": "https://github.com/Sohila-Khaled-Abbas/egyptian-cosmetics-market/blob/master/powerbi/Cleopatra_Cosmetics_Report.pbip",
+          "format": "PBIP"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/egyptian-cosmetics-market",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/egyptian-cosmetics-market/blob/master/README.md"
+    },
+    {
+      "repo": "pwc-switzerland-virtual-case",
+      "title": "PwC Virtual Case — Call Center",
+      "description": "A virtual case-study dashboard with a repository screenshot and HTML demo source.",
+      "format": "Web dashboard",
+      "live": null,
+      "images": [
+        {
+          "src": "/previews/pwc-call-center.webp",
+          "alt": "PwC Virtual Case — Call Center — Call center screenshot",
+          "caption": "Call center screenshot"
+        }
+      ],
+      "files": [
+        {
+          "label": "call_center_website_dashboard.html",
+          "url": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/dashboards/call_center_website_dashboard.html",
+          "format": "HTML"
+        }
+      ],
+      "source": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/README.md"
+    }
+  ]
+}

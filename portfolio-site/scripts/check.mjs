@@ -28,4 +28,24 @@ assert(!work.includes('Data-Analyst-PM-App')&&!work.includes('fx-rate-analytics'
 const config=JSON.parse(await fs.readFile(path.join(root,'vercel.json'),'utf8'));
 const firebase=JSON.parse(await fs.readFile(path.join(root,'firebase.json'),'utf8'));
 assert.equal(config.outputDirectory,'dist');assert.equal(firebase.hosting.public,'dist');
+const {reports}=JSON.parse(await fs.readFile(path.join(root,'content/project-previews.json'),'utf8'));
+const status=JSON.parse(await fs.readFile(path.join(root,'content/project-status.json'),'utf8'));
+assert.equal(new Set(reports.map(r=>r.repo)).size,reports.length,'Duplicate report projects');
+for(const report of reports){
+ assert(data.repositories.some(r=>r.name===report.repo&&!r.fork),'Report must have a public original repository');
+ const html=documents.get(path.join(out,'dashboards',report.repo,'index.html'));
+ assert(html,'Missing permanent report page: '+report.repo);
+ assert(!/<iframe\b/.test(html),'Reports must not load third parties before visitor interaction');
+ assert.equal(html.includes('data-load-report='),report.live?.access==='public','Only public reports may be embedded');
+ if(report.live){const url=new URL(report.live.url);assert.equal(url.origin,'https://app.powerbi.com');assert.equal(url.pathname.startsWith('/view'),report.live.access==='public');}
+ for(const file of report.files){assert(file.url.startsWith(report.source+'/blob/'),'Report file must belong to its repository');}
+ for(const image of report.images){assert(image.alt&&image.caption);await fs.access(path.join(out,image.src));}
+}
+for(const repo of Object.keys(status))assert(data.repositories.some(r=>r.name===repo&&!r.fork),'Unknown current project');
+assert.equal([...work.matchAll(/data-status="progress"/g)].length,Object.keys(status).length,'In-progress labels must use explicit editorial status');
+const home=documents.get(path.join(out,'index.html'));
+assert(home.includes('data-motion-toggle')&&home.includes('Good data.'),'Keep the original hero and provide a motion control');
+const styles=await fs.readFile(path.join(out,'enhancements.css'),'utf8');assert(styles.includes('prefers-reduced-motion:reduce'),'Motion preference support is required');
+await fs.access(path.join(out,'social-card.png'));
 console.log(`PASS: ${htmlFiles.length} HTML documents, local links and anchors, ${data.repositories.length} public repositories, and both hosting configurations.`);
+console.log(`PASS: ${reports.length} report pages, explicit in-progress status, click-to-load public embeds, screenshot assets, and reduced-motion support.`);

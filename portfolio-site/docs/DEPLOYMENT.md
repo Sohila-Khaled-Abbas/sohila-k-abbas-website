@@ -8,9 +8,9 @@ This site is static and portable. Build once with Node.js 22 or later; deploy on
 2. In Vercel, choose **Add New → Project** and import `Sohila-Khaled-Abbas/sohila-k-abbas-website`. Set **Root Directory** to `portfolio-site`.
 3. Use `sohila-khaled-abbas` as the project name, subject to Vercel availability. Choose **Other** as the framework if prompted. The committed `vercel.json` supplies `npm run build` and the `dist` output directory.
 4. Deploy. Vercel will rebuild subsequent pushes through its Git integration.
-5. When using a custom domain, set `SITE_URL` to its full HTTPS origin and redeploy. Otherwise the build uses Vercel’s production project URL when available.
+5. When using a custom domain, set `SITE_URL` to its full HTTPS origin and redeploy. Otherwise the build uses Vercel’s production project URL, then the verified website origin in `content/profile.json`.
 
-The canonical URL and sitemap use the configured production origin. When no origin is available, the build omits canonical links and the sitemap rather than pointing to a different host.
+The canonical URL and sitemap use the configured production origin. If all origin settings are removed, the build omits canonical links and the sitemap.
 
 ## Site identity and search appearance
 
@@ -58,12 +58,14 @@ Open `http://localhost:4173/`. The preview includes real directory routes and a 
 - `content/profile.json`: professional experience, education, skills, and training.
 - `content/cases.json` and `content/additional-cases.json`: case-study copy.
 - `content/repositories.json`: a dated public GitHub metadata snapshot.
+- `content/project-previews.json`: report links, screenshots, and available files.
+- `content/project-status.json`: explicitly maintained in-progress projects.
 - `src/home.html`: home-page composition.
 - `src/assets/`: CSS, browser interactions, and favicon.
 - `scripts/build.mjs` and `scripts/pages.mjs`: static page generator and templates.
 
 Run `npm run build` after changing source. `npm run check` verifies internal routes, anchors, directory completeness, and the hosting configuration. External repository descriptions are context, not verified business-impact evidence. Keep private repository data and original CV files out of this public source.
 
-## Existing hosted version
+## Production
 
-The current ChatGPT Sites version can remain online during migration. A Vercel or Firebase project must be created in the owner’s hosting account before either service can publish a new production URL. This repository does not imply that such an external deployment has already occurred.
+The verified Vercel project is `sohila-khaled-abbas`, with the public production domain https://sohila-khaled-abbas.vercel.app and root directory `portfolio-site`. GitHub main is its deployment source. The ChatGPT Sites copy can remain available as a secondary host; canonical and social links point to the Vercel production origin.

@@ -10,26 +10,158 @@
   "as_of": "2026-10-30",
   "summary": "I work across data and analytics engineering, machine learning, and business intelligence. My focus spans ETL/ELT pipelines, data warehousing, predictive modeling, and decision-ready reporting with Python, SQL, Power BI, Airflow, dbt, Databricks, and PySpark. My background in agricultural science and quality-focused research shapes how I approach validation, documentation, and evidence.",
   "experience": [
-    {"role":"Machine Learning Engineer Intern","organization":"FlyRank AI","dates":"Jul 2026 – Present","mode":"Remote","bullets":["Prepare and validate datasets through structured cleaning, quality checks, and documentation.","Investigate patterns and communicate analytical findings to technical stakeholders.","Contribute to repeatable workflows with attention to accurate record handling."]},
-    {"role":"Data Engineer Intern","organization":"Data Pill","dates":"Mar 2026 – Present","mode":"Remote","bullets":["Design data workflows using SQL, Python, and dimensional models.","Standardize validation and quality checks to support consistency and traceability.","Integrate sources and prepare structured outputs for dashboards and business reporting."]},
-    {"role":"Business Intelligence Developer","organization":"Freelance","dates":"Dec 2024 – Present","mode":"Remote","bullets":["Build Power BI dashboards and KPI reports using dimensional modeling and Power Query.","Document reporting logic, data definitions, and transformation steps for repeatable handover.","Use Excel, SQL, and Power BI to organize information, identify trends, and communicate findings."]},
-    {"role":"Technical Coach","organization":"Digital Egypt Pioneers Initiative (DEPI)","dates":"Sep 2025 – Jun 2026","mode":"Part-time · Remote","bullets":["Guide learners through extraction, transformation, warehousing, SQL, and Power BI.","Develop structured explanations, exercises, and implementation documentation.","Review learner work and provide practical technical feedback."]}
+    {
+      "role": "Machine Learning Engineer Intern",
+      "organization": "FlyRank AI",
+      "dates": "Jul 2026 – Present",
+      "mode": "Remote",
+      "bullets": [
+        "Prepare and validate datasets through structured cleaning, quality checks, and documentation.",
+        "Investigate patterns and communicate analytical findings to technical stakeholders.",
+        "Contribute to repeatable workflows with attention to accurate record handling."
+      ]
+    },
+    {
+      "role": "Data Engineer Intern",
+      "organization": "Data Pill",
+      "dates": "Mar 2026 – Present",
+      "mode": "Remote",
+      "bullets": [
+        "Design data workflows using SQL, Python, and dimensional models.",
+        "Standardize validation and quality checks to support consistency and traceability.",
+        "Integrate sources and prepare structured outputs for dashboards and business reporting."
+      ]
+    },
+    {
+      "role": "Business Intelligence Developer",
+      "organization": "Freelance",
+      "dates": "Dec 2024 – Present",
+      "mode": "Remote",
+      "bullets": [
+        "Build Power BI dashboards and KPI reports using dimensional modeling and Power Query.",
+        "Document reporting logic, data definitions, and transformation steps for repeatable handover.",
+        "Use Excel, SQL, and Power BI to organize information, identify trends, and communicate findings."
+      ]
+    },
+    {
+      "role": "Technical Coach",
+      "organization": "Digital Egypt Pioneers Initiative (DEPI)",
+      "dates": "Sep 2025 – Jun 2026",
+      "mode": "Part-time · Remote",
+      "bullets": [
+        "Guide learners through extraction, transformation, warehousing, SQL, and Power BI.",
+        "Develop structured explanations, exercises, and implementation documentation.",
+        "Review learner work and provide practical technical feedback."
+      ]
+    }
   ],
-  "education": {"institution":"Damietta University · Faculty of Agriculture","degree":"B.Sc. in Agriculture Sciences, Horticulture and Landscaping","year":"2024","research":"Melatonin Application in Reducing Post-Harvest Quality Losses and Extending Shelf Life of Strawberry Fruits","research_grade":"Excellent","research_summary":"Experimental research involving sensory, chemical, and microbiological analysis, data organization, interpretation, and technical reporting."},
+  "education": {
+    "institution": "Damietta University · Faculty of Agriculture",
+    "degree": "B.Sc. in Agriculture Sciences, Horticulture and Landscaping",
+    "year": "2024",
+    "research": "Melatonin Application in Reducing Post-Harvest Quality Losses and Extending Shelf Life of Strawberry Fruits",
+    "research_grade": "Excellent",
+    "research_summary": "Experimental research involving sensory, chemical, and microbiological analysis, data organization, interpretation, and technical reporting."
+  },
   "skill_groups": [
-    {"title":"Data & analytics engineering","items":["Python","SQL","ETL / ELT","Data warehousing","Dimensional modeling","SQL Server","PostgreSQL","Data validation"]},
-    {"title":"Platforms & orchestration","items":["Airflow","dbt","Databricks","PySpark","Docker","Git & GitHub"]},
-    {"title":"Machine learning & modeling","items":["Predictive modeling","Machine learning","Feature engineering","Model evaluation","Pandas"]},
-    {"title":"Business intelligence & automation","items":["Power BI","DAX","Power Query M","Excel","Power Pivot","n8n","REST APIs","Technical documentation"]}
+    {
+      "title": "Data & analytics engineering",
+      "items": [
+        "Python",
+        "SQL",
+        "ETL / ELT",
+        "Data warehousing",
+        "Dimensional modeling",
+        "SQL Server",
+        "PostgreSQL",
+        "Data validation",
+        "Kimball dimensional modeling"
+      ]
+    },
+    {
+      "title": "Platforms & orchestration",
+      "items": [
+        "Airflow",
+        "dbt",
+        "Databricks",
+        "PySpark",
+        "Docker",
+        "Git & GitHub"
+      ]
+    },
+    {
+      "title": "Machine learning & modeling",
+      "items": [
+        "Predictive modeling",
+        "Machine learning",
+        "Feature engineering",
+        "Model evaluation",
+        "Pandas",
+        "scikit-learn"
+      ]
+    },
+    {
+      "title": "Business intelligence & automation",
+      "items": [
+        "Power BI",
+        "DAX",
+        "Power Query M",
+        "Excel",
+        "Power Pivot",
+        "n8n",
+        "REST APIs",
+        "Technical documentation",
+        "Obsidian"
+      ]
+    }
   ],
   "training": [
-    {"title":"n8n Foundations Professional Certificate","provider":"n8n Academy","date":"2026","detail":"Essentials, Integrations, and In Practice: AI, Testing & Best Practices."},
-    {"title":"Fundamentals of Networking for Effective Backend Design","provider":"Udemy","date":"Oct 2026","detail":"Completed course with practical networking labs."},
-    {"title":"Data Analytics Diploma","provider":"Ahmed Ali · Friendly Analysis","date":"Mar – May 2026","detail":"28 sessions covering data analytics."},
-    {"title":"Build with AI: Masr Edition","provider":"Information Technology Institute (ITI)","date":"May 2026","detail":"AI-focused training."},
-    {"title":"Python, APIs & data-platform foundations","provider":"365 Data Science","date":"Nov 2025","detail":"Web Scraping and API Fundamentals in Python; Introduction to Jupyter, Data Warehousing, and Databricks."},
-    {"title":"Power BI Desktop & Power BI Service","provider":"Maven Analytics","date":"Oct 2025","detail":"Business intelligence training."},
-    {"title":"SQL, Python, Excel & data foundations","provider":"IBM · edX","date":"Oct 2025","detail":"SQL for Data Science; Relational Database Basics; Python Basics for Data Science; Analyzing Data with Excel; Data Engineering Basics for Everyone; Data Analytics Basics for Everyone."}
+    {
+      "title": "n8n Foundations Professional Certificate",
+      "provider": "n8n Academy",
+      "date": "2026",
+      "detail": "Essentials, Integrations, and In Practice: AI, Testing & Best Practices."
+    },
+    {
+      "title": "Fundamentals of Networking for Effective Backend Design",
+      "provider": "Udemy",
+      "date": "Oct 2026",
+      "detail": "Completed course with practical networking labs."
+    },
+    {
+      "title": "Data Analytics Diploma",
+      "provider": "Ahmed Ali · Friendly Analysis",
+      "date": "Mar – May 2026",
+      "detail": "28 sessions covering data analytics."
+    },
+    {
+      "title": "Build with AI: Masr Edition",
+      "provider": "Information Technology Institute (ITI)",
+      "date": "May 2026",
+      "detail": "AI-focused training."
+    },
+    {
+      "title": "Python, APIs & data-platform foundations",
+      "provider": "365 Data Science",
+      "date": "Nov 2025",
+      "detail": "Web Scraping and API Fundamentals in Python; Introduction to Jupyter, Data Warehousing, and Databricks."
+    },
+    {
+      "title": "Power BI Desktop & Power BI Service",
+      "provider": "Maven Analytics",
+      "date": "Oct 2025",
+      "detail": "Business intelligence training."
+    },
+    {
+      "title": "SQL, Python, Excel & data foundations",
+      "provider": "IBM · edX",
+      "date": "Oct 2025",
+      "detail": "SQL for Data Science; Relational Database Basics; Python Basics for Data Science; Analyzing Data with Excel; Data Engineering Basics for Everyone; Data Analytics Basics for Everyone."
+    }
   ],
-  "languages":["Arabic · Native","English · Excellent, written and spoken"]
+  "languages": [
+    "Arabic · Native",
+    "English · Excellent, written and spoken"
+  ],
+  "website": "https://sohila-khaled-abbas.vercel.app"
 }
