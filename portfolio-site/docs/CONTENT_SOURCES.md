@@ -4,6 +4,8 @@ Professional experience and education were taken from `Sohila_Khaled_Abbas_Agric
 
 The professional profile uses the current public email and GitHub account from the owner’s GitHub profile README. Internship and freelance date ranges are reproduced from the supplied CV, as of 30 October 2026. Quantified achievements without measurement evidence are omitted.
 
+The current professional positioning and expanded toolset use the exact LinkedIn headline supplied by the owner on 30 October 2026: Data & Analytics Engineer | Machine Learning Engineer | Power BI, Python, SQL, Airflow, dbt, Databricks, PySpark | ETL/ELT | Data Warehousing | Predictive Modeling. This changes the portfolio headline and skills, while individual employment entries keep their source-specific roles.
+
 The project directory contains 91 accessible public repository metadata records checked through the connected GitHub account on 30 October 2026. Five private repositories are excluded. One listed repository that GitHub could not serve is excluded. Fork status, parent attribution, language, and activity dates come from GitHub metadata; editorial subject categories are only navigation aids.
 
 Twelve case studies were written from the public repository READMEs. Sources are linked on each case-study page. Academic work, virtual experiences, synthetic scenarios, and portfolio experiments are labeled accordingly. Company names in repositories do not establish employment or a client relationship.
