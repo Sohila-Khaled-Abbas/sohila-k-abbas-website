@@ -1,0 +1,74 @@
+{
+  "cosmetics": {
+    "title": "Egyptian Cosmetics Analytics",
+    "type": "ANALYTICS ENGINEERING / SYNTHETIC BUSINESS SCENARIO",
+    "intro": "An Egypt-focused retail portfolio project connecting operational data to a dimensional warehouse and Power BI reporting.",
+    "problem": "An omnichannel retail scenario brings together orders, customer records, inventory, targets, and exchange-rate inputs. Mixed formats and inconsistent values need a clear treatment before they can support reporting.",
+    "approach": [
+      "Ingest CSV, Excel, and JSON inputs with Python and preserve raw records with lineage.",
+      "Standardize fields, validate relationships, and route invalid records into explicit quarantine tables.",
+      "Model dimensions and facts in SQL Server, including customer history with SCD Type 2.",
+      "Provide SQL Server and Power Query delivery paths with a DAX semantic layer."
+    ],
+    "takeaway": "The useful part is the complete chain: a source record can be traced through cleaning, validation, modeling, and reporting. The repository documents the scenario, architecture, and data-quality decisions.",
+    "caveat": "Portfolio business scenario. Do not interpret the company narrative or sample data as a real client engagement, verified market performance, or measured business impact. The cover graphic is an illustration.",
+    "stack": "Python · SQL Server 2022 · Power Query M · Power BI · DAX",
+    "repo": "egyptian-cosmetics-market"
+  },
+  "pixelfed": {
+    "title": "PixelFed, from raw to ready",
+    "type": "ANALYTICS ENGINEERING / SYNTHETIC SOCIAL DATA",
+    "intro": "A reproducible social-content analytics project built around a relational schema, mixed-format landing files, and a galaxy semantic model.",
+    "problem": "Social-content data has different event grains, optional values, and timing constraints. Landing data also arrives in different file formats. Cleaning everything with the same rule can quietly change its meaning.",
+    "approach": [
+      "Generate deterministic synthetic data against a documented schema contract.",
+      "Separate natural optional nulls from deliberately injected raw-data quality issues.",
+      "Validate a candidate landing refresh before explicit promotion and retain the prior snapshot.",
+      "Use Power Query staging and conformed dimensions with grain-specific facts and documented relationships."
+    ],
+    "takeaway": "The project makes the raw-to-Silver workflow reviewable: schemas, null-handling policies, validation, and manual Power Query guidance sit alongside the implementation.",
+    "caveat": "All accounts, names, posts, and events are synthetic. Dated Egypt-market references inform the scenario; they do not establish real PixelFed audience sizes or business results. This is social-content analytics, not a sales dataset.",
+    "stack": "Python · Power Query M · Power BI · TMDL · SQL · GitHub Actions",
+    "repo": "pixelfed-analytics-engineering",
+    "extra": {
+      "label": "Read the null-handling policy",
+      "url": "https://github.com/Sohila-Khaled-Abbas/pixelfed-analytics-engineering/blob/main/docs/ingestion/silver-null-handling-policy.md"
+    }
+  },
+  "kickstarter": {
+    "title": "Making sense of Kickstarter",
+    "type": "BUSINESS INTELLIGENCE / MULTI-SOURCE PUBLIC DATA",
+    "intro": "A Power BI analytics-engineering project designed to reconcile campaign history across public Kickstarter data sources.",
+    "problem": "Historical dumps and recurring crawls overlap. A campaign can appear repeatedly with changing states, while regional benchmarks exist at a different grain. Appending everything into a single flat table can inflate results.",
+    "approach": [
+      "Stage sources independently and normalize encoding, naming, types, and dates.",
+      "Apply documented source hierarchy and recency rules to deduplicate campaign records.",
+      "Separate campaign outcomes, campaign snapshots, and regional benchmarks in a galaxy model.",
+      "Keep the semantic model reviewable in Git using PBIP and TMDL, with organized DAX measures."
+    ],
+    "takeaway": "The model treats grain as an explicit design decision. Campaign outcomes and time-series snapshots can answer different questions without being mixed into a misleading total.",
+    "caveat": "The underlying files are historical public snapshots from sources including Kaggle and WebRobots. Overlapping raw observations are not a count of unique campaigns. The project cover is conceptual, not a live report.",
+    "stack": "Power Query M · Power BI · DAX · PBIP · TMDL · Python",
+    "repo": "kickstarter-analytics-engineering"
+  },
+  "n8n": {
+    "title": "Automation with a backbone",
+    "type": "AUTOMATION / SELF-HOSTED INFRASTRUCTURE",
+    "intro": "A documented Docker Compose stack for queue-mode n8n workflows, with Redis, PostgreSQL, and worker-oriented execution.",
+    "problem": "A useful automation setup needs care around execution, persistence, scaling, recovery, and upgrades. Connecting a few workflow nodes is only one part of the system.",
+    "approach": [
+      "Separate workflow editing, webhook handling, and queued worker execution.",
+      "Use Redis for the queue and PostgreSQL for workflow and execution persistence.",
+      "Include worker-scaling logic, runner configuration, monitoring, and dependency health checks.",
+      "Document backups, operations, troubleshooting, and upgrade or rollback procedures."
+    ],
+    "takeaway": "The repository combines workflow examples with the infrastructure and runbooks around them. It reflects my interest in systems that can be understood, repeated, and maintained.",
+    "caveat": "This is a self-hosted portfolio setup. Repository features are not a claim of production uptime, benchmarked throughput, or client deployments. Version-specific setup and migration guidance lives in the repository.",
+    "stack": "n8n · Docker Compose · Python · Redis · PostgreSQL · Qdrant",
+    "repo": "n8n-production-queue-setup",
+    "extra": {
+      "label": "Browse workflow documentation",
+      "url": "https://github.com/Sohila-Khaled-Abbas/n8n-production-queue-setup/blob/main/PORTFOLIO.md"
+    }
+  }
+}
