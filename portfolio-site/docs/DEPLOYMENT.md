@@ -6,11 +6,17 @@ This site is static and portable. Build once with Node.js 22 or later; deploy on
 
 1. Push this repository to your GitHub account.
 2. In Vercel, choose **Add New → Project** and import `Sohila-Khaled-Abbas/sohila-k-abbas-website`. Set **Root Directory** to `portfolio-site`.
-3. Choose **Other** as the framework if prompted. The committed `vercel.json` supplies `npm run build` and the `dist` output directory.
+3. Use `sohila-khaled-abbas` as the project name, subject to Vercel availability. Choose **Other** as the framework if prompted. The committed `vercel.json` supplies `npm run build` and the `dist` output directory.
 4. Deploy. Vercel will rebuild subsequent pushes through its Git integration.
 5. When using a custom domain, set `SITE_URL` to its full HTTPS origin and redeploy. Otherwise the build uses Vercel’s production project URL when available.
 
 The canonical URL and sitemap use the configured production origin. When no origin is available, the build omits canonical links and the sitemap rather than pointing to a different host.
+
+## Site identity and search appearance
+
+The site name is **Sohila Khaled Abbas**. The homepage title uses the name plus a concise data-engineering and ML role. The complete professional headline is in `content/profile.json` and appears on the About and Résumé pages. Individual project pages have their own descriptive titles.
+
+When a production origin is available, the homepage includes `WebSite` and `Person` JSON-LD; the About page includes a `ProfilePage` entity. All name, headline, and professional-profile links come from the supplied profile. These preferences help describe the site; they do not guarantee search rankings or a particular search-result appearance.
 
 Official documentation: [Import a Git repository](https://vercel.com/docs/git) · [Static configuration](https://vercel.com/docs/project-configuration/vercel-json).
 

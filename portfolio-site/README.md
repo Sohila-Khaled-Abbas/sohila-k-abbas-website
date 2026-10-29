@@ -1,6 +1,6 @@
-# Sohila — Data, with purpose
+# Sohila Khaled Abbas — Data & Analytics Engineer | Machine Learning Engineer
 
-A complete, portable personal portfolio for Sohila Khaled Abbas: analytics, business intelligence, data engineering, automation, and practical learning.
+A complete, portable personal portfolio for Sohila Khaled Abbas: data and analytics engineering, machine learning, business intelligence, ETL/ELT, data warehousing, automation, and practical learning.
 
 ## Content
 
