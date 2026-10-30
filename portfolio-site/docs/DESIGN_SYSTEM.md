@@ -46,3 +46,9 @@ This verifies these token pairs; it is not a certification of every embedded thi
 - Preserve the native dialog focus behavior for screenshots and project search.
 
 The favicon, browser theme color, social card, and selected states use the same palette. Update the SVG and PNG social card together. The 1200 × 630 PNG is used by link previews and the repository README.
+
+## Browser and saved-site icons
+
+The favicon repeats the header's four-tile mark at a six-degree angle: three ivory tiles and one taupe tile on a burgundy rounded square. It uses paths rather than font glyphs so the mark remains consistent at small sizes.
+
+`src/assets/favicon.svg` is the vector source. Matching exports are `favicon-32.png`, `favicon.ico` (16, 32, and 48px), and the opaque 180px `apple-touch-icon.png`. The shared HTML head references these assets with a versioned URL so updated icons can replace cached versions across every generated route. Regenerate all exports from the SVG when the mark changes.
