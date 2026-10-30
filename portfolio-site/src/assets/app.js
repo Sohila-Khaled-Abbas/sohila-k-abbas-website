@@ -7,6 +7,8 @@ const externalIcon = '<svg class="icon"><use href="#external"/></svg>';
 const themeButton = $('.theme-toggle');
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
+  const chromeColor=document.querySelector('meta[name="theme-color"]');
+  if(chromeColor)chromeColor.content=theme==='dark'?'#211916':'#743348';
   themeButton.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
 }
 try { applyTheme(localStorage.getItem('sohila-theme') || 'light'); } catch { applyTheme('light'); }

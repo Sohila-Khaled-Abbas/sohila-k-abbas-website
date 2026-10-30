@@ -6,7 +6,7 @@ This site is static and portable. Build once with Node.js 22 or later; deploy on
 
 1. Push this repository to your GitHub account.
 2. In Vercel, choose **Add New → Project** and import `Sohila-Khaled-Abbas/sohila-k-abbas-website`. Set **Root Directory** to `portfolio-site`.
-3. Use `sohila-khaled-abbas` as the project name, subject to Vercel availability. Choose **Other** as the framework if prompted. The committed `vercel.json` supplies `npm run build` and the `dist` output directory.
+3. The existing production project is `sohila-khaled-abbas`. Choose **Other** as the framework if recreating it. The committed `vercel.json` supplies `npm run build` and the `dist` output directory.
 4. Deploy. Vercel will rebuild subsequent pushes through its Git integration.
 5. When using a custom domain, set `SITE_URL` to its full HTTPS origin and redeploy. Otherwise the build uses Vercel’s production project URL, then the verified website origin in `content/profile.json`.
 
@@ -62,9 +62,11 @@ Open `http://localhost:4173/`. The preview includes real directory routes and a 
 - `content/project-status.json`: explicitly maintained in-progress projects.
 - `content/project-details.json`: original project previews, public file inventory, and documented toolkit.
 - `content/community.json` and `content/credentials.json`: migrated community and learning collections.
-- `src/home.html`: home-page composition.
-- `src/assets/`: CSS, browser interactions, and favicon.
-- `scripts/build.mjs` and `scripts/pages.mjs`: static page generator and templates.
+- `scripts/studio.mjs`: current home composition and project-directory templates.
+- `src/home.html`: shared icon symbols and the illustrative process example.
+- `src/assets/theme.css`: shared light/dark design tokens, loaded after component styles.
+- `src/assets/`: component CSS, browser interactions, portrait, project media, favicon, and social card.
+- `scripts/build.mjs`, `scripts/pages.mjs`, and `scripts/previews.mjs`: static generation and page/report templates.
 
 Run `npm run build` after changing source. `npm run check` verifies internal routes, anchors, directory completeness, and the hosting configuration. External repository descriptions are context, not verified business-impact evidence. Keep private repository data and original CV files out of this public source.
 

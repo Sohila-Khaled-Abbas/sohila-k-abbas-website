@@ -27,7 +27,7 @@ The reporting collection now contains 22 projects and 17 preview images. Apple, 
 
 ## Design and interaction
 
-- Portrait-led ivory and forest-green home, with copper details and real project imagery.
+- Portrait-led ivory, taupe, cocoa, and muted burgundy home, with warm copper details and real project imagery. Shared light/dark tokens and contrast measurements are documented in [the design system](DESIGN_SYSTEM.md).
 - Distinct project covers, large case-study previews, file browsers, and toolkit links.
 - Searchable gallery/list views, shareable filters, and an accessible project finder with Ctrl/Command+K.
 - Native image dialogs, keyboard navigation, reduced-motion support, pause controls, and responsive navigation.
