@@ -2,6 +2,12 @@
 
 A complete, portable personal portfolio for Sohila Khaled Abbas: data and analytics engineering, machine learning, business intelligence, ETL/ELT, data warehousing, automation, and practical learning.
 
+**Live website:** [sohila-khaled-abbas.vercel.app](https://sohila-khaled-abbas.vercel.app/)
+
+![Portrait-inspired portfolio preview](src/assets/social-card.png)
+
+This is the active website source. In the GitHub repository it lives in `portfolio-site/`; Vercel builds this directory. The original React application at the repository root is preserved separately.
+
 ## Content
 
 - Dedicated home, work, dashboards, about, résumé, learning, and contact pages.
@@ -13,6 +19,7 @@ A complete, portable personal portfolio for Sohila Khaled Abbas: data and analyt
 - An interactive three-step retail example with explicitly invented records.
 - About, learning resources, and verified professional contact links.
 - Portrait-led animated hero with technology logos, pause and reduced-motion support; responsive navigation, keyboard screenshot dialogs, light/dark themes, and a print-friendly résumé.
+- A portrait-inspired ivory, taupe, cocoa, and muted burgundy palette, with shared light/dark tokens and verified text contrast pairs.
 - Shareable gallery/list filters, Ctrl/Command+K project search, copyable project links, and a 1200 × 630 social preview card.
 - Community, credential collection, mentoring, and collaboration pages with a local email-draft brief.
 
@@ -32,7 +39,7 @@ Deploy the generated `dist/` directory. `vercel.json` and `firebase.json` are in
 
 Edit `content/` and `src/`, then rebuild. The static generator creates the complete site; no visitor needs JavaScript for the main page content or repository links. JavaScript adds directory search and filters, themes, and interactive examples.
 
-See [content provenance](docs/CONTENT_SOURCES.md) for the source boundaries and accuracy rules.
+See the [documentation index](docs/README.md) for architecture, design tokens, content editing, deployment, and provenance.
 
 No package installation is required. Run the build before deploying. No visitor analytics or tracking is included. Theme and animation preferences are saved in browser local storage.
 

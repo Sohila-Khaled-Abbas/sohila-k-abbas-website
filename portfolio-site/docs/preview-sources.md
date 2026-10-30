@@ -1,10 +1,12 @@
 # Dashboard previews and project status
 
-`content/project-previews.json` records 21 reporting projects found in the public GitHub repositories. It contains the original repository, README, available PBIX/PBIP/PDF/HTML files, screenshot paths, and report links. No private repository content is included.
+`content/project-previews.json` records 22 reporting projects from the public GitHub repositories and the owner's previous portfolio. It contains available repository/README links, PBIX/PBIP/PDF/HTML files, screenshot paths, and report links. Mobile Technical Support Analytics comes from the previous portfolio and has no invented repository. No private repository content is included.
 
-The public Power BI URLs for Smart Supply Chain, Wuzzuf, and Apple were copied from their READMEs. HR Attendance uses a shared report URL that requires Microsoft sign-in; it is linked but never embedded. Other projects link to the available report files. No new Power BI sharing permissions or embed codes were created.
+Twelve existing public Power BI view URLs were recovered from project READMEs and the previous portfolio. They are offered as click-to-load reports with direct links. HR Attendance now uses its recovered public report; its previous Microsoft sign-in share URL remains a separately labeled alternate link. Other projects link to the available report files. No new Power BI sharing permissions or embed codes were created.
 
-Screenshot assets are taken from each project's repository. Emergency Room is rendered from its existing PDF export. The FMCG PDF contains an unsupported-visual message, so it is linked as a file and is not used as a screenshot. All displayed images are format-optimized WebP copies with the report content preserved. File-only entries use a clearly labeled placeholder, not a fabricated dashboard.
+The collection has 17 preview images. Most are taken from repository assets; Emergency Room is rendered from its existing PDF export. Apple, FMCG, and Mobile Technical Support use actual public report home views captured on 30 October 2026. The older FMCG PDF containing an unsupported-visual message is not a preview or a published file link. Images are format-optimized WebP copies with the report content preserved. File-only entries use a clearly labeled placeholder, not a fabricated dashboard.
+
+All 75 original repositories also have permanent project preview pages. In addition to report screenshots, nine actual architecture/model/chart assets support project previews. Other pages show a documented workflow or real source-file paths. Sixteen learning forks retain upstream attribution. Preview types are labeled and do not imply running infrastructure.
 
 `content/project-status.json` marks only PixelFed and the n8n queue setup as in progress, based on Sohila's current work discussed in the conversation. Repository update times do not determine project status. Edit these two records as work changes.
 
@@ -25,3 +27,5 @@ The supplied LinkedIn profile PDF corroborates Kimball dimensional modeling, sci
 - Search and filtering retain their state in shareable URLs; all projects and links are present in server-rendered HTML.
 
 The social card is an original 1200 × 630 design, committed as SVG and PNG for link previews.
+
+The portrait-inspired palette is documented in [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md). Dashboard screenshots and official logos retain their source colors.

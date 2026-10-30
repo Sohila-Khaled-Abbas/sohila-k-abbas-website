@@ -13,3 +13,11 @@ Twelve case studies were written from the public repository READMEs. Sources are
 Selected training comes from the owner’s supplied course history. A future-dated course is not represented as completed. Source code does not establish production performance, client impact, certifications, awards, or employer seniority.
 
 The repository directory is a dated snapshot, not a live GitHub API integration. Update `content/repositories.json` when changing the collection. The website sends no account credentials to visitors and requires no connected apps.
+
+## Original portfolio migration
+
+The owner's previous public portfolio at `https://sohila-k-abbas-website.web.app/` and its public React components were reviewed on 30 October 2026. They supplied the existing portrait, Data Pill mentoring role (July 2025–April 2026), community activities, grouped credential collection, and additional project/dashboard links. The experience timeline now has five entries. Existing titles and dates were retained when adding technical context. See [the migration record](portfolio-migration.md).
+
+The supplied LinkedIn profile PDF also corroborated Kimball dimensional modeling, scikit-learn, and Obsidian. These additions do not replace the owner's biography or infer certifications.
+
+Report images and links are documented in [preview sources](preview-sources.md). The current palette comes from the portrait; it does not recolor report evidence or technology trademarks. See [the design system](DESIGN_SYSTEM.md).
