@@ -124,7 +124,7 @@ if ($('#repo-grid')) {
     more.hidden=matches.length<=limit;
     if(!more.hidden)more.firstChild.textContent=`Show ${Math.min(12,matches.length-limit)} more repositories `;
     $('#repo-reset').hidden=!query.value&&kind.value==='all'&&status.value==='all'&&category==='all'&&sort.value==='featured';
-    if(updateUrl){const p=new URLSearchParams();if(query.value)p.set('q',query.value);if(category!=='all')p.set('category',category);if(kind.value!=='all')p.set('kind',kind.value);if(sort.value!=='featured')p.set('sort',sort.value);if(status.value!=='all')p.set('status',status.value);history.replaceState(null,'',location.pathname+(p.size?'?'+p.toString():'')+location.hash);}
+    if(updateUrl){const p=new URLSearchParams();if(query.value)p.set('q',query.value);if(category!=='all')p.set('category',category);if(kind.value!=='all')p.set('kind',kind.value);if(sort.value!=='featured')p.set('sort',sort.value);if(status.value!=='all')p.set('status',status.value);if(grid.dataset.view==='list')p.set('view','list');history.replaceState(null,'',location.pathname+(p.size?'?'+p.toString():'')+location.hash);}
   }
   buttons.forEach(button=>button.addEventListener('click',()=>{category=button.dataset.repoFilter;limit=12;render();}));
   [kind,sort,status].forEach(select=>select.addEventListener('change',()=>{limit=12;render();}));

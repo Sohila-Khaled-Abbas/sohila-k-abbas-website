@@ -1,0 +1,4160 @@
+{
+  "checked_on": "2026-10-30",
+  "legacy_source": "https://sohila-k-abbas-website.web.app/",
+  "projects": [
+    {
+      "repo": "pixelfed-analytics-engineering",
+      "title": "PixelFed Analytics Engineering",
+      "summary": "Analytics Engineering Lakehouse, Multi-Format Ingestion Engine, and Power BI Semantic Model",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "SQL",
+        "PostgreSQL",
+        "MySQL",
+        "DAX",
+        "Power Query",
+        "Excel"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": {
+        "src": "/project-media/pixelfed-architecture.webp",
+        "kind": "Architecture diagram",
+        "caption": "Synthetic landing files, curation, and the Power BI semantic model."
+      },
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 30707,
+          "url": "https://github.com/Sohila-Khaled-Abbas/pixelfed-analytics-engineering/blob/main/README.md"
+        },
+        {
+          "path": "docs/ingestion/raw-landing-to-silver-workflow.md",
+          "size": 6135,
+          "url": "https://github.com/Sohila-Khaled-Abbas/pixelfed-analytics-engineering/blob/main/docs/ingestion/raw-landing-to-silver-workflow.md"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "size": 1880,
+          "url": "https://github.com/Sohila-Khaled-Abbas/pixelfed-analytics-engineering/blob/main/CHANGELOG.md"
+        },
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "size": 2205,
+          "url": "https://github.com/Sohila-Khaled-Abbas/pixelfed-analytics-engineering/blob/main/CODE_OF_CONDUCT.md"
+        },
+        {
+          "path": "config_table_format_assignment.json",
+          "size": 1523,
+          "url": "https://github.com/Sohila-Khaled-Abbas/pixelfed-analytics-engineering/blob/main/config_table_format_assignment.json"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 3395,
+          "url": "https://github.com/Sohila-Khaled-Abbas/pixelfed-analytics-engineering/blob/main/CONTRIBUTING.md"
+        },
+        {
+          "path": "schema.md",
+          "size": 23392,
+          "url": "https://github.com/Sohila-Khaled-Abbas/pixelfed-analytics-engineering/blob/main/schema.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/pixelfed-analytics-engineering/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/pixelfed-analytics-engineering",
+      "empty": false,
+      "file_count": 97,
+      "source_branch": "main",
+      "tree_sha": "41100046de2552ec35dc1a73c4f071e40ec4050c",
+      "old_portfolio": false
+    },
+    {
+      "repo": "Sohila-Khaled-Abbas",
+      "title": "Sohila Khaled Abbas",
+      "summary": "Config files for my GitHub profile.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "SQL",
+        "Airflow",
+        "dbt",
+        "Databricks",
+        "Docker",
+        "PostgreSQL",
+        "MySQL",
+        "n8n",
+        "Pandas",
+        "NumPy"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.before-architecture.md",
+          "size": 6395,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Sohila-Khaled-Abbas/blob/main/README.before-architecture.md"
+        },
+        {
+          "path": "README.before-redesign.md",
+          "size": 24967,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Sohila-Khaled-Abbas/blob/main/README.before-redesign.md"
+        },
+        {
+          "path": "README.md",
+          "size": 14769,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Sohila-Khaled-Abbas/blob/main/README.md"
+        },
+        {
+          "path": "data/visitor-analytics.json",
+          "size": 1223,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Sohila-Khaled-Abbas/blob/main/data/visitor-analytics.json"
+        },
+        {
+          "path": "scripts/check_readme_links.py",
+          "size": 3614,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Sohila-Khaled-Abbas/blob/main/scripts/check_readme_links.py"
+        },
+        {
+          "path": "scripts/check_readme_mobile.py",
+          "size": 2433,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Sohila-Khaled-Abbas/blob/main/scripts/check_readme_mobile.py"
+        },
+        {
+          "path": "scripts/update_visitor_chart.py",
+          "size": 7909,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Sohila-Khaled-Abbas/blob/main/scripts/update_visitor_chart.py"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Sohila-Khaled-Abbas/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/Sohila-Khaled-Abbas",
+      "empty": false,
+      "file_count": 65,
+      "source_branch": "main",
+      "tree_sha": "a777073061b546217157beaea53c9e0e5b78b3d4",
+      "old_portfolio": false
+    },
+    {
+      "repo": "regional-sales-dashboard",
+      "title": "Regional Sales Dashboard",
+      "summary": "Power BI dashboard for analyzing regional sales trends, identifying growth opportunities, and increasing profitability by 20% using actionable insights.",
+      "technologies": [
+        "Power BI",
+        "Excel"
+      ],
+      "methods": [
+        "Consolidated daily transaction files from regional branches into a centralized data warehouse schema.",
+        "Built a Power BI data model with relationships between products, customers, geography, and sales reps.",
+        "Created DAX measures to calculate total revenue, profit margins, sales variance against targets, and rolling quarterly growth.",
+        "Designed interactive geospatial maps and performance ranking leaderboards."
+      ],
+      "flow": null,
+      "media": null,
+      "live": "https://app.powerbi.com/view?r=eyJrIjoiYWM3NmU2MjgtYjY5Yy00YzczLTg0MDItZjNiMTJlNDUzODhmIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5251,
+          "url": "https://github.com/Sohila-Khaled-Abbas/regional-sales-dashboard/blob/main/README.md"
+        },
+        {
+          "path": "LICENSE .md",
+          "size": 1082,
+          "url": "https://github.com/Sohila-Khaled-Abbas/regional-sales-dashboard/blob/main/LICENSE%20.md"
+        },
+        {
+          "path": "Regional Sales Dashboard.pbix",
+          "size": 153512,
+          "url": "https://github.com/Sohila-Khaled-Abbas/regional-sales-dashboard/blob/main/Regional%20Sales%20Dashboard.pbix"
+        },
+        {
+          "path": "visualizations.md",
+          "size": 5247,
+          "url": "https://github.com/Sohila-Khaled-Abbas/regional-sales-dashboard/blob/main/visualizations.md"
+        },
+        {
+          "path": "code/data-preprocessing-steps.md",
+          "size": 2355,
+          "url": "https://github.com/Sohila-Khaled-Abbas/regional-sales-dashboard/blob/main/code/data-preprocessing-steps.md"
+        },
+        {
+          "path": "code/dax-measures.md",
+          "size": 2327,
+          "url": "https://github.com/Sohila-Khaled-Abbas/regional-sales-dashboard/blob/main/code/dax-measures.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/regional-sales-dashboard/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/regional-sales-dashboard",
+      "empty": false,
+      "file_count": 16,
+      "source_branch": "main",
+      "tree_sha": "e07351aaae7d8c51e5888fc3a5cbbf5835983c74",
+      "old_portfolio": true
+    },
+    {
+      "repo": "healthcare-analytics-dashboard",
+      "title": "Healthcare Analytics Dashboard",
+      "summary": "Interactive Power BI dashboard for analyzing hospital waitlists, patient demographics, and service trends.",
+      "technologies": [
+        "Power BI",
+        "SQL",
+        "DAX"
+      ],
+      "methods": [
+        "Constructed an analytical model integrating patient admission, triage level, physician specialty, and wait time records.",
+        "Built custom DAX metrics to track average wait times, patient throughput, and department utilization rates.",
+        "Implemented conditional formatting and alert mechanisms to highlight departments exceeding maximum wait-time thresholds.",
+        "Designed a clean, accessibility-compliant user interface suited for clinical administrators."
+      ],
+      "flow": null,
+      "media": null,
+      "live": "https://app.powerbi.com/view?r=eyJrIjoiNDI1ODE0MmYtODk0YS00ZjcxLTgwZTgtODM1NzA0NThjZjEwIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 4398,
+          "url": "https://github.com/Sohila-Khaled-Abbas/healthcare-analytics-dashboard/blob/main/README.md"
+        },
+        {
+          "path": "pbix/Healthcare Analytics Project.pbix",
+          "size": 1930406,
+          "url": "https://github.com/Sohila-Khaled-Abbas/healthcare-analytics-dashboard/blob/main/pbix/Healthcare%20Analytics%20Project.pbix"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/healthcare-analytics-dashboard/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/healthcare-analytics-dashboard",
+      "empty": false,
+      "file_count": 17,
+      "source_branch": "main",
+      "tree_sha": "e8f976906bf95da7b03c0f3c2c1f4f813ee58c7c",
+      "old_portfolio": true
+    },
+    {
+      "repo": "global-layoffs-analysis",
+      "title": "Global Layoffs Analysis",
+      "summary": "The Global Layoffs Analysis project uses SQL to explore workforce reduction trends across industries, funding stages, and regions. By analyzing clean and enhanced datasets, it uncovers key drivers of layoffs, highlights global patterns, and provides actionable insights for decision-makers.",
+      "technologies": [
+        "SQL",
+        "Power BI",
+        "Python"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5365,
+          "url": "https://github.com/Sohila-Khaled-Abbas/global-layoffs-analysis/blob/main/README.md"
+        },
+        {
+          "path": "sql/Data Cleaning.sql",
+          "size": 4236,
+          "url": "https://github.com/Sohila-Khaled-Abbas/global-layoffs-analysis/blob/main/sql/Data%20Cleaning.sql"
+        },
+        {
+          "path": "sql/Exploratory Data Analysis.sql",
+          "size": 1774,
+          "url": "https://github.com/Sohila-Khaled-Abbas/global-layoffs-analysis/blob/main/sql/Exploratory%20Data%20Analysis.sql"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/global-layoffs-analysis/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/global-layoffs-analysis",
+      "empty": false,
+      "file_count": 7,
+      "source_branch": "main",
+      "tree_sha": "f3aed4c73dbdfbea0c23cb488feb6415c7990884",
+      "old_portfolio": true
+    },
+    {
+      "repo": "Emergency-Room-Dashboard",
+      "title": "Emergency Room Dashboard",
+      "summary": "Power BI dashboard analyzing emergency room data to improve decision-making. Features advanced DAX measures, insights into patient satisfaction, visit trends, and demographics. Includes interactive design with slicers and drill-throughs. Inspired by Abdelytics and Wecare designs, with PBIX, CSV, and documentation files.",
+      "technologies": [
+        "Power BI",
+        "DAX"
+      ],
+      "methods": [
+        "Designed a star schema data model linking patients, physicians, encounter details, and timestamps.",
+        "Created advanced DAX measures tracking time-to-triage, time-to-physician, total length of stay, and patient satisfaction ratings.",
+        "Built a dynamic executive summary containing interactive alerts for times exceeding target thresholds.",
+        "Developed drill-down paths from high-level monthly metrics down to individual physician shifts."
+      ],
+      "flow": null,
+      "media": null,
+      "live": "https://app.powerbi.com/view?r=eyJrIjoiZjNmNjEwMzMtYzM3OS00OWM5LTkzYTUtNjJhODU2NTcxNzU3IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 1914,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Emergency-Room-Dashboard/blob/main/README.md"
+        },
+        {
+          "path": "docs/README.md",
+          "size": 934,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Emergency-Room-Dashboard/blob/main/docs/README.md"
+        },
+        {
+          "path": "src/Emergency-Room-Dashboard.pbix",
+          "size": 853320,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Emergency-Room-Dashboard/blob/main/src/Emergency-Room-Dashboard.pbix"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Emergency-Room-Dashboard/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/Emergency-Room-Dashboard",
+      "empty": false,
+      "file_count": 8,
+      "source_branch": "main",
+      "tree_sha": "ef98be7d0a945764b15f3163b567f0ada6ec9b40",
+      "old_portfolio": true
+    },
+    {
+      "repo": "IMDB-Top250-Movies-Dashboard",
+      "title": "IMDB Top 250 Movies Dashboard",
+      "summary": "Explore cinema trends with the IMDB Top 250 Movies Dashboard, a Power BI project that visualizes movie ratings, distributions, and top-performing films. The dashboard uses interactive visualizations, advanced DAX measures, and a clean design to deliver actionable insights. Perfect for movie enthusiasts and data professionals alike.",
+      "technologies": [
+        "Power BI",
+        "DAX"
+      ],
+      "methods": [
+        "Structured scraped IMDB movie datasets containing runtime, genre, director, actors, budget, and gross revenue.",
+        "Built a data model using calculated tables to handle multi-genre films without double-counting metrics.",
+        "Developed DAX formulas to analyze average ratings weighted by voting volume and return-on-budget ratios.",
+        "Designed a highly visual theme resembling cinematic dashboards with dark backgrounds and custom movie poster layouts."
+      ],
+      "flow": null,
+      "media": null,
+      "live": "https://app.powerbi.com/view?r=eyJrIjoiMWJlYmY2ODgtYzQwOS00NzY5LWJmZWItMWI0N2Q0MTJkYmI1IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 4055,
+          "url": "https://github.com/Sohila-Khaled-Abbas/IMDB-Top250-Movies-Dashboard/blob/main/README.md"
+        },
+        {
+          "path": "docs/DAX_Formulas.md",
+          "size": 3515,
+          "url": "https://github.com/Sohila-Khaled-Abbas/IMDB-Top250-Movies-Dashboard/blob/main/docs/DAX_Formulas.md"
+        },
+        {
+          "path": "src/IMDB_Top250.pbix",
+          "size": 429805,
+          "url": "https://github.com/Sohila-Khaled-Abbas/IMDB-Top250-Movies-Dashboard/blob/main/src/IMDB_Top250.pbix"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/IMDB-Top250-Movies-Dashboard/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/IMDB-Top250-Movies-Dashboard",
+      "empty": false,
+      "file_count": 8,
+      "source_branch": "main",
+      "tree_sha": "3ed90053be2618efd096edd1de4f3d816cf54df0",
+      "old_portfolio": true
+    },
+    {
+      "repo": "HR-Analytics-Dashboard",
+      "title": "HR Analytics Dashboard",
+      "summary": "Interactive Power BI dashboard for HR analytics, providing actionable insights into employee attendance and leave patterns. Features dynamic filters, DAX measures, and visually engaging reports for data-driven decision-making.",
+      "technologies": [
+        "Power BI",
+        "DAX",
+        "Excel"
+      ],
+      "methods": [
+        "Modeled employee history data, including promotions, department changes, tenures, and exit surveys.",
+        "Developed DAX measures for monthly attrition rate, average employee tenure, and promotion-to-hire ratios.",
+        "Created dynamic slicers and filters for department, gender, tenure band, and job level.",
+        "Designed interactive correlation matrices to find links between performance scores and attrition."
+      ],
+      "flow": null,
+      "media": null,
+      "live": "https://app.powerbi.com/view?r=eyJrIjoiMTgxZTY2NmMtNzA5ZS00Y2FlLWIxNzgtMDM2MWY0ZTIzZjczIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 4520,
+          "url": "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard/blob/main/README.md"
+        },
+        {
+          "path": "src/HR_Analytics.pbix",
+          "size": 157871,
+          "url": "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard/blob/main/src/HR_Analytics.pbix"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard",
+      "empty": false,
+      "file_count": 8,
+      "source_branch": "main",
+      "tree_sha": "b36b04384ed8ccbb0e15f5e5daada51194b0fb1c",
+      "old_portfolio": true
+    },
+    {
+      "repo": "Python_EDA_Case_Study",
+      "title": "Python EDA Case Study",
+      "summary": "This project is an implementation of exploratory data analysis (EDA) techniques in Python, inspired by Mustafa Othman's YouTube tutorial. It focuses on analyzing employee salary data to uncover trends and insights.",
+      "technologies": [
+        "Python"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 1300,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Python_EDA_Case_Study/blob/main/README.md"
+        },
+        {
+          "path": "notebook/Python Exploratory Data Analysis Case-study.ipynb",
+          "size": 41099,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Python_EDA_Case_Study/blob/main/notebook/Python%20Exploratory%20Data%20Analysis%20Case-study.ipynb"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Python_EDA_Case_Study/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/Python_EDA_Case_Study",
+      "empty": false,
+      "file_count": 6,
+      "source_branch": "main",
+      "tree_sha": "3b678ddee1754a6d6c484b159195f62935493a78",
+      "old_portfolio": true
+    },
+    {
+      "repo": "Startup-Expansion-Analysis-Dashboard",
+      "title": "Startup Expansion Analysis Dashboard",
+      "summary": "This project integrates Python and Power BI to analyze a startup's store expansion performance. It features a 5-page interactive dashboard covering revenue, ROI, marketing efficiency, and detailed store-level insights. Includes data, visuals, and a full PDF report.",
+      "technologies": [
+        "Power BI",
+        "Python"
+      ],
+      "methods": [
+        "Aggregated demographic, sales, and regional market saturation datasets using Python.",
+        "Engineered a dimensional model in Power BI with tables for regions, products, and customer segments.",
+        "Built DAX formulas to calculate running totals, regional market penetration indexes, and customer lifetime value (LTV) versus acquisition costs.",
+        "Visualized geographic performance using interactive map charts and forecasting models."
+      ],
+      "flow": null,
+      "media": null,
+      "live": "https://app.powerbi.com/view?r=eyJrIjoiZTFiMTFjOWQtNjI5Ni00YzRiLWEwNzQtZmVlZjM2OGQwZGZlIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 2928,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Startup-Expansion-Analysis-Dashboard/blob/main/README.md"
+        },
+        {
+          "path": "src/data_preprocessing_and_analysis.ipynb",
+          "size": 48849,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Startup-Expansion-Analysis-Dashboard/blob/main/src/data_preprocessing_and_analysis.ipynb"
+        },
+        {
+          "path": "src/PowerBI-Report.pbix",
+          "size": 720590,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Startup-Expansion-Analysis-Dashboard/blob/main/src/PowerBI-Report.pbix"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Startup-Expansion-Analysis-Dashboard/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/Startup-Expansion-Analysis-Dashboard",
+      "empty": false,
+      "file_count": 12,
+      "source_branch": "main",
+      "tree_sha": "b685764926cd1fd84f93dbf48d4115b8f1edef3e",
+      "old_portfolio": true
+    },
+    {
+      "repo": "Social-Media-Advertising-Dashboard",
+      "title": "Social Media Advertising Dashboard",
+      "summary": "Delivered a dashboard resolving ROI data issues and highlighting a 35% click contribution from top channels.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "Pandas",
+        "NumPy"
+      ],
+      "methods": [
+        "Utilized Python scripts to pull daily marketing campaign data from multiple social media platforms via APIs.",
+        "Cleaned and normalized campaign names, spending metrics, impressions, clicks, and conversions across platforms.",
+        "Designed a multi-channel attribution model in Power BI, writing DAX measures for Cost Per Click (CPC), Customer Acquisition Cost (CAC), and Return on Ad Spend (ROAS).",
+        "Created visual comparison views allowing direct side-by-side performance analysis of campaigns."
+      ],
+      "flow": null,
+      "media": null,
+      "live": "https://app.powerbi.com/view?r=eyJrIjoiMTRlM2M4OWQtMTcyYy00YzhjLWE3NDAtZGNmMDkxNTUwYzIwIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5124,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Social-Media-Advertising-Dashboard/blob/main/README.md"
+        },
+        {
+          "path": "PowerBI/Social_Media_Advertising.pbix",
+          "size": 17743242,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Social-Media-Advertising-Dashboard/blob/main/PowerBI/Social_Media_Advertising.pbix"
+        },
+        {
+          "path": "PythonScripts/Data_Cleaning_and_Exploration.ipynb",
+          "size": 230769,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Social-Media-Advertising-Dashboard/blob/main/PythonScripts/Data_Cleaning_and_Exploration.ipynb"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Social-Media-Advertising-Dashboard/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/Social-Media-Advertising-Dashboard",
+      "empty": false,
+      "file_count": 9,
+      "source_branch": "main",
+      "tree_sha": "07e53cb45c0ab6bdc375c2904fc01d7f4296506e",
+      "old_portfolio": true
+    },
+    {
+      "repo": "Portfolio",
+      "title": "Sohila Khaled Abbas - Portfolio",
+      "summary": "This repository contains the code and assets for my personal portfolio website. It serves as a professional hub where visitors can explore my data analysis projects, skills, and get in touch with me. The site is built using HTML, CSS, and JavaScript, offering a clean and interactive user experience.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "SQL",
+        "PostgreSQL",
+        "SQL Server",
+        "MySQL",
+        "DAX"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 4289,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Portfolio/blob/main/README.md"
+        },
+        {
+          "path": "elements.html",
+          "size": 25373,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Portfolio/blob/main/elements.html"
+        },
+        {
+          "path": "generic.html",
+          "size": 10954,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Portfolio/blob/main/generic.html"
+        },
+        {
+          "path": "index.html",
+          "size": 15746,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Portfolio/blob/main/index.html"
+        },
+        {
+          "path": "LICENSE.md",
+          "size": 1152,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Portfolio/blob/main/LICENSE.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Portfolio/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/Portfolio",
+      "empty": false,
+      "file_count": 71,
+      "source_branch": "main",
+      "tree_sha": "792a76cc37c5a6f780ebed8e653db28b937a32c0",
+      "old_portfolio": false
+    },
+    {
+      "repo": "Wuzzuf-Job-Market-Analysis",
+      "title": "Wuzzuf Job Market Analysis",
+      "summary": "Wuzzuf Job Market Analysis is a Power BI Dashboard that analyzes job market trends in Egypt using web scraping and data analytics. This project extracts job postings from Wuzzuf.net, cleans the data, and visualizes key hiring insights.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "DAX"
+      ],
+      "methods": [
+        "Developed Python web scrapers to gather thousands of job postings from the Wuzzuf platform.",
+        "Cleaned text descriptions, extracted key technical skills using regex, and structured salaries into standardized currency bands in Pandas.",
+        "Modeled the cleaned job data in Power BI, implementing DAX measures to analyze job distributions by experience level, location, and industry.",
+        "Created interactive word clouds and bar charts to display dominant tech stacks."
+      ],
+      "flow": null,
+      "media": null,
+      "live": "https://app.powerbi.com/view?r=eyJrIjoiMGNjZmFlOWItMWU3My00ZjM4LTlhYjQtMWY5N2QzOGQwMTAyIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 4207,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/README.md"
+        },
+        {
+          "path": "report/wuzzuf_jobs_dashboard.pbix",
+          "size": 2559034,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/report/wuzzuf_jobs_dashboard.pbix"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis",
+      "empty": false,
+      "file_count": 10,
+      "source_branch": "main",
+      "tree_sha": "ec4b37da600bfbd6ed84d06590a2299ec471671f",
+      "old_portfolio": true
+    },
+    {
+      "repo": "sohila-data-showcase",
+      "title": "Sohila Khaled Abbas — Data Showcase Portfolio",
+      "summary": "Personal Data Portfolio Website",
+      "technologies": [
+        "Python",
+        "SQL",
+        "PostgreSQL",
+        "Supabase"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 11166,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sohila-data-showcase/blob/main/README.md"
+        },
+        {
+          "path": "components.json",
+          "size": 413,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sohila-data-showcase/blob/main/components.json"
+        },
+        {
+          "path": "index.html",
+          "size": 2105,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sohila-data-showcase/blob/main/index.html"
+        },
+        {
+          "path": "package.json",
+          "size": 3009,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sohila-data-showcase/blob/main/package.json"
+        },
+        {
+          "path": "tsconfig.app.json",
+          "size": 635,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sohila-data-showcase/blob/main/tsconfig.app.json"
+        },
+        {
+          "path": "tsconfig.json",
+          "size": 396,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sohila-data-showcase/blob/main/tsconfig.json"
+        },
+        {
+          "path": "tsconfig.node.json",
+          "size": 481,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sohila-data-showcase/blob/main/tsconfig.node.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/sohila-data-showcase/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/sohila-data-showcase",
+      "empty": false,
+      "file_count": 108,
+      "source_branch": "main",
+      "tree_sha": "4c3acbe3cb7b7e1a6702044c2f913b535743c929",
+      "old_portfolio": false
+    },
+    {
+      "repo": "ab-testing-marketing-conversion",
+      "title": "A/B Testing for Marketing Conversion",
+      "summary": "A/B testing project analyzing the impact of a marketing ad campaign on user conversions using Python, PostgreSQL, and Excel. Includes statistical tests (Z-test, Chi-square), data cleaning, SQL queries, and business insights.",
+      "technologies": [
+        "Python",
+        "Excel",
+        "SQL",
+        "PostgreSQL",
+        "Pandas"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": "https://docs.google.com/presentation/d/1eYQSaxsK_8GT6Tk2pK9gJVb26Nv7NPhj8ik92czk8vI/edit?usp=sharing",
+      "files": [
+        {
+          "path": "README.md",
+          "size": 2084,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ab-testing-marketing-conversion/blob/main/README.md"
+        },
+        {
+          "path": "analysis/A_B_Testing_Marketing_Conversion_Analysis.ipynb",
+          "size": 62162,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ab-testing-marketing-conversion/blob/main/analysis/A_B_Testing_Marketing_Conversion_Analysis.ipynb"
+        },
+        {
+          "path": "sql/Creating Table Query.sql",
+          "size": 178,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ab-testing-marketing-conversion/blob/main/sql/Creating%20Table%20Query.sql"
+        },
+        {
+          "path": "sql/Prepare a Contingency Table Using SQL.sql",
+          "size": 191,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ab-testing-marketing-conversion/blob/main/sql/Prepare%20a%20Contingency%20Table%20Using%20SQL.sql"
+        },
+        {
+          "path": "sql/Simulate AB Testing (Statistical Summary via SQL) Query.sql",
+          "size": 249,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ab-testing-marketing-conversion/blob/main/sql/Simulate%20AB%20Testing%20(Statistical%20Summary%20via%20SQL)%20Query.sql"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/ab-testing-marketing-conversion/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/ab-testing-marketing-conversion",
+      "empty": false,
+      "file_count": 12,
+      "source_branch": "main",
+      "tree_sha": "c470eb5bc91129a5feb40b4e1616a82aa1a9e3d0",
+      "old_portfolio": true
+    },
+    {
+      "repo": "SMART-Supply-Chain-Insights-Dashboard",
+      "title": "SMART Supply Chain Insights Dashboard",
+      "summary": "A comprehensive end-to-end data analytics project using Python, Excel, and Power BI to extract actionable insights from complex supply chain data. This dashboard supports operational and strategic decision-making by visualizing key KPIs in logistics, fulfillment, sales, and fraud detection.",
+      "technologies": [
+        "Python",
+        "Excel",
+        "Power BI",
+        "Pandas",
+        "Plotly",
+        "DAX"
+      ],
+      "methods": [
+        "Built Python preprocessing scripts to clean, structure, and merge disparate logistics spreadsheets and supplier database extracts.",
+        "Designed a robust relational data model linking suppliers, transport routes, inventory levels, and order histories.",
+        "Calculated key performance indicators (KPIs) like On-Time In-Full (OTIF), Order Cycle Time, and supplier lead-time variance using DAX.",
+        "Developed geospatial visualization maps to trace carrier performance and highlight routing bottlenecks."
+      ],
+      "flow": null,
+      "media": null,
+      "live": "https://app.powerbi.com/view?r=eyJrIjoiNzc1YzdkYWQtZDlkZC00MDhkLWJhNGEtZDg4YzRmMDI5NTljIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      "presentation": "https://docs.google.com/presentation/d/1q51qHk1B0xWvKBgJMcKiS-Fe-QbRng_nYn0VZEHL2e0/edit?usp=sharing",
+      "files": [
+        {
+          "path": "README.md",
+          "size": 6987,
+          "url": "https://github.com/Sohila-Khaled-Abbas/SMART-Supply-Chain-Insights-Dashboard/blob/main/README.md"
+        },
+        {
+          "path": "3_Python_EDA/EDA.ipynb",
+          "size": 8553002,
+          "url": "https://github.com/Sohila-Khaled-Abbas/SMART-Supply-Chain-Insights-Dashboard/blob/main/3_Python_EDA/EDA.ipynb"
+        },
+        {
+          "path": "5_PowerBI_Dashboard/SMART_SupplyChain_Dashboard.pbix",
+          "size": 5183941,
+          "url": "https://github.com/Sohila-Khaled-Abbas/SMART-Supply-Chain-Insights-Dashboard/blob/main/5_PowerBI_Dashboard/SMART_SupplyChain_Dashboard.pbix"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/SMART-Supply-Chain-Insights-Dashboard/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/SMART-Supply-Chain-Insights-Dashboard",
+      "empty": false,
+      "file_count": 33,
+      "source_branch": "main",
+      "tree_sha": "6f9a36b09252c213935491bc26f635f72a5db2e5",
+      "old_portfolio": true
+    },
+    {
+      "repo": "customer-segmentation-clustering",
+      "title": "Customer Segmentation & Clustering — Full BI Project",
+      "summary": "This project demonstrates a full end-to-end data analytics pipeline: from raw e-commerce customer data → ETL → clustering → star schema → advanced SQL (CTEs & window functions) → Power BI storytelling dashboard → interactive Streamlit web app → secure Flask REST API.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "SQL",
+        "PostgreSQL",
+        "Pandas",
+        "scikit-learn",
+        "Streamlit",
+        "Plotly",
+        "DAX"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 4741,
+          "url": "https://github.com/Sohila-Khaled-Abbas/customer-segmentation-clustering/blob/main/README.md"
+        },
+        {
+          "path": "etl/clean_customers.py",
+          "size": 2460,
+          "url": "https://github.com/Sohila-Khaled-Abbas/customer-segmentation-clustering/blob/main/etl/clean_customers.py"
+        },
+        {
+          "path": "etl/cluster.py",
+          "size": 2357,
+          "url": "https://github.com/Sohila-Khaled-Abbas/customer-segmentation-clustering/blob/main/etl/cluster.py"
+        },
+        {
+          "path": "etl/load_to_postgres.py",
+          "size": 3152,
+          "url": "https://github.com/Sohila-Khaled-Abbas/customer-segmentation-clustering/blob/main/etl/load_to_postgres.py"
+        },
+        {
+          "path": "sql/01_star_schema.sql",
+          "size": 599,
+          "url": "https://github.com/Sohila-Khaled-Abbas/customer-segmentation-clustering/blob/main/sql/01_star_schema.sql"
+        },
+        {
+          "path": "sql/02_advanced_view.sql",
+          "size": 937,
+          "url": "https://github.com/Sohila-Khaled-Abbas/customer-segmentation-clustering/blob/main/sql/02_advanced_view.sql"
+        },
+        {
+          "path": "streamlit/app.py",
+          "size": 5002,
+          "url": "https://github.com/Sohila-Khaled-Abbas/customer-segmentation-clustering/blob/main/streamlit/app.py"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/customer-segmentation-clustering/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/customer-segmentation-clustering",
+      "empty": false,
+      "file_count": 21,
+      "source_branch": "main",
+      "tree_sha": "94fd9a7cbbf67ae6bd1ec2cc9fb0d4562c5bd6ea",
+      "old_portfolio": false
+    },
+    {
+      "repo": "airbnb-amsterdam-analysis",
+      "title": "Amsterdam Airbnb Data Analytics",
+      "summary": "Source files and documentation for Amsterdam Airbnb Data Analytics.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "SQL",
+        "PySpark",
+        "Docker",
+        "PostgreSQL"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 3786,
+          "url": "https://github.com/Sohila-Khaled-Abbas/airbnb-amsterdam-analysis/blob/main/README.md"
+        },
+        {
+          "path": "docker/docker-compose.yml",
+          "size": 850,
+          "url": "https://github.com/Sohila-Khaled-Abbas/airbnb-amsterdam-analysis/blob/main/docker/docker-compose.yml"
+        },
+        {
+          "path": "docs/DATA_DICTIONARY.md",
+          "size": 971,
+          "url": "https://github.com/Sohila-Khaled-Abbas/airbnb-amsterdam-analysis/blob/main/docs/DATA_DICTIONARY.md"
+        },
+        {
+          "path": "docs/DATA_LINEAGE.md",
+          "size": 553,
+          "url": "https://github.com/Sohila-Khaled-Abbas/airbnb-amsterdam-analysis/blob/main/docs/DATA_LINEAGE.md"
+        },
+        {
+          "path": "docs/ML_PIPELINES.md",
+          "size": 689,
+          "url": "https://github.com/Sohila-Khaled-Abbas/airbnb-amsterdam-analysis/blob/main/docs/ML_PIPELINES.md"
+        },
+        {
+          "path": "docs/PROJECT_OVERVIEW.md",
+          "size": 1197,
+          "url": "https://github.com/Sohila-Khaled-Abbas/airbnb-amsterdam-analysis/blob/main/docs/PROJECT_OVERVIEW.md"
+        },
+        {
+          "path": "docs/USAGE_GUIDE.md",
+          "size": 500,
+          "url": "https://github.com/Sohila-Khaled-Abbas/airbnb-amsterdam-analysis/blob/main/docs/USAGE_GUIDE.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/airbnb-amsterdam-analysis/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/airbnb-amsterdam-analysis",
+      "empty": false,
+      "file_count": 42,
+      "source_branch": "main",
+      "tree_sha": "7a9fbf8fa19c4036ab739336ba84373a386121d2",
+      "old_portfolio": false
+    },
+    {
+      "repo": "Customer-Churn-Analysis",
+      "title": "Telecom Churn Analytics",
+      "summary": "Source files and documentation for Telecom Churn Analytics.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "SQL",
+        "PostgreSQL",
+        "DAX",
+        "Excel"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 2771,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Customer-Churn-Analysis/blob/main/README.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 3469,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Customer-Churn-Analysis/blob/main/CONTRIBUTING.md"
+        },
+        {
+          "path": "docs/dashboard_storytelling_guide.md",
+          "size": 10073,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Customer-Churn-Analysis/blob/main/docs/dashboard_storytelling_guide.md"
+        },
+        {
+          "path": "docs/data_dictionary.md",
+          "size": 880,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Customer-Churn-Analysis/blob/main/docs/data_dictionary.md"
+        },
+        {
+          "path": "docs/implementation_guide.md",
+          "size": 10068,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Customer-Churn-Analysis/blob/main/docs/implementation_guide.md"
+        },
+        {
+          "path": "docs/Power BI Dashboard Design Details_ Icon, Filters, Background, and Navigation.md",
+          "size": 7937,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Customer-Churn-Analysis/blob/main/docs/Power%20BI%20Dashboard%20Design%20Details_%20Icon%2C%20Filters%2C%20Background%2C%20and%20Navigation.md"
+        },
+        {
+          "path": "docs/powerbi_guide.md",
+          "size": 491,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Customer-Churn-Analysis/blob/main/docs/powerbi_guide.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Customer-Churn-Analysis/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/Customer-Churn-Analysis",
+      "empty": false,
+      "file_count": 42,
+      "source_branch": "main",
+      "tree_sha": "9f334a197f4fff228fd3810e6aaa6955a9b4a188",
+      "old_portfolio": false
+    },
+    {
+      "repo": "employee-directory",
+      "title": "Employee Directory Project",
+      "summary": "Build a structured SQL database + ERD for the Employee Directory dataset (44 columns). The goal is to normalize the flat file, reduce redundancy, and enable efficient queries for reporting, analytics, and integration with BI tools.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "SQL",
+        "Airflow",
+        "PostgreSQL",
+        "Pandas",
+        "DAX"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": {
+        "src": "/project-media/employee-model.webp",
+        "kind": "Data model",
+        "caption": "Relational employee data model from the repository."
+      },
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5801,
+          "url": "https://github.com/Sohila-Khaled-Abbas/employee-directory/blob/main/README.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 671,
+          "url": "https://github.com/Sohila-Khaled-Abbas/employee-directory/blob/main/CONTRIBUTING.md"
+        },
+        {
+          "path": "docs/project_overview.md",
+          "size": 2322,
+          "url": "https://github.com/Sohila-Khaled-Abbas/employee-directory/blob/main/docs/project_overview.md"
+        },
+        {
+          "path": "notebooks/01_data_profiling.ipynb",
+          "size": 83075,
+          "url": "https://github.com/Sohila-Khaled-Abbas/employee-directory/blob/main/notebooks/01_data_profiling.ipynb"
+        },
+        {
+          "path": "notebooks/02_dashboard_wireframes.ipynb",
+          "size": 7672,
+          "url": "https://github.com/Sohila-Khaled-Abbas/employee-directory/blob/main/notebooks/02_dashboard_wireframes.ipynb"
+        },
+        {
+          "path": "powerbi/measures.md",
+          "size": 770,
+          "url": "https://github.com/Sohila-Khaled-Abbas/employee-directory/blob/main/powerbi/measures.md"
+        },
+        {
+          "path": "sql/01_staging_schema.sql",
+          "size": 1329,
+          "url": "https://github.com/Sohila-Khaled-Abbas/employee-directory/blob/main/sql/01_staging_schema.sql"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/employee-directory/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/employee-directory",
+      "empty": false,
+      "file_count": 23,
+      "source_branch": "main",
+      "tree_sha": "1eaea61fcec1f486be05f805251694ad67f2ae09",
+      "old_portfolio": false
+    },
+    {
+      "repo": "world-economy-bi-project",
+      "title": "Global Economy Analysis (World Bank + HDI)",
+      "summary": "A data-driven one-page report on the state of the global economy using World Bank and UN HDI datasets.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "Airflow",
+        "Docker",
+        "DAX",
+        "Power Query",
+        "Excel"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 7410,
+          "url": "https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project/blob/main/README.md"
+        },
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "size": 2687,
+          "url": "https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project/blob/main/CODE_OF_CONDUCT.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 1854,
+          "url": "https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project/blob/main/CONTRIBUTING.md"
+        },
+        {
+          "path": "main.py",
+          "size": 1097,
+          "url": "https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project/blob/main/main.py"
+        },
+        {
+          "path": "notebooks/api_deployment.ipynb",
+          "size": 5739,
+          "url": "https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project/blob/main/notebooks/api_deployment.ipynb"
+        },
+        {
+          "path": "notebooks/data_profiling_and_validation.ipynb",
+          "size": 2624812,
+          "url": "https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project/blob/main/notebooks/data_profiling_and_validation.ipynb"
+        },
+        {
+          "path": "notebooks/global_economy_etl.ipynb",
+          "size": 319597,
+          "url": "https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project/blob/main/notebooks/global_economy_etl.ipynb"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project",
+      "empty": false,
+      "file_count": 52,
+      "source_branch": "main",
+      "tree_sha": "d2f6a9288a0064e039d6e3532910608011863a9a",
+      "old_portfolio": false
+    },
+    {
+      "repo": "yfinance-project",
+      "title": "Finance BI Project",
+      "summary": "End-to-end Finance Analytics solution",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "Pandas"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 3370,
+          "url": "https://github.com/Sohila-Khaled-Abbas/yfinance-project/blob/main/README.md"
+        },
+        {
+          "path": "data/README.md",
+          "size": 179,
+          "url": "https://github.com/Sohila-Khaled-Abbas/yfinance-project/blob/main/data/README.md"
+        },
+        {
+          "path": "notebooks/finance_analysis.ipynb",
+          "size": 71025,
+          "url": "https://github.com/Sohila-Khaled-Abbas/yfinance-project/blob/main/notebooks/finance_analysis.ipynb"
+        },
+        {
+          "path": "notebooks/yfinance_documentation.ipynb",
+          "size": 262726,
+          "url": "https://github.com/Sohila-Khaled-Abbas/yfinance-project/blob/main/notebooks/yfinance_documentation.ipynb"
+        },
+        {
+          "path": "reports/README.md",
+          "size": 381,
+          "url": "https://github.com/Sohila-Khaled-Abbas/yfinance-project/blob/main/reports/README.md"
+        },
+        {
+          "path": "src/__init__.py",
+          "size": 22,
+          "url": "https://github.com/Sohila-Khaled-Abbas/yfinance-project/blob/main/src/__init__.py"
+        },
+        {
+          "path": "src/config.py",
+          "size": 514,
+          "url": "https://github.com/Sohila-Khaled-Abbas/yfinance-project/blob/main/src/config.py"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/yfinance-project/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/yfinance-project",
+      "empty": false,
+      "file_count": 30,
+      "source_branch": "main",
+      "tree_sha": "44b8d457caf19aeb1293caae6ab9569310db9e6e",
+      "old_portfolio": false
+    },
+    {
+      "repo": "job-scraper",
+      "title": "Job Scraper",
+      "summary": "Crawl job listings for a search (e.g., \"data analyst\", Cairo) from Indeed, extract structured fields, store into SQLite, keep deduped & incremental updates.",
+      "technologies": [
+        "Python",
+        "Pandas",
+        "Selenium"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 1805,
+          "url": "https://github.com/Sohila-Khaled-Abbas/job-scraper/blob/develop/README.md"
+        },
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "size": 1045,
+          "url": "https://github.com/Sohila-Khaled-Abbas/job-scraper/blob/develop/CODE_OF_CONDUCT.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 1324,
+          "url": "https://github.com/Sohila-Khaled-Abbas/job-scraper/blob/develop/CONTRIBUTING.md"
+        },
+        {
+          "path": "configs/example_config.yml",
+          "size": 0,
+          "url": "https://github.com/Sohila-Khaled-Abbas/job-scraper/blob/develop/configs/example_config.yml"
+        },
+        {
+          "path": "python/etl.ipynb",
+          "size": 12536,
+          "url": "https://github.com/Sohila-Khaled-Abbas/job-scraper/blob/develop/python/etl.ipynb"
+        },
+        {
+          "path": "python/job-scraper-pipeline.ipynb",
+          "size": 15635,
+          "url": "https://github.com/Sohila-Khaled-Abbas/job-scraper/blob/develop/python/job-scraper-pipeline.ipynb"
+        },
+        {
+          "path": "src/__init__.py",
+          "size": 38,
+          "url": "https://github.com/Sohila-Khaled-Abbas/job-scraper/blob/develop/src/__init__.py"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/job-scraper/blob/develop/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/job-scraper",
+      "empty": false,
+      "file_count": 28,
+      "source_branch": "develop",
+      "tree_sha": "c20e4b913a3952109cf160c3b96190b701c16deb",
+      "old_portfolio": false
+    },
+    {
+      "repo": "remote-work-tracker",
+      "title": "Remote Work Tracker BI Project",
+      "summary": "Daily scrape remote job postings, ingest into SQL, expose cleansed dataset to Power BI for trend analysis and data-driven business recommendations.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "SQL",
+        "Airflow",
+        "Pandas"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 6406,
+          "url": "https://github.com/Sohila-Khaled-Abbas/remote-work-tracker/blob/master/README.md"
+        },
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "size": 8273,
+          "url": "https://github.com/Sohila-Khaled-Abbas/remote-work-tracker/blob/master/CODE_OF_CONDUCT.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 15249,
+          "url": "https://github.com/Sohila-Khaled-Abbas/remote-work-tracker/blob/master/CONTRIBUTING.md"
+        },
+        {
+          "path": "config/fx_rates.json",
+          "size": 0,
+          "url": "https://github.com/Sohila-Khaled-Abbas/remote-work-tracker/blob/master/config/fx_rates.json"
+        },
+        {
+          "path": "config/skills_lexicon.json",
+          "size": 0,
+          "url": "https://github.com/Sohila-Khaled-Abbas/remote-work-tracker/blob/master/config/skills_lexicon.json"
+        },
+        {
+          "path": "documents/data_export_script_guide.md",
+          "size": 9793,
+          "url": "https://github.com/Sohila-Khaled-Abbas/remote-work-tracker/blob/master/documents/data_export_script_guide.md"
+        },
+        {
+          "path": "documents/data-driven_business_recommendationst.md",
+          "size": 5183,
+          "url": "https://github.com/Sohila-Khaled-Abbas/remote-work-tracker/blob/master/documents/data-driven_business_recommendationst.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/remote-work-tracker/blob/master/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/remote-work-tracker",
+      "empty": false,
+      "file_count": 30,
+      "source_branch": "master",
+      "tree_sha": "67391d8f31685b375bd160191ab12d58e883236e",
+      "old_portfolio": false
+    },
+    {
+      "repo": "docker-workshop",
+      "title": "Docker Workshop",
+      "summary": "Workshop Codespaces",
+      "technologies": [
+        "Docker"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 1110,
+          "url": "https://github.com/Sohila-Khaled-Abbas/docker-workshop/blob/main/README.md"
+        },
+        {
+          "path": "pipeline/ingest_data.py",
+          "size": 3027,
+          "url": "https://github.com/Sohila-Khaled-Abbas/docker-workshop/blob/main/pipeline/ingest_data.py"
+        },
+        {
+          "path": "pipeline/main.py",
+          "size": 86,
+          "url": "https://github.com/Sohila-Khaled-Abbas/docker-workshop/blob/main/pipeline/main.py"
+        },
+        {
+          "path": "pipeline/notebook.ipynb",
+          "size": 15782,
+          "url": "https://github.com/Sohila-Khaled-Abbas/docker-workshop/blob/main/pipeline/notebook.ipynb"
+        },
+        {
+          "path": "pipeline/pipeline.py",
+          "size": 285,
+          "url": "https://github.com/Sohila-Khaled-Abbas/docker-workshop/blob/main/pipeline/pipeline.py"
+        },
+        {
+          "path": "pipeline/README.md",
+          "size": 0,
+          "url": "https://github.com/Sohila-Khaled-Abbas/docker-workshop/blob/main/pipeline/README.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/docker-workshop/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/docker-workshop",
+      "empty": false,
+      "file_count": 13,
+      "source_branch": "main",
+      "tree_sha": "485935c28e9162f1a6066a25a221f4335d2dcb00",
+      "old_portfolio": false
+    },
+    {
+      "repo": "marketing_campaigns_analysis",
+      "title": "Marketing Campaign Performance Analysis & Dashboard",
+      "summary": "This project explains how data engineering and analytics enable smarter campaign investments. Optimizing marketing spend requires reliable, well-modeled data. We build an end-to-end pipeline from raw campaign data to executive insights, leading to faster decisions, higher ROI, and clearer accountability.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "SQL",
+        "Pandas",
+        "NumPy"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5284,
+          "url": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis/blob/main/README.md"
+        },
+        {
+          "path": "docs/example_interactions_guide.md",
+          "size": 29652,
+          "url": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis/blob/main/docs/example_interactions_guide.md"
+        },
+        {
+          "path": "docs/marketing_analysis_mentoring_prompt.md",
+          "size": 21929,
+          "url": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis/blob/main/docs/marketing_analysis_mentoring_prompt.md"
+        },
+        {
+          "path": "docs/prompt_implementation_guide.md",
+          "size": 17827,
+          "url": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis/blob/main/docs/prompt_implementation_guide.md"
+        },
+        {
+          "path": "docs/quick_start_guide.md",
+          "size": 15063,
+          "url": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis/blob/main/docs/quick_start_guide.md"
+        },
+        {
+          "path": "notebooks/bronze_ingestion.ipynb",
+          "size": 3088,
+          "url": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis/blob/main/notebooks/bronze_ingestion.ipynb"
+        },
+        {
+          "path": "notebooks/gold_layer.ipynb",
+          "size": 52408,
+          "url": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis/blob/main/notebooks/gold_layer.ipynb"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis",
+      "empty": false,
+      "file_count": 71,
+      "source_branch": "main",
+      "tree_sha": "b23ec51ada686de3d890c09e234016aa04189963",
+      "old_portfolio": false
+    },
+    {
+      "repo": "Airbnb_Athens_Analysis",
+      "title": "Airbnb Athens Analysis",
+      "summary": "A production analytics project across the complete data lifecycle: ingestion, warehousing, transformation, profiling, and storytelling. Using Airbnb Athens data (September 2025 snapshot with 26,900+ listings).",
+      "technologies": [],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Airbnb_Athens_Analysis",
+      "source": "https://github.com/Sohila-Khaled-Abbas/Airbnb_Athens_Analysis",
+      "empty": true,
+      "file_count": 0,
+      "source_branch": "main",
+      "old_portfolio": false
+    },
+    {
+      "repo": "marketing-campaign-dashboard",
+      "title": "Marketing Campaign Dashboard",
+      "summary": "Source files and documentation for Marketing Campaign Dashboard.",
+      "technologies": [],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "app.py",
+          "size": 6814,
+          "url": "https://github.com/Sohila-Khaled-Abbas/marketing-campaign-dashboard/blob/main/app.py"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/marketing-campaign-dashboard",
+      "source": "https://github.com/Sohila-Khaled-Abbas/marketing-campaign-dashboard",
+      "empty": false,
+      "file_count": 5,
+      "source_branch": "main",
+      "tree_sha": "768e608caf2af271105f45a38348d382cb327552",
+      "old_portfolio": false
+    },
+    {
+      "repo": "fmcg-sales-churn-drop-analysis-powerbi",
+      "title": "B2B Retail Analytics & Churn Diagnostic",
+      "summary": "Real-time insights into retailer behavior, operational performance, and customer lifecycle across the Maxab distribution network in Egypt.",
+      "technologies": [
+        "Power BI",
+        "SQL",
+        "DAX",
+        "SQL Server",
+        "Power Query"
+      ],
+      "methods": [
+        "Designed and built an optimized Star Schema data model in Power BI capable of handling 472,000+ transaction records.",
+        "Wrote complex SQL queries to extract, clean, and aggregate retailer transactional data from source databases.",
+        "Developed advanced DAX measures to calculate active customer count, purchase frequency, and churn rate based on inactivity windows.",
+        "Created dynamic cohort analysis visuals to track retailer behavior and retention rates over time."
+      ],
+      "flow": null,
+      "media": null,
+      "live": "https://app.powerbi.com/view?r=eyJrIjoiNzE0MWUwYTgtZTlhZC00N2IxLWFmYzQtYmI2MzFkNjFhN2NjIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 59445,
+          "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/README.md"
+        },
+        {
+          "path": "dashboards/Maxab Retail Performance & Churn Analytics Dashboard.pbix",
+          "size": 16787267,
+          "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/dashboards/Maxab%20Retail%20Performance%20%26%20Churn%20Analytics%20Dashboard.pbix"
+        },
+        {
+          "path": "design/maxab-dashboard-wireframe.html",
+          "size": 148952,
+          "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/design/maxab-dashboard-wireframe.html"
+        },
+        {
+          "path": "src/Maxab Retail Performance & Churn Analytics Dashboard.pbip",
+          "size": 318,
+          "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/src/Maxab%20Retail%20Performance%20%26%20Churn%20Analytics%20Dashboard.pbip"
+        },
+        {
+          "path": "themes/maxab-theme.json",
+          "size": 3349,
+          "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/themes/maxab-theme.json"
+        },
+        {
+          "path": "themes/Power BI Theme by BIBB.json",
+          "size": 27567,
+          "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/themes/Power%20BI%20Theme%20by%20BIBB.json"
+        },
+        {
+          "path": "src/Maxab Retail Performance & Churn Analytics Dashboard.SemanticModel/diagramLayout.json",
+          "size": 8087,
+          "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/src/Maxab%20Retail%20Performance%20%26%20Churn%20Analytics%20Dashboard.SemanticModel/diagramLayout.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi",
+      "empty": false,
+      "file_count": 155,
+      "source_branch": "main",
+      "tree_sha": "9cd042820b38060de069ddc518a9d53a9d1c570b",
+      "old_portfolio": true
+    },
+    {
+      "repo": "MaxAB_B2B_Retail_Wallet_Optimization",
+      "title": "MaxAB Wallet Recharge Optimization: Databricks & Power BI",
+      "summary": "Source files and documentation for MaxAB Wallet Recharge Optimization: Databricks & Power BI.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "SQL",
+        "Databricks",
+        "MySQL",
+        "DAX"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 4660,
+          "url": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization/blob/main/README.md"
+        },
+        {
+          "path": "databricks_sql/01_bronze.sql",
+          "size": 2607,
+          "url": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization/blob/main/databricks_sql/01_bronze.sql"
+        },
+        {
+          "path": "databricks_sql/02_silver.sql",
+          "size": 1025,
+          "url": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization/blob/main/databricks_sql/02_silver.sql"
+        },
+        {
+          "path": "docs/assumptions_log.md",
+          "size": 1031,
+          "url": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization/blob/main/docs/assumptions_log.md"
+        },
+        {
+          "path": "docs/data_dictionary.md",
+          "size": 0,
+          "url": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization/blob/main/docs/data_dictionary.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization",
+      "empty": false,
+      "file_count": 10,
+      "source_branch": "main",
+      "tree_sha": "2a6a7b40d404eebc506d17cc14f2099ea63517b5",
+      "old_portfolio": false
+    },
+    {
+      "repo": "local_data_aggregator",
+      "title": "1. Clone repo (or navigate to the directory)",
+      "summary": "Transform your disparate CSV and Excel files into unified, actionable intelligence.",
+      "technologies": [
+        "Python",
+        "Docker",
+        "Streamlit",
+        "Plotly",
+        "Excel"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 4877,
+          "url": "https://github.com/Sohila-Khaled-Abbas/local_data_aggregator/blob/main/README.md"
+        },
+        {
+          "path": "app/__init__.py",
+          "size": 0,
+          "url": "https://github.com/Sohila-Khaled-Abbas/local_data_aggregator/blob/main/app/__init__.py"
+        },
+        {
+          "path": "app/database.py",
+          "size": 1202,
+          "url": "https://github.com/Sohila-Khaled-Abbas/local_data_aggregator/blob/main/app/database.py"
+        },
+        {
+          "path": "app/main.py",
+          "size": 12879,
+          "url": "https://github.com/Sohila-Khaled-Abbas/local_data_aggregator/blob/main/app/main.py"
+        },
+        {
+          "path": "app/processing.py",
+          "size": 1500,
+          "url": "https://github.com/Sohila-Khaled-Abbas/local_data_aggregator/blob/main/app/processing.py"
+        },
+        {
+          "path": "src/__init__.py",
+          "size": 0,
+          "url": "https://github.com/Sohila-Khaled-Abbas/local_data_aggregator/blob/main/src/__init__.py"
+        },
+        {
+          "path": "src/discovery.py",
+          "size": 374,
+          "url": "https://github.com/Sohila-Khaled-Abbas/local_data_aggregator/blob/main/src/discovery.py"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/local_data_aggregator/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/local_data_aggregator",
+      "empty": false,
+      "file_count": 15,
+      "source_branch": "main",
+      "tree_sha": "c5d60f1193e8871e664c6f7abd9248363d430252",
+      "old_portfolio": false
+    },
+    {
+      "repo": "nl2sql_pipeline",
+      "title": "Natural Language to SQL (NL2SQL) Pipeline",
+      "summary": "A , secure Natural Language to SQL (NL2SQL) pipeline using Python, LangChain, and SQLAlchemy.",
+      "technologies": [
+        "Python",
+        "SQL",
+        "Pandas",
+        "LangChain",
+        "OpenAI"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 1396,
+          "url": "https://github.com/Sohila-Khaled-Abbas/nl2sql_pipeline/blob/main/README.md"
+        },
+        {
+          "path": "app.py",
+          "size": 6494,
+          "url": "https://github.com/Sohila-Khaled-Abbas/nl2sql_pipeline/blob/main/app.py"
+        },
+        {
+          "path": "main.py",
+          "size": 1391,
+          "url": "https://github.com/Sohila-Khaled-Abbas/nl2sql_pipeline/blob/main/main.py"
+        },
+        {
+          "path": "src/__init__.py",
+          "size": 0,
+          "url": "https://github.com/Sohila-Khaled-Abbas/nl2sql_pipeline/blob/main/src/__init__.py"
+        },
+        {
+          "path": "src/pipeline.py",
+          "size": 3000,
+          "url": "https://github.com/Sohila-Khaled-Abbas/nl2sql_pipeline/blob/main/src/pipeline.py"
+        },
+        {
+          "path": "src/schema_extractor.py",
+          "size": 2374,
+          "url": "https://github.com/Sohila-Khaled-Abbas/nl2sql_pipeline/blob/main/src/schema_extractor.py"
+        },
+        {
+          "path": "src/sql_generator.py",
+          "size": 2922,
+          "url": "https://github.com/Sohila-Khaled-Abbas/nl2sql_pipeline/blob/main/src/sql_generator.py"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/nl2sql_pipeline/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/nl2sql_pipeline",
+      "empty": false,
+      "file_count": 16,
+      "source_branch": "main",
+      "tree_sha": "b4eb7f9591c2dd291340d2359de35220ac5d82bd",
+      "old_portfolio": false
+    },
+    {
+      "repo": "O-List-E-Commerce-Data-Analytics",
+      "title": "O List E Commerce Data Analytics",
+      "summary": "A comprehensive Data Engineering and Business Intelligence solution analyzing the Brazilian E-Commerce Public Dataset by Olist.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "SQL",
+        "MySQL"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 4835,
+          "url": "https://github.com/Sohila-Khaled-Abbas/O-List-E-Commerce-Data-Analytics/blob/main/README.md"
+        },
+        {
+          "path": "report/O-List Dashboard.pbix",
+          "size": 37187988,
+          "url": "https://github.com/Sohila-Khaled-Abbas/O-List-E-Commerce-Data-Analytics/blob/main/report/O-List%20Dashboard.pbix"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/O-List-E-Commerce-Data-Analytics/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/O-List-E-Commerce-Data-Analytics",
+      "empty": false,
+      "file_count": 5,
+      "source_branch": "main",
+      "tree_sha": "fe7dce0fcc10e89e4164b9959b2833039f2d7229",
+      "old_portfolio": false
+    },
+    {
+      "repo": "apple-stock-market-analysis",
+      "title": "Apple Stock Market Analysis",
+      "summary": "An end-to-end data engineering and analytics project analyzing historical Apple Inc. (AAPL) stock market data up to the present day, to extract actionable business insights and investment strategies.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "Data Engineering",
+        "SQL",
+        "Databricks",
+        "MySQL",
+        "Pandas",
+        "DAX",
+        "Power Query",
+        "Excel"
+      ],
+      "methods": [
+        "Developed a Python-based data extraction script to ingest daily historical stock metrics using the Yahoo Finance API.",
+        "Preprocessed raw stock data in Pandas, handling missing data points and calculating rolling averages, volatility, and trading volumes.",
+        "Built a data model in Power BI, implementing DAX measures for year-over-year growth, CAGR, and cumulative returns.",
+        "Designed an interactive financial dashboard utilizing storytelling techniques to guide users from executive performance down to daily trading trends."
+      ],
+      "flow": null,
+      "media": null,
+      "live": "https://app.powerbi.com/view?r=eyJrIjoiNTNhYmI1ZjUtNDNhZC00OWM3LWFjYzktMmU0NWYyODYzZjIxIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 28379,
+          "url": "https://github.com/Sohila-Khaled-Abbas/apple-stock-market-analysis/blob/main/README.md"
+        },
+        {
+          "path": "dashboard/Apple-AAPL-Stock-Market-Analysis-Dashboard.pbip",
+          "size": 321,
+          "url": "https://github.com/Sohila-Khaled-Abbas/apple-stock-market-analysis/blob/main/dashboard/Apple-AAPL-Stock-Market-Analysis-Dashboard.pbip"
+        },
+        {
+          "path": "dashboard/Apple-AAPL-Stock-Market-Analysis-Dashboard.pbix",
+          "size": 13796963,
+          "url": "https://github.com/Sohila-Khaled-Abbas/apple-stock-market-analysis/blob/main/dashboard/Apple-AAPL-Stock-Market-Analysis-Dashboard.pbix"
+        },
+        {
+          "path": "docs/business_case_presentation.md",
+          "size": 5166,
+          "url": "https://github.com/Sohila-Khaled-Abbas/apple-stock-market-analysis/blob/main/docs/business_case_presentation.md"
+        },
+        {
+          "path": "docs/data_lineage.md",
+          "size": 3578,
+          "url": "https://github.com/Sohila-Khaled-Abbas/apple-stock-market-analysis/blob/main/docs/data_lineage.md"
+        },
+        {
+          "path": "docs/data_pipeline.md",
+          "size": 4626,
+          "url": "https://github.com/Sohila-Khaled-Abbas/apple-stock-market-analysis/blob/main/docs/data_pipeline.md"
+        },
+        {
+          "path": "docs/powerbi_dashboard_design.md",
+          "size": 33845,
+          "url": "https://github.com/Sohila-Khaled-Abbas/apple-stock-market-analysis/blob/main/docs/powerbi_dashboard_design.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/apple-stock-market-analysis/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/apple-stock-market-analysis",
+      "empty": false,
+      "file_count": 154,
+      "source_branch": "main",
+      "tree_sha": "40511a8eba665a8bad628c1c9d6c102f6f1187df",
+      "old_portfolio": true
+    },
+    {
+      "repo": "Stock-Price-Data-Pipeline",
+      "title": "Stock Price Data Pipeline",
+      "summary": "An end-to-end automated data pipeline built with Apache Airflow, Apache Spark, MinIO, PostgreSQL, and Metabase.",
+      "technologies": [
+        "Apache Spark",
+        "PostgreSQL",
+        "MinIO",
+        "Metabase",
+        "Python",
+        "Airflow",
+        "PySpark",
+        "Docker",
+        "Pandas"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 17461,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Stock-Price-Data-Pipeline/blob/main/README.md"
+        },
+        {
+          "path": "docker-compose.override.yml",
+          "size": 1784,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Stock-Price-Data-Pipeline/blob/main/docker-compose.override.yml"
+        },
+        {
+          "path": "pyrightconfig.json",
+          "size": 199,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Stock-Price-Data-Pipeline/blob/main/pyrightconfig.json"
+        },
+        {
+          "path": "dags/random_number_checker.py",
+          "size": 707,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Stock-Price-Data-Pipeline/blob/main/dags/random_number_checker.py"
+        },
+        {
+          "path": "dags/stock_market.py",
+          "size": 3972,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Stock-Price-Data-Pipeline/blob/main/dags/stock_market.py"
+        },
+        {
+          "path": "dags/taskflow.py",
+          "size": 402,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Stock-Price-Data-Pipeline/blob/main/dags/taskflow.py"
+        },
+        {
+          "path": "dags/test_load.py",
+          "size": 1526,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Stock-Price-Data-Pipeline/blob/main/dags/test_load.py"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Stock-Price-Data-Pipeline/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/Stock-Price-Data-Pipeline",
+      "empty": false,
+      "file_count": 51,
+      "source_branch": "main",
+      "tree_sha": "feee246d0492a9d9543de570a300f88c7eb88f4c",
+      "old_portfolio": true
+    },
+    {
+      "repo": "Fx-Rate-Pipeline",
+      "title": "FX Rate Pipeline: Dockerized In-Flight State Management",
+      "summary": "An intentionally flawed ETL pipeline built with Apache NiFi and PostgreSQL inside Docker, designed to surface and demonstrate the architectural limitations of in-flight stateful transformation — and why the industry moved from ETL to ELT.",
+      "technologies": [
+        "Apache NiFi",
+        "PostgreSQL",
+        "Docker",
+        "ETL",
+        "SQL",
+        "dbt"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 17259,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Fx-Rate-Pipeline/blob/main/README.md"
+        },
+        {
+          "path": "docker-compose.yml",
+          "size": 665,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Fx-Rate-Pipeline/blob/main/docker-compose.yml"
+        },
+        {
+          "path": "docs/data_lineage.md",
+          "size": 2214,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Fx-Rate-Pipeline/blob/main/docs/data_lineage.md"
+        },
+        {
+          "path": "sql/init.sql",
+          "size": 286,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Fx-Rate-Pipeline/blob/main/sql/init.sql"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Fx-Rate-Pipeline/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/Fx-Rate-Pipeline",
+      "empty": false,
+      "file_count": 9,
+      "source_branch": "main",
+      "tree_sha": "352ca3e14c8339de18be699392ea6e914ed83c03",
+      "old_portfolio": true
+    },
+    {
+      "repo": "AR_Financial_Tracking_System",
+      "title": "Accounts Receivable Analytics",
+      "summary": "An accounts-receivable analytics scenario connecting synthetic transactions, Power Query transformations, and a star schema.",
+      "technologies": [
+        "Power Query",
+        "ETL",
+        "Star Schema",
+        "Python",
+        "SQL",
+        "Power BI",
+        "Databricks",
+        "Pandas",
+        "NumPy",
+        "DAX",
+        "Excel"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 29790,
+          "url": "https://github.com/Sohila-Khaled-Abbas/AR_Financial_Tracking_System/blob/main/README.md"
+        },
+        {
+          "path": "docs/datalineage.md",
+          "size": 25939,
+          "url": "https://github.com/Sohila-Khaled-Abbas/AR_Financial_Tracking_System/blob/main/docs/datalineage.md"
+        },
+        {
+          "path": "notebooks/data_generator.ipynb",
+          "size": 21839,
+          "url": "https://github.com/Sohila-Khaled-Abbas/AR_Financial_Tracking_System/blob/main/notebooks/data_generator.ipynb"
+        },
+        {
+          "path": "notebooks/user_comments_generator.ipynb",
+          "size": 23195,
+          "url": "https://github.com/Sohila-Khaled-Abbas/AR_Financial_Tracking_System/blob/main/notebooks/user_comments_generator.ipynb"
+        },
+        {
+          "path": "scripts/daily_updates.py",
+          "size": 4886,
+          "url": "https://github.com/Sohila-Khaled-Abbas/AR_Financial_Tracking_System/blob/main/scripts/daily_updates.py"
+        },
+        {
+          "path": "scripts/paths.py",
+          "size": 1248,
+          "url": "https://github.com/Sohila-Khaled-Abbas/AR_Financial_Tracking_System/blob/main/scripts/paths.py"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/AR_Financial_Tracking_System/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/AR_Financial_Tracking_System",
+      "empty": false,
+      "file_count": 11,
+      "source_branch": "main",
+      "tree_sha": "b9323090c2d05a85a9ea3a2731485ac3353df2ef",
+      "old_portfolio": true
+    },
+    {
+      "repo": "ecommerce-flash-sale-analysis",
+      "title": "Scalper Bot Analytics & Flash Sale Cannibalization",
+      "summary": "A forensic data engineering investigation into how \"Cyber Flash Drops\" are silently destroying profit margins through deal-sniper users and coordinated bot exploitation.",
+      "technologies": [
+        "Apache Spark",
+        "Databricks",
+        "Delta Lake",
+        "Python",
+        "PySpark",
+        "Power BI",
+        "Pandas",
+        "DAX"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 11290,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ecommerce-flash-sale-analysis/blob/main/README.md"
+        },
+        {
+          "path": "databricks.yml",
+          "size": 572,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ecommerce-flash-sale-analysis/blob/main/databricks.yml"
+        },
+        {
+          "path": "dashboards/VoltEdge_Dark.json",
+          "size": 254,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ecommerce-flash-sale-analysis/blob/main/dashboards/VoltEdge_Dark.json"
+        },
+        {
+          "path": "docs/data_lineage.md",
+          "size": 6657,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ecommerce-flash-sale-analysis/blob/main/docs/data_lineage.md"
+        },
+        {
+          "path": "docs/powerbi_dashboard_design.md",
+          "size": 8171,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ecommerce-flash-sale-analysis/blob/main/docs/powerbi_dashboard_design.md"
+        },
+        {
+          "path": "scripts/ad_hoc_analysis.py",
+          "size": 3719,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ecommerce-flash-sale-analysis/blob/main/scripts/ad_hoc_analysis.py"
+        },
+        {
+          "path": "scripts/data_generation.py",
+          "size": 4997,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ecommerce-flash-sale-analysis/blob/main/scripts/data_generation.py"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/ecommerce-flash-sale-analysis/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/ecommerce-flash-sale-analysis",
+      "empty": false,
+      "file_count": 37,
+      "source_branch": "main",
+      "tree_sha": "df9679b9000e9984daeef5e8ae423506448d87bf",
+      "old_portfolio": true
+    },
+    {
+      "repo": "global-horizon-bank-dwh-project",
+      "title": "Global Horizon Bank — Enterprise Banking Analytics",
+      "summary": "This repository contains the complete architecture and implementation of a data system for Global Horizon Bank. Following industry best practices, the project transitions from a highly normalized Transactional Database (OLTP) to a high-performance dimensional Data Warehouse (OLAP), capable of answering complex business questions at scale.",
+      "technologies": [
+        "SQL",
+        "Python",
+        "Streamlit",
+        "Pandas",
+        "Plotly",
+        "Dimensional Modeling",
+        "Docker",
+        "SQL Server"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": {
+        "src": "/project-media/bank-pipeline.webp",
+        "kind": "Architecture diagram",
+        "caption": "OLTP → ETL → dimensional warehouse → analytics."
+      },
+      "live": "https://global-horizon-bank-dwh-project.streamlit.app/",
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 6779,
+          "url": "https://github.com/Sohila-Khaled-Abbas/global-horizon-bank-dwh-project/blob/main/README.md"
+        },
+        {
+          "path": "docker-compose.yml",
+          "size": 869,
+          "url": "https://github.com/Sohila-Khaled-Abbas/global-horizon-bank-dwh-project/blob/main/docker-compose.yml"
+        },
+        {
+          "path": "dashboard/app.py",
+          "size": 25437,
+          "url": "https://github.com/Sohila-Khaled-Abbas/global-horizon-bank-dwh-project/blob/main/dashboard/app.py"
+        },
+        {
+          "path": "docs/deployment_guide.md",
+          "size": 2124,
+          "url": "https://github.com/Sohila-Khaled-Abbas/global-horizon-bank-dwh-project/blob/main/docs/deployment_guide.md"
+        },
+        {
+          "path": "docs/erd_preview.md",
+          "size": 3556,
+          "url": "https://github.com/Sohila-Khaled-Abbas/global-horizon-bank-dwh-project/blob/main/docs/erd_preview.md"
+        },
+        {
+          "path": "docs/phases.md",
+          "size": 3018,
+          "url": "https://github.com/Sohila-Khaled-Abbas/global-horizon-bank-dwh-project/blob/main/docs/phases.md"
+        },
+        {
+          "path": "docs/sql_implementation_guide.md",
+          "size": 3088,
+          "url": "https://github.com/Sohila-Khaled-Abbas/global-horizon-bank-dwh-project/blob/main/docs/sql_implementation_guide.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/global-horizon-bank-dwh-project/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/global-horizon-bank-dwh-project",
+      "empty": false,
+      "file_count": 38,
+      "source_branch": "main",
+      "tree_sha": "70cc6b6442edf5685f3ebf5e8f76d1147f527543",
+      "old_portfolio": true
+    },
+    {
+      "repo": "novatel-big-data-ecosystem",
+      "title": "NovaTel Big Data Ecosystem",
+      "summary": "A telecom data-platform simulation for Egyptian-market traffic, connecting Kafka, PySpark, ClickHouse, Airflow, and Superset.",
+      "technologies": [
+        "Apache Kafka",
+        "PostgreSQL",
+        "PySpark",
+        "ClickHouse",
+        "Airflow",
+        "Apache Superset",
+        "Python",
+        "SQL",
+        "Docker",
+        "Apache Spark"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5812,
+          "url": "https://github.com/Sohila-Khaled-Abbas/novatel-big-data-ecosystem/blob/main/README.md"
+        },
+        {
+          "path": "docker-compose.yml",
+          "size": 1555,
+          "url": "https://github.com/Sohila-Khaled-Abbas/novatel-big-data-ecosystem/blob/main/docker-compose.yml"
+        },
+        {
+          "path": "docs/01_business_case.md",
+          "size": 2416,
+          "url": "https://github.com/Sohila-Khaled-Abbas/novatel-big-data-ecosystem/blob/main/docs/01_business_case.md"
+        },
+        {
+          "path": "docs/02_oltp_limitations.md",
+          "size": 2222,
+          "url": "https://github.com/Sohila-Khaled-Abbas/novatel-big-data-ecosystem/blob/main/docs/02_oltp_limitations.md"
+        },
+        {
+          "path": "docs/03_architecture.md",
+          "size": 4253,
+          "url": "https://github.com/Sohila-Khaled-Abbas/novatel-big-data-ecosystem/blob/main/docs/03_architecture.md"
+        },
+        {
+          "path": "docs/04_etl_mapping.md",
+          "size": 2218,
+          "url": "https://github.com/Sohila-Khaled-Abbas/novatel-big-data-ecosystem/blob/main/docs/04_etl_mapping.md"
+        },
+        {
+          "path": "docs/05_dwh_design.md",
+          "size": 2849,
+          "url": "https://github.com/Sohila-Khaled-Abbas/novatel-big-data-ecosystem/blob/main/docs/05_dwh_design.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/novatel-big-data-ecosystem/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/novatel-big-data-ecosystem",
+      "empty": false,
+      "file_count": 16,
+      "source_branch": "main",
+      "tree_sha": "f2ec8e1469f6a5eafdc5d0079bac6ec677677e11",
+      "old_portfolio": true
+    },
+    {
+      "repo": "data-career-roadmap-generator",
+      "title": "Data & AI Career Roadmap Generator",
+      "summary": "An end-to-end data engineering pipeline that scrapes real-time job market data across multiple platforms, extracts technical skills using Gemini 2.0 Flash, and powers an interactive Serverless Next.js web application to generate sequential learning roadmaps. Includes a GitHub Actions cron job for daily market data updates across 15+ job profiles.",
+      "technologies": [
+        "Python",
+        "Airflow",
+        "Docker",
+        "Pandas"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5982,
+          "url": "https://github.com/Sohila-Khaled-Abbas/data-career-roadmap-generator/blob/main/README.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 2303,
+          "url": "https://github.com/Sohila-Khaled-Abbas/data-career-roadmap-generator/blob/main/CONTRIBUTING.md"
+        },
+        {
+          "path": "docker-compose.yml",
+          "size": 1061,
+          "url": "https://github.com/Sohila-Khaled-Abbas/data-career-roadmap-generator/blob/main/docker-compose.yml"
+        },
+        {
+          "path": "docs/architecture.md",
+          "size": 2873,
+          "url": "https://github.com/Sohila-Khaled-Abbas/data-career-roadmap-generator/blob/main/docs/architecture.md"
+        },
+        {
+          "path": "docs/setup.md",
+          "size": 1416,
+          "url": "https://github.com/Sohila-Khaled-Abbas/data-career-roadmap-generator/blob/main/docs/setup.md"
+        },
+        {
+          "path": "docs/usage.md",
+          "size": 2760,
+          "url": "https://github.com/Sohila-Khaled-Abbas/data-career-roadmap-generator/blob/main/docs/usage.md"
+        },
+        {
+          "path": "scratch/check_profiles.py",
+          "size": 393,
+          "url": "https://github.com/Sohila-Khaled-Abbas/data-career-roadmap-generator/blob/main/scratch/check_profiles.py"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/data-career-roadmap-generator/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/data-career-roadmap-generator",
+      "empty": false,
+      "file_count": 51,
+      "source_branch": "main",
+      "tree_sha": "bb20fb1fc9dac7b56d6e870f91dd998691219376",
+      "old_portfolio": false
+    },
+    {
+      "repo": "deep-clean-data-tool",
+      "title": "DeepClean OS",
+      "summary": "A Python data-preparation framework and Streamlit application covering missing values, outliers, validation, and feature scaling.",
+      "technologies": [
+        "Python",
+        "Pandas",
+        "Scikit-Learn",
+        "Streamlit",
+        "NumPy",
+        "scikit-learn"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": "https://deep-clean-os.streamlit.app",
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 2886,
+          "url": "https://github.com/Sohila-Khaled-Abbas/deep-clean-data-tool/blob/main/README.md"
+        },
+        {
+          "path": "app.py",
+          "size": 6129,
+          "url": "https://github.com/Sohila-Khaled-Abbas/deep-clean-data-tool/blob/main/app.py"
+        },
+        {
+          "path": "docs/architecture.md",
+          "size": 2680,
+          "url": "https://github.com/Sohila-Khaled-Abbas/deep-clean-data-tool/blob/main/docs/architecture.md"
+        },
+        {
+          "path": "notebook/data_cleaning_tool.ipynb",
+          "size": 18586,
+          "url": "https://github.com/Sohila-Khaled-Abbas/deep-clean-data-tool/blob/main/notebook/data_cleaning_tool.ipynb"
+        },
+        {
+          "path": "src/cleaner.py",
+          "size": 4589,
+          "url": "https://github.com/Sohila-Khaled-Abbas/deep-clean-data-tool/blob/main/src/cleaner.py"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/deep-clean-data-tool/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/deep-clean-data-tool",
+      "empty": false,
+      "file_count": 8,
+      "source_branch": "main",
+      "tree_sha": "b5995bee32ca43e5f9461b4d013eb68123c6ec19",
+      "old_portfolio": true
+    },
+    {
+      "repo": "the-data-tea",
+      "title": "The Data Tea",
+      "summary": "The Data Tea is an interactive, community-driven career guidance portal for aspiring data professionals. It helps anyone — from total beginners to mid-career switchers — discover which data career path fits their personality, then hands them a curated, opinionated roadmap to get there.",
+      "technologies": [],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 7104,
+          "url": "https://github.com/Sohila-Khaled-Abbas/the-data-tea/blob/main/README.md"
+        },
+        {
+          "path": "components.json",
+          "size": 443,
+          "url": "https://github.com/Sohila-Khaled-Abbas/the-data-tea/blob/main/components.json"
+        },
+        {
+          "path": "package.json",
+          "size": 2906,
+          "url": "https://github.com/Sohila-Khaled-Abbas/the-data-tea/blob/main/package.json"
+        },
+        {
+          "path": "tsconfig.json",
+          "size": 672,
+          "url": "https://github.com/Sohila-Khaled-Abbas/the-data-tea/blob/main/tsconfig.json"
+        },
+        {
+          "path": "src/data/roadmapsData.json",
+          "size": 46374,
+          "url": "https://github.com/Sohila-Khaled-Abbas/the-data-tea/blob/main/src/data/roadmapsData.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/the-data-tea/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/the-data-tea",
+      "empty": false,
+      "file_count": 72,
+      "source_branch": "main",
+      "tree_sha": "40ec1aad33169e528cac0772c2990748430f2410",
+      "old_portfolio": false
+    },
+    {
+      "repo": "hr-analytics-hub",
+      "title": "HR Ecosystem Portal",
+      "summary": "An advanced, serverless Single-Page Application (SPA) built on Google Apps Script. This tool empowers HR professionals to upload raw CSV datasets, processes the data entirely in-memory (client-side) for maximum privacy and speed, and generates interactive dashboards alongside a Gemini-powered AI chatbot.",
+      "technologies": [
+        "Excel"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 3782,
+          "url": "https://github.com/Sohila-Khaled-Abbas/hr-analytics-hub/blob/main/README.md"
+        },
+        {
+          "path": "appsscript.json",
+          "size": 292,
+          "url": "https://github.com/Sohila-Khaled-Abbas/hr-analytics-hub/blob/main/appsscript.json"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 1440,
+          "url": "https://github.com/Sohila-Khaled-Abbas/hr-analytics-hub/blob/main/CONTRIBUTING.md"
+        },
+        {
+          "path": "docs/architecture.md",
+          "size": 2449,
+          "url": "https://github.com/Sohila-Khaled-Abbas/hr-analytics-hub/blob/main/docs/architecture.md"
+        },
+        {
+          "path": "docs/data_flow.md",
+          "size": 2451,
+          "url": "https://github.com/Sohila-Khaled-Abbas/hr-analytics-hub/blob/main/docs/data_flow.md"
+        },
+        {
+          "path": "src/Index.html",
+          "size": 86507,
+          "url": "https://github.com/Sohila-Khaled-Abbas/hr-analytics-hub/blob/main/src/Index.html"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/hr-analytics-hub/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/hr-analytics-hub",
+      "empty": false,
+      "file_count": 10,
+      "source_branch": "main",
+      "tree_sha": "d9c3e92a23368a5605e3b92ad20fc1b0ed90d08b",
+      "old_portfolio": false
+    },
+    {
+      "repo": "customer-360-banking-etl",
+      "title": "Customer 360 — Banking ETL Pipeline",
+      "summary": "A multi-source ETL pipeline that consolidates banking, ATM, and credit card data into a single Customer 360 golden record, enforcing a strict three-rule exception matrix to quarantine non-conforming records before they reach the data warehouse.",
+      "technologies": [
+        "SQL",
+        "Informatica"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": {
+        "src": "/project-media/banking-etl.webp",
+        "kind": "Architecture diagram",
+        "caption": "Multi-source banking ETL and validation flow."
+      },
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 20374,
+          "url": "https://github.com/Sohila-Khaled-Abbas/customer-360-banking-etl/blob/master/README.md"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "size": 1253,
+          "url": "https://github.com/Sohila-Khaled-Abbas/customer-360-banking-etl/blob/master/CHANGELOG.md"
+        },
+        {
+          "path": "iics/connections/Connection_Specs.md",
+          "size": 2002,
+          "url": "https://github.com/Sohila-Khaled-Abbas/customer-360-banking-etl/blob/master/iics/connections/Connection_Specs.md"
+        },
+        {
+          "path": "iics/mappings/M_Customer_360_ETL.md",
+          "size": 5675,
+          "url": "https://github.com/Sohila-Khaled-Abbas/customer-360-banking-etl/blob/master/iics/mappings/M_Customer_360_ETL.md"
+        },
+        {
+          "path": "iics/mapplets/MPLT_Cleanse_Customer_Name.md",
+          "size": 1473,
+          "url": "https://github.com/Sohila-Khaled-Abbas/customer-360-banking-etl/blob/master/iics/mapplets/MPLT_Cleanse_Customer_Name.md"
+        },
+        {
+          "path": "sql/source/oracle_banking_db.sql",
+          "size": 4378,
+          "url": "https://github.com/Sohila-Khaled-Abbas/customer-360-banking-etl/blob/master/sql/source/oracle_banking_db.sql"
+        },
+        {
+          "path": "sql/target/DDL_TGT_CUSTOMER_360.sql",
+          "size": 2414,
+          "url": "https://github.com/Sohila-Khaled-Abbas/customer-360-banking-etl/blob/master/sql/target/DDL_TGT_CUSTOMER_360.sql"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/customer-360-banking-etl/blob/master/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/customer-360-banking-etl",
+      "empty": false,
+      "file_count": 22,
+      "source_branch": "master",
+      "tree_sha": "6f83e5397449e5ce5c66244366a65dbd20dc87f0",
+      "old_portfolio": false
+    },
+    {
+      "repo": "n8n-production-queue-setup",
+      "title": "n8n Queue & Worker Stack",
+      "summary": "A documented queue-mode automation stack with Docker, Redis, PostgreSQL, worker scaling, and operational runbooks.",
+      "technologies": [
+        "n8n",
+        "LangChain",
+        "Qdrant",
+        "PostgreSQL",
+        "MSSQL",
+        "Supabase",
+        "Docker",
+        "CI/CD",
+        "Python",
+        "SQL",
+        "Pandas",
+        "NumPy"
+      ],
+      "methods": [
+        "Programmed 74 workflow JSONs organized across 4 major business domains.",
+        "Enforced software engineering standards: single responsibility, idempotent DB upserts, zero hardcoded secrets, and CI validation.",
+        "Incorporated official n8n Academy certifications and comprehensive architecture guides."
+      ],
+      "flow": [
+        "Webhook",
+        "Redis queue",
+        "Worker execution",
+        "PostgreSQL"
+      ],
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 46672,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-production-queue-setup/blob/main/README.md"
+        },
+        {
+          "path": "docs/portfolio_workflows_data.json",
+          "size": 11582,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-production-queue-setup/blob/main/docs/portfolio_workflows_data.json"
+        },
+        {
+          "path": "scripts/export_workflows.py",
+          "size": 3109,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-production-queue-setup/blob/main/scripts/export_workflows.py"
+        },
+        {
+          "path": "scripts/modify_workflow.py",
+          "size": 928,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-production-queue-setup/blob/main/scripts/modify_workflow.py"
+        },
+        {
+          "path": "scripts/publish_workflows_portfolio.py",
+          "size": 26892,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-production-queue-setup/blob/main/scripts/publish_workflows_portfolio.py"
+        },
+        {
+          "path": "workflows/AI Learning Pipeline Telegram to Notion ETL.json",
+          "size": 14555,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-production-queue-setup/blob/main/workflows/AI%20Learning%20Pipeline%20Telegram%20to%20Notion%20ETL.json"
+        },
+        {
+          "path": "workflows/Apple RAG Chatbot V2.json",
+          "size": 20634,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-production-queue-setup/blob/main/workflows/Apple%20RAG%20Chatbot%20V2.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/n8n-production-queue-setup/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/n8n-production-queue-setup",
+      "empty": false,
+      "file_count": 177,
+      "source_branch": "main",
+      "tree_sha": "9b886a689aaa80937649ca7c26bea375781fb111",
+      "old_portfolio": true
+    },
+    {
+      "repo": "sohila-k-abbas-website",
+      "title": "Sohila Khaled Abbas — Portfolio",
+      "summary": "This repository contains the source code for a personal data portfolio website built for Sohila Khaled Abbas — a recognized BI Developer, Data Analytics Engineer, and Top 200 Arabic-Speaking Influencer in data education.",
+      "technologies": [
+        "Python",
+        "SQL",
+        "PostgreSQL",
+        "Supabase"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 11052,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sohila-k-abbas-website/blob/main/README.md"
+        },
+        {
+          "path": "components.json",
+          "size": 413,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sohila-k-abbas-website/blob/main/components.json"
+        },
+        {
+          "path": "firebase.json",
+          "size": 234,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sohila-k-abbas-website/blob/main/firebase.json"
+        },
+        {
+          "path": "index.html",
+          "size": 2170,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sohila-k-abbas-website/blob/main/index.html"
+        },
+        {
+          "path": "package.json",
+          "size": 3040,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sohila-k-abbas-website/blob/main/package.json"
+        },
+        {
+          "path": "tsconfig.app.json",
+          "size": 635,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sohila-k-abbas-website/blob/main/tsconfig.app.json"
+        },
+        {
+          "path": "tsconfig.json",
+          "size": 396,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sohila-k-abbas-website/blob/main/tsconfig.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/sohila-k-abbas-website/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/sohila-k-abbas-website",
+      "empty": false,
+      "file_count": 169,
+      "source_branch": "main",
+      "tree_sha": "e8dbb2b42e229dae92738f5ec5ee8b1e2e1295f6",
+      "old_portfolio": false
+    },
+    {
+      "repo": "S-OP_Dashboard",
+      "title": "Omnichannel Sales & Operations (S&OP) Dashboard",
+      "summary": "An Omnichannel Sales & Operations Planning (S&OP) Dashboard built with Microsoft Power BI. This repository leverages the new Power BI Project (.pbip) format and Tabular Model Definition Language (TMDL) for standard git-based version control, enabling team collaboration, code reviews, and structured releases.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "DAX",
+        "Power Query",
+        "Excel"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 15506,
+          "url": "https://github.com/Sohila-Khaled-Abbas/S-OP_Dashboard/blob/master/README.md"
+        },
+        {
+          "path": "docs/sop_workflow.md",
+          "size": 3987,
+          "url": "https://github.com/Sohila-Khaled-Abbas/S-OP_Dashboard/blob/master/docs/sop_workflow.md"
+        },
+        {
+          "path": "S&OP_Dashboard.pbip",
+          "size": 280,
+          "url": "https://github.com/Sohila-Khaled-Abbas/S-OP_Dashboard/blob/master/S%26OP_Dashboard.pbip"
+        },
+        {
+          "path": "docs/data_dictionary.md",
+          "size": 12818,
+          "url": "https://github.com/Sohila-Khaled-Abbas/S-OP_Dashboard/blob/master/docs/data_dictionary.md"
+        },
+        {
+          "path": "docs/dax_and_modeling.md",
+          "size": 7406,
+          "url": "https://github.com/Sohila-Khaled-Abbas/S-OP_Dashboard/blob/master/docs/dax_and_modeling.md"
+        },
+        {
+          "path": "docs/model_fixes_checklist.md",
+          "size": 4351,
+          "url": "https://github.com/Sohila-Khaled-Abbas/S-OP_Dashboard/blob/master/docs/model_fixes_checklist.md"
+        },
+        {
+          "path": "docs/README_OLLAMA_MCP.md",
+          "size": 3950,
+          "url": "https://github.com/Sohila-Khaled-Abbas/S-OP_Dashboard/blob/master/docs/README_OLLAMA_MCP.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/S-OP_Dashboard/blob/master/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/S-OP_Dashboard",
+      "empty": false,
+      "file_count": 63,
+      "source_branch": "master",
+      "tree_sha": "f014292607a298e44783634b4d78ba5a58c9b83f",
+      "old_portfolio": false
+    },
+    {
+      "repo": "national-insurance-data-warehouse",
+      "title": "National Insurance Data Warehouse",
+      "summary": "An end-to-end data pipeline and warehouse solution for managing and analyzing synthetic Egyptian National Insurance data (specifically Form 5 records). This repository covers the complete lifecycle of data, from raw data generation and orchestration to relational warehousing and Business Intelligence (BI) dashboards.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "SQL",
+        "Airflow",
+        "Docker",
+        "SQL Server",
+        "Pandas",
+        "Excel"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 7224,
+          "url": "https://github.com/Sohila-Khaled-Abbas/national-insurance-data-warehouse/blob/main/README.md"
+        },
+        {
+          "path": "docker-compose.yml",
+          "size": 290,
+          "url": "https://github.com/Sohila-Khaled-Abbas/national-insurance-data-warehouse/blob/main/docker-compose.yml"
+        },
+        {
+          "path": "dags/form5_etl_dag.py",
+          "size": 1109,
+          "url": "https://github.com/Sohila-Khaled-Abbas/national-insurance-data-warehouse/blob/main/dags/form5_etl_dag.py"
+        },
+        {
+          "path": "logs/query_log.sql",
+          "size": 0,
+          "url": "https://github.com/Sohila-Khaled-Abbas/national-insurance-data-warehouse/blob/main/logs/query_log.sql"
+        },
+        {
+          "path": "sql/01_create_schema.sql",
+          "size": 2565,
+          "url": "https://github.com/Sohila-Khaled-Abbas/national-insurance-data-warehouse/blob/main/sql/01_create_schema.sql"
+        },
+        {
+          "path": "sql/02_create_views.sql",
+          "size": 1793,
+          "url": "https://github.com/Sohila-Khaled-Abbas/national-insurance-data-warehouse/blob/main/sql/02_create_views.sql"
+        },
+        {
+          "path": "sql/03_data_validation.sql",
+          "size": 758,
+          "url": "https://github.com/Sohila-Khaled-Abbas/national-insurance-data-warehouse/blob/main/sql/03_data_validation.sql"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/national-insurance-data-warehouse/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/national-insurance-data-warehouse",
+      "empty": false,
+      "file_count": 13,
+      "source_branch": "main",
+      "tree_sha": "d21d7238cc1863b05d4e2b65f329b3b24f014568",
+      "old_portfolio": false
+    },
+    {
+      "repo": "n8n-workflow-gourmet-bistro-customer-service",
+      "title": "Gourmet Bistro — Multi-Agent AI Customer Service & Ordering System",
+      "summary": "Multi-agent LangChain restaurant assistant with Qdrant/Supabase RAG, Google Sheets dynamic pricing, order management with 5-min grace cancellation, and Telegram kitchen dispatch.",
+      "technologies": [
+        "n8n",
+        "LangChain",
+        "Qdrant",
+        "Supabase",
+        "Telegram API",
+        "PostgreSQL",
+        "Google Sheets"
+      ],
+      "methods": [
+        "Engineered a supervisory LangChain multi-agent router dispatching inquiries to 4 role-specialized sub-agents (Front Desk, Menu FAQ, Order Creation, and Cancellation).",
+        "Built order calculation logic querying Google Sheets pricing and persisting draft states into Supabase PostgreSQL.",
+        "Enforced business rules: strict 5-minute order cancellation window and Egyptian phone number validation before dispatching Telegram kitchen alerts."
+      ],
+      "flow": [
+        "Customer message",
+        "Agent routing",
+        "Menu & order tools",
+        "Kitchen dispatch"
+      ],
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 6045,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gourmet-bistro-customer-service/blob/main/README.md"
+        },
+        {
+          "path": "workflow.json",
+          "size": 44945,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gourmet-bistro-customer-service/blob/main/workflow.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gourmet-bistro-customer-service/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gourmet-bistro-customer-service",
+      "empty": false,
+      "file_count": 5,
+      "source_branch": "main",
+      "tree_sha": "0b8fd5df9530c85f58d514d311162d8311e18c9e",
+      "old_portfolio": true
+    },
+    {
+      "repo": "n8n-workflow-upwork-ai-proposal-creator",
+      "title": "Upwork AI Automated Proposal & Job Lead Pipeline",
+      "summary": "Automated lead generation pipeline scraping Upwork jobs via Apify, evaluating client requirements with GPT-4, and generating tailored freelance proposals.",
+      "technologies": [
+        "n8n",
+        "Apify",
+        "OpenAI",
+        "LangChain",
+        "JavaScript",
+        "Telegram API",
+        "PostgreSQL",
+        "Notion"
+      ],
+      "methods": [
+        "Configured scheduled Apify scraper actors to harvest new job postings matching targeted keywords and client verification criteria.",
+        "Extracted core client pain points and technical requirements using structured GPT-4 prompt chains.",
+        "Generated tailored proposal drafts including relevant portfolio proofs and pushed them directly to a private Telegram channel for instant review."
+      ],
+      "flow": [
+        "Apify job feed",
+        "Extract requirements",
+        "Draft proposal",
+        "Telegram review"
+      ],
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5163,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-upwork-ai-proposal-creator/blob/main/README.md"
+        },
+        {
+          "path": "workflow.json",
+          "size": 1147702,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-upwork-ai-proposal-creator/blob/main/workflow.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-upwork-ai-proposal-creator/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-upwork-ai-proposal-creator",
+      "empty": false,
+      "file_count": 5,
+      "source_branch": "main",
+      "tree_sha": "eb10587474042f5b112cc0afdc5cf39cb3acfae6",
+      "old_portfolio": true
+    },
+    {
+      "repo": "n8n-workflow-emaar-towers-lead-qualification",
+      "title": "Emaar Towers Real Estate AI Lead Qualification Agent",
+      "summary": "Real estate AI lead qualification agent evaluating buyer budgets, property preferences, and down payment readiness with OpenRouter LLM, CRM logging, and agent routing.",
+      "technologies": [
+        "n8n",
+        "OpenRouter",
+        "Telegram API",
+        "Google Sheets",
+        "CRM Automation",
+        "PostgreSQL",
+        "LangChain"
+      ],
+      "methods": [
+        "Engineered a multi-turn conversational agent asking structured questions on budget, preferred unit type, and payment timeline.",
+        "Classified buyer intent and budget tiers automatically into CRM spreadsheets.",
+        "Dispatched high-priority Telegram alerts to senior sales brokers for qualified luxury buyers."
+      ],
+      "flow": [
+        "Buyer enquiry",
+        "Qualify preferences",
+        "CRM record",
+        "Broker alert"
+      ],
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5188,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-emaar-towers-lead-qualification/blob/main/README.md"
+        },
+        {
+          "path": "workflow.json",
+          "size": 25231,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-emaar-towers-lead-qualification/blob/main/workflow.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-emaar-towers-lead-qualification/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-emaar-towers-lead-qualification",
+      "empty": false,
+      "file_count": 5,
+      "source_branch": "main",
+      "tree_sha": "22d3471624b504ebb3c64e1618979c36cd508bb4",
+      "old_portfolio": true
+    },
+    {
+      "repo": "n8n-workflow-delivery-telegram-bot",
+      "title": "Pizza Delivery Bot with MSSQL Session Persistence",
+      "summary": "Interactive Telegram delivery bot with natural language cart management, LangChain agent, OpenRouter inference, and MSSQL session state persistence.",
+      "technologies": [
+        "n8n",
+        "Telegram API",
+        "LangChain",
+        "OpenRouter",
+        "MSSQL",
+        "SQL",
+        "PostgreSQL"
+      ],
+      "methods": [
+        "Built a Telegram bot trigger capturing user messages and routing to a LangChain agent powered by OpenRouter.",
+        "Implemented custom tool nodes for adding items, calculating subtotals, and removing cart entries.",
+        "Persisted cart sessions and user state into relational MSSQL tables for state recovery."
+      ],
+      "flow": [
+        "Telegram message",
+        "Ordering agent",
+        "MSSQL cart state",
+        "Order response"
+      ],
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5025,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-delivery-telegram-bot/blob/main/README.md"
+        },
+        {
+          "path": "workflow.json",
+          "size": 20635,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-delivery-telegram-bot/blob/main/workflow.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-delivery-telegram-bot/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-delivery-telegram-bot",
+      "empty": false,
+      "file_count": 5,
+      "source_branch": "main",
+      "tree_sha": "b7faa0b6c00f5366f62061176b0d79cb59f6eddd",
+      "old_portfolio": true
+    },
+    {
+      "repo": "n8n-workflow-apple-rag-chatbot-v2",
+      "title": "Apple Product Support — RAG Agent",
+      "summary": "A retrieval-augmented assistant for Apple product and technical-support documentation, with Qdrant retrieval and conversational context.",
+      "technologies": [
+        "n8n",
+        "LangChain",
+        "OpenAI",
+        "Qdrant",
+        "PostgreSQL",
+        "RAG"
+      ],
+      "methods": [
+        "Index Apple technical-support documentation in Qdrant.",
+        "Retrieve relevant document context for incoming questions.",
+        "Use a conversational agent to construct context-aware responses."
+      ],
+      "flow": [
+        "Support question",
+        "Retrieve context",
+        "Qdrant documents",
+        "Grounded response"
+      ],
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5324,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-apple-rag-chatbot-v2/blob/main/README.md"
+        },
+        {
+          "path": "workflow.json",
+          "size": 19037,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-apple-rag-chatbot-v2/blob/main/workflow.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-apple-rag-chatbot-v2/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-apple-rag-chatbot-v2",
+      "empty": false,
+      "file_count": 5,
+      "source_branch": "main",
+      "tree_sha": "a869fb923bcca373a811ca0fbc9b6ff2b82c1568",
+      "old_portfolio": true
+    },
+    {
+      "repo": "n8n-workflow-daily-viral-content-radar",
+      "title": "Daily Viral Content Radar & Trend Analysis ETL Pipeline",
+      "summary": "Automated trend monitoring pipeline scraping viral content, extracting engagement metrics, classifying topics via AI, and generating daily digest reports.",
+      "technologies": [
+        "n8n",
+        "Cron Triggers",
+        "HTTP APIs",
+        "AI Classifier",
+        "ETL",
+        "PostgreSQL"
+      ],
+      "methods": [
+        "Scheduled cron trigger fetching trending topics and engagement statistics via public APIs.",
+        "Analyzed content themes and classified viral potential with AI models.",
+        "Compiled formatted Markdown digests and distributed them across communication channels."
+      ],
+      "flow": [
+        "Daily trigger",
+        "Collect trends",
+        "AI summary",
+        "Digest output"
+      ],
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5110,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-daily-viral-content-radar/blob/main/README.md"
+        },
+        {
+          "path": "workflow.json",
+          "size": 83852,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-daily-viral-content-radar/blob/main/workflow.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-daily-viral-content-radar/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-daily-viral-content-radar",
+      "empty": false,
+      "file_count": 5,
+      "source_branch": "main",
+      "tree_sha": "30c16198a3fe438512fcb52be61b5b091e76c5b8",
+      "old_portfolio": true
+    },
+    {
+      "repo": "n8n-workflow-telegram-notion-etl",
+      "title": "Telegram to Notion AI Knowledge Curation ETL Pipeline",
+      "summary": "Content curation pipeline extracting links and media from Telegram, generating AI summaries with key takeaways, and persisting structured entries in Notion.",
+      "technologies": [
+        "n8n",
+        "Telegram API",
+        "Notion API",
+        "OpenAI",
+        "Web Scraping",
+        "ETL",
+        "PostgreSQL",
+        "Notion"
+      ],
+      "methods": [
+        "Parsed Telegram message entities to extract URLs, video links, and text notes.",
+        "Fetched webpage OpenGraph metadata and generated concise executive summaries via OpenAI.",
+        "Structured properties (Tags, Category, Summary, URL) and inserted entries into Notion database."
+      ],
+      "flow": [
+        "Telegram link",
+        "Extract content",
+        "AI summary",
+        "Notion record"
+      ],
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5135,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-telegram-notion-etl/blob/main/README.md"
+        },
+        {
+          "path": "workflow.json",
+          "size": 13354,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-telegram-notion-etl/blob/main/workflow.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-telegram-notion-etl/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-telegram-notion-etl",
+      "empty": false,
+      "file_count": 5,
+      "source_branch": "main",
+      "tree_sha": "d9adeabe663e945896f1f4b93e344aeef0d0060c",
+      "old_portfolio": true
+    },
+    {
+      "repo": "n8n-workflow-gdrive-pdf-qdrant-indexer",
+      "title": "Google Drive Automated PDF Ingestion & Qdrant Vector Indexer",
+      "summary": "Event-driven ETL pipeline monitoring Google Drive for PDFs, extracting and chunking text, generating embeddings, and upserting vectors into Qdrant for RAG.",
+      "technologies": [
+        "n8n",
+        "Google Drive API",
+        "Qdrant",
+        "OpenAI",
+        "PDF Parser",
+        "ETL",
+        "PostgreSQL"
+      ],
+      "methods": [
+        "Monitored Google Drive folder for newly uploaded or updated PDF documents via event triggers.",
+        "Extracted raw text, applied Recursive Character Text Splitter, and generated embeddings with OpenAI.",
+        "Upserted vectors into Qdrant collections with metadata payload for document source attribution."
+      ],
+      "flow": [
+        "Drive PDF",
+        "Parse & split",
+        "Embed text",
+        "Qdrant index"
+      ],
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5064,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gdrive-pdf-qdrant-indexer/blob/main/README.md"
+        },
+        {
+          "path": "workflow.json",
+          "size": 9858,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gdrive-pdf-qdrant-indexer/blob/main/workflow.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gdrive-pdf-qdrant-indexer/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gdrive-pdf-qdrant-indexer",
+      "empty": false,
+      "file_count": 5,
+      "source_branch": "main",
+      "tree_sha": "addf487ce2c251803dd28277df5516f99f20097f",
+      "old_portfolio": true
+    },
+    {
+      "repo": "n8n-workflow-sentiment-analysis-agent",
+      "title": "Customer Feedback Sentiment Classifier & Real-Time Alert Agent",
+      "summary": "Real-time customer feedback sentiment classifier logging sentiment scores to Google Sheets and triggering instant priority alerts for negative reviews.",
+      "technologies": [
+        "n8n",
+        "OpenAI",
+        "Google Sheets",
+        "Telegram API",
+        "NLP",
+        "PostgreSQL"
+      ],
+      "methods": [
+        "Received customer review webhooks and classified sentiment (Positive, Neutral, Negative) and root cause using OpenAI.",
+        "Logged structured audit records with timestamps and sentiment scores into Google Sheets.",
+        "Triggered urgent Telegram notifications for negative reviews to initiate immediate service recovery."
+      ],
+      "flow": [
+        "Customer review",
+        "Classify sentiment",
+        "Sheets log",
+        "Priority alert"
+      ],
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5067,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-sentiment-analysis-agent/blob/main/README.md"
+        },
+        {
+          "path": "workflow.json",
+          "size": 53536,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-sentiment-analysis-agent/blob/main/workflow.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-sentiment-analysis-agent/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-sentiment-analysis-agent",
+      "empty": false,
+      "file_count": 5,
+      "source_branch": "main",
+      "tree_sha": "e0197d264b33d343c68b5cc8b7cde034808adce4",
+      "old_portfolio": true
+    },
+    {
+      "repo": "n8n-workflow-gpt-oss-20b-huggingface",
+      "title": "Serverless GPT-OSS-20B HuggingFace Cloud Inference",
+      "summary": "Cloud LLM inference workflow integrating HuggingFace API with automatic 503 cold-start retries, Wait node backoff, and robust response parsing.",
+      "technologies": [
+        "n8n",
+        "HuggingFace API",
+        "Open-Source LLMs",
+        "Cloud Inference",
+        "JavaScript",
+        "PostgreSQL"
+      ],
+      "methods": [
+        "Connected n8n HTTP Request node with HuggingFace Inference API using header authentication.",
+        "Implemented conditional IF node to catch 503 'Model loading' statuses.",
+        "Added a 30-second Wait node retry loop before re-dispatching requests, preventing dropped user calls.",
+        "Parsed generated text payloads cleanly via JavaScript code nodes."
+      ],
+      "flow": [
+        "Request",
+        "Hugging Face API",
+        "Retry handling",
+        "Parsed response"
+      ],
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5039,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gpt-oss-20b-huggingface/blob/main/README.md"
+        },
+        {
+          "path": "workflow.json",
+          "size": 8575,
+          "url": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gpt-oss-20b-huggingface/blob/main/workflow.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gpt-oss-20b-huggingface/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/n8n-workflow-gpt-oss-20b-huggingface",
+      "empty": false,
+      "file_count": 5,
+      "source_branch": "main",
+      "tree_sha": "88e5a349882483755bca7a7eaea332f907c2e6c8",
+      "old_portfolio": true
+    },
+    {
+      "repo": "flyrank-ml-internship-starter",
+      "title": "Sohila Khaled Abbas · Applied ML & Search Intelligence Portfolio",
+      "summary": "Official portfolio, applied machine learning research paper, and autonomous decision-support agent for Sohila Khaled Abbas (Applied ML Intern & Search Intelligence Engineer at FlyRank AI | BI Developer).",
+      "technologies": [
+        "Python",
+        "Docker",
+        "n8n"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": {
+        "src": "/project-media/ml-feature-importance.webp",
+        "kind": "Repository chart",
+        "caption": "A saved feature-importance chart from the ML project."
+      },
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 6428,
+          "url": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/README.md"
+        },
+        {
+          "path": "n8n/flyrank_content_refresh_workflow.json",
+          "size": 3475,
+          "url": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/n8n/flyrank_content_refresh_workflow.json"
+        },
+        {
+          "path": "about.html",
+          "size": 13032,
+          "url": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/about.html"
+        },
+        {
+          "path": "AGENTS.md",
+          "size": 654,
+          "url": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/AGENTS.md"
+        },
+        {
+          "path": "cases.html",
+          "size": 9395,
+          "url": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/cases.html"
+        },
+        {
+          "path": "CLAUDE.md",
+          "size": 654,
+          "url": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/CLAUDE.md"
+        },
+        {
+          "path": "DATA_USE.md",
+          "size": 2763,
+          "url": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/DATA_USE.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter",
+      "empty": false,
+      "file_count": 92,
+      "source_branch": "main",
+      "tree_sha": "3693ff04c4a1af6a489d6f30de4bd55dc228a566",
+      "old_portfolio": false
+    },
+    {
+      "repo": "hive-scd2-datapill-lab",
+      "title": "Big Data Lab 2 Solution – Data Engineering Diploma",
+      "summary": "Data Engineering Diploma (Data Pill Academy) - Big Data Lab 2: Hive Internal vs. External Tables & Non-Transactional SCD Type 2 Architecture",
+      "technologies": [
+        "Python",
+        "SQL",
+        "Databricks",
+        "PySpark",
+        "Docker",
+        "PostgreSQL",
+        "Apache Spark",
+        "Pandas"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 14457,
+          "url": "https://github.com/Sohila-Khaled-Abbas/hive-scd2-datapill-lab/blob/main/README.md"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "size": 1000,
+          "url": "https://github.com/Sohila-Khaled-Abbas/hive-scd2-datapill-lab/blob/main/CHANGELOG.md"
+        },
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "size": 1105,
+          "url": "https://github.com/Sohila-Khaled-Abbas/hive-scd2-datapill-lab/blob/main/CODE_OF_CONDUCT.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 980,
+          "url": "https://github.com/Sohila-Khaled-Abbas/hive-scd2-datapill-lab/blob/main/CONTRIBUTING.md"
+        },
+        {
+          "path": "docker-compose.yml",
+          "size": 773,
+          "url": "https://github.com/Sohila-Khaled-Abbas/hive-scd2-datapill-lab/blob/main/docker-compose.yml"
+        },
+        {
+          "path": "generate_submission_doc.py",
+          "size": 19442,
+          "url": "https://github.com/Sohila-Khaled-Abbas/hive-scd2-datapill-lab/blob/main/generate_submission_doc.py"
+        },
+        {
+          "path": "docs/Hive_Lab_Submission.md",
+          "size": 7399,
+          "url": "https://github.com/Sohila-Khaled-Abbas/hive-scd2-datapill-lab/blob/main/docs/Hive_Lab_Submission.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/hive-scd2-datapill-lab/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/hive-scd2-datapill-lab",
+      "empty": false,
+      "file_count": 22,
+      "source_branch": "main",
+      "tree_sha": "866f4c6fe79523f883c828f391b05d85c5b9a7fa",
+      "old_portfolio": false
+    },
+    {
+      "repo": "kafka-cluster",
+      "title": "Edit .env if your Docker host IP differs from 127.0.0.1",
+      "summary": "A , 3-broker Apache Kafka cluster with ZooKeeper, designed for Big Data & Spark Structured Streaming integration.",
+      "technologies": [
+        "Python",
+        "SQL",
+        "PySpark",
+        "Docker",
+        "Apache Kafka"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 17333,
+          "url": "https://github.com/Sohila-Khaled-Abbas/kafka-cluster/blob/master/README.md"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "size": 1604,
+          "url": "https://github.com/Sohila-Khaled-Abbas/kafka-cluster/blob/master/CHANGELOG.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 1967,
+          "url": "https://github.com/Sohila-Khaled-Abbas/kafka-cluster/blob/master/CONTRIBUTING.md"
+        },
+        {
+          "path": "docker-compose.yml",
+          "size": 4666,
+          "url": "https://github.com/Sohila-Khaled-Abbas/kafka-cluster/blob/master/docker-compose.yml"
+        },
+        {
+          "path": "SECURITY.md",
+          "size": 1535,
+          "url": "https://github.com/Sohila-Khaled-Abbas/kafka-cluster/blob/master/SECURITY.md"
+        },
+        {
+          "path": "docs/ARCHITECTURE.md",
+          "size": 3009,
+          "url": "https://github.com/Sohila-Khaled-Abbas/kafka-cluster/blob/master/docs/ARCHITECTURE.md"
+        },
+        {
+          "path": "docs/DATA-PIPELINE-PATTERNS.md",
+          "size": 8434,
+          "url": "https://github.com/Sohila-Khaled-Abbas/kafka-cluster/blob/master/docs/DATA-PIPELINE-PATTERNS.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/kafka-cluster/blob/master/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/kafka-cluster",
+      "empty": false,
+      "file_count": 24,
+      "source_branch": "master",
+      "tree_sha": "8d7b217bc42c02b5d6a2ed8cfdc2353c590eb361",
+      "old_portfolio": false
+    },
+    {
+      "repo": "docker-hadoop",
+      "title": "Apache Hadoop Enterprise Multi-Platform Lab",
+      "summary": ", fully configured Big Data environment for local development, education, and distributed processing.",
+      "technologies": [
+        "Python",
+        "SQL",
+        "PySpark",
+        "Docker",
+        "MySQL",
+        "Apache Spark",
+        "Pandas"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 35397,
+          "url": "https://github.com/Sohila-Khaled-Abbas/docker-hadoop/blob/master/README.md"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "size": 20731,
+          "url": "https://github.com/Sohila-Khaled-Abbas/docker-hadoop/blob/master/CHANGELOG.md"
+        },
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "size": 3066,
+          "url": "https://github.com/Sohila-Khaled-Abbas/docker-hadoop/blob/master/CODE_OF_CONDUCT.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 5921,
+          "url": "https://github.com/Sohila-Khaled-Abbas/docker-hadoop/blob/master/CONTRIBUTING.md"
+        },
+        {
+          "path": "docker-compose.yml",
+          "size": 7343,
+          "url": "https://github.com/Sohila-Khaled-Abbas/docker-hadoop/blob/master/docker-compose.yml"
+        },
+        {
+          "path": "SECURITY.md",
+          "size": 2691,
+          "url": "https://github.com/Sohila-Khaled-Abbas/docker-hadoop/blob/master/SECURITY.md"
+        },
+        {
+          "path": "datasets/README.md",
+          "size": 2195,
+          "url": "https://github.com/Sohila-Khaled-Abbas/docker-hadoop/blob/master/datasets/README.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/docker-hadoop/blob/master/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/docker-hadoop",
+      "empty": false,
+      "file_count": 127,
+      "source_branch": "master",
+      "tree_sha": "91ee02846ebdfcdcbad5ed0d91f8a5805e165189",
+      "old_portfolio": false
+    },
+    {
+      "repo": "ride-sharing-kafka-pipeline",
+      "title": "Ride-Sharing Real-Time Kafka Pipeline",
+      "summary": "event streaming pipeline with automated orchestration, idempotent production, at-most-once consumption, and high-throughput topic architecture.",
+      "technologies": [
+        "Python",
+        "Docker",
+        "Apache Kafka"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 15799,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ride-sharing-kafka-pipeline/blob/main/README.md"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "size": 718,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ride-sharing-kafka-pipeline/blob/main/CHANGELOG.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 1772,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ride-sharing-kafka-pipeline/blob/main/CONTRIBUTING.md"
+        },
+        {
+          "path": "docs/architecture.md",
+          "size": 5305,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ride-sharing-kafka-pipeline/blob/main/docs/architecture.md"
+        },
+        {
+          "path": "docs/data_dictionary.md",
+          "size": 3080,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ride-sharing-kafka-pipeline/blob/main/docs/data_dictionary.md"
+        },
+        {
+          "path": "docs/delivery_semantics.md",
+          "size": 4670,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ride-sharing-kafka-pipeline/blob/main/docs/delivery_semantics.md"
+        },
+        {
+          "path": "docs/runbook.md",
+          "size": 3338,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ride-sharing-kafka-pipeline/blob/main/docs/runbook.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/ride-sharing-kafka-pipeline/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/ride-sharing-kafka-pipeline",
+      "empty": false,
+      "file_count": 29,
+      "source_branch": "main",
+      "tree_sha": "25ce7bd5c7794c29c7a9ea48c0c9b99e32f17fa0",
+      "old_portfolio": false
+    },
+    {
+      "repo": "ai-automation-roadmap",
+      "title": "The Data Tea · AI Automation Roadmap",
+      "summary": "An interactive learning roadmap for AI automation, featuring n8n and adjacent automation tools as structured data-tea products. · Built with Manus",
+      "technologies": [
+        "SQL",
+        "MySQL",
+        "n8n",
+        "OpenAI"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 11924,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ai-automation-roadmap/blob/main/README.md"
+        },
+        {
+          "path": "docs/verified-youtube-call-workflow-tool-match.json",
+          "size": 637,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ai-automation-roadmap/blob/main/docs/verified-youtube-call-workflow-tool-match.json"
+        },
+        {
+          "path": "docs/verified-youtube-hubspot-workflows-match.json",
+          "size": 619,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ai-automation-roadmap/blob/main/docs/verified-youtube-hubspot-workflows-match.json"
+        },
+        {
+          "path": "docs/verified-youtube-n8n-v2-subworkflows-match.json",
+          "size": 657,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ai-automation-roadmap/blob/main/docs/verified-youtube-n8n-v2-subworkflows-match.json"
+        },
+        {
+          "path": "docs/verified-youtube-oembed-ai-agent-workflow-2026-08-23.json",
+          "size": 1785,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ai-automation-roadmap/blob/main/docs/verified-youtube-oembed-ai-agent-workflow-2026-08-23.json"
+        },
+        {
+          "path": "docs/verified-youtube-oembed-workflow-patterns-2026-08-23.json",
+          "size": 1958,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ai-automation-roadmap/blob/main/docs/verified-youtube-oembed-workflow-patterns-2026-08-23.json"
+        },
+        {
+          "path": "docs/verified-youtube-search-oembed-ryan-matt-subworkflows-2026-08-25.json",
+          "size": 1450,
+          "url": "https://github.com/Sohila-Khaled-Abbas/ai-automation-roadmap/blob/main/docs/verified-youtube-search-oembed-ryan-matt-subworkflows-2026-08-25.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/ai-automation-roadmap/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/ai-automation-roadmap",
+      "empty": false,
+      "file_count": 335,
+      "source_branch": "main",
+      "tree_sha": "c344feb6e58740106e559ede77508d179b07767b",
+      "old_portfolio": false
+    },
+    {
+      "repo": "streampulse",
+      "title": "StreamPulse",
+      "summary": "Live Netflix Catalog & Audience Intelligence ELT Pipeline",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "Docker",
+        "PostgreSQL",
+        "DAX",
+        "Power Query"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": {
+        "src": "/project-media/streampulse-architecture.webp",
+        "kind": "Architecture diagram",
+        "caption": "The documented streaming and analytics architecture."
+      },
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 9886,
+          "url": "https://github.com/Sohila-Khaled-Abbas/streampulse/blob/main/README.md"
+        },
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "size": 1813,
+          "url": "https://github.com/Sohila-Khaled-Abbas/streampulse/blob/main/CODE_OF_CONDUCT.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 2533,
+          "url": "https://github.com/Sohila-Khaled-Abbas/streampulse/blob/main/CONTRIBUTING.md"
+        },
+        {
+          "path": "docker-compose.yml",
+          "size": 1255,
+          "url": "https://github.com/Sohila-Khaled-Abbas/streampulse/blob/main/docker-compose.yml"
+        },
+        {
+          "path": "SECURITY.md",
+          "size": 1129,
+          "url": "https://github.com/Sohila-Khaled-Abbas/streampulse/blob/main/SECURITY.md"
+        },
+        {
+          "path": "streamplus_report.pbip",
+          "size": 283,
+          "url": "https://github.com/Sohila-Khaled-Abbas/streampulse/blob/main/streamplus_report.pbip"
+        },
+        {
+          "path": "dashboard/netflix_cinematic_dark.json",
+          "size": 1919,
+          "url": "https://github.com/Sohila-Khaled-Abbas/streampulse/blob/main/dashboard/netflix_cinematic_dark.json"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/streampulse/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/streampulse",
+      "empty": false,
+      "file_count": 120,
+      "source_branch": "main",
+      "tree_sha": "cffe5d772abfb3d4c0cbea1b3349e0f061646838",
+      "old_portfolio": false
+    },
+    {
+      "repo": "enterprise-hr-analytics",
+      "title": "Nexora Tech Solutions · Enterprise Data Platform",
+      "summary": "A , enterprise data engineering & business intelligence platform for Nexora Tech Solutions (حلول نكسورا للبرمجيات), transforming 6 heterogeneous HR, L&D Academy, and Client Delivery source feeds into a high-performance Kimball Galaxy Schema (Fact Constellation) for executive decision-making.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "SQL",
+        "Docker",
+        "SQL Server",
+        "Pandas",
+        "DAX",
+        "Power Query",
+        "Excel"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": {
+        "src": "/project-media/enterprise-hr-model.webp",
+        "kind": "Data model",
+        "caption": "Conformed dimensions and facts in the HR analytics scenario."
+      },
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 37035,
+          "url": "https://github.com/Sohila-Khaled-Abbas/enterprise-hr-analytics/blob/master/README.md"
+        },
+        {
+          "path": "docker-compose.yml",
+          "size": 2233,
+          "url": "https://github.com/Sohila-Khaled-Abbas/enterprise-hr-analytics/blob/master/docker-compose.yml"
+        },
+        {
+          "path": "docs/architecture.md",
+          "size": 15552,
+          "url": "https://github.com/Sohila-Khaled-Abbas/enterprise-hr-analytics/blob/master/docs/architecture.md"
+        },
+        {
+          "path": "docs/business_diagnostics.md",
+          "size": 6249,
+          "url": "https://github.com/Sohila-Khaled-Abbas/enterprise-hr-analytics/blob/master/docs/business_diagnostics.md"
+        },
+        {
+          "path": "docs/data_dictionary.md",
+          "size": 32100,
+          "url": "https://github.com/Sohila-Khaled-Abbas/enterprise-hr-analytics/blob/master/docs/data_dictionary.md"
+        },
+        {
+          "path": "docs/data_validation_rules.md",
+          "size": 9504,
+          "url": "https://github.com/Sohila-Khaled-Abbas/enterprise-hr-analytics/blob/master/docs/data_validation_rules.md"
+        },
+        {
+          "path": "docs/executive_kpi_glossary.md",
+          "size": 5695,
+          "url": "https://github.com/Sohila-Khaled-Abbas/enterprise-hr-analytics/blob/master/docs/executive_kpi_glossary.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/enterprise-hr-analytics/blob/master/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/enterprise-hr-analytics",
+      "empty": false,
+      "file_count": 141,
+      "source_branch": "master",
+      "tree_sha": "40ca7aaba152949d357cffea1036ed9061b3e9c6",
+      "old_portfolio": false
+    },
+    {
+      "repo": "sql-server-data-platform",
+      "title": "Enterprise SQL Server Data Platform & DBRE Sandbox",
+      "summary": "This repository serves as an operational codebase and architectural proof of competency for modern Data Engineering & Database Reliability Engineering (DBRE) on Microsoft SQL Server 2022. It is engineered directly from the curriculum of the official ITI / MaharaTech course: Implementing and Developing SQL Server Objects (Course ID: 2305)",
+      "technologies": [
+        "Python",
+        "SQL",
+        "Docker",
+        "SQL Server"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 37413,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sql-server-data-platform/blob/master/README.md"
+        },
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "size": 2108,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sql-server-data-platform/blob/master/CODE_OF_CONDUCT.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 3822,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sql-server-data-platform/blob/master/CONTRIBUTING.md"
+        },
+        {
+          "path": "SECURITY.md",
+          "size": 1933,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sql-server-data-platform/blob/master/SECURITY.md"
+        },
+        {
+          "path": "docker/docker-compose.yml",
+          "size": 1007,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sql-server-data-platform/blob/master/docker/docker-compose.yml"
+        },
+        {
+          "path": "docs/architecture-diagram.md",
+          "size": 3868,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sql-server-data-platform/blob/master/docs/architecture-diagram.md"
+        },
+        {
+          "path": "docs/ch01-case-study-erd-and-implementation.md",
+          "size": 19555,
+          "url": "https://github.com/Sohila-Khaled-Abbas/sql-server-data-platform/blob/master/docs/ch01-case-study-erd-and-implementation.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/sql-server-data-platform/blob/master/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/sql-server-data-platform",
+      "empty": false,
+      "file_count": 515,
+      "source_branch": "master",
+      "tree_sha": "6b92d25debe4572d863fb6563ac5d57d4cee427a",
+      "old_portfolio": false
+    },
+    {
+      "repo": "egyptian-cosmetics-market",
+      "title": "Egyptian Cosmetics Analytics Engineering Platform",
+      "summary": "Enterprise Multi-Source ELT, SQL Server 2022 Kimball Data Warehouse, SCD Type 2, Automated Data Quality Quarantine & Power BI Analytics Lifecycle",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "SQL",
+        "PostgreSQL",
+        "SQL Server",
+        "DAX",
+        "Power Query",
+        "Excel",
+        "Snowflake"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": {
+        "src": "/project-media/cosmetics-lifecycle.webp",
+        "kind": "Architecture diagram",
+        "caption": "The documented ingestion, warehouse, and reporting lifecycle."
+      },
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 27841,
+          "url": "https://github.com/Sohila-Khaled-Abbas/egyptian-cosmetics-market/blob/master/README.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 4593,
+          "url": "https://github.com/Sohila-Khaled-Abbas/egyptian-cosmetics-market/blob/master/CONTRIBUTING.md"
+        },
+        {
+          "path": "generate_egyptian_cosmetics_data.py",
+          "size": 25006,
+          "url": "https://github.com/Sohila-Khaled-Abbas/egyptian-cosmetics-market/blob/master/generate_egyptian_cosmetics_data.py"
+        },
+        {
+          "path": "SECURITY.md",
+          "size": 1433,
+          "url": "https://github.com/Sohila-Khaled-Abbas/egyptian-cosmetics-market/blob/master/SECURITY.md"
+        },
+        {
+          "path": "data/manifest.json",
+          "size": 345,
+          "url": "https://github.com/Sohila-Khaled-Abbas/egyptian-cosmetics-market/blob/master/data/manifest.json"
+        },
+        {
+          "path": "data/README_DATA_ISSUES.md",
+          "size": 1526,
+          "url": "https://github.com/Sohila-Khaled-Abbas/egyptian-cosmetics-market/blob/master/data/README_DATA_ISSUES.md"
+        },
+        {
+          "path": "docs/architecture-decisions.md",
+          "size": 4028,
+          "url": "https://github.com/Sohila-Khaled-Abbas/egyptian-cosmetics-market/blob/master/docs/architecture-decisions.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/egyptian-cosmetics-market/blob/master/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/egyptian-cosmetics-market",
+      "empty": false,
+      "file_count": 166,
+      "source_branch": "master",
+      "tree_sha": "3b79a967e198edce1cfe62e0ba955e11d9f61bff",
+      "old_portfolio": false
+    },
+    {
+      "repo": "COURSE-EXCEL-ZERO-TO-HERO",
+      "title": "Excel Zero to Hero: Second Brain & Analytics Repository",
+      "summary": "A Obsidian Knowledge System, Interactive Learning Web Platform, Data Analytics Curriculum, and GitHub Portfolio Repository for mastering modern Microsoft Excel, Power Query, Power Pivot, DAX, AI-Assisted Workflows, and Executive Dashboard Engineering.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "SQL",
+        "SQL Server",
+        "Pandas",
+        "DAX",
+        "Power Query",
+        "Excel",
+        "VBA"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 60175,
+          "url": "https://github.com/Sohila-Khaled-Abbas/COURSE-EXCEL-ZERO-TO-HERO/blob/main/README.md"
+        },
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "size": 2527,
+          "url": "https://github.com/Sohila-Khaled-Abbas/COURSE-EXCEL-ZERO-TO-HERO/blob/main/CODE_OF_CONDUCT.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 4681,
+          "url": "https://github.com/Sohila-Khaled-Abbas/COURSE-EXCEL-ZERO-TO-HERO/blob/main/CONTRIBUTING.md"
+        },
+        {
+          "path": "implementation.md",
+          "size": 13648,
+          "url": "https://github.com/Sohila-Khaled-Abbas/COURSE-EXCEL-ZERO-TO-HERO/blob/main/implementation.md"
+        },
+        {
+          "path": "SECURITY.md",
+          "size": 978,
+          "url": "https://github.com/Sohila-Khaled-Abbas/COURSE-EXCEL-ZERO-TO-HERO/blob/main/SECURITY.md"
+        },
+        {
+          "path": "00_Home/Course Dashboard.md",
+          "size": 13714,
+          "url": "https://github.com/Sohila-Khaled-Abbas/COURSE-EXCEL-ZERO-TO-HERO/blob/main/00_Home/Course%20Dashboard.md"
+        },
+        {
+          "path": "00_Home/Course Map.md",
+          "size": 6464,
+          "url": "https://github.com/Sohila-Khaled-Abbas/COURSE-EXCEL-ZERO-TO-HERO/blob/main/00_Home/Course%20Map.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/COURSE-EXCEL-ZERO-TO-HERO/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/COURSE-EXCEL-ZERO-TO-HERO",
+      "empty": false,
+      "file_count": 919,
+      "source_branch": "main",
+      "tree_sha": "41564038b5db88c768c855058a5e5491a2f58274",
+      "old_portfolio": false
+    },
+    {
+      "repo": "pwc-switzerland-virtual-case",
+      "title": "PwC Switzerland Virtual Case Experience",
+      "summary": "PwC Switzerland Virtual Case Experience: Enterprise Business Intelligence, Ralph Kimball Galaxy Semantic Model (VertiPaq Engine), DAX KPI Engineering & Executive Excel Application Architecture",
+      "technologies": [
+        "Power BI",
+        "Docker",
+        "DAX",
+        "Power Query",
+        "Excel",
+        "VBA"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 27570,
+          "url": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/README.md"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "size": 34919,
+          "url": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/CHANGELOG.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 1688,
+          "url": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/CONTRIBUTING.md"
+        },
+        {
+          "path": "dashboards/01_call_center_dashboard.md",
+          "size": 6161,
+          "url": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/dashboards/01_call_center_dashboard.md"
+        },
+        {
+          "path": "dashboards/02_customer_retention_dashboard.md",
+          "size": 8669,
+          "url": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/dashboards/02_customer_retention_dashboard.md"
+        },
+        {
+          "path": "dashboards/03_diversity_inclusion_dashboard.md",
+          "size": 8972,
+          "url": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/dashboards/03_diversity_inclusion_dashboard.md"
+        },
+        {
+          "path": "dashboards/call_center_website_dashboard.html",
+          "size": 65798,
+          "url": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/dashboards/call_center_website_dashboard.html"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case",
+      "empty": false,
+      "file_count": 437,
+      "source_branch": "main",
+      "tree_sha": "15c242e81010d4dc659539c88dc980bc321b1ad1",
+      "old_portfolio": false
+    },
+    {
+      "repo": "kickstarter-analytics-engineering",
+      "title": "Windows:",
+      "summary": "End-to-end data pipeline and Power BI model for Kickstarter campaign analysis.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "dbt",
+        "DAX",
+        "Power Query"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": {
+        "src": "/project-media/kickstarter-model.webp",
+        "kind": "Data model",
+        "caption": "Galaxy-schema model from the project repository."
+      },
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 16823,
+          "url": "https://github.com/Sohila-Khaled-Abbas/kickstarter-analytics-engineering/blob/main/README.md"
+        },
+        {
+          "path": "docs/08_git_pbip_and_ci_cd_deployment_workflow.md",
+          "size": 5577,
+          "url": "https://github.com/Sohila-Khaled-Abbas/kickstarter-analytics-engineering/blob/main/docs/08_git_pbip_and_ci_cd_deployment_workflow.md"
+        },
+        {
+          "path": "ARCHITECTURE.md",
+          "size": 6417,
+          "url": "https://github.com/Sohila-Khaled-Abbas/kickstarter-analytics-engineering/blob/main/ARCHITECTURE.md"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "size": 2300,
+          "url": "https://github.com/Sohila-Khaled-Abbas/kickstarter-analytics-engineering/blob/main/CHANGELOG.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 2837,
+          "url": "https://github.com/Sohila-Khaled-Abbas/kickstarter-analytics-engineering/blob/main/CONTRIBUTING.md"
+        },
+        {
+          "path": "DATA_DICTIONARY.md",
+          "size": 9018,
+          "url": "https://github.com/Sohila-Khaled-Abbas/kickstarter-analytics-engineering/blob/main/DATA_DICTIONARY.md"
+        },
+        {
+          "path": "SECURITY.md",
+          "size": 1513,
+          "url": "https://github.com/Sohila-Khaled-Abbas/kickstarter-analytics-engineering/blob/main/SECURITY.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/kickstarter-analytics-engineering/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/kickstarter-analytics-engineering",
+      "empty": false,
+      "file_count": 75,
+      "source_branch": "main",
+      "tree_sha": "c5699cd79f68d3fa3812239dfe5643ec589a9a2f",
+      "old_portfolio": false
+    },
+    {
+      "repo": "data-engineering-learning-roadmap",
+      "title": "Data Engineering Learning Roadmap",
+      "summary": "A practical, self-paced roadmap for SQL, Python, analytics engineering, data pipelines, big data, and portfolio projects.",
+      "technologies": [
+        "Power BI",
+        "Python",
+        "SQL",
+        "Airflow",
+        "PySpark",
+        "Docker",
+        "PostgreSQL",
+        "SQL Server",
+        "Informatica",
+        "Pandas",
+        "DAX",
+        "Power Query"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 9160,
+          "url": "https://github.com/Sohila-Khaled-Abbas/data-engineering-learning-roadmap/blob/main/README.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 808,
+          "url": "https://github.com/Sohila-Khaled-Abbas/data-engineering-learning-roadmap/blob/main/CONTRIBUTING.md"
+        },
+        {
+          "path": "ROADMAP.md",
+          "size": 12840,
+          "url": "https://github.com/Sohila-Khaled-Abbas/data-engineering-learning-roadmap/blob/main/ROADMAP.md"
+        },
+        {
+          "path": "docs/ADD_VIDEO_RESOURCES.md",
+          "size": 3110,
+          "url": "https://github.com/Sohila-Khaled-Abbas/data-engineering-learning-roadmap/blob/main/docs/ADD_VIDEO_RESOURCES.md"
+        },
+        {
+          "path": "docs/CAPSTONE.md",
+          "size": 3736,
+          "url": "https://github.com/Sohila-Khaled-Abbas/data-engineering-learning-roadmap/blob/main/docs/CAPSTONE.md"
+        },
+        {
+          "path": "docs/CERTIFICATIONS.md",
+          "size": 2109,
+          "url": "https://github.com/Sohila-Khaled-Abbas/data-engineering-learning-roadmap/blob/main/docs/CERTIFICATIONS.md"
+        },
+        {
+          "path": "docs/COMMUNITY_RESOURCES.md",
+          "size": 12300,
+          "url": "https://github.com/Sohila-Khaled-Abbas/data-engineering-learning-roadmap/blob/main/docs/COMMUNITY_RESOURCES.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/data-engineering-learning-roadmap/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/data-engineering-learning-roadmap",
+      "empty": false,
+      "file_count": 30,
+      "source_branch": "main",
+      "tree_sha": "93cd1afba565a97938e5628b16569d8790ee6d6c",
+      "old_portfolio": false
+    },
+    {
+      "repo": "fundamentals-of-operating-systems-labs",
+      "title": "Fundamentals of Operating Systems — Course & Labs Companion",
+      "summary": "An engineering-first, hands-on repository covering core operating system internals, process anatomy, virtual memory, CPU cache lines, socket buffers, page cache, and copy-on-write (COW).",
+      "technologies": [
+        "Python",
+        "Docker",
+        "PostgreSQL"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 14263,
+          "url": "https://github.com/Sohila-Khaled-Abbas/fundamentals-of-operating-systems-labs/blob/main/README.md"
+        },
+        {
+          "path": "docker-compose.yml",
+          "size": 244,
+          "url": "https://github.com/Sohila-Khaled-Abbas/fundamentals-of-operating-systems-labs/blob/main/docker-compose.yml"
+        },
+        {
+          "path": "docs/os-cheat-sheet.md",
+          "size": 5766,
+          "url": "https://github.com/Sohila-Khaled-Abbas/fundamentals-of-operating-systems-labs/blob/main/docs/os-cheat-sheet.md"
+        },
+        {
+          "path": "docs/references.md",
+          "size": 7724,
+          "url": "https://github.com/Sohila-Khaled-Abbas/fundamentals-of-operating-systems-labs/blob/main/docs/references.md"
+        },
+        {
+          "path": "labs/01-process-anatomy/README.md",
+          "size": 3208,
+          "url": "https://github.com/Sohila-Khaled-Abbas/fundamentals-of-operating-systems-labs/blob/main/labs/01-process-anatomy/README.md"
+        },
+        {
+          "path": "labs/02-stack-memory/README.md",
+          "size": 3204,
+          "url": "https://github.com/Sohila-Khaled-Abbas/fundamentals-of-operating-systems-labs/blob/main/labs/02-stack-memory/README.md"
+        },
+        {
+          "path": "labs/03-data-segment/README.md",
+          "size": 2550,
+          "url": "https://github.com/Sohila-Khaled-Abbas/fundamentals-of-operating-systems-labs/blob/main/labs/03-data-segment/README.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/fundamentals-of-operating-systems-labs/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/fundamentals-of-operating-systems-labs",
+      "empty": false,
+      "file_count": 61,
+      "source_branch": "main",
+      "tree_sha": "f5675169c48f4139ece98e84ecce2c869f8295dd",
+      "old_portfolio": false
+    },
+    {
+      "repo": "Excel-VBA-Second-Brain",
+      "title": "Excel VBA Second Brain",
+      "summary": "A personal knowledge system for mastering Excel VBA, Macros, Automation Architecture, Debugging, UserForms, and Office Suite Integration",
+      "technologies": [
+        "Python",
+        "Power Query",
+        "Excel",
+        "VBA"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 14834,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Excel-VBA-Second-Brain/blob/main/README.md"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "size": 4514,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Excel-VBA-Second-Brain/blob/main/CHANGELOG.md"
+        },
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "size": 2620,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Excel-VBA-Second-Brain/blob/main/CODE_OF_CONDUCT.md"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 6107,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Excel-VBA-Second-Brain/blob/main/CONTRIBUTING.md"
+        },
+        {
+          "path": "SECURITY.md",
+          "size": 3558,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Excel-VBA-Second-Brain/blob/main/SECURITY.md"
+        },
+        {
+          "path": "00 - Dashboard/Home.md",
+          "size": 5224,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Excel-VBA-Second-Brain/blob/main/00%20-%20Dashboard/Home.md"
+        },
+        {
+          "path": "00 - Dashboard/Knowledge Map.md",
+          "size": 1241,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Excel-VBA-Second-Brain/blob/main/00%20-%20Dashboard/Knowledge%20Map.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Excel-VBA-Second-Brain/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/Excel-VBA-Second-Brain",
+      "empty": false,
+      "file_count": 442,
+      "source_branch": "main",
+      "tree_sha": "cacbe5eba0c3a9a9bf433d716de218bc6a9d17dc",
+      "old_portfolio": false
+    }
+  ]
+}

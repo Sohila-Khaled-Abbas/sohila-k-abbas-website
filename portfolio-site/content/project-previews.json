@@ -1,5 +1,5 @@
 {
-  "checked_on": "2026-10-29",
+  "checked_on": "2026-10-30",
   "reports": [
     {
       "repo": "SMART-Supply-Chain-Insights-Dashboard",
@@ -30,7 +30,8 @@
         }
       ],
       "source": "https://github.com/Sohila-Khaled-Abbas/SMART-Supply-Chain-Insights-Dashboard",
-      "readme": "https://github.com/Sohila-Khaled-Abbas/SMART-Supply-Chain-Insights-Dashboard/blob/main/README.md"
+      "readme": "https://github.com/Sohila-Khaled-Abbas/SMART-Supply-Chain-Insights-Dashboard/blob/main/README.md",
+      "presentation": "https://docs.google.com/presentation/d/1q51qHk1B0xWvKBgJMcKiS-Fe-QbRng_nYn0VZEHL2e0/edit?usp=sharing"
     },
     {
       "repo": "Wuzzuf-Job-Market-Analysis",
@@ -72,7 +73,15 @@
         "url": "https://app.powerbi.com/view?r=eyJrIjoiNTNhYmI1ZjUtNDNhZC00OWM3LWFjYzktMmU0NWYyODYzZjIxIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
         "access": "public"
       },
-      "images": [],
+      "images": [
+        {
+          "src": "/previews/apple-live.webp",
+          "alt": "Apple Stock Market Analysis — published Power BI home view",
+          "caption": "Published Power BI home view",
+          "source_url": "https://app.powerbi.com/view?r=eyJrIjoiNTNhYmI1ZjUtNDNhZC00OWM3LWFjYzktMmU0NWYyODYzZjIxIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+          "captured_on": "2026-10-30"
+        }
+      ],
       "files": [
         {
           "label": "Apple-AAPL-Stock-Market-Analysis-Dashboard.pbip",
@@ -93,7 +102,10 @@
       "title": "Regional Sales",
       "description": "A regional view of sales, profit, order trends, and geographic performance.",
       "format": "Power BI",
-      "live": null,
+      "live": {
+        "url": "https://app.powerbi.com/view?r=eyJrIjoiYWM3NmU2MjgtYjY5Yy00YzczLTg0MDItZjNiMTJlNDUzODhmIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+        "access": "public"
+      },
       "images": [
         {
           "src": "/previews/regional-sales.webp",
@@ -116,7 +128,10 @@
       "title": "Healthcare Analytics",
       "description": "Patient visits, operational trends, and a detailed view of healthcare activity.",
       "format": "Power BI",
-      "live": null,
+      "live": {
+        "url": "https://app.powerbi.com/view?r=eyJrIjoiNDI1ODE0MmYtODk0YS00ZjcxLTgwZTgtODM1NzA0NThjZjEwIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+        "access": "public"
+      },
       "images": [
         {
           "src": "/previews/healthcare-summary.webp",
@@ -144,7 +159,10 @@
       "title": "Emergency Room Visits",
       "description": "Patient flow, wait times, satisfaction, and emergency-room activity.",
       "format": "Power BI",
-      "live": null,
+      "live": {
+        "url": "https://app.powerbi.com/view?r=eyJrIjoiZjNmNjEwMzMtYzM3OS00OWM5LTkzYTUtNjJhODU2NTcxNzU3IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+        "access": "public"
+      },
       "images": [
         {
           "src": "/previews/emergency-room.webp",
@@ -173,8 +191,8 @@
       "description": "Attendance patterns and leave insights, with a shared Power BI report link.",
       "format": "Power BI",
       "live": {
-        "url": "https://app.powerbi.com/groups/808869fc-e1b7-4ff5-87ed-b9dcaaf02f4e/reports/b1482fb6-65c8-4257-bcfa-491d319dae89?ctid=27a388d0-1a33-462f-a48b-52c5342daf56&pbi_source=linkShare",
-        "access": "sign-in"
+        "url": "https://app.powerbi.com/view?r=eyJrIjoiMTgxZTY2NmMtNzA5ZS00Y2FlLWIxNzgtMDM2MWY0ZTIzZjczIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+        "access": "public"
       },
       "images": [
         {
@@ -201,14 +219,23 @@
         }
       ],
       "source": "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard",
-      "readme": "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard/blob/main/README.md"
+      "readme": "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard/blob/main/README.md",
+      "alternate_links": [
+        {
+          "url": "https://app.powerbi.com/groups/808869fc-e1b7-4ff5-87ed-b9dcaaf02f4e/reports/b1482fb6-65c8-4257-bcfa-491d319dae89?ctid=27a388d0-1a33-462f-a48b-52c5342daf56&pbi_source=linkShare",
+          "label": "Shared Power BI link · sign-in required"
+        }
+      ]
     },
     {
       "repo": "Startup-Expansion-Analysis-Dashboard",
       "title": "Startup Expansion",
       "description": "Revenue, marketing spend, and location performance for an expansion scenario.",
       "format": "Power BI",
-      "live": null,
+      "live": {
+        "url": "https://app.powerbi.com/view?r=eyJrIjoiZTFiMTFjOWQtNjI5Ni00YzRiLWEwNzQtZmVlZjM2OGQwZGZlIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+        "access": "public"
+      },
       "images": [
         {
           "src": "/previews/startup.webp",
@@ -236,7 +263,10 @@
       "title": "Social Media Advertising",
       "description": "Campaign, channel, audience, and advertising performance in one reporting project.",
       "format": "Power BI",
-      "live": null,
+      "live": {
+        "url": "https://app.powerbi.com/view?r=eyJrIjoiMTRlM2M4OWQtMTcyYy00YzhjLWE3NDAtZGNmMDkxNTUwYzIwIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+        "access": "public"
+      },
       "images": [
         {
           "src": "/previews/social-media.webp",
@@ -259,7 +289,10 @@
       "title": "IMDb Top 250 Movies",
       "description": "Explore movie ratings, genres, release years, and the IMDb Top 250 collection.",
       "format": "Power BI",
-      "live": null,
+      "live": {
+        "url": "https://app.powerbi.com/view?r=eyJrIjoiMWJlYmY2ODgtYzQwOS00NzY5LWJmZWItMWI0N2Q0MTJkYmI1IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+        "access": "public"
+      },
       "images": [
         {
           "src": "/previews/imdb.webp",
@@ -282,8 +315,19 @@
       "title": "FMCG Sales & Retailer Lifecycle",
       "description": "An Egyptian B2B portfolio scenario exploring sales, churn, delivery, and commercial metrics.",
       "format": "Power BI",
-      "live": null,
-      "images": [],
+      "live": {
+        "url": "https://app.powerbi.com/view?r=eyJrIjoiNzE0MWUwYTgtZTlhZC00N2IxLWFmYzQtYmI2MzFkNjFhN2NjIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+        "access": "public"
+      },
+      "images": [
+        {
+          "src": "/previews/fmcg-live.webp",
+          "alt": "FMCG Sales & Retailer Lifecycle — published Power BI home view",
+          "caption": "Published Power BI home view",
+          "source_url": "https://app.powerbi.com/view?r=eyJrIjoiNzE0MWUwYTgtZTlhZC00N2IxLWFmYzQtYmI2MzFkNjFhN2NjIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+          "captured_on": "2026-10-30"
+        }
+      ],
       "files": [
         {
           "label": "Maxab Retail Performance & Churn Analytics Dashboard.pbix",
@@ -489,6 +533,29 @@
       ],
       "source": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case",
       "readme": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/README.md"
+    },
+    {
+      "repo": "mobile-technical-support-analytics",
+      "title": "Mobile Technical Support Analytics",
+      "description": "A Power BI decision-support project exploring customer satisfaction, average handle time, agent performance, and support queues.",
+      "format": "Power BI",
+      "live": {
+        "url": "https://app.powerbi.com/view?r=eyJrIjoiOTBlNzM5YTItMGIwMi00NDA2LWE2NDAtYzE0MWEyMmY1Yjg4IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9&pageName=23d12c77ed7de4b074e1",
+        "access": "public"
+      },
+      "images": [
+        {
+          "src": "/previews/mobile-support-live.webp",
+          "alt": "Mobile Technical Support Analytics — published Power BI home view",
+          "caption": "Published Power BI home view",
+          "source_url": "https://app.powerbi.com/view?r=eyJrIjoiOTBlNzM5YTItMGIwMi00NDA2LWE2NDAtYzE0MWEyMmY1Yjg4IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9&pageName=23d12c77ed7de4b074e1",
+          "captured_on": "2026-10-30"
+        }
+      ],
+      "files": [],
+      "source": "https://sohila-k-abbas-website.web.app/#projects",
+      "readme": "https://sohila-k-abbas-website.web.app/#projects",
+      "source_kind": "legacy-portfolio"
     }
   ]
 }

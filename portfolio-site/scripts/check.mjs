@@ -23,7 +23,7 @@ const data=JSON.parse(await fs.readFile(path.join(root,'content/repositories.jso
 assert.equal(new Set(data.repositories.map(r=>r.id)).size,data.repositories.length,'Duplicate repositories');
 assert(data.repositories.every(r=>r.url.startsWith('https://github.com/Sohila-Khaled-Abbas/')),'Unexpected repository owner');
 const work=documents.get(path.join(out,'work/index.html'));
-assert.equal([...work.matchAll(/class="repo-card"/g)].length,data.repositories.length,'Catalog lost repository entries');
+assert.equal([...work.matchAll(/class="repo-card(?: |")/g)].length,data.repositories.length,'Catalog lost repository entries');
 assert(!work.includes('Data-Analyst-PM-App')&&!work.includes('fx-rate-analytics'),'Private metadata leaked');
 const config=JSON.parse(await fs.readFile(path.join(root,'vercel.json'),'utf8'));
 const firebase=JSON.parse(await fs.readFile(path.join(root,'firebase.json'),'utf8'));
@@ -32,7 +32,7 @@ const {reports}=JSON.parse(await fs.readFile(path.join(root,'content/project-pre
 const status=JSON.parse(await fs.readFile(path.join(root,'content/project-status.json'),'utf8'));
 assert.equal(new Set(reports.map(r=>r.repo)).size,reports.length,'Duplicate report projects');
 for(const report of reports){
- assert(data.repositories.some(r=>r.name===report.repo&&!r.fork),'Report must have a public original repository');
+ assert(report.source_kind==='legacy-portfolio'||data.repositories.some(r=>r.name===report.repo&&!r.fork),'Report must have a public repository or an explicit original-portfolio source');
  const html=documents.get(path.join(out,'dashboards',report.repo,'index.html'));
  assert(html,'Missing permanent report page: '+report.repo);
  assert(!/<iframe\b/.test(html),'Reports must not load third parties before visitor interaction');
@@ -48,4 +48,10 @@ assert(home.includes('data-motion-toggle')&&home.includes('Good data.'),'Keep th
 const styles=await fs.readFile(path.join(out,'enhancements.css'),'utf8');assert(styles.includes('prefers-reduced-motion:reduce'),'Motion preference support is required');
 await fs.access(path.join(out,'social-card.png'));
 console.log(`PASS: ${htmlFiles.length} HTML documents, local links and anchors, ${data.repositories.length} public repositories, and both hosting configurations.`);
+const {projects}=JSON.parse(await fs.readFile(path.join(root,'content/project-details.json'),'utf8'));
+assert.equal(projects.length,data.repositories.filter(r=>!r.fork).length,'All original repositories need project previews');
+for(const p of projects){const html=documents.get(path.join(out,'projects',p.repo,'index.html'));assert(html,'Missing project preview page: '+p.repo);for(const file of p.files)assert(file.url.startsWith(p.source+'/blob/'),'Unexpected project file owner');}
+for(const page of ['services','community','credentials'])assert(documents.has(path.join(out,page,'index.html')));
+assert(documents.get(path.join(out,'services/index.html')).includes('id="project-brief"'));
+console.log(`PASS: ${projects.length} project previews, service brief, community, and credential pages.`);
 console.log(`PASS: ${reports.length} report pages, explicit in-progress status, click-to-load public embeds, screenshot assets, and reduced-motion support.`);
