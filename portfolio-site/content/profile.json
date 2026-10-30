@@ -13,25 +13,25 @@
     {
       "role": "Machine Learning Engineer Intern",
       "organization": "FlyRank AI",
-      "dates": "Jul 2026 – Present",
+      "dates": "Jul 2026 – Sep 2026",
       "mode": "Remote",
       "bullets": [
-        "Prepare and validate datasets through structured cleaning, quality checks, and documentation.",
-        "Investigate patterns and communicate analytical findings to technical stakeholders.",
-        "Contribute to repeatable workflows with attention to accurate record handling.",
-        "Develop feature-engineering workflows and model-ready datasets with Python, Workbench, and JupyterLab."
+        "Prepared and validated datasets through structured cleaning, quality checks, and documentation.",
+        "Investigated patterns and communicated analytical findings to technical stakeholders.",
+        "Contributed to repeatable workflows with attention to accurate record handling.",
+        "Developed feature-engineering workflows and model-ready datasets with Python, Workbench, and JupyterLab."
       ]
     },
     {
       "role": "Data Engineer Intern",
       "organization": "Data Pill",
-      "dates": "Mar 2026 – Present",
+      "dates": "Mar 2026 – Aug 2026",
       "mode": "Remote",
       "bullets": [
-        "Design data workflows using SQL, Python, and dimensional models.",
-        "Standardize validation and quality checks to support consistency and traceability.",
-        "Integrate sources and prepare structured outputs for dashboards and business reporting.",
-        "Work with Databricks, dbt, Apache Spark, SSIS, and Informatica across data-engineering workflows."
+        "Designed data workflows using SQL, Python, and dimensional models.",
+        "Standardized validation and quality checks to support consistency and traceability.",
+        "Integrated sources and prepared structured outputs for dashboards and business reporting.",
+        "Worked with Databricks, dbt, Apache Spark, SSIS, and Informatica across data-engineering workflows."
       ]
     },
     {
