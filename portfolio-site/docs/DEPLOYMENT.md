@@ -60,6 +60,8 @@ Open `http://localhost:4173/`. The preview includes real directory routes and a 
 - `content/repositories.json`: a dated public GitHub metadata snapshot.
 - `content/project-previews.json`: report links, screenshots, and available files.
 - `content/project-status.json`: explicitly maintained in-progress projects.
+- `content/project-details.json`: original project previews, public file inventory, and documented toolkit.
+- `content/community.json` and `content/credentials.json`: migrated community and learning collections.
 - `src/home.html`: home-page composition.
 - `src/assets/`: CSS, browser interactions, and favicon.
 - `scripts/build.mjs` and `scripts/pages.mjs`: static page generator and templates.

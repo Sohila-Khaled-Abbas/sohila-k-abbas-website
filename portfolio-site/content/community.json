@@ -1,0 +1,8 @@
+{
+  "source": "https://sohila-k-abbas-website.web.app/#community",
+  "roles": [
+    {"role":"Data Analysis Mentor","organization":"TechZone","description":"Guiding learners through SQL, Power BI, and Python projects, including the TZ4 SQL Initiative and live PostgreSQL workshops."},
+    {"role":"Founder","organization":"The Data Tea","description":"A pro-bono educational community sharing practical data resources, learning paths, and explanations for people entering the field.","links":[{"label":"Telegram community","url":"https://t.me/thedatatea"}]},
+    {"role":"Notion Creator","organization":"Notion Egypt Community","description":"Hands-on workshops connecting Notion with data workflows, learning systems, and project organization."}
+  ]
+}

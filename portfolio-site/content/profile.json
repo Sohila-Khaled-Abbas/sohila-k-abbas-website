@@ -18,7 +18,8 @@
       "bullets": [
         "Prepare and validate datasets through structured cleaning, quality checks, and documentation.",
         "Investigate patterns and communicate analytical findings to technical stakeholders.",
-        "Contribute to repeatable workflows with attention to accurate record handling."
+        "Contribute to repeatable workflows with attention to accurate record handling.",
+        "Develop feature-engineering workflows and model-ready datasets with Python, Workbench, and JupyterLab."
       ]
     },
     {
@@ -29,7 +30,8 @@
       "bullets": [
         "Design data workflows using SQL, Python, and dimensional models.",
         "Standardize validation and quality checks to support consistency and traceability.",
-        "Integrate sources and prepare structured outputs for dashboards and business reporting."
+        "Integrate sources and prepare structured outputs for dashboards and business reporting.",
+        "Work with Databricks, dbt, Apache Spark, SSIS, and Informatica across data-engineering workflows."
       ]
     },
     {
@@ -40,7 +42,8 @@
       "bullets": [
         "Build Power BI dashboards and KPI reports using dimensional modeling and Power Query.",
         "Document reporting logic, data definitions, and transformation steps for repeatable handover.",
-        "Use Excel, SQL, and Power BI to organize information, identify trends, and communicate findings."
+        "Use Excel, SQL, and Power BI to organize information, identify trends, and communicate findings.",
+        "Automate ingestion and reporting workflows with Python and Apache Airflow."
       ]
     },
     {
@@ -52,6 +55,17 @@
         "Guide learners through extraction, transformation, warehousing, SQL, and Power BI.",
         "Develop structured explanations, exercises, and implementation documentation.",
         "Review learner work and provide practical technical feedback."
+      ]
+    },
+    {
+      "role": "Data Analytics Mentor",
+      "organization": "Data Pill",
+      "dates": "Jul 2025 – Apr 2026",
+      "mode": "Part-time · Remote",
+      "bullets": [
+        "Review SQL queries, Python workflows, and dimensional data models.",
+        "Design realistic business-intelligence scenarios for learners.",
+        "Coach learners on analytics-engineering practices and model design."
       ]
     }
   ],
@@ -75,7 +89,10 @@
         "SQL Server",
         "PostgreSQL",
         "Data validation",
-        "Kimball dimensional modeling"
+        "Kimball dimensional modeling",
+        "MySQL",
+        "SSIS",
+        "Informatica"
       ]
     },
     {
@@ -86,7 +103,11 @@
         "Databricks",
         "PySpark",
         "Docker",
-        "Git & GitHub"
+        "Git & GitHub",
+        "Apache Spark",
+        "Apache Kafka",
+        "Snowflake",
+        "BigQuery"
       ]
     },
     {
@@ -97,7 +118,8 @@
         "Feature engineering",
         "Model evaluation",
         "Pandas",
-        "scikit-learn"
+        "scikit-learn",
+        "NumPy"
       ]
     },
     {
@@ -111,7 +133,30 @@
         "n8n",
         "REST APIs",
         "Technical documentation",
-        "Obsidian"
+        "Obsidian",
+        "Macros / VBA",
+        "Notion",
+        "Data storytelling"
+      ]
+    },
+    {
+      "title": "Analytics applications & visualization",
+      "items": [
+        "Streamlit",
+        "Plotly",
+        "Metabase",
+        "Excel charts"
+      ]
+    },
+    {
+      "title": "Statistical analysis & research",
+      "items": [
+        "A/B testing",
+        "Hypothesis testing",
+        "Statistical modeling",
+        "OLS regression",
+        "R",
+        "Selenium"
       ]
     }
   ],
@@ -163,5 +208,6 @@
     "Arabic · Native",
     "English · Excellent, written and spoken"
   ],
-  "website": "https://sohila-khaled-abbas.vercel.app"
+  "website": "https://sohila-khaled-abbas.vercel.app",
+  "cv_archive": "https://drive.google.com/file/d/134BGo0ox7ClojNGwiT6IKX0eZKIjjncd/view?usp=sharing"
 }
