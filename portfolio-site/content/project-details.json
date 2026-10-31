@@ -4434,13 +4434,13 @@
       "old_portfolio": false,
       "github": {
         "description": "Config files for my GitHub profile.",
-        "updated_at": "2026-10-31T08:30:00Z",
-        "pushed_at": "2026-10-31T08:29:57Z",
+        "updated_at": "2026-10-31T16:52:42Z",
+        "pushed_at": "2026-10-31T16:52:39Z",
         "homepage": "https://github.com/Sohila-Khaled-Abbas",
         "default_branch": "main",
-        "readme_excerpt": "- Building and refining Power BI analytics solutions for sales, HR, and operational reporting, with a focus on actionable KPIs and DAX-driven models. - Strengthening my analytics engineering toolkit through dbt study notes, dimensional modeling, SQL optimization, and repeatable transformation patterns. - Developing reliable Python and SQL ETL workflows for API integration, data validation, PostgreSQL warehousing, and decision-ready reporting. - Supporting aspiring data professionals through technical coaching, reusable BI templates, and code re",
-        "readme_sha": "71fc37c75abcf1ca21bbbd94c326c40ec71256ee",
-        "fingerprint": "2026-10-31T08:29:57Z"
+        "readme_excerpt": "I work across data and analytics engineering, machine learning, and business intelligence. My focus spans ETL/ELT pipelines, data warehousing, predictive modeling, and decision-ready reporting with Python, SQL, Power BI, Airflow, dbt, Databricks, and PySpark. My background in agricultural science and quality-focused research shapes how I approach validation, documentation, and evidence.",
+        "readme_sha": "094abfbd36bd8c234809e75c085420d807e92ac5",
+        "fingerprint": "2026-10-31T16:52:39Z"
       }
     },
     {
