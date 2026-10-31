@@ -1576,6 +1576,25 @@
       "parent_name": null
     },
     {
+      "id": 1441212763,
+      "name": "python-learning-roadmap",
+      "url": "https://github.com/Sohila-Khaled-Abbas/python-learning-roadmap",
+      "description": "A practical Python roadmap for data & analytics engineering: Boot.dev course chapters, ITI Arabic, Harvard CS50P, original labs, SQL, pandas, APIs, and portfolio projects. Interactive GitHub Pages learning map.",
+      "language": "Python",
+      "topics": [
+        "python"
+      ],
+      "fork": false,
+      "archived": false,
+      "private": false,
+      "updated_at": "2026-10-31T20:16:28Z",
+      "pushed_at": "2026-10-31T20:16:24Z",
+      "default_branch": "main",
+      "homepage": "https://sohila-khaled-abbas.github.io/python-learning-roadmap/",
+      "parent_url": null,
+      "parent_name": null
+    },
+    {
       "id": 895648243,
       "name": "regional-sales-dashboard",
       "url": "https://github.com/Sohila-Khaled-Abbas/regional-sales-dashboard",

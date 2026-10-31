@@ -3835,6 +3835,75 @@
       }
     },
     {
+      "repo": "python-learning-roadmap",
+      "title": "Python Learning Roadmap",
+      "summary": "A practical Python learning path connecting Boot.dev’s 12 course chapters, ITI Arabic, and Harvard CS50P to data and analytics engineering. Thirty interactive topics, original exercises, and three project briefs build toward reliable Python tools.",
+      "technologies": [
+        "Python",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "SQL",
+        "GitHub Pages",
+        "pandas"
+      ],
+      "methods": [
+        "Map course chapters to original companion notes, prerequisites, practice tasks, and explicit exit checks.",
+        "Combine Arabic ITI explanations and independent CS50P practice with official Python, pandas, NumPy, and testing resources.",
+        "Practice an EGP expense ledger, a PixelFed quality CLI, and an API-to-SQL pipeline; the repository includes an offline SQLite reference.",
+        "Track progress and evidence locally with validated JSON backup import/export; connect the path to the DE and FDE roadmaps."
+      ],
+      "flow": null,
+      "media": {
+        "src": "/project-media/python-learning-roadmap.png",
+        "kind": "Interactive Python learning roadmap",
+        "caption": "Python Learning Roadmap: a personal route through Boot.dev, ITI Arabic, Harvard CS50P, and data project practice."
+      },
+      "live": "https://sohila-khaled-abbas.github.io/python-learning-roadmap/",
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/python-learning-roadmap/blob/main/README.md"
+        },
+        {
+          "path": "docs/roadmap.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/python-learning-roadmap/blob/main/docs/roadmap.md"
+        },
+        {
+          "path": "docs/weekly-plan.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/python-learning-roadmap/blob/main/docs/weekly-plan.md"
+        },
+        {
+          "path": "docs/sources.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/python-learning-roadmap/blob/main/docs/sources.md"
+        },
+        {
+          "path": "exercises/foundations.py",
+          "url": "https://github.com/Sohila-Khaled-Abbas/python-learning-roadmap/blob/main/exercises/foundations.py"
+        },
+        {
+          "path": "projects/pipeline.py",
+          "url": "https://github.com/Sohila-Khaled-Abbas/python-learning-roadmap/blob/main/projects/pipeline.py"
+        }
+      ],
+      "empty": false,
+      "source": "https://github.com/Sohila-Khaled-Abbas/python-learning-roadmap",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/python-learning-roadmap/blob/main/README.md",
+      "old_portfolio": false,
+      "auto_generated": false,
+      "github": {
+        "description": "A practical Python roadmap for data & analytics engineering: Boot.dev course chapters, ITI Arabic, Harvard CS50P, original labs, SQL, pandas, APIs, and portfolio projects. Interactive GitHub Pages learning map.",
+        "updated_at": "2026-10-31T20:16:28Z",
+        "pushed_at": "2026-10-31T20:16:24Z",
+        "homepage": "https://sohila-khaled-abbas.github.io/python-learning-roadmap/",
+        "default_branch": "main",
+        "readme_excerpt": "A practical Python learning lab for Sohila Khaled Abbas, connecting SQL, Power BI, n8n, and analytics-engineering experience to stronger Python foundations and reusable tools.",
+        "readme_sha": null,
+        "fingerprint": null
+      }
+    },
+    {
       "repo": "regional-sales-dashboard",
       "title": "Regional Sales Dashboard",
       "summary": "Power BI dashboard for analyzing regional sales trends, identifying growth opportunities, and increasing profitability by 20% using actionable insights.",

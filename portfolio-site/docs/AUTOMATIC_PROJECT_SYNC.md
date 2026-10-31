@@ -67,3 +67,7 @@ If `main` is later protected against direct writes, configure this workflow to o
 - [Scheduled workflow behavior](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)
 - [Workflow recursion and GITHUB_TOKEN](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow#triggering-a-workflow-from-a-workflow)
 - [Vercel Git deployments](https://vercel.com/docs/git)
+
+## Python learning roadmap
+
+`python-learning-roadmap` has an explicit curated project record, public GitHub Pages link, original social preview, homepage spotlight and learning-resource entry. It connects the Boot.dev/ITI/CS50P curriculum to Python data tools and to the existing DE and FDE roadmap repositories. Its project briefs remain labeled as learning work; only the offline pipeline reference is described as implemented. The existing public-source sync preserves these editorial fields.
