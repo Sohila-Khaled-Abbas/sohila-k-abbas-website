@@ -10,14 +10,20 @@ The active website source is **[`portfolio-site/`](portfolio-site/)**. Vercel bu
 
 ## What's inside
 
-- 91 public repository records: 75 original project previews and 16 attributed learning forks.
+- A public GitHub collection that discovers new repositories and refreshes project source metadata automatically.
 - 12 detailed case studies covering data engineering, analytics, machine learning, and automation.
 - 22 reporting project pages, 17 real preview images, and 12 existing public Power BI reports.
 - Actual architecture/model assets, source-file previews, clear in-progress labels, and direct project links.
 - Experience, résumé, mentoring, community activities, credentials, learning resources, and professional contact links.
 - Portrait-inspired ivory, taupe, cocoa, and muted burgundy design; light/dark themes, subtle animation, motion controls, responsive layouts, keyboard project search, and image dialogs.
 
-Counts reflect the public content snapshot reviewed on 30 October 2026. Project code and report samples are presented with their source context; they do not establish client impact or employment.
+Project discovery runs hourly, with visitor-side public metadata refreshes between deployments. Project code and report samples are presented with their source context; they do not establish client impact or employment.
+
+## Automatic project updates
+
+The [Forward Deployed Engineer roadmap](https://sohila-khaled-abbas.github.io/forward-deployed-engineer-roadmap/) is included in the homepage spotlight, full project collection, and learning resources.
+
+New public repositories get portfolio cards and generated project pages. Existing repository descriptions, website links, activity dates, and changed README excerpts refresh automatically; curated case studies and explicit project statuses stay preserved. [How it works and how to manage it](portfolio-site/docs/AUTOMATIC_PROJECT_SYNC.md).
 
 ## Run the current website
 

@@ -46,3 +46,7 @@ No package installation is required. Run the build before deploying. No visitor 
 See [preview sources and accessibility](docs/preview-sources.md) for report provenance and interaction details.
 
 See [portfolio migration](docs/portfolio-migration.md) for source provenance and project preview coverage.
+
+## Automatic project discovery
+
+Public GitHub projects refresh hourly through the repository workflow, with visitor-side metadata refreshes in between. New original repositories receive project pages; curated summaries, media, methods, and case studies are preserved. [Synchronization and maintenance guide](docs/AUTOMATIC_PROJECT_SYNC.md).

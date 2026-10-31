@@ -30,3 +30,5 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-vi
 @media(max-width:650px){.nav-contact{display:none}.signature-hero h1{font-size:44px;letter-spacing:-2.5px}.studio-card-bottom .text-link{font-size:12px}.project-file-browser>a{font-size:11px}.project-view-buttons>button{min-height:44px}.hero-motion-toggle{font-size:11px}}
 
 .project-app-note{font-size:11px;color:var(--muted);margin-top:-15px;margin-bottom:25px}[data-theme=dark] .source-preview-bottom{color:#b4a9a0}
+
+.github-activity{font-size:10px!important;color:var(--muted);margin:12px 0}.github-source-update{padding:22px;border:1px solid var(--line);border-radius:5px;background:var(--surface);margin-bottom:30px}.github-source-update>p{font-size:13px;line-height:1.85}.github-source-update details{font-size:12px;margin:18px 0}.github-source-update summary{cursor:pointer;color:var(--accent);min-height:30px}.github-source-update details p{font-size:12px;line-height:1.9;margin-top:12px}.github-source-update h2{font-size:32px!important;margin-top:16px}.github-source-update .project-detail-actions{flex-wrap:wrap}

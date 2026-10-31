@@ -98,7 +98,7 @@ if($('#year')) $('#year').textContent=String(new Date().getFullYear());
 
 // Filter the pre-rendered collection; the full directory also works without JavaScript.
 if ($('#repo-grid')) {
-  const grid=$('#repo-grid'), cards=$$('.repo-card',grid);
+  const grid=$('#repo-grid'); let cards=$$('.repo-card',grid);
   const query=$('#repo-query'),kind=$('#repo-kind'),sort=$('#repo-sort'),status=$('#repo-status-filter');
   const buttons=$$('.repo-filter'),more=$('#repo-more');
   let category='all',limit=12;
@@ -135,6 +135,7 @@ if ($('#repo-grid')) {
   $('#repo-reset').addEventListener('click',reset);
   $$('[data-reset-repos]').forEach(button=>button.addEventListener('click',reset));
   more.addEventListener('click',()=>{const oldLimit=limit;limit+=12;render();const visible=$$('.repo-card:not([hidden])',grid);const firstNew=visible[oldLimit]?.querySelector('.repo-name');firstNew?.focus();});
+  grid.addEventListener('portfolio:repos-updated',()=>{cards=$$('.repo-card',grid);buttons.forEach(button=>{const key=button.dataset.repoFilter;const count=key==='all'?cards.length:cards.filter(c=>c.dataset.category===key).length;const span=button.querySelector('span');if(span)span.textContent=count;});render(false);});
   window.addEventListener('pageshow',()=>render(false));
   render(false);
 }

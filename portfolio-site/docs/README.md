@@ -13,3 +13,5 @@ The active GitHub website is in `portfolio-site/`. Run commands from that direct
 | [Preview sources](preview-sources.md) | Screenshots, public Power BI links, logos, and interactions |
 | [Migration record](portfolio-migration.md) | Material recovered from the previous portfolio |
 | [Showcase video](SHOWCASE_VIDEO.md) | LinkedIn video sequence, export, and posting handoff |
+
+- [Automatic project synchronization](AUTOMATIC_PROJECT_SYNC.md): repository discovery, updates, editorial preservation, and troubleshooting.

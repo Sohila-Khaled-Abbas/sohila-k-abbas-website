@@ -1,0 +1,51 @@
+name: Sync public GitHub projects
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'portfolio-site/scripts/sync-github.mjs'
+      - '.github/workflows/sync-projects.yml'
+permissions:
+  contents: write
+concurrency:
+  group: portfolio-github-sync
+  cancel-in-progress: false
+jobs:
+  refresh:
+    if: github.repository == 'Sohila-Khaled-Abbas/sohila-k-abbas-website'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test synchronization rules
+        working-directory: portfolio-site
+        run: node --test tests/github-sync.test.mjs
+      - name: Refresh public repositories and changed READMEs
+        working-directory: portfolio-site
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/sync-github.mjs
+      - name: Build and validate every project page
+        working-directory: portfolio-site
+        run: |
+          npm run build
+          npm run check
+      - name: Commit validated catalog updates
+        run: |
+          git config user.name 'Sohila Khaled'
+          git config user.email '145284267+Sohila-Khaled-Abbas@users.noreply.github.com'
+          git add portfolio-site/content/repositories.json portfolio-site/content/project-details.json
+          if git diff --cached --quiet; then
+            echo 'Public portfolio is current.'
+          else
+            git commit -m 'chore(portfolio): sync public GitHub projects'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi

@@ -19,6 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - run: node --test tests/github-sync.test.mjs
       - run: npm run build
       - run: npm run check
       - uses: actions/upload-artifact@v4
