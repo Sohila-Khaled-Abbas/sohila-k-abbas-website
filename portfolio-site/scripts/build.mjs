@@ -94,7 +94,7 @@ await write('/dashboards/','Power BI dashboards & report previews','Explore Sohi
 for(const r of reports)await write(reportRoute(r.repo),r.title+' — Dashboard',r.description,reportPage(r,projectStatus));
 await write('/about/','About Sohila','Meet Sohila Khaled Abbas, a Data & Analytics Engineer and Machine Learning Engineer based in Egypt. Explore her background, technical skills, and experience.',about(profile));
 await write('/resume/','Résumé & experience','Sohila’s professional experience, education, technical skills, projects, and selected training. Includes a print-friendly résumé.',resume(profile,cases));
-await write('/learn/','The Data Tea','Explore Sohila’s learning hubs, Excel and VBA resources, data-engineering roadmap, networking labs, and operating-system practice.',learn(profile));
+await write('/learn/','The Data Tea','Explore Sohila’s learning hubs, Excel and VBA resources, data-engineering roadmap, networking labs, and operating-system practice.',learn(profile,catalog.repositories,projectDetails));
 await write('/services/','Work with Sohila','Remote collaboration in Power BI reporting, data engineering, automation, and technical mentoring. Prepare a project brief.',servicesPage());
 await write('/community/','Community & mentoring','The Data Tea, TechZone mentoring, and Notion community workshops by Sohila Khaled Abbas.',communityPage(community));
 await write('/credentials/','Courses & credentials','Explore Sohila’s learning and credential collection across analytics, engineering, automation, AI, and SQL.',credentialsPage(credentials));
