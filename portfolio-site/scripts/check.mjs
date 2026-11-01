@@ -122,3 +122,20 @@ for(const report of reports){
 assert.equal(projects.find(project=>project.repo==='kickstarter-analytics-engineering').title,'Kickstarter Analytics Engineering Platform');
 assert(work.includes('Kickstarter Analytics Engineering Platform'));
 console.log(`PASS: canonical project names, ${projects.length} original project stories, ${reports.length} report stories, complete linked evidence, and click-to-load embed boundaries.`);
+const pwc=reports.find(report=>report.repo==='pwc-switzerland-virtual-case');
+assert.equal(pwc.preview_kind,'diagram');
+assert.equal(pwc.images.length,4,'Keep all four source diagrams available');
+for(const image of pwc.images){
+ const bytes=await fs.readFile(path.join(out,image.src));
+ const blob=Buffer.concat([Buffer.from('blob '+bytes.length+'\0'),bytes]);
+ assert.equal(createHash('sha1').update(blob).digest('hex'),image.source_sha,'Imported SVG differs from the attributed GitHub source');
+ assert(image.source_url.startsWith(pwc.source+'/blob/main/assets/diagrams/'));
+ assert(image.width>0&&image.height>0);
+ for(const route of ['projects','dashboards']){
+  const html=documents.get(path.join(out,route,pwc.repo,'index.html'));
+  assert(html.includes(image.src)&&html.includes(image.source_url),'A PwC diagram or its original source link is missing');
+ }
+}
+assert([...documents.values()].every(html=>!html.includes('pwc-call-center.webp')),'The removed PwC screenshot must not appear in public pages');
+assert(!files.some(file=>file.endsWith('pwc-call-center.webp')),'The removed screenshot must not remain in deployed assets');
+console.log('PASS: four original GitHub SVG diagrams, source links and hashes, full-image metadata, and no PwC screenshot asset.');

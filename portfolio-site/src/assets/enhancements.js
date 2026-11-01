@@ -94,7 +94,7 @@ if (screenshotDialog) {
     photo.src = trigger.href;
     photo.alt = trigger.querySelector('img')?.alt || trigger.dataset.caption;
     document.querySelector('#preview-title').textContent = trigger.dataset.caption;
-    document.querySelector('#preview-position').textContent = `${index + 1} / ${group.length} · Screenshot`;
+    document.querySelector('#preview-position').textContent = `${index + 1} / ${group.length} · ${new URL(trigger.href).pathname.endsWith('.svg')?'Diagram':'Image'}`;
     previous.hidden = next.hidden = group.length < 2;
   }
   triggers.forEach(trigger => trigger.addEventListener('click', event => {

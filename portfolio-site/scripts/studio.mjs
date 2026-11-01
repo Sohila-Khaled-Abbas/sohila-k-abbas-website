@@ -4,7 +4,7 @@ import {progressBadge, reportRoute, homeReports, currentWork, toolkit} from './p
 
 const route = repo => '/projects/' + repo + '/';
 const sourceTitle = p => p.empty ? 'Repository overview' : p.flow ? 'Workflow overview' : 'Source preview';
-const visualInfo = (p,report) => report?.images?.length ? {src:report.images[0].src,kind:'Dashboard preview',caption:report.images[0].caption,alt:report.images[0].alt,source_label:report.images[0].source_url?'Captured from the published Power BI report.':'From the public project repository.'} : p?.media ? {...p.media,alt:p.title+' — '+p.media.kind} : null;
+const visualInfo = (p,report) => report?.images?.length ? {src:report.images[0].src,kind:report.preview_kind==='diagram'?'Architecture diagram':'Dashboard preview',caption:report.images[0].caption,alt:report.images[0].alt,source_label:report.preview_kind==='diagram'?'Original SVG from the GitHub README.':report.images[0].source_url?'Captured from the published Power BI report.':'From the public project repository.'} : p?.media ? {...p.media,alt:p.title+' — '+p.media.kind} : null;
 export function githubUpdate(p){
   if(!p.github)return '';
   const g=p.github,d=new Date(g.pushed_at||g.updated_at),when=Number.isNaN(d.getTime())?'Date unavailable':d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
@@ -12,7 +12,7 @@ export function githubUpdate(p){
 }
 export function projectVisual(p,report){
   const image=visualInfo(p,report);
-  if(image)return `<div class="project-visual visual-image"><img src="${e(image.src)}" alt="${e(image.alt)}" width="1440" height="850" loading="lazy" decoding="async"><span class="visual-type">${e(image.kind)}</span></div>`;
+  if(image)return `<div class="project-visual visual-image${report?.preview_kind==='diagram'?' diagram-preview':''}"><img src="${e(image.src)}" alt="${e(image.alt)}" width="1440" height="850" loading="lazy" decoding="async"><span class="visual-type">${e(image.kind)}</span></div>`;
   if(p.flow)return `<div class="project-visual visual-flow"><span class="visual-overline">WORKFLOW / ${e(p.repo.replace('n8n-workflow-',''))}</span><div class="flow-map">${p.flow.map((step,i)=>`<div class="flow-stop"><span>${String(i+1).padStart(2,'0')}</span><strong>${e(step)}</strong></div>`).join('')}</div><span class="visual-type">Workflow overview</span></div>`;
   return `<div class="project-visual visual-source"><div class="source-window-top"><span aria-hidden="true">● ● ●</span><span>${p.empty?'repository / overview':'repository / source'}</span></div><div class="source-file-preview">${p.files?.length?p.files.slice(0,3).map((f,i)=>`<div><span class="source-line">${String(i+1).padStart(2,'0')}</span><span class="source-file">${e(f.path)}</span></div>`).join(''):`<div><span class="source-line">01</span><span class="source-file">${p.empty?'No source files available':e(p.repo)}</span></div>`}</div><div class="source-preview-bottom"><span>${e(p.technologies?.slice(0,3).join(' / ')||'Code & documentation')}</span><span>↗</span></div><span class="visual-type">${sourceTitle(p)}</span></div>`;
 }

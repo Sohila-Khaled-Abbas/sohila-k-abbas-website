@@ -513,15 +513,46 @@
     },
     {
       "repo": "pwc-switzerland-virtual-case",
-      "title": "PwC Virtual Case — Call Center",
-      "description": "A virtual case-study dashboard with a repository screenshot and HTML demo source.",
+      "title": "PwC Virtual Case — Architecture & Analytics",
+      "description": "Original GitHub README diagrams covering the galaxy semantic model, Power Query ETL, executive KPIs, and workforce progression in the Forage virtual case.",
       "format": "Web dashboard",
       "live": null,
       "images": [
         {
-          "src": "/previews/pwc-call-center.webp",
-          "alt": "PwC Virtual Case — Call Center — Call center screenshot",
-          "caption": "Call center screenshot"
+          "src": "/project-media/pwc-galaxy_schema_architecture.svg",
+          "alt": "PwC virtual case galaxy schema connecting shared dimensions with call-center, churn, and employee facts",
+          "caption": "Galaxy schema architecture",
+          "source_url": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/assets/diagrams/galaxy_schema_architecture.svg",
+          "source_sha": "53434f6dd21dcb8ad4aaa733d9065a4256dad147",
+          "width": 1200,
+          "height": 800
+        },
+        {
+          "src": "/project-media/pwc-etl_pipeline_flow.svg",
+          "alt": "Power Query staging and transformations through the VertiPaq semantic model",
+          "caption": "Power Query ETL pipeline",
+          "source_url": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/assets/diagrams/etl_pipeline_flow.svg",
+          "source_sha": "ec158b13e114fd885fc7aa8462ac827963118c56",
+          "width": 1100,
+          "height": 650
+        },
+        {
+          "src": "/project-media/pwc-executive_kpi_tree.svg",
+          "alt": "Executive KPI hierarchy across call-center operations, customer retention, and workforce analytics",
+          "caption": "Executive KPI decomposition",
+          "source_url": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/assets/diagrams/executive_kpi_tree.svg",
+          "source_sha": "e4757c5af1864b5aabcaf9c7b440d6e82ca22441",
+          "width": 1000,
+          "height": 600
+        },
+        {
+          "src": "/project-media/pwc-broken_rung_funnel.svg",
+          "alt": "Workforce representation and progression funnel from the PwC virtual case",
+          "caption": "Workforce progression analysis",
+          "source_url": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/assets/diagrams/broken_rung_funnel.svg",
+          "source_sha": "45ff4a7fca11c2f77d1dff99c755a9865761f722",
+          "width": 950,
+          "height": 560
         }
       ],
       "files": [
@@ -532,7 +563,8 @@
         }
       ],
       "source": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case",
-      "readme": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/README.md"
+      "readme": "https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/README.md",
+      "preview_kind": "diagram"
     },
     {
       "repo": "mobile-technical-support-analytics",
