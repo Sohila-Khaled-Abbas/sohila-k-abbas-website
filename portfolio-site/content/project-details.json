@@ -3837,7 +3837,7 @@
     {
       "repo": "python-learning-roadmap",
       "title": "Python Learning Roadmap",
-      "summary": "A practical Python learning path connecting Boot.dev’s 12 course chapters, ITI Arabic, and Harvard CS50P to data and analytics engineering. Thirty interactive topics, original exercises, and three project briefs build toward reliable Python tools.",
+      "summary": "A Python learning path for data and analytics engineering with 42 topics, 53 resources, embedded video and playlist previews, and 46 crawlable pages. It connects Boot.dev, ITI Arabic, CS50P and additional data courses to original practice and project briefs.",
       "technologies": [
         "Python",
         "JavaScript",
@@ -3848,16 +3848,16 @@
         "pandas"
       ],
       "methods": [
-        "Map course chapters to original companion notes, prerequisites, practice tasks, and explicit exit checks.",
-        "Combine Arabic ITI explanations and independent CS50P practice with official Python, pandas, NumPy, and testing resources.",
-        "Practice an EGP expense ledger, a PixelFed quality CLI, and an API-to-SQL pipeline; the repository includes an offline SQLite reference.",
-        "Track progress and evidence locally with validated JSON backup import/export; connect the path to the DE and FDE roadmaps."
+        "Keep a flexible twelve-week core, then choose twelve optional depth topics covering OOP, generators, typing, packaging, async I/O, performance and data applications.",
+        "Preview YouTube videos and playlists on the resource shelf and lesson pages, with format/language filters and direct source fallbacks.",
+        "Connect original exercises and three project briefs to Python, pandas, SQL, PixelFed data quality, n8n and BI delivery.",
+        "Generate crawlable lesson pages, unique canonical metadata, structured data and a full sitemap; preserve existing browser-local progress IDs."
       ],
       "flow": null,
       "media": {
         "src": "/project-media/python-learning-roadmap.png",
         "kind": "Interactive Python learning roadmap",
-        "caption": "Python Learning Roadmap: a personal route through Boot.dev, ITI Arabic, Harvard CS50P, and data project practice."
+        "caption": "Python Learning Roadmap: embedded resources and original lessons for data and analytics engineering."
       },
       "live": "https://sohila-khaled-abbas.github.io/python-learning-roadmap/",
       "presentation": null,
@@ -3885,6 +3885,10 @@
         {
           "path": "projects/pipeline.py",
           "url": "https://github.com/Sohila-Khaled-Abbas/python-learning-roadmap/blob/main/projects/pipeline.py"
+        },
+        {
+          "path": "docs/seo.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/python-learning-roadmap/blob/main/docs/seo.md"
         }
       ],
       "empty": false,
