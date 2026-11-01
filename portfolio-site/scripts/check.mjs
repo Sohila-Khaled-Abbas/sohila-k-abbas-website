@@ -55,3 +55,27 @@ for(const page of ['services','community','credentials'])assert(documents.has(pa
 assert(documents.get(path.join(out,'services/index.html')).includes('id="project-brief"'));
 console.log(`PASS: ${projects.length} project previews, service brief, community, and credential pages.`);
 console.log(`PASS: ${reports.length} report pages, explicit in-progress status, click-to-load public embeds, screenshot assets, and reduced-motion support.`);
+const learning=JSON.parse(await fs.readFile(path.join(root,'content/learning.json'),'utf8'));
+const evidence=JSON.parse(await fs.readFile(path.join(root,'content/professional-evidence.json'),'utf8'));
+const recruiter=JSON.parse(await fs.readFile(path.join(root,'content/recruiter-guide.json'),'utf8'));
+const originals=new Set(data.repositories.filter(r=>!r.fork).map(r=>r.name));
+assert.equal(new Set(learning.courses.map(c=>c.id)).size,learning.courses.length,'Duplicate course IDs');
+for(const course of learning.courses){
+ assert.equal(course.status,'enrolled','Course completion needs its own supporting record');
+ const url=new URL(course.url);assert.equal(url.origin,'https://www.udemy.com');assert(/^\/course\/[^/]+\/$/.test(url.pathname),'Use public course pages, not personal lecture URLs');
+ assert(course.topics.length&&course.instructor&&course.purpose&&course.practice,'Incomplete course context');
+ for(const connection of course.connections)assert(originals.has(connection.repo),'Course connection must be a public original project');
+}
+const learningHtml=documents.get(path.join(out,'learning/index.html'));
+assert.equal([...learningHtml.matchAll(/class="course-card"/g)].length,learning.courses.length,'Learning page lost enrolled courses');
+const courseSchema=JSON.parse(learningHtml.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'].find(x=>x['@type']==='ItemList');
+assert.equal(courseSchema.itemListElement.length,learning.courses.length);
+assert(courseSchema.itemListElement.every(x=>x.item['@type']==='Course'&&!x.item.educationalCredentialAwarded),'Enrollment must not imply an earned credential');
+assert.equal(evidence.recognition.status,'historical-reported','Historical rankings must retain their context');
+assert(evidence.recognition.period&&evidence.recognition.publisher&&evidence.recognition.url,'Recognition needs a period and source');
+for(const item of evidence.recommendations){assert(item.author&&item.quote&&item.published_on&&item.summary);assert.equal(new URL(item.profile).hostname,'www.linkedin.com');}
+for(const lane of recruiter.lanes)for(const repo of lane.projects)assert(originals.has(repo),'Recruiter evidence must be a public original project');
+const serviceHtml=documents.get(path.join(out,'services/index.html'));
+assert(serviceHtml.includes('id="project-brief" class="business-inquiry-form" hidden'),'Business inquiries must remain closed without an approved invitation');
+assert([...documents.values()].every(html=>!html.includes('href="tel:')),'Do not expose personal telephone links');
+console.log(`PASS: ${learning.courses.length} enrolled courses with public sources, project connections, Course metadata, attributed recommendations, and historical ranking context.`);

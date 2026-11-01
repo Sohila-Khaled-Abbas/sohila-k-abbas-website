@@ -1,0 +1,124 @@
+{
+  "checked_on": "2026-11-01",
+  "status_note": "These are courses I am enrolled in. Enrollment is separate from course completion or professional certification.",
+  "courses": [
+    {
+      "id": "excel-vba",
+      "title": "Unlock Excel VBA and Excel Macros",
+      "provider": "Udemy",
+      "instructor": "Leila Gharani",
+      "url": "https://www.udemy.com/course/excel-vba-and-macros-course/",
+      "language": "English",
+      "status": "enrolled",
+      "track": "automation",
+      "topics": ["Excel", "VBA", "Macros", "UserForms", "Debugging"],
+      "purpose": "Build more reliable Excel tools through reusable macros, clear interfaces, and deliberate error handling.",
+      "practice": "Extend a workbook automation with input validation, a useful error message, and a documented test case.",
+      "connections": [
+        {"repo": "Excel-VBA-Second-Brain", "label": "VBA notes & patterns"},
+        {"repo": "pwc-switzerland-virtual-case", "label": "Excel & BI case study"}
+      ]
+    },
+    {
+      "id": "dbt-bootcamp",
+      "title": "The Complete dbt Bootcamp: Zero to Hero + Certification Prep",
+      "provider": "Udemy",
+      "instructor": "Zoltan C. Toth",
+      "url": "https://www.udemy.com/course/complete-dbt-data-build-tool-bootcamp-zero-to-hero-learn-dbt/",
+      "language": "English",
+      "status": "enrolled",
+      "track": "analytics",
+      "topics": ["dbt", "SQL", "Tests", "Documentation", "Snowflake"],
+      "purpose": "Deepen the transformation layer: modular SQL models, data tests, lineage, and documentation that make analytics easier to trust.",
+      "practice": "Create a small source-to-mart dbt model with explicit grain, relationship tests, and documented business definitions.",
+      "connections": [
+        {"repo": "data-engineering-learning-roadmap", "label": "Analytics engineering learning path"},
+        {"repo": "pixelfed-analytics-engineering", "label": "Related dimensional-modeling work"}
+      ]
+    },
+    {
+      "id": "airflow",
+      "title": "Apache Airflow: The Hands-On Guide",
+      "provider": "Udemy",
+      "instructor": "Marc Lamberti",
+      "url": "https://www.udemy.com/course/the-ultimate-hands-on-course-to-master-apache-airflow/",
+      "language": "English",
+      "status": "enrolled",
+      "track": "engineering",
+      "topics": ["Airflow", "DAGs", "Scheduling", "Monitoring", "Docker"],
+      "purpose": "Strengthen orchestration decisions around scheduling, dependencies, retries, backfills, and pipeline observability.",
+      "practice": "Document a retry and backfill scenario for an existing DAG, including what happens when an upstream source fails.",
+      "connections": [
+        {"repo": "Stock-Price-Data-Pipeline", "label": "Airflow & Spark pipeline"},
+        {"repo": "national-insurance-data-warehouse", "label": "Warehouse orchestration case"}
+      ]
+    },
+    {
+      "id": "big-data-cloud",
+      "title": "Big Data Engineering Bootcamp with GCP, and Azure Cloud",
+      "provider": "Udemy",
+      "instructor": "Krish Naik, Mayank Aggarwal & KRISHAI Technologies",
+      "url": "https://www.udemy.com/course/big-data-engineering-bootcamp-with-gcp-and-azure-cloud/",
+      "language": "English",
+      "status": "enrolled",
+      "track": "engineering",
+      "topics": ["Spark", "Hadoop", "Kafka", "GCP", "Azure", "ETL"],
+      "purpose": "Connect distributed processing fundamentals with practical ingestion and storage choices across cloud data platforms.",
+      "practice": "Compare a local batch-processing lab with a proposed cloud architecture, including costs, failure modes, and data movement.",
+      "connections": [
+        {"repo": "docker-hadoop", "label": "Local Hadoop environment"},
+        {"repo": "data-engineering-learning-roadmap", "label": "Distributed systems learning path"}
+      ]
+    },
+    {
+      "id": "operating-systems",
+      "title": "Fundamentals of Operating Systems",
+      "provider": "Udemy",
+      "instructor": "Hussein Nasser",
+      "url": "https://www.udemy.com/course/fundamentals-of-operating-systems/",
+      "language": "English",
+      "status": "enrolled",
+      "track": "systems",
+      "topics": ["Processes", "Memory", "CPU caches", "Storage", "Sockets"],
+      "purpose": "Understand the operating-system behavior beneath a slow query, a container, or a data-processing workload.",
+      "practice": "Extend a small process or memory experiment with observations, commands, and a reproducible explanation.",
+      "connections": [
+        {"repo": "fundamentals-of-operating-systems-labs", "label": "Operating-system labs"}
+      ]
+    },
+    {
+      "id": "docker-arabic",
+      "title": "A Practical guide to Docker containers - Arabic",
+      "provider": "Udemy",
+      "instructor": "Sameh Ammar",
+      "url": "https://www.udemy.com/course/a-practical-guide-to-docker-containers/",
+      "language": "Arabic",
+      "status": "enrolled",
+      "track": "systems",
+      "topics": ["Docker", "Compose", "Volumes", "Networking", "Containers"],
+      "purpose": "Make local data and automation environments easier to run, debug, and hand over to another person.",
+      "practice": "Review a Compose service for persistent storage, health checks, networking, and clear recovery instructions.",
+      "connections": [
+        {"repo": "n8n-production-queue-setup", "label": "Queue-mode automation stack"},
+        {"repo": "docker-hadoop", "label": "Multi-service data lab"}
+      ]
+    },
+    {
+      "id": "database-engineering",
+      "title": "Fundamentals of Database Engineering",
+      "provider": "Udemy",
+      "instructor": "Hussein Nasser",
+      "url": "https://www.udemy.com/course/database-engines-crash-course/",
+      "language": "English",
+      "status": "enrolled",
+      "track": "analytics",
+      "topics": ["ACID", "Indexes", "Transactions", "Replication", "Partitioning"],
+      "purpose": "Connect data-modeling choices to the database engine: consistency, indexes, concurrency, and query execution.",
+      "practice": "Compare execution plans before and after an index change, recording the data size and measurement method.",
+      "connections": [
+        {"repo": "global-horizon-bank-dwh-project", "label": "OLTP-to-warehouse architecture"},
+        {"repo": "customer-360-banking-etl", "label": "Multi-source banking ETL"}
+      ]
+    }
+  ]
+}

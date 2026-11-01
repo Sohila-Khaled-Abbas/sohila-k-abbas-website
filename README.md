@@ -68,3 +68,5 @@ The public site contains no original CV PDFs or private repository content. Its 
 ## Business inquiries and contact privacy
 
 The form is reserved for approved businesses. No public self-registration or self-declared verification is accepted. Business registration, official domain, and work-email ownership are reviewed before a private invitation is issued. Public contact is through email, LinkedIn, and GitHub only. [Approval, invitation, and revocation guide](portfolio-site/docs/BUSINESS_INQUIRIES.md).
+
+The portable site also includes a [course learning log](https://sohila-khaled-abbas.vercel.app/learning/) and [hiring-team overview](https://sohila-khaled-abbas.vercel.app/recruiters/). Course enrollment, public project evidence, professional recommendations, and historical rankings have separate source records. See [learning and evidence documentation](portfolio-site/docs/LEARNING_AND_EVIDENCE.md).

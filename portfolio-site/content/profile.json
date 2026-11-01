@@ -7,7 +7,7 @@
   "email": "sohila.k.data@gmail.com",
   "github": "https://github.com/Sohila-Khaled-Abbas",
   "linkedin": "https://linkedin.com/in/sohilakabbas",
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-01",
   "summary": "I work across data and analytics engineering, machine learning, and business intelligence. My focus spans ETL/ELT pipelines, data warehousing, predictive modeling, and decision-ready reporting with Python, SQL, Power BI, Airflow, dbt, Databricks, and PySpark. My background in agricultural science and quality-focused research shapes how I approach validation, documentation, and evidence.",
   "experience": [
     {
@@ -208,5 +208,6 @@
     "Arabic · Native",
     "English · Excellent, written and spoken"
   ],
-  "website": "https://sohila-khaled-abbas.vercel.app"
+  "website": "https://sohila-khaled-abbas.vercel.app",
+  "current_focus": "Leakage-aware machine learning, grouped evaluation splits, target-derived features, and decision-support interfaces that keep model outputs understandable."
 }

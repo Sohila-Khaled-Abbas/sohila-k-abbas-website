@@ -56,3 +56,7 @@ Public GitHub projects refresh hourly through the repository workflow, with visi
 ## Verified business inquiries
 
 Only reviewed businesses with private invitations can open and prepare an inquiry. Approved identities are fixed; detailed work scope, budget, email, and optional international phone inputs are validated again on the server. Public communication is through email, LinkedIn, and GitHub. [Verification, invitations, and revocation](docs/BUSINESS_INQUIRIES.md).
+
+## Learning and professional evidence
+
+The [learning log](https://sohila-khaled-abbas.vercel.app/learning/) connects seven enrolled Udemy courses to public notes and projects, with topic search, subject filters, and shareable URLs. Enrollment is clearly separated from course completion and earned credentials. The [hiring-team overview](https://sohila-khaled-abbas.vercel.app/recruiters/) organizes skills around inspectable project work. Public LinkedIn recommendations and historical recognition appear on the Community page with attribution and dates. See [source and maintenance notes](docs/LEARNING_AND_EVIDENCE.md).

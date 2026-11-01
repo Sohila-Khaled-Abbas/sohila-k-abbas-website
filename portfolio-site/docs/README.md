@@ -16,3 +16,5 @@ The active GitHub website is in `portfolio-site/`. Run commands from that direct
 | [Showcase video](SHOWCASE_VIDEO.md) | LinkedIn video sequence, export, and posting handoff |
 
 - [Automatic project synchronization](AUTOMATIC_PROJECT_SYNC.md): repository discovery, updates, editorial preservation, and troubleshooting.
+
+- [Learning, recommendations & professional evidence](LEARNING_AND_EVIDENCE.md) — enrollment sources, recommendation attribution, ranking context, and the hiring-team overview.
