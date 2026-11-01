@@ -2274,7 +2274,7 @@
     },
     {
       "repo": "kafka-cluster",
-      "title": "Edit .env if your Docker host IP differs from 127.0.0.1",
+      "title": "Kafka Cluster Lab",
       "summary": "A , 3-broker Apache Kafka cluster with ZooKeeper, designed for Big Data & Spark Structured Streaming integration.",
       "technologies": [
         "Python",
@@ -2345,14 +2345,15 @@
     },
     {
       "repo": "kickstarter-analytics-engineering",
-      "title": "Windows:",
+      "title": "Kickstarter Analytics Engineering Platform",
       "summary": "End-to-end data pipeline and Power BI model for Kickstarter campaign analysis.",
       "technologies": [
+        "Power Query M",
         "Power BI",
-        "Python",
-        "dbt",
         "DAX",
-        "Power Query"
+        "PBIP",
+        "TMDL",
+        "Python"
       ],
       "methods": [],
       "flow": null,
@@ -2420,7 +2421,7 @@
     },
     {
       "repo": "local_data_aggregator",
-      "title": "1. Clone repo (or navigate to the directory)",
+      "title": "Local Data Aggregator",
       "summary": "Transform your disparate CSV and Excel files into unified, actionable intelligence.",
       "technologies": [
         "Python",

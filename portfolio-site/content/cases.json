@@ -36,7 +36,7 @@
     }
   },
   "kickstarter": {
-    "title": "Making sense of Kickstarter",
+    "title": "Kickstarter Analytics Engineering Platform",
     "type": "BUSINESS INTELLIGENCE / MULTI-SOURCE PUBLIC DATA",
     "intro": "A Power BI analytics-engineering project designed to reconcile campaign history across public Kickstarter data sources.",
     "problem": "Historical dumps and recurring crawls overlap. A campaign can appear repeatedly with changing states, while regional benchmarks exist at a different grain. Appending everything into a single flat table can inflate results.",
