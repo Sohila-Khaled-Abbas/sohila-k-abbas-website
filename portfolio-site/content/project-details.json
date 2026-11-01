@@ -3837,7 +3837,7 @@
     {
       "repo": "python-learning-roadmap",
       "title": "Python Learning Roadmap",
-      "summary": "A Python learning path for data and analytics engineering with 42 topics, 53 resources, embedded video and playlist previews, and 46 crawlable pages. It connects Boot.dev, ITI Arabic, CS50P and additional data courses to original practice and project briefs.",
+      "summary": "A Python learning path for data and analytics engineering with 42 lessons, 53 resources, embedded videos and a browser coding lab. Thirteen guided challenges and a free playground connect EGP data, PixelFed quality, CSV, API payloads, SQLite and pandas to hands-on practice across 47 crawlable pages.",
       "technologies": [
         "Python",
         "JavaScript",
@@ -3845,19 +3845,21 @@
         "CSS",
         "SQL",
         "GitHub Pages",
-        "pandas"
+        "pandas",
+        "Pyodide"
       ],
       "methods": [
         "Keep a flexible twelve-week core, then choose twelve optional depth topics covering OOP, generators, typing, packaging, async I/O, performance and data applications.",
         "Preview YouTube videos and playlists on the resource shelf and lesson pages, with format/language filters and direct source fallbacks.",
         "Connect original exercises and three project briefs to Python, pandas, SQL, PixelFed data quality, n8n and BI delivery.",
-        "Generate crawlable lesson pages, unique canonical metadata, structured data and a full sitemap; preserve existing browser-local progress IDs."
+        "Generate crawlable lesson pages, unique canonical metadata, structured data and a full sitemap; preserve existing browser-local progress IDs.",
+        "Run real Python in the browser with guided challenges, progressive hints, feedback checks, editable synthetic CSV data, input lines, saved drafts and Stop/timeout recovery."
       ],
       "flow": null,
       "media": {
         "src": "/project-media/python-learning-roadmap.png",
         "kind": "Interactive Python learning roadmap",
-        "caption": "Python Learning Roadmap: embedded resources and original lessons for data and analytics engineering."
+        "caption": "Python Learning Roadmap: original lessons, embedded resources and an interactive Python coding lab for data and analytics engineering."
       },
       "live": "https://sohila-khaled-abbas.github.io/python-learning-roadmap/",
       "presentation": null,
@@ -3889,6 +3891,10 @@
         {
           "path": "docs/seo.md",
           "url": "https://github.com/Sohila-Khaled-Abbas/python-learning-roadmap/blob/main/docs/seo.md"
+        },
+        {
+          "path": "docs/python-lab.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/python-learning-roadmap/blob/main/docs/python-lab.md"
         }
       ],
       "empty": false,
