@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const out=path.join(root,'dist');
@@ -79,3 +80,30 @@ const serviceHtml=documents.get(path.join(out,'services/index.html'));
 assert(serviceHtml.includes('id="project-brief" class="business-inquiry-form" hidden'),'Business inquiries must remain closed without an approved invitation');
 assert([...documents.values()].every(html=>!html.includes('href="tel:')),'Do not expose personal telephone links');
 console.log(`PASS: ${learning.courses.length} enrolled courses with public sources, project connections, Course metadata, attributed recommendations, and historical ranking context.`);
+const profile=JSON.parse(await fs.readFile(path.join(root,'content/profile.json'),'utf8'));
+const policy=JSON.parse(await fs.readFile(path.join(root,'content/sync-policy.json'),'utf8'));
+assert.equal(policy.automatic_experience_import,false,'Experience changes require owner confirmation');
+assert.equal(createHash('sha256').update(JSON.stringify(profile.experience)).digest('hex'),policy.experience_sha256,'Owner-selected experience changed without an approved revision');
+for(const [file,html]of documents){
+ for(const match of html.matchAll(/\b(?:href|src)="(https?:[^\"]+)"/g))assert(!policy.excluded_public_link_hosts.includes(new URL(match[1]).hostname),'Excluded community link appeared: '+file);
+}
+const aboutHtml=documents.get(path.join(out,'about/index.html'));
+assert(aboutHtml.includes(profile.headline.replaceAll('&','&amp;')),'About must show the owner’s current professional headline');
+const systems=JSON.parse(await fs.readFile(path.join(root,'content/about-systems.json'),'utf8'));
+assert.equal(new Set(systems.modes.map(mode=>mode.id)).size,4,'The About explorer needs four distinct workflows');
+for(const mode of systems.modes){assert(mode.nodes.length>=3&&mode.nodes.length<=5,'Keep workflow diagrams readable');for(const project of mode.projects)assert(originals.has(project.repo),'Workflow evidence must be a public original project');}
+const expectedCounts=[originals.size,Object.keys({...JSON.parse(await fs.readFile(path.join(root,'content/cases.json'),'utf8')),...JSON.parse(await fs.readFile(path.join(root,'content/additional-cases.json'),'utf8'))}).length,reports.length,learning.courses.length];
+assert.deepEqual([...aboutHtml.matchAll(/data-about-count="(\d+)"/g)].map(match=>Number(match[1])),expectedCounts,'About counters must derive from the published source records');
+const posts=JSON.parse(await fs.readFile(path.join(root,'content/linkedin-posts.json'),'utf8'));
+const postsHtml=documents.get(path.join(out,'posts/index.html'));
+assert.equal(new Set(posts.posts.map(post=>post.id)).size,posts.posts.length,'Duplicate post identifiers');
+assert(!/<iframe\b/.test(postsHtml),'LinkedIn embeds must load only after visitor interaction');
+assert.equal([...postsHtml.matchAll(/class="social-post-card"/g)].length,posts.posts.length);
+for(const post of posts.posts){
+ assert.equal(new URL(post.url).origin,'https://www.linkedin.com');
+ assert(Number.isInteger(post.reactions)&&Number.isInteger(post.comments)&&post.reactions>=0&&post.comments>=0,'Engagement snapshots must be public nonnegative counts');
+ if(post.embed_url){const url=new URL(post.embed_url);assert.equal(url.origin,'https://www.linkedin.com');assert(/^\/embed\/feed\/update\/urn:li:(?:share|ugcPost):\d+$/.test(url.pathname),'Use verified official embed addresses');}
+}
+assert(policy.publish_private_analytics===false&&policy.allow_personal_phone===false&&policy.enrollment_is_not_completion===true);
+assert.deepEqual(JSON.parse(await fs.readFile(path.join(root,'server/business-approvals.json'),'utf8')),{version:1,approvals:{}},'Do not publish local approval fixtures');
+console.log(`PASS: source-derived About metrics, four project-backed workflows, ${posts.posts.length} public LinkedIn posts, current headline, and owner content exclusions.`);

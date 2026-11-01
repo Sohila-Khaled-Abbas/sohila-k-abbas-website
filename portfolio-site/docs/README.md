@@ -18,3 +18,5 @@ The active GitHub website is in `portfolio-site/`. Run commands from that direct
 - [Automatic project synchronization](AUTOMATIC_PROJECT_SYNC.md): repository discovery, updates, editorial preservation, and troubleshooting.
 
 - [Learning, recommendations & professional evidence](LEARNING_AND_EVIDENCE.md) — enrollment sources, recommendation attribution, ranking context, and the hiring-team overview.
+
+- [Profile and social automation](AUTOMATION.md) — GitHub refresh, LinkedIn public-source checks, official post embeds, and owner exclusions.

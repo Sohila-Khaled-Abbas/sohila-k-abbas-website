@@ -1,0 +1,14 @@
+{
+  "profile_owner": "sohilakabbas",
+  "github_owner": "Sohila-Khaled-Abbas",
+  "excluded_public_link_hosts": [
+    "t.me",
+    "telegram.me"
+  ],
+  "allow_personal_phone": false,
+  "enrollment_is_not_completion": true,
+  "publish_private_analytics": false,
+  "automatic_experience_import": false,
+  "experience_source": "owner-confirmed",
+  "experience_sha256": "7f39c176949290c5ddc1227f62d3e6bd088290e89b8ff341e9b6f0312e255d74"
+}

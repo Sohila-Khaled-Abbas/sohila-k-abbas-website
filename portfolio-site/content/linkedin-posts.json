@@ -1,0 +1,84 @@
+{
+  "checked_on": "2026-11-01",
+  "profile_url": "https://www.linkedin.com/in/sohilakabbas/",
+  "latest_url": "https://www.linkedin.com/in/sohilakabbas/recent-activity/all/",
+  "posts": [
+    {
+      "id": "portfolio-launch",
+      "group": "latest",
+      "title": "Good data. Better decisions. Now live.",
+      "summary": "A tour of the portfolio: project sources, Power BI reports, engineering work, machine learning, and automation.",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7522220948511674369/",
+      "embed_url": "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7521934090678456321?collapsed=1",
+      "reactions": 47,
+      "comments": 9,
+      "image": "/social-card.png",
+      "image_alt": "Sohila’s portfolio announcement and website visual",
+      "topics": [
+        "Portfolio",
+        "Data engineering",
+        "Power BI"
+      ]
+    },
+    {
+      "id": "networking-labs",
+      "group": "latest",
+      "title": "Networking underneath the data stack",
+      "summary": "Turning networking study into reproducible labs for protocols, APIs, database connections, and troubleshooting.",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7517487184564600832/",
+      "embed_url": null,
+      "reactions": 100,
+      "comments": 24,
+      "topics": [
+        "Networking",
+        "Data engineering",
+        "Labs"
+      ]
+    },
+    {
+      "id": "ml-practice",
+      "group": "latest",
+      "title": "From descriptive analysis to model evaluation",
+      "summary": "A reflection on structured preparation, feature engineering, and the practical progression into machine learning.",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7502644367757680640/",
+      "embed_url": "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7502508937699692544?collapsed=1",
+      "reactions": 112,
+      "comments": 14,
+      "topics": [
+        "ML engineering",
+        "Python",
+        "Evaluation"
+      ]
+    },
+    {
+      "id": "iti-resources",
+      "group": "popular",
+      "title": "Arabic data resources worth keeping",
+      "summary": "ITI playlists with Dr. Eman Raslan covering data preparation, Python, visualization, and Power BI.",
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7403482157400227840/",
+      "embed_url": "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7403482157400227840?collapsed=1",
+      "reactions": 379,
+      "comments": 8,
+      "topics": [
+        "Arabic resources",
+        "ITI",
+        "Learning"
+      ]
+    },
+    {
+      "id": "parquet-workloads",
+      "group": "popular",
+      "title": "CSV or Parquet? Start with the workload.",
+      "summary": "The trade-offs behind columnar storage and why file format choices matter to analytics pipelines.",
+      "url": "https://www.linkedin.com/feed/update/urn:li:share:7466432663936163840/",
+      "embed_url": "https://www.linkedin.com/embed/feed/update/urn:li:share:7466432663936163840?collapsed=1",
+      "reactions": 283,
+      "comments": 58,
+      "topics": [
+        "Parquet",
+        "Data engineering",
+        "Performance"
+      ]
+    }
+  ]
+}

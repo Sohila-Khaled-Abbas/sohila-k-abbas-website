@@ -39,8 +39,6 @@ const TIMELINE: TimelineItem[] = [
       "Grew the network to 1,000+ subscribers",
     ],
     links: [
-      { label: "Telegram",  url: "https://t.me/thedatatea" },
-      { label: "WhatsApp",  url: "#"                        },
     ],
   },
   {

@@ -1,0 +1,60 @@
+{
+  "modes": [
+    {
+      "id": "engineering",
+      "label": "Data engineering",
+      "title": "A path from source files to a model people can trust.",
+      "description": "The questions I look for: What is the grain? Where can a record fail? Can the transformation and business definition be traced?",
+      "nodes": [
+        {"title":"Sources","detail":"Files, databases & APIs","logo":"python"},
+        {"title":"Landing","detail":"Preserve the raw inputs","logo":"postgresql"},
+        {"title":"Validate","detail":"Check keys, types & quality","logo":"python"},
+        {"title":"Model","detail":"Dimensions, facts & grain","logo":"dbt"},
+        {"title":"Explain","detail":"A documented semantic layer","logo":"powerbi"}
+      ],
+      "projects": [{"repo":"pixelfed-analytics-engineering","label":"PixelFed engineering case"},{"repo":"customer-360-banking-etl","label":"Banking ETL quality rules"}]
+    },
+    {
+      "id": "analytics",
+      "label": "BI & analytics",
+      "title": "A dashboard starts with the decision it should support.",
+      "description": "I connect a business question to model definitions, DAX measures, report interactions, and the context a reader needs to interpret the result.",
+      "nodes": [
+        {"title":"Question","detail":"Define the business decision"},
+        {"title":"Model","detail":"Relationships & definitions","logo":"postgresql"},
+        {"title":"Measure","detail":"DAX & explicit KPI logic","logo":"powerbi"},
+        {"title":"Explore","detail":"Filters, pages & drilldowns","logo":"powerbi"},
+        {"title":"Decide","detail":"Explain the limits & next step"}
+      ],
+      "projects": [{"repo":"pwc-switzerland-virtual-case","label":"Excel & semantic-model work"},{"repo":"fmcg-sales-churn-drop-analysis-powerbi","label":"B2B retail & churn reporting"}]
+    },
+    {
+      "id": "ml",
+      "label": "ML engineering",
+      "title": "Evaluation matters as much as the model.",
+      "description": "My current focus connects repeatable preparation, feature engineering, leakage-aware evaluation, and outputs that make sense in a real workflow.",
+      "nodes": [
+        {"title":"Prepare","detail":"Clean, documented datasets","logo":"python"},
+        {"title":"Split","detail":"Keep evaluation isolated"},
+        {"title":"Features","detail":"Respect what is known when","logo":"python"},
+        {"title":"Model","detail":"Train & compare approaches","logo":"python"},
+        {"title":"Evaluate","detail":"Inspect errors & usefulness"}
+      ],
+      "projects": [{"repo":"flyrank-ml-internship-starter","label":"Applied ML & search intelligence"},{"repo":"deep-clean-data-tool","label":"Data preparation toolkit"}]
+    },
+    {
+      "id": "automation",
+      "label": "AI automation",
+      "title": "Automate the repeatable parts. Keep the checks visible.",
+      "description": "I’m interested in workflows that connect APIs, queues, storage, and AI components with validation, error handling, and useful operational notes.",
+      "nodes": [
+        {"title":"Trigger","detail":"An event, schedule, or request","logo":"n8n"},
+        {"title":"Queue","detail":"Separate intake from execution","logo":"docker"},
+        {"title":"Process","detail":"Tools, APIs & guarded AI steps","logo":"n8n"},
+        {"title":"Store","detail":"Persist the useful result","logo":"postgresql"},
+        {"title":"Observe","detail":"Logs, recovery & handover","logo":"docker"}
+      ],
+      "projects": [{"repo":"n8n-production-queue-setup","label":"Queue & worker architecture"},{"repo":"n8n-workflow-gourmet-bistro-customer-service","label":"Customer-service automation"}]
+    }
+  ]
+}

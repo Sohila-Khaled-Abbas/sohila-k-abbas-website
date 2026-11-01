@@ -4,7 +4,7 @@ Professional experience and education were taken from `Sohila_Khaled_Abbas_Agric
 
 The professional profile uses the current public email and GitHub account from the owner’s GitHub profile README. Internship and freelance date ranges are reproduced from the supplied CV, as of 30 October 2026. Quantified achievements without measurement evidence are omitted.
 
-The current professional positioning and expanded toolset use the exact LinkedIn headline supplied by the owner on 30 October 2026: Data & Analytics Engineer | Machine Learning Engineer | Power BI, Python, SQL, Airflow, dbt, Databricks, PySpark | ETL/ELT | Data Warehousing | Predictive Modeling. This changes the portfolio headline and skills, while individual employment entries keep their source-specific roles.
+The current professional positioning uses the exact LinkedIn headline supplied by the owner on 1 November 2026: Data & Analytics Engineer | ML Engineering | Python, SQL, Power BI, dbt, Airflow, PySpark | ETL/ELT & Data Warehousing | AI Automation. Professional headline, profile summary, social preview, and structured data use this positioning. Experience is owner-maintained, and requested exclusions are enforced separately from source discovery.
 
 The project directory contains 91 accessible public repository metadata records checked through the connected GitHub account on 30 October 2026. Five private repositories are excluded. One listed repository that GitHub could not serve is excluded. Fork status, parent attribution, language, and activity dates come from GitHub metadata; editorial subject categories are only navigation aids.
 
@@ -16,7 +16,7 @@ The repository directory is a dated snapshot, not a live GitHub API integration.
 
 ## Original portfolio migration
 
-The owner's previous public portfolio at `https://sohila-k-abbas-website.web.app/` and its public React components were reviewed on 30 October 2026. They supplied the existing portrait, Data Pill mentoring role (July 2025–April 2026), community activities, grouped credential collection, and additional project/dashboard links. The experience timeline now has five entries. Existing titles and dates were retained when adding technical context. See [the migration record](portfolio-migration.md).
+The owner's previous public portfolio at `https://sohila-k-abbas-website.web.app/` and its public React components were reviewed on 30 October 2026. They supplied the existing portrait, Data Pill mentoring role (July 2025–April 2026), community activities, grouped credential collection, and additional project/dashboard links. The experience timeline reflects the owner’s selected current entries. See [the migration record](portfolio-migration.md).
 
 The supplied LinkedIn profile PDF also corroborated Kimball dimensional modeling, scikit-learn, and Obsidian. These additions do not replace the owner's biography or infer certifications.
 

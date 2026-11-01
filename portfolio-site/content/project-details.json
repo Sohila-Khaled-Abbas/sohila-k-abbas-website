@@ -3898,13 +3898,13 @@
       "auto_generated": false,
       "github": {
         "description": "A practical Python roadmap for data & analytics engineering: Boot.dev course chapters, ITI Arabic, Harvard CS50P, original labs, SQL, pandas, APIs, and portfolio projects. Interactive GitHub Pages learning map.",
-        "updated_at": "2026-10-31T20:29:40Z",
-        "pushed_at": "2026-10-31T20:29:37Z",
+        "updated_at": "2026-11-01T12:03:14Z",
+        "pushed_at": "2026-11-01T12:03:10Z",
         "homepage": "https://sohila-khaled-abbas.github.io/python-learning-roadmap/",
         "default_branch": "main",
         "readme_excerpt": "From a first function to a reliable data pipeline. A practical Python learning lab for Sohila Khaled Abbas, connecting existing SQL, Power BI, Power Query, n8n, and analytics-engineering experience to stronger Python foundations and reusable tools.",
-        "readme_sha": "4d1f587603fe4146bbc690275dae72c9432d0f5d",
-        "fingerprint": "2026-10-31T20:29:37Z"
+        "readme_sha": "2ef367a610671bb7630e6b9b0a287028e505303c",
+        "fingerprint": "2026-11-01T12:03:10Z"
       }
     },
     {
@@ -4429,13 +4429,13 @@
       "old_portfolio": false,
       "github": {
         "description": "This repository contains the source code for a personal data portfolio website built for Sohila Khaled Abbas — a recognized BI Developer, Data Analytics Engineer, and Top 200 Arabic-Speaking Influencer in data education.",
-        "updated_at": "2026-10-31T20:28:04Z",
-        "pushed_at": "2026-10-31T20:28:04Z",
+        "updated_at": "2026-11-01T11:58:17Z",
+        "pushed_at": "2026-11-01T11:58:17Z",
         "homepage": "https://sohila-khaled-abbas.vercel.app/",
         "default_branch": "main",
         "readme_excerpt": "Data & Analytics Engineer | Machine Learning Engineer | Power BI, Python, SQL, Airflow, dbt, Databricks, PySpark | ETL/ELT | Data Warehousing | Predictive Modeling",
-        "readme_sha": "dbfa570af586e59c58aa787a504031ee1345da3f",
-        "fingerprint": "2026-10-31T20:28:04Z"
+        "readme_sha": "0295a5620b346b0483e4ab216f1058dceffa20aa",
+        "fingerprint": "2026-11-01T11:58:17Z"
       }
     },
     {
@@ -4507,13 +4507,13 @@
       "old_portfolio": false,
       "github": {
         "description": "Config files for my GitHub profile.",
-        "updated_at": "2026-10-31T20:40:32Z",
-        "pushed_at": "2026-10-31T20:40:29Z",
+        "updated_at": "2026-11-01T09:22:25Z",
+        "pushed_at": "2026-11-01T09:22:21Z",
         "homepage": "https://github.com/Sohila-Khaled-Abbas",
         "default_branch": "main",
         "readme_excerpt": "I work across data and analytics engineering, machine learning, and business intelligence. My focus spans ETL/ELT pipelines, data warehousing, predictive modeling, and decision-ready reporting with Python, SQL, Power BI, Airflow, dbt, Databricks, and PySpark. My background in agricultural science and quality-focused research shapes how I approach validation, documentation, and evidence.",
         "readme_sha": "cc2ed997e327bd3f4d1e5a1305b2691709462153",
-        "fingerprint": "2026-10-31T20:40:29Z"
+        "fingerprint": "2026-11-01T09:22:21Z"
       }
     },
     {

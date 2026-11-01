@@ -44,7 +44,7 @@ A search-indexed post by Abdelrahman Eldesouky describes an Arabic-speaking worl
 
 The current [Favikon Egypt BI & Data Viz public ranking](https://app.favikon.com/public/ranking/creators/tech-software_bi-data-viz_linkedin_egypt/) was also inspected. Its limited public preview did not establish Sohila's current position. A current #1 or #2 claim was therefore not imported from her profile or older portfolio. Add a current ranking only after an original, dated Favikon record establishes the exact platform, niche, geography, and rank. Historical secondary reporting is not a substitute for that record.
 
-The supplied LinkedIn PDF supported the additional ML focus on leakage-aware evaluation and target-derived features. Existing employer names and role dates were preserved. Numerical impact claims and model-performance claims were not added without a reproducible method and source. The PDF itself was not published because it contains personal contact details.
+The supplied LinkedIn PDF supported the additional ML focus on leakage-aware evaluation and target-derived features. Selected roles and dates follow the owner-maintained profile and its explicit exclusions. Numerical impact claims and model-performance claims were not added without a reproducible method and source. The PDF itself was not published because it contains personal contact details.
 
 ## Research behind the features
 
@@ -52,7 +52,7 @@ The supplied LinkedIn PDF supported the additional ML focus on leakage-aware eva
 - [W3C WAI: page structure](https://www.w3.org/WAI/tutorials/page-structure/) informed labeled regions, meaningful headings, native controls, keyboard interaction, and readable groupings.
 - [Schema.org: Course](https://schema.org/Course) defines course metadata. It does not establish the learner's completion or certification.
 
-The website keeps its established warm palette and existing motion controls. The new sections use static HTML, a small local filter script, and no extra analytics or third-party embeds. Search values are inserted through text properties, and filter state is kept in the URL. All course cards remain available without JavaScript.
+The website keeps its established warm palette and existing motion controls. The new sections use static HTML, a small local filter script, and no extra analytics. LinkedIn previews are optional and load only after a visitor chooses a preview. Search values are inserted through text properties, and filter state is kept in the URL. All course cards remain available without JavaScript.
 
 ## Verify an edit
 
