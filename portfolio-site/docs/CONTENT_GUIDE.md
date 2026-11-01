@@ -44,3 +44,7 @@ npm run dev
 ```
 
 Check the changed pages in light/dark themes and at mobile/desktop widths. Use a branch and pull request. Vercel publishes `main` through its Git integration after the change is merged; verify the resulting production deployment.
+
+## Business inquiries
+
+Contact privacy and business access follow [BUSINESS_INQUIRIES.md](BUSINESS_INQUIRIES.md). Keep the owner’s phone and old CV archive links out of public contact pages. Business approvals are maintained separately from repository/project content and require actual review.

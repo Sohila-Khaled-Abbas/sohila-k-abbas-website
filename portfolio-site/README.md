@@ -21,15 +21,17 @@ This is the active website source. In the GitHub repository it lives in `portfol
 - Portrait-led animated hero with technology logos, pause and reduced-motion support; responsive navigation, keyboard screenshot dialogs, light/dark themes, and a print-friendly résumé.
 - A portrait-inspired ivory, taupe, cocoa, and muted burgundy palette, with shared light/dark tokens and verified text contrast pairs.
 - Shareable gallery/list filters, Ctrl/Command+K project search, copyable project links, and a 1200 × 630 social preview card.
-- Community, credential collection, mentoring, and collaboration pages with a local email-draft brief.
+- Community, credential collection, mentoring, and collaboration pages with an approval-only business inquiry form.
 
 Project descriptions were checked against the public repository READMEs on 30 October 2026. No employment, business impact, production uptime, or client testimonials are inferred from portfolio code. Sample graphics are illustrative.
 
 ## Build and run
 
-Requires Node.js 22 or later. There are no application dependencies.
+Requires Node.js 22 or later. The public pages are static; the approval-only Vercel inquiry endpoint uses a pinned phone-validation dependency.
 
 ```sh
+npm ci --ignore-scripts
+npm test
 npm run build
 npm run check
 npm run dev
@@ -41,7 +43,7 @@ Edit `content/` and `src/`, then rebuild. The static generator creates the compl
 
 See the [documentation index](docs/README.md) for architecture, design tokens, content editing, deployment, and provenance.
 
-No package installation is required. Run the build before deploying. No visitor analytics or tracking is included. Theme and animation preferences are saved in browser local storage.
+Run `npm ci --ignore-scripts` before tests, local development, or deployment. No visitor analytics or tracking is included. Theme and animation preferences are saved in browser local storage.
 
 See [preview sources and accessibility](docs/preview-sources.md) for report provenance and interaction details.
 
@@ -50,3 +52,7 @@ See [portfolio migration](docs/portfolio-migration.md) for source provenance and
 ## Automatic project discovery
 
 Public GitHub projects refresh hourly through the repository workflow, with visitor-side metadata refreshes in between. New original repositories receive project pages; curated summaries, media, methods, and case studies are preserved. [Synchronization and maintenance guide](docs/AUTOMATIC_PROJECT_SYNC.md).
+
+## Verified business inquiries
+
+Only reviewed businesses with private invitations can open and prepare an inquiry. Approved identities are fixed; detailed work scope, budget, email, and optional international phone inputs are validated again on the server. Public communication is through email, LinkedIn, and GitHub. [Verification, invitations, and revocation](docs/BUSINESS_INQUIRIES.md).
