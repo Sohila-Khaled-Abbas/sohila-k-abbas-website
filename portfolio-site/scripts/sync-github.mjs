@@ -6,6 +6,22 @@ export const OWNER='Sohila-Khaled-Abbas';
 const SELF='sohila-k-abbas-website';
 export const SYNC_MESSAGE='chore(portfolio): sync public GitHub projects';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+export function readmeTitle(markdown=''){
+  // Headings inside examples are shell comments, not project names.
+  let fence=null;const lines=[];
+  for(const line of markdown.replace(/<!--[\s\S]*?-->/g,'').split(/\r?\n/)){
+    const marker=line.match(/^ {0,3}(`{3,}|~{3,})/);
+    if(marker){if(!fence)fence={char:marker[1][0],length:marker[1].length};else if(marker[1][0]===fence.char&&marker[1].length>=fence.length)fence=null;continue;}
+    if(!fence)lines.push(line);
+  }
+  const source=lines.join('\n');
+  const candidates=[...source.matchAll(/^ {0,3}#\s+(.+?)\s*#*\s*$|<h1\b[^>]*>([\s\S]*?)<\/h1>/gmi)];
+  for(const match of candidates){
+    const title=(match[1]||match[2]).replace(/!\[[^\]]*\]\([^)]*\)/g,'').replace(/\[([^\]]+)\]\([^)]*\)/g,'$1').replace(/<[^>]*>/g,'').replace(/[*_`]/g,'').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&#39;|&apos;/g,"'").replace(/&quot;/g,'"').replace(/\s+/g,' ').trim();
+    if(title.length>=3&&title.length<=150&&!/^(?:(?:windows|mac(?:os)?(?:\/linux)?|linux|bash|powershell|installation|quick\s?start|usage|setup)\s*:?$|\d+[.)]\s|clone\s|edit\s\.env)/i.test(title))return title;
+  }
+  return null;
+}
 export function safeHomepage(value){try{const u=new URL(value);return u.protocol==='https:'&&!u.username&&!u.password?u.href:null;}catch{return null;}}
 export function excerpt(markdown=''){
   const plain=markdown.replace(/```[\s\S]*?```/g,'').replace(/<!--[\s\S]*?-->/g,'').replace(/<[^>]*>/g,'').replace(/!\[[^\]]*\]\([^)]*\)/g,'').replace(/\[([^\]]+)\]\([^)]*\)/g,'$1').replace(/^[#>|].*$/gm,'').replace(/[*_`]/g,'');
@@ -78,7 +94,7 @@ export async function sync({request,readmeLimit=150}={}){
       const response=await request(`/repos/${OWNER}/${encodeURIComponent(r.name)}/readme`);
       if(response?.encoding==='base64'&&response.size<=500000){
         const text=Buffer.from(response.content,'base64').toString('utf8');
-        readme={sha:response.sha,path:response.path,size:response.size,excerpt:excerpt(text),title:text.match(/^#\s+([^\n]+)/m)?.[1]?.replace(/[*_`]/g,'').trim()};
+        readme={sha:response.sha,path:response.path,size:response.size,excerpt:excerpt(text),title:readmeTitle(text)};
       }else readme={excerpt:'',sha:null};
     }
     projects.push(projectRecord(r,prev,readme));

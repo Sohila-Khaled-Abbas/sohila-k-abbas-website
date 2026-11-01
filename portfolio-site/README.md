@@ -14,7 +14,8 @@ This is the active website source. In the GitHub repository it lives in `portfol
 - Twenty-two permanent reporting project pages with 17 real screenshots, 12 public Power BI links, available report files, and project presentations.
 - Explicit in-progress status for PixelFed and the n8n queue setup.
 - Preview pages for all 77 original repositories, including 12 detailed case studies. Seventeen learning forks retain upstream attribution.
-- Actual architecture and model images, documented workflow overviews, and source-file previews.
+- Guided stories for all 77 original projects and 22 report pages: question, approach, result, and searchable source evidence.
+- Shareable chapters, full-story reading, related projects, and retained architecture/model screenshots.
 - A searchable directory of 94 accessible public GitHub repositories, including clearly attributed forks.
 - An interactive three-step retail example with explicitly invented records.
 - Interactive About page with source-derived counts, four animated workflow diagrams, and project evidence.

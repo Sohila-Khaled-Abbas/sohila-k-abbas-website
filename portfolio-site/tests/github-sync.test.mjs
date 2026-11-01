@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {OWNER,listPublicRepositories,repositoryRecord,projectRecord,excerpt,safeHomepage} from '../scripts/sync-github.mjs';
+import {OWNER,listPublicRepositories,repositoryRecord,projectRecord,excerpt,safeHomepage,readmeTitle} from '../scripts/sync-github.mjs';
 const repo=(i,extra={})=>({id:i,name:'project-'+i,private:false,owner:{login:OWNER},html_url:`https://github.com/${OWNER}/project-${i}`,default_branch:'main',description:'A public data integration project.',pushed_at:'2026-10-31T12:00:00Z',updated_at:'2026-10-31T12:00:00Z',language:'Python',topics:['sql'],...extra});
 test('pagination includes a new repo after page 1 and excludes private/foreign records',async()=>{
   const pages=[Array.from({length:100},(_,i)=>repo(i)),[repo(100),repo(101,{private:true}),repo(102,{owner:{login:'elsewhere'}})]];
@@ -41,4 +41,14 @@ test('unchanged generated projects keep their README title between refreshes',()
   const first=projectRecord(r,null,{title:'README-authored title',excerpt:'A useful project description.'});
   const second=projectRecord(r,first,undefined);
   assert.equal(second.title,'README-authored title');assert.deepEqual(second,first);
+});
+
+test('README titles accept HTML headings and ignore fenced shell comments',()=>{
+  assert.equal(readmeTitle('<div><h1>Kickstarter Analytics Engineering Platform</h1></div>\n\n```bash\n# Windows:\n.venv/Scripts/activate\n```'),'Kickstarter Analytics Engineering Platform');
+  assert.equal(readmeTitle('```sh\n# Edit .env for your host\n```\n# Kafka Cluster Lab'),'Kafka Cluster Lab');
+  assert.equal(readmeTitle('~~~python\n# Windows:\n~~~\n<h1>Local Data Aggregator</h1>'),'Local Data Aggregator');
+  assert.equal(readmeTitle('````text\n```bash\n# Wrong heading\n```\n````\n# Real Project'),'Real Project');
+  assert.equal(readmeTitle('<!-- # Hidden title -->\n# **A &amp; B**\n'),'A & B');
+  assert.equal(readmeTitle('# Windows:\n# Installation\n'),null);
+  assert.equal(readmeTitle('# Windows Technical Labs'),'Windows Technical Labs');
 });

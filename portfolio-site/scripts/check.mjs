@@ -107,3 +107,18 @@ for(const post of posts.posts){
 assert(policy.publish_private_analytics===false&&policy.allow_personal_phone===false&&policy.enrollment_is_not_completion===true);
 assert.deepEqual(JSON.parse(await fs.readFile(path.join(root,'server/business-approvals.json'),'utf8')),{version:1,approvals:{}},'Do not publish local approval fixtures');
 console.log(`PASS: source-derived About metrics, four project-backed workflows, ${posts.posts.length} public LinkedIn posts, current headline, and owner content exclusions.`);
+for(const project of projects){
+ const html=documents.get(path.join(out,'projects',project.repo,'index.html'));
+ assert(html.includes('<h1>'+project.title.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')+'</h1>'),'Project heading must use its canonical title: '+project.repo);
+ assert(!/^(?:Windows:|Edit \.env|\d+\. Clone repo)/i.test(project.title),'A setup instruction was imported as a project title');
+ assert.equal([...html.matchAll(/data-story-panel="/g)].length,4,'Every original project needs four story chapters');
+ assert(!/<iframe\b/.test(html),'Project stories must not load external embeds automatically');
+ for(const file of project.files)assert(html.includes(file.url.replaceAll('&','&amp;')),'Story lost a source file: '+project.repo);
+}
+for(const report of reports){
+ const html=documents.get(path.join(out,'dashboards',report.repo,'index.html'));
+ assert.equal([...html.matchAll(/data-story-panel="/g)].length,4,'Every report needs the guided story');
+}
+assert.equal(projects.find(project=>project.repo==='kickstarter-analytics-engineering').title,'Kickstarter Analytics Engineering Platform');
+assert(work.includes('Kickstarter Analytics Engineering Platform'));
+console.log(`PASS: canonical project names, ${projects.length} original project stories, ${reports.length} report stories, complete linked evidence, and click-to-load embed boundaries.`);
