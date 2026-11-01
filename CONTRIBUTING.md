@@ -11,7 +11,7 @@ The current website is in `portfolio-site/`. Keep changes to the preserved root 
 5. Open a pull request describing the user-visible change, sources for new facts, and validation. Wait for relevant CI checks before merging.
 6. After merge, verify the matching Vercel production deployment and public routes.
 
-No package installation is needed for the portable site. Do not commit generated `dist/` output, credentials, original CV PDFs, private project content, or large showcase videos.
+Run `npm ci --ignore-scripts` and `npm test` for the portable site before building. Its inquiry endpoint uses a pinned phone-validation dependency. Do not commit generated `dist/` output, credentials, original CV PDFs, private project content, or large showcase videos.
 
 ## Content and design
 
@@ -20,3 +20,5 @@ Use the [content guide](portfolio-site/docs/CONTENT_GUIDE.md) for projects, repo
 Use [`theme.css`](portfolio-site/src/assets/theme.css) for shared color changes and the [design system](portfolio-site/docs/DESIGN_SYSTEM.md) for token and interaction rules. Keep the SVG/PNG social card and favicon consistent with the palette.
 
 The root README and `docs/README.md` should continue to point to the active source. New technical guides belong in `portfolio-site/docs/` unless they apply specifically to the whole repository or legacy application.
+
+Business access changes must follow [the verification guide](portfolio-site/docs/BUSINESS_INQUIRIES.md). Keep private business records and invitation files in ignored `.private/` storage; commit only encrypted approval entries after actual human review. Never approve test fixtures in production.

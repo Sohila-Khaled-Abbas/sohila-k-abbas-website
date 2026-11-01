@@ -61,18 +61,3 @@ if(navMore){
   document.addEventListener('click',event=>{if(!navMore.contains(event.target))navMore.open=false;});
   document.addEventListener('keydown',event=>{if(event.key==='Escape')navMore.open=false;});
 }
-
-const brief=document.querySelector('#project-brief');
-if(brief){
-  brief.addEventListener('submit',event=>{
-    event.preventDefault();
-    if(!brief.reportValidity())return;
-    const fields=new FormData(brief);
-    const subject=`Portfolio enquiry · ${fields.get('focus')}`;
-    const body=`Hello Sohila,\n\nMy name is ${fields.get('name')}.\nEmail: ${fields.get('email')}\nProject focus: ${fields.get('focus')}\n\n${fields.get('brief')}\n\nThank you.`;
-    document.querySelector('#brief-email-link').href='mailto:sohila.k.data@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
-    brief.querySelector('.brief-result').hidden=false;
-    document.querySelector('#brief-email-link').focus();
-  });
-  brief.addEventListener('input',()=>brief.querySelector('.brief-result').hidden=true);
-}

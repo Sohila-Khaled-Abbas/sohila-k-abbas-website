@@ -1,6 +1,6 @@
 # Publish the portfolio
 
-This site is static and portable. Build once with Node.js 22 or later; deploy only `dist/`. No database, server runtime, API key, or paid service is required by the code.
+The portfolio pages are static and portable. Vercel also deploys `api/business-inquiry.mjs` for approval-only business inquiries. Use Node.js 22 or later and install the pinned dependency with `npm ci --ignore-scripts`. No database, email provider, or SMS provider is required.
 
 ## Vercel — recommended
 
@@ -22,9 +22,10 @@ Official documentation: [Import a Git repository](https://vercel.com/docs/git) �
 
 ## Firebase Hosting — alternative
 
-Create or select your Firebase project in your own account. Firebase Hosting is already configured to publish `dist/`. No project ID is embedded in the repository.
+Create or select your Firebase project in your own account. Firebase Hosting is configured to publish `dist/`. Its static output does not include the Vercel inquiry endpoint; the gated form stays closed there. Approved invitations use the main production website. No project ID is embedded in the repository.
 
 ```powershell
+npm ci --ignore-scripts
 npm run build
 npm run check
 npx firebase-tools login
@@ -35,6 +36,7 @@ Replace `YOUR_FIREBASE_PROJECT_ID` with your real project ID. You can set the fi
 
 ```powershell
 $env:SITE_URL = "https://YOUR_FIREBASE_PROJECT_ID.web.app"
+npm ci --ignore-scripts
 npm run build
 npx firebase-tools deploy --only hosting --project YOUR_FIREBASE_PROJECT_ID
 ```
@@ -46,6 +48,7 @@ Official documentation: [Hosting quickstart](https://firebase.google.com/docs/ho
 After cloning the GitHub repository, run these commands from its `portfolio-site` directory.
 
 ```powershell
+npm ci --ignore-scripts
 npm run build
 npm run check
 npm run dev
@@ -72,4 +75,4 @@ Run `npm run build` after changing source. `npm run check` verifies internal rou
 
 ## Production
 
-The verified Vercel project is `sohila-khaled-abbas`, with the public production domain https://sohila-khaled-abbas.vercel.app and root directory `portfolio-site`. GitHub main is its deployment source. The ChatGPT Sites copy can remain available as a secondary host; canonical and social links point to the Vercel production origin.
+The verified Vercel project is `sohila-khaled-abbas`, with the public production domain https://sohila-khaled-abbas.vercel.app and root directory `portfolio-site`. GitHub main is its deployment source. Canonical and social links point to the Vercel production origin. Static mirrors do not provide the inquiry API. See [business verification and invitation operations](BUSINESS_INQUIRIES.md).

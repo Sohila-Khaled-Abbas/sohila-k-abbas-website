@@ -8,6 +8,7 @@ The active GitHub website is in `portfolio-site/`. Run commands from that direct
 | [Design system](DESIGN_SYSTEM.md) | Portrait palette, themes, contrast, focus, and motion |
 | [Content guide](CONTENT_GUIDE.md) | Profile edits, projects, reports, statuses, and publishing |
 | [Deployment](DEPLOYMENT.md) | Vercel, Firebase, canonical origin, and local preview |
+| [Verified business inquiries](BUSINESS_INQUIRIES.md) | Approval, private invitations, validation, revocation, and contact privacy |
 | [Repository layout](REPOSITORY_LAYOUT.md) | Active directory, legacy app, and host copies |
 | [Content sources](CONTENT_SOURCES.md) | Profile provenance and accuracy boundaries |
 | [Preview sources](preview-sources.md) | Screenshots, public Power BI links, logos, and interactions |

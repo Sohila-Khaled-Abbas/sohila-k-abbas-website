@@ -10,3 +10,5 @@ firebase-debug.*.log
 *.tar.gz
 *.zip
 .DS_Store
+.private/
+.openai/

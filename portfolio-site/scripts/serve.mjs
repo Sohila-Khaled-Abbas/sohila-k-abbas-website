@@ -2,12 +2,19 @@ import http from 'node:http';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {handleBusinessInquiry} from '../server/business-inquiry.mjs';
+try{process.loadEnvFile(path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../.env.local'));}catch(error){if(error.code!=='ENOENT')throw error;}
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../dist');
 const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.ico':'image/x-icon','.json':'application/json','.svg':'image/svg+xml','.xml':'application/xml','.txt':'text/plain'};
 const port=Number(process.env.PORT||4173);
 http.createServer(async(req,res)=>{
   try{
     const decoded=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
+    if(decoded.replace(/\/$/,'')==='/api/business-inquiry'){
+      const request=new Request('http://'+req.headers.host+req.url,{method:req.method,headers:req.headers,...(!['GET','HEAD'].includes(req.method)?{body:req,duplex:'half'}:{})});
+      const response=await handleBusinessInquiry(request);
+      res.writeHead(response.status,Object.fromEntries(response.headers));res.end(Buffer.from(await response.arrayBuffer()));return;
+    }
     let target=path.resolve(root,'.'+decoded);
     if(target!==root&&!target.startsWith(root+path.sep)){res.writeHead(403);res.end();return;}
     if((await fs.stat(target)).isDirectory())target=path.join(target,'index.html');

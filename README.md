@@ -27,11 +27,13 @@ New public repositories get portfolio cards and generated project pages. Existin
 
 ## Run the current website
 
-Use Node.js 22 or later. The portable site has no application dependencies and needs no package installation.
+Use Node.js 22 or later. The public pages are static; the private-invitation inquiry endpoint uses one pinned phone-validation dependency.
 
 ```sh
 git clone https://github.com/Sohila-Khaled-Abbas/sohila-k-abbas-website.git
 cd sohila-k-abbas-website/portfolio-site
+npm ci --ignore-scripts
+npm test
 npm run build
 npm run check
 npm run dev
@@ -57,8 +59,12 @@ Vercel project: **`sohila-khaled-abbas`**. Root Directory: **`portfolio-site`**.
 
 Firebase Hosting configuration is also included as an alternative. See [deployment instructions](portfolio-site/docs/DEPLOYMENT.md), the [content guide](portfolio-site/docs/CONTENT_GUIDE.md), and [contribution guide](CONTRIBUTING.md).
 
-The public site contains no original CV PDFs or private repository content. Its main content is static HTML; Power BI reports load only after a visitor chooses the interactive view. Contact forms prepare an email draft locally. Technology logos identify tools and do not imply affiliation.
+The public site contains no original CV PDFs or private repository content. Its main content is static HTML; Power BI reports load only after a visitor chooses the interactive view. Business inquiries require human approval and a private invitation; an isolated Vercel endpoint rechecks authorization and input rules before preparing an email draft. Technology logos identify tools and do not imply affiliation.
 
 ## Documentation
 
 [Architecture](portfolio-site/docs/ARCHITECTURE.md) · [Design system](portfolio-site/docs/DESIGN_SYSTEM.md) · [Content sources](portfolio-site/docs/CONTENT_SOURCES.md) · [Preview sources](portfolio-site/docs/preview-sources.md) · [Migration record](portfolio-site/docs/portfolio-migration.md) · [Release notes](CHANGELOG.md)
+
+## Business inquiries and contact privacy
+
+The form is reserved for approved businesses. No public self-registration or self-declared verification is accepted. Business registration, official domain, and work-email ownership are reviewed before a private invitation is issued. Public contact is through email, LinkedIn, and GitHub only. [Approval, invitation, and revocation guide](portfolio-site/docs/BUSINESS_INQUIRIES.md).
