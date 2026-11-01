@@ -1,0 +1,28 @@
+{
+  "updated_on": "2026-11-01",
+  "focus": "Data & analytics engineering, machine learning, and business intelligence",
+  "work_mode": "Remote roles, contracts, and paid project work",
+  "lanes": [
+    {
+      "title": "Data & analytics engineering",
+      "question": "Can the data be traced from source to a decision-ready model?",
+      "skills": ["Python", "SQL", "ETL/ELT", "Dimensional modeling", "Airflow"],
+      "projects": ["pixelfed-analytics-engineering", "Stock-Price-Data-Pipeline", "customer-360-banking-etl"],
+      "look_for": "Source handling, transformation rules, model grain, validation steps, and operational documentation."
+    },
+    {
+      "title": "Machine learning & search intelligence",
+      "question": "How are features, evaluation, and a useful output connected?",
+      "skills": ["Python", "Feature engineering", "Model evaluation", "scikit-learn"],
+      "projects": ["flyrank-ml-internship-starter", "deep-clean-data-tool"],
+      "look_for": "Dataset preparation, leakage-aware evaluation, notebooks, and interfaces that explain a model’s use."
+    },
+    {
+      "title": "Business intelligence & automation",
+      "question": "Can another person understand the KPI and repeat the workflow?",
+      "skills": ["Power BI", "DAX", "Power Query", "Excel / VBA", "n8n", "Docker"],
+      "projects": ["pwc-switzerland-virtual-case", "egyptian-cosmetics-market", "n8n-production-queue-setup"],
+      "look_for": "Report previews, semantic models, documented definitions, and repeatable automation patterns."
+    }
+  ]
+}

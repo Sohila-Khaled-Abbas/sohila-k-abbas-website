@@ -29,7 +29,7 @@ Add screenshots to `src/assets/previews/` as optimized WebP files. Keep their re
 
 ## Learning and community
 
-Use `content/community.json` for mentoring/community roles and `content/credentials.json` for the grouped learning collection. Keep completion dates and formal certification claims separate from course names, practice tracks, and platform links. Dated training belongs in the profile record.
+Use `content/community.json` for mentoring/community roles and `content/credentials.json` for the grouped learning collection. The current course log uses `content/learning.json`; recommendations and dated public recognition use `content/professional-evidence.json`. See [learning and evidence sources](LEARNING_AND_EVIDENCE.md). Keep completion dates and formal certification claims separate from course names, practice tracks, and platform links. Dated training belongs in the profile record.
 
 ## Change the design
 
@@ -48,3 +48,9 @@ Check the changed pages in light/dark themes and at mobile/desktop widths. Use a
 ## Business inquiries
 
 Contact privacy and business access follow [BUSINESS_INQUIRIES.md](BUSINESS_INQUIRIES.md). Keep the owner’s phone and old CV archive links out of public contact pages. Business approvals are maintained separately from repository/project content and require actual review.
+
+## Interactive About and LinkedIn posts
+
+Use `content/about-systems.json` for workflow nodes and existing project evidence. The four counters derive from the published project, case-study, report, and enrolled-course records. Keep diagrams conceptual and avoid implying a project uses a tool unless its source supports that statement.
+
+Use `content/linkedin-posts.json` for recent and popular writing, verified official embed URLs, and dated public engagement counts. Keep summaries in the owner’s voice. Respect `content/sync-policy.json` during all profile updates. See [automation behavior and limits](AUTOMATION.md).

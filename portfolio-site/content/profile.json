@@ -1,14 +1,14 @@
 {
   "name": "Sohila Khaled Abbas",
-  "role": "Data & Analytics Engineer | Machine Learning Engineer",
-  "seo_headline": "Data & Analytics Engineer | ML Engineer",
-  "headline": "Data & Analytics Engineer | Machine Learning Engineer | Power BI, Python, SQL, Airflow, dbt, Databricks, PySpark | ETL/ELT | Data Warehousing | Predictive Modeling",
+  "role": "Data & Analytics Engineer | ML Engineering & AI Automation",
+  "seo_headline": "Data & Analytics Engineer | ML Engineering & AI Automation",
+  "headline": "Data & Analytics Engineer | ML Engineering | Python, SQL, Power BI, dbt, Airflow, PySpark | ETL/ELT & Data Warehousing | AI Automation",
   "location": "Damietta, Egypt",
   "email": "sohila.k.data@gmail.com",
   "github": "https://github.com/Sohila-Khaled-Abbas",
   "linkedin": "https://linkedin.com/in/sohilakabbas",
-  "as_of": "2026-10-30",
-  "summary": "I work across data and analytics engineering, machine learning, and business intelligence. My focus spans ETL/ELT pipelines, data warehousing, predictive modeling, and decision-ready reporting with Python, SQL, Power BI, Airflow, dbt, Databricks, and PySpark. My background in agricultural science and quality-focused research shapes how I approach validation, documentation, and evidence.",
+  "as_of": "2026-11-01",
+  "summary": "I turn complex, fragmented data into reliable pipelines, actionable insights, and intelligent automation. My work connects data engineering, business intelligence, and AI through Python, SQL, Power BI, dbt, Airflow, PySpark, ETL/ELT, and data warehousing. A background in agricultural research shapes the way I validate information, document decisions, and explain what the results mean.",
   "experience": [
     {
       "role": "Machine Learning Engineer Intern",
@@ -20,18 +20,6 @@
         "Investigated patterns and communicated analytical findings to technical stakeholders.",
         "Contributed to repeatable workflows with attention to accurate record handling.",
         "Developed feature-engineering workflows and model-ready datasets with Python, Workbench, and JupyterLab."
-      ]
-    },
-    {
-      "role": "Data Engineer Intern",
-      "organization": "Data Pill",
-      "dates": "Mar 2026 – Aug 2026",
-      "mode": "Remote",
-      "bullets": [
-        "Designed data workflows using SQL, Python, and dimensional models.",
-        "Standardized validation and quality checks to support consistency and traceability.",
-        "Integrated sources and prepared structured outputs for dashboards and business reporting.",
-        "Worked with Databricks, dbt, Apache Spark, SSIS, and Informatica across data-engineering workflows."
       ]
     },
     {
@@ -208,5 +196,6 @@
     "Arabic · Native",
     "English · Excellent, written and spoken"
   ],
-  "website": "https://sohila-khaled-abbas.vercel.app"
+  "website": "https://sohila-khaled-abbas.vercel.app",
+  "current_focus": "Leakage-aware machine learning, grouped evaluation splits, target-derived features, and decision-support interfaces that keep model outputs understandable."
 }

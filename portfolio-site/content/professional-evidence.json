@@ -1,0 +1,76 @@
+{
+  "checked_on": "2026-11-01",
+  "linkedin": "https://www.linkedin.com/in/sohilakabbas/",
+  "recommendations_url": "https://www.linkedin.com/in/sohilakabbas/details/recommendations/",
+  "audience": {
+    "count": 71271,
+    "label": "LinkedIn followers",
+    "observed_on": "2026-11-01"
+  },
+  "recommendations": [
+    {
+      "author": "Mohammed Adham",
+      "profile": "https://www.linkedin.com/in/mohammed-adham-936381247/",
+      "context": "Founder & CEO, Data Pill · Client recommendation",
+      "published_on": "2025-07-29",
+      "quote": "analytical mindset, attention to detail",
+      "summary": "Highlights careful analysis, clear visualization, and practical work with Excel, SQL, Power BI, and Python."
+    },
+    {
+      "author": "Omar Magdy",
+      "profile": "https://www.linkedin.com/in/1omar-magdy/en/",
+      "context": "Community collaborator · Session X Podcast",
+      "published_on": "2025-11-01",
+      "quote": "She communicates complex ideas with clarity and confidence",
+      "summary": "Describes hands-on explanations and a constructive approach during a TechZone and DataCamp community collaboration."
+    },
+    {
+      "author": "Waleed Mouhammed",
+      "profile": "https://www.linkedin.com/in/waleedmouhammed/",
+      "context": "Senior Analytics Engineer · Client recommendation",
+      "published_on": "2025-08-05",
+      "quote": "dedicated, proactive, and highly motivated individual",
+      "summary": "Recognizes continued learning, professional initiative, and support for other people entering the data field."
+    }
+  ],
+  "mentions": [
+    {
+      "publisher": "TechZone",
+      "title": "A community spotlight on the journey into data",
+      "period": "2025 retrospective",
+      "url": "https://ae.linkedin.com/posts/techzone1_careershift-womenindata-analyticsengineering-activity-7411101120615415808-lpsC",
+      "summary": "TechZone featured Sohila’s move from agriculture into analytics, her SQL initiative and podcast contributions, and the practical value of her Arabic educational content."
+    }
+  ],
+  "recognition": {
+    "status": "historical-reported",
+    "title": "Favikon recognition, in context",
+    "period": "2025 retrospective",
+    "publisher": "TechZone on LinkedIn",
+    "url": "https://ae.linkedin.com/posts/techzone1_careershift-womenindata-analyticsengineering-activity-7411101120615415808-lpsC",
+    "claims": [
+      "Top 10 female LinkedIn voices in Egypt",
+      "Top 145 data science voices worldwide",
+      "#4 in Data Science / IT & Tech in Egypt"
+    ],
+    "note": "Historical rankings reported by TechZone. These are separate category and audience rankings, not a current live Favikon position.",
+    "snapshots": [
+      {
+        "rank": 145,
+        "scope": "Data Science voices · LinkedIn · Worldwide",
+        "period": "Historical Top 200 list",
+        "publisher": "Antony Martini",
+        "url": "https://www.linkedin.com/posts/antonymartini_top-200-voices-in-data-science-on-linkedin-activity-7407398930600345602-NypO",
+        "context": "Named at #145 in the author’s 141–150 list comment."
+      },
+      {
+        "rank": 59,
+        "scope": "LinkedIn creators · Egypt · All industries",
+        "period": "23 Jan 2026 list",
+        "publisher": "Eslam Abdallah / Eslam Tarek",
+        "url": "https://www.linkedin.com/posts/eslam-abdallah_linkedinegypt-topcreators-egyptbusiness-activity-7420504235471097856-IrBL",
+        "context": "Named at #59 in the 51–80 comment on the dated Egypt-wide list."
+      }
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-# Sohila Khaled Abbas — Data & Analytics Engineer | Machine Learning Engineer
+# Sohila Khaled Abbas — Data & Analytics Engineer | ML Engineering & AI Automation
 
 A complete, portable personal portfolio for Sohila Khaled Abbas: data and analytics engineering, machine learning, business intelligence, ETL/ELT, data warehousing, automation, and practical learning.
 
@@ -13,10 +13,13 @@ This is the active website source. In the GitHub repository it lives in `portfol
 - Dedicated home, work, dashboards, about, résumé, learning, and contact pages.
 - Twenty-two permanent reporting project pages with 17 real screenshots, 12 public Power BI links, available report files, and project presentations.
 - Explicit in-progress status for PixelFed and the n8n queue setup.
-- Preview pages for all 75 original repositories, including 12 detailed case studies. Sixteen learning forks retain upstream attribution.
+- Preview pages for all 77 original repositories, including 12 detailed case studies. Seventeen learning forks retain upstream attribution.
 - Actual architecture and model images, documented workflow overviews, and source-file previews.
-- A searchable directory of 91 accessible public GitHub repositories, including clearly attributed forks.
+- A searchable directory of 94 accessible public GitHub repositories, including clearly attributed forks.
 - An interactive three-step retail example with explicitly invented records.
+- Interactive About page with source-derived counts, four animated workflow diagrams, and project evidence.
+- Seven enrolled Udemy courses, a hiring-team overview, attributed professional recommendations, and dated historical recognition.
+- Recent and popular LinkedIn posts with optional official previews and direct post links.
 - About, learning resources, and verified professional contact links.
 - Portrait-led animated hero with technology logos, pause and reduced-motion support; responsive navigation, keyboard screenshot dialogs, light/dark themes, and a print-friendly résumé.
 - A portrait-inspired ivory, taupe, cocoa, and muted burgundy palette, with shared light/dark tokens and verified text contrast pairs.
@@ -56,3 +59,7 @@ Public GitHub projects refresh hourly through the repository workflow, with visi
 ## Verified business inquiries
 
 Only reviewed businesses with private invitations can open and prepare an inquiry. Approved identities are fixed; detailed work scope, budget, email, and optional international phone inputs are validated again on the server. Public communication is through email, LinkedIn, and GitHub. [Verification, invitations, and revocation](docs/BUSINESS_INQUIRIES.md).
+
+## Learning and professional evidence
+
+The [learning log](https://sohila-khaled-abbas.vercel.app/learning/) connects seven enrolled Udemy courses to public notes and projects, with topic search, subject filters, and shareable URLs. Enrollment is clearly separated from course completion and earned credentials. The [hiring-team overview](https://sohila-khaled-abbas.vercel.app/recruiters/) organizes skills around inspectable project work. Public LinkedIn recommendations and historical recognition appear on the Community page with attribution and dates. See [source and maintenance notes](docs/LEARNING_AND_EVIDENCE.md).
