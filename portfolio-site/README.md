@@ -11,7 +11,7 @@ This is the active website source. In the GitHub repository it lives in `portfol
 ## Content
 
 - Dedicated home, work, dashboards, about, résumé, learning, and contact pages.
-- Twenty-two permanent reporting project pages with 17 real screenshots, 12 public Power BI links, available report files, and project presentations.
+- Twenty-two permanent reporting project pages with 16 report screenshots and four original PwC SVG diagrams, 12 public Power BI links, available report files, and project presentations.
 - Explicit in-progress status for PixelFed and the n8n queue setup.
 - Preview pages for all 77 original repositories, including 12 detailed case studies. Seventeen learning forks retain upstream attribution.
 - Guided stories for all 77 original projects and 22 report pages: question, approach, result, and searchable source evidence.

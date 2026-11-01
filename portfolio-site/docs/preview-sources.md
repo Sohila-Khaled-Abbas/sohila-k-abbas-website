@@ -4,9 +4,9 @@
 
 Twelve existing public Power BI view URLs were recovered from project READMEs and the previous portfolio. They are offered as click-to-load reports with direct links. HR Attendance now uses its recovered public report; its previous Microsoft sign-in share URL remains a separately labeled alternate link. Other projects link to the available report files. No new Power BI sharing permissions or embed codes were created.
 
-The collection has 17 preview images. Most are taken from repository assets; Emergency Room is rendered from its existing PDF export. Apple, FMCG, and Mobile Technical Support use actual public report home views captured on 30 October 2026. The older FMCG PDF containing an unsupported-visual message is not a preview or a published file link. Images are format-optimized WebP copies with the report content preserved. File-only entries use a clearly labeled placeholder, not a fabricated dashboard.
+The collection has 16 report screenshots and four original SVG diagrams for the PwC virtual case. Most are taken from repository assets; Emergency Room is rendered from its existing PDF export. Apple, FMCG, and Mobile Technical Support use actual public report home views captured on 30 October 2026. The older FMCG PDF containing an unsupported-visual message is not a preview or a published file link. Images are format-optimized WebP copies with the report content preserved. File-only entries use a clearly labeled placeholder, not a fabricated dashboard.
 
-All 75 original repositories also have permanent project preview pages. In addition to report screenshots, nine actual architecture/model/chart assets support project previews. Other pages show a documented workflow or real source-file paths. Sixteen learning forks retain upstream attribution. Preview types are labeled and do not imply running infrastructure.
+All 77 original repositories also have permanent project preview pages. In addition to report screenshots, nine actual architecture/model/chart assets support project previews. Other pages show a documented workflow or real source-file paths. Seventeen learning forks retain upstream attribution. Preview types are labeled and do not imply running infrastructure.
 
 `content/project-status.json` marks only PixelFed and the n8n queue setup as in progress, based on Sohila's current work discussed in the conversation. Repository update times do not determine project status. Edit these two records as work changes.
 
@@ -29,3 +29,9 @@ The supplied LinkedIn profile PDF corroborates Kimball dimensional modeling, sci
 The social card is an original 1200 × 630 design, committed as SVG and PNG for link previews.
 
 The portrait-inspired palette is documented in [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md). Dashboard screenshots and official logos retain their source colors.
+
+## PwC virtual-case diagram previews
+
+The previous call-center screenshot was removed at Sohila’s request on 1 November 2026. The project directory card, guided result chapter, and report page now use the original SVG diagrams referenced by the [GitHub README](https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/README.md). The galaxy schema is the primary preview; the ETL pipeline, executive KPI tree, and workforce progression funnel are also available to enlarge. Each diagram links to its GitHub original.
+
+The SVG files are copied byte-for-byte into `src/assets/project-media/pwc-*.svg`. `content/project-previews.json` retains each original source URL, Git blob SHA, natural dimensions, caption, and alt text. These are labeled architecture/analytics diagrams, with full-image scaling instead of cropping. The Forage virtual-experience context remains intact; importing visuals does not import the README’s employment, ranking, or business-impact claims.
