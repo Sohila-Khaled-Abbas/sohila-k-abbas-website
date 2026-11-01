@@ -4514,13 +4514,13 @@
       "old_portfolio": false,
       "github": {
         "description": "Config files for my GitHub profile.",
-        "updated_at": "2026-11-01T14:29:21Z",
-        "pushed_at": "2026-11-01T14:29:17Z",
+        "updated_at": "2026-11-01T19:11:26Z",
+        "pushed_at": "2026-11-01T19:11:23Z",
         "homepage": "https://github.com/Sohila-Khaled-Abbas",
         "default_branch": "main",
-        "readme_excerpt": "I work across data and analytics engineering, machine learning, and business intelligence. My focus spans ETL/ELT pipelines, data warehousing, predictive modeling, and decision-ready reporting with Python, SQL, Power BI, Airflow, dbt, Databricks, and PySpark. My background in agricultural science and quality-focused research shapes how I approach validation, documentation, and evidence.",
-        "readme_sha": "743979139cfb9caa0bc6b5b1d0c7f64bff5403ed",
-        "fingerprint": "2026-11-01T14:29:17Z"
+        "readme_excerpt": "I turn complex, fragmented data into reliable pipelines, actionable insights, and intelligent automation. My work connects data engineering, business intelligence, and AI through Python, SQL, Power BI, dbt, Airflow, PySpark, ETL/ELT, and data warehousing. A background in agricultural research shapes the way I validate information, document decisions, and explain what the results mean.",
+        "readme_sha": "63e237de77787232c409b8c12e676e2e7d18e57f",
+        "fingerprint": "2026-11-01T19:11:23Z"
       }
     },
     {
