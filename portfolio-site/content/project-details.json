@@ -1609,7 +1609,7 @@
     {
       "repo": "forage-excel-skills-job-simulation",
       "title": "Forage Academy — Excel Skills Job Simulation",
-      "summary": "An independent learning portfolio documenting practical Excel exercises, workbook exploration, data-quality checks, analytical techniques, and original learning notes from the Forage Academy Excel Skills Virtual Experience Program. The simulation work is in progress.",
+      "summary": "A practical learning portfolio documenting progress through the Forage Academy Excel Skills Virtual Experience Program, with original notes and evidence from workbook exploration, data-quality checks, formulas, conditional formatting, and analytical exercises. The simulation work is in progress.",
       "technologies": [
         "Microsoft Excel",
         "Data Analysis",
@@ -1653,7 +1653,8 @@
         "readme_excerpt": "A practical learning portfolio documenting my progress through the Excel Skills Virtual Experience Program by Forage Academy.",
         "readme_sha": "75e08c77a2c89c162e7a20552f550b95988f8def",
         "fingerprint": "2026-11-03T18:08:56Z"
-      }
+      },
+      "featured": true
     },
     {
       "repo": "forward-deployed-engineer-roadmap",
