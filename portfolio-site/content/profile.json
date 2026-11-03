@@ -7,9 +7,23 @@
   "email": "sohila.k.data@gmail.com",
   "github": "https://github.com/Sohila-Khaled-Abbas",
   "linkedin": "https://linkedin.com/in/sohilakabbas",
-  "as_of": "2026-11-01",
+  "as_of": "2026-11-03",
   "summary": "I turn complex, fragmented data into reliable pipelines, actionable insights, and intelligent automation. My work connects data engineering, business intelligence, and AI through Python, SQL, Power BI, dbt, Airflow, PySpark, ETL/ELT, and data warehousing. A background in agricultural research shapes the way I validate information, document decisions, and explain what the results mean.",
   "experience": [
+    {
+      "role": "Data Labeling Analyst — Job Simulation",
+      "organization": "Forage Academy",
+      "dates": "Nov 3, 2026",
+      "mode": "Virtual · Completed simulation",
+      "bullets": [
+        "Reviewed simulated customer-support messages and classified intent, sentiment, and personally identifiable information (PII) using a consistent labeling schema.",
+        "Evaluated ambiguous edge cases and documented concise rationales for final labeling decisions.",
+        "Reviewed peer labeling, identified inconsistencies, and proposed an improvement to the team's labeling guidelines.",
+        "Applied clear definitions and privacy-aware practices to support consistent, reliable labeled data.",
+        "Practiced human–AI collaboration concepts relevant to AI operations, trust and safety, and machine-learning data support."
+      ],
+      "certificate_url": "https://www.theforage.com/completion-certificates/HgpPSsyQpzob6HEh9/Fnbjyox4Y4SciuEGF_HgpPSsyQpzob6HEh9_6ae9f5fbcfb5bb576b61ccb2_1793724247160_completion_certificate.pdf"
+    },
     {
       "role": "Machine Learning Engineer Intern",
       "organization": "FlyRank AI",

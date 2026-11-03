@@ -1609,9 +1609,20 @@
     {
       "repo": "forage-excel-skills-job-simulation",
       "title": "Forage Academy — Excel Skills Job Simulation",
-      "summary": "Learning notes and original evidence from the Forage Academy Excel Skills virtual experience program.",
-      "technologies": [],
-      "methods": [],
+      "summary": "An independent learning portfolio documenting practical Excel exercises, workbook exploration, data-quality checks, analytical techniques, and original learning notes from the Forage Academy Excel Skills Virtual Experience Program. The simulation work is in progress.",
+      "technologies": [
+        "Microsoft Excel",
+        "Data Analysis",
+        "Data Quality",
+        "Conditional Formatting",
+        "Excel Formulas",
+        "Data Visualization"
+      ],
+      "methods": [
+        "Inspect workbook structure, field meanings, data types, and potential data-quality issues before editing.",
+        "Practice conditional-formatting rules for formula errors, missing values, cross-sell indicators, CAGR, and high unit sales.",
+        "Validate spreadsheet changes and document the reasoning, evidence, and remaining work."
+      ],
       "flow": null,
       "media": null,
       "live": null,
@@ -1621,13 +1632,18 @@
           "path": "README.md",
           "size": 5435,
           "url": "https://github.com/Sohila-Khaled-Abbas/forage-excel-skills-job-simulation/blob/main/README.md"
+        },
+        {
+          "path": "LEARNING_LOG.md",
+          "size": 0,
+          "url": "https://github.com/Sohila-Khaled-Abbas/forage-excel-skills-job-simulation/blob/main/LEARNING_LOG.md"
         }
       ],
       "empty": false,
       "source": "https://github.com/Sohila-Khaled-Abbas/forage-excel-skills-job-simulation",
       "readme": "https://github.com/Sohila-Khaled-Abbas/forage-excel-skills-job-simulation/blob/main/README.md",
       "old_portfolio": false,
-      "auto_generated": true,
+      "auto_generated": false,
       "github": {
         "description": "Learning notes and original evidence from the Forage Academy Excel Skills virtual experience program.",
         "updated_at": "2026-11-03T18:09:00Z",
