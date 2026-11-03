@@ -713,6 +713,23 @@
       "parent_name": null
     },
     {
+      "id": 1444607602,
+      "name": "forage-excel-skills-job-simulation",
+      "url": "https://github.com/Sohila-Khaled-Abbas/forage-excel-skills-job-simulation",
+      "description": "Learning notes and original evidence from the Forage Academy Excel Skills virtual experience program.",
+      "language": null,
+      "topics": [],
+      "fork": false,
+      "archived": false,
+      "private": false,
+      "updated_at": "2026-11-03T18:09:00Z",
+      "pushed_at": "2026-11-03T18:08:56Z",
+      "default_branch": "main",
+      "homepage": null,
+      "parent_url": null,
+      "parent_name": null
+    },
+    {
       "id": 1441007038,
       "name": "forward-deployed-engineer-roadmap",
       "url": "https://github.com/Sohila-Khaled-Abbas/forward-deployed-engineer-roadmap",

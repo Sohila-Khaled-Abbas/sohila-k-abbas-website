@@ -1607,6 +1607,39 @@
       }
     },
     {
+      "repo": "forage-excel-skills-job-simulation",
+      "title": "Forage Academy — Excel Skills Job Simulation",
+      "summary": "Learning notes and original evidence from the Forage Academy Excel Skills virtual experience program.",
+      "technologies": [],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 5435,
+          "url": "https://github.com/Sohila-Khaled-Abbas/forage-excel-skills-job-simulation/blob/main/README.md"
+        }
+      ],
+      "empty": false,
+      "source": "https://github.com/Sohila-Khaled-Abbas/forage-excel-skills-job-simulation",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/forage-excel-skills-job-simulation/blob/main/README.md",
+      "old_portfolio": false,
+      "auto_generated": true,
+      "github": {
+        "description": "Learning notes and original evidence from the Forage Academy Excel Skills virtual experience program.",
+        "updated_at": "2026-11-03T18:09:00Z",
+        "pushed_at": "2026-11-03T18:08:56Z",
+        "homepage": null,
+        "default_branch": "main",
+        "readme_excerpt": "A practical learning portfolio documenting my progress through the Excel Skills Virtual Experience Program by Forage Academy.",
+        "readme_sha": "75e08c77a2c89c162e7a20552f550b95988f8def",
+        "fingerprint": "2026-11-03T18:08:56Z"
+      }
+    },
+    {
       "repo": "forward-deployed-engineer-roadmap",
       "title": "Forward Deployed Engineer Roadmap",
       "summary": "A personalized 24-week journey from Python, SQL, BI, and n8n to Forward Deployed Engineering, with an interactive skill map, weekly work plans, portfolio builds, and customer-delivery templates.",
