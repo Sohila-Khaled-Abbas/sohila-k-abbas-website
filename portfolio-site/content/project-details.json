@@ -305,13 +305,13 @@
       "old_portfolio": true,
       "github": {
         "description": "An end-to-end data engineering and analytics project analyzing historical Apple Inc. (AAPL) stock market data up to the present day, to extract actionable business insights and investment strategies.",
-        "updated_at": "2026-10-31T01:26:58Z",
-        "pushed_at": "2026-10-31T01:26:54Z",
+        "updated_at": "2026-11-03T03:20:28Z",
+        "pushed_at": "2026-11-03T03:20:24Z",
         "homepage": null,
         "default_branch": "main",
         "readme_excerpt": "[](https://powerbi.microsoft.com/) [](https://www.mysql.com/) [](https://www.python.org/) [](https://jupyter.org/) [](https://github.com/features/actions) [](https://opensource.org/licenses/MIT)",
         "readme_sha": "ee911efa595ab5a770c24a43462ac437c584daa0",
-        "fingerprint": "2026-10-31T01:26:54Z"
+        "fingerprint": "2026-11-03T03:20:24Z"
       }
     },
     {
@@ -4514,13 +4514,13 @@
       "old_portfolio": false,
       "github": {
         "description": "Config files for my GitHub profile.",
-        "updated_at": "2026-11-02T09:37:21Z",
-        "pushed_at": "2026-11-02T09:37:17Z",
+        "updated_at": "2026-11-03T09:40:38Z",
+        "pushed_at": "2026-11-03T09:40:34Z",
         "homepage": "https://github.com/Sohila-Khaled-Abbas",
         "default_branch": "main",
         "readme_excerpt": "I turn complex, fragmented data into reliable pipelines, actionable insights, and intelligent automation. My work connects data engineering, business intelligence, and AI through Python, SQL, Power BI, dbt, Airflow, PySpark, ETL/ELT, and data warehousing. A background in agricultural research shapes the way I validate information, document decisions, and explain what the results mean.",
-        "readme_sha": "63e237de77787232c409b8c12e676e2e7d18e57f",
-        "fingerprint": "2026-11-02T09:37:17Z"
+        "readme_sha": "42df9751fdcaf3c3004e5e0ba05c43f537d72d22",
+        "fingerprint": "2026-11-03T09:40:34Z"
       }
     },
     {
