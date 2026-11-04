@@ -29,7 +29,7 @@ Add screenshots to `src/assets/previews/` as optimized WebP files. Keep their re
 
 ## Learning and community
 
-Use `content/community.json` for mentoring/community roles and `content/credentials.json` for the grouped learning collection. The current course log uses `content/learning.json`; recommendations and dated public recognition use `content/professional-evidence.json`. See [learning and evidence sources](LEARNING_AND_EVIDENCE.md). Keep completion dates and formal certification claims separate from course names, practice tracks, and platform links. Dated training belongs in the profile record.
+Use `content/community.json` for mentoring/community roles and `content/credentials.json` for the grouped learning collection. The optional `featured` array in `credentials.json` supports individually verified credentials with a completion date, direct certificate URL, project URL, and supporting evidence URL; do not add an item until its provider completion page or certificate is verified. The current course log uses `content/learning.json`; recommendations and dated public recognition use `content/professional-evidence.json`. See [learning and evidence sources](LEARNING_AND_EVIDENCE.md). Keep completion dates and formal certification claims separate from course names, practice tracks, and platform links. Dated training belongs in the profile record.
 
 ## Change the design
 
