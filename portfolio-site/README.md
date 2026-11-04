@@ -1,6 +1,6 @@
-# Sohila Khaled Abbas — Data & Analytics Engineer | ML Engineering & AI Automation
+# Sohila Khaled Abbas — Data Analyst & BI Developer
 
-A complete, portable personal portfolio for Sohila Khaled Abbas: data and analytics engineering, machine learning, business intelligence, ETL/ELT, data warehousing, automation, and practical learning.
+A complete, portable personal portfolio for Sohila Khaled Abbas, focused on data analysis and BI development with SQL, Python, Power BI, DAX, Power Query, ETL/ELT, and analytics engineering. It also documents complementary work in data engineering, machine learning, automation, and practical learning.
 
 **Live website:** [sohila-khaled-abbas.vercel.app](https://sohila-khaled-abbas.vercel.app/)
 

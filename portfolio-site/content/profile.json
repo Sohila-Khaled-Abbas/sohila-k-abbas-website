@@ -1,14 +1,14 @@
 {
   "name": "Sohila Khaled Abbas",
-  "role": "Data & Analytics Engineer | ML Engineering & AI Automation",
-  "seo_headline": "Data & Analytics Engineer | ML Engineering & AI Automation",
-  "headline": "Data & Analytics Engineer | ML Engineering | Python, SQL, Power BI, dbt, Airflow, PySpark | ETL/ELT & Data Warehousing | AI Automation",
+  "role": "Data Analyst & BI Developer",
+  "seo_headline": "Data Analyst & BI Developer | SQL, Python, Power BI, DAX & Power Query | ETL/ELT & Analytics Engineering",
+  "headline": "Data Analyst & BI Developer | SQL, Python, Power BI, DAX & Power Query | ETL/ELT & Analytics Engineering",
   "location": "Damietta, Egypt",
   "email": "sohila.k.data@gmail.com",
   "github": "https://github.com/Sohila-Khaled-Abbas",
   "linkedin": "https://linkedin.com/in/sohilakabbas",
   "as_of": "2026-11-04",
-  "summary": "I turn complex, fragmented data into reliable pipelines, actionable insights, and intelligent automation. My work connects data engineering, business intelligence, and AI through Python, SQL, Power BI, dbt, Airflow, PySpark, ETL/ELT, and data warehousing. A background in agricultural research shapes the way I validate information, document decisions, and explain what the results mean.",
+  "summary": "I’m a Data Analyst and BI Developer focused on turning raw, fragmented data into clear insights and reliable reporting. I use SQL and Python to explore, clean, validate, and prepare data, then build business intelligence solutions with Power BI, DAX, and Power Query. I also work with ETL/ELT workflows, dimensional modeling, and data warehousing to make analytics more consistent, traceable, and useful for decision-making. My portfolio brings these skills together through hands-on projects across business reporting, analytics engineering, and data preparation. A background in agricultural research shaped the way I approach evidence, quality checks, and communicating findings.",
   "experience": [
     {
       "role": "Excel Skills Job Simulation",
