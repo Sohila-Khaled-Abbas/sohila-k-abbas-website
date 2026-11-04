@@ -2,7 +2,7 @@
 
 **[Explore the live website →](https://sohila-khaled-abbas.vercel.app/)**
 
-Data & Analytics Engineer | ML Engineering | Python, SQL, Power BI, dbt, Airflow, PySpark | ETL/ELT & Data Warehousing | AI Automation
+Data Analyst & BI Developer | SQL, Python, Power BI, DAX & Power Query | ETL/ELT & Analytics Engineering
 
 ![Sohila Khaled Abbas portfolio](portfolio-site/src/assets/social-card.png)
 
