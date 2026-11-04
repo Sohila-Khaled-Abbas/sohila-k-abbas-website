@@ -1609,19 +1609,28 @@
     {
       "repo": "forage-excel-skills-job-simulation",
       "title": "Forage Academy — Excel Skills Job Simulation",
-      "summary": "A practical learning portfolio documenting progress through the Forage Academy Excel Skills Virtual Experience Program, with original notes and evidence from workbook exploration, data-quality checks, formulas, conditional formatting, and analytical exercises. The simulation work is in progress.",
+      "summary": "Completed and submitted the Forage Academy Excel Skills Job Simulation on November 4, 2026. This evidence-led project documents data-quality review, conditional formatting, Excel formulas, PivotTables, KPI design, dashboard charts, and recorded VBA macros with worksheet buttons.",
       "technologies": [
         "Microsoft Excel",
         "Data Analysis",
         "Data Quality",
         "Conditional Formatting",
         "Excel Formulas",
-        "Data Visualization"
+        "SUM · AVERAGE · IF · COUNTIF · SUMIF · IFERROR",
+        "PivotTables",
+        "Dashboard Development",
+        "Data Visualization",
+        "VBA",
+        "Excel Macros"
       ],
       "methods": [
-        "Inspect workbook structure, field meanings, data types, and potential data-quality issues before editing.",
-        "Practice conditional-formatting rules for formula errors, missing values, cross-sell indicators, CAGR, and high unit sales.",
-        "Validate spreadsheet changes and document the reasoning, evidence, and remaining work."
+        "Inspected account-sales workbook structure and identified missing cells, text-based formula-error markers, cross-sell flags, CAGR outliers, and high-sales records.",
+        "Applied conditional formatting to surface data-quality issues and analytical thresholds without treating text error markers as numeric values.",
+        "Built account-level calculations and summary metrics with SUM, AVERAGE, MAX, MIN, IF, IFERROR, COUNTIF, and SUMIF; used an absolute reference for the sales threshold.",
+        "Created PivotTable summaries for 2021 unit sales by account type and top accounts, then prepared a six-year sales summary.",
+        "Built a dashboard with a line chart for annual sales, a bar chart for the top 10 accounts, a column chart for sales by account type, and three KPI cards.",
+        "Recorded and tested a first macro plus SortBy5YrCAGR and SortBy2021UnitSales; assigned the sorting macros to separate Form Control buttons.",
+        "Captured workbook/button and VBA screenshots, assembled a readable PDF evidence file, and submitted the XLSM and PDF through the Forage activity."
       ],
       "flow": null,
       "media": null,
@@ -1630,13 +1639,23 @@
       "files": [
         {
           "path": "README.md",
-          "size": 5435,
           "url": "https://github.com/Sohila-Khaled-Abbas/forage-excel-skills-job-simulation/blob/main/README.md"
         },
         {
           "path": "LEARNING_LOG.md",
-          "size": 0,
           "url": "https://github.com/Sohila-Khaled-Abbas/forage-excel-skills-job-simulation/blob/main/LEARNING_LOG.md"
+        },
+        {
+          "path": "material/03-build-charts-and-dashboards/Account_Sales_Data_for_Dashboard_Practice_Working.xlsx",
+          "url": "https://github.com/Sohila-Khaled-Abbas/forage-excel-skills-job-simulation/blob/main/material/03-build-charts-and-dashboards/Account_Sales_Data_for_Dashboard_Practice_Working.xlsx"
+        },
+        {
+          "path": "material/04-vba-and-marcos/Account_Sales_Data_for_Automation_Practice.xlsm",
+          "url": "https://github.com/Sohila-Khaled-Abbas/forage-excel-skills-job-simulation/blob/main/material/04-vba-and-marcos/Account_Sales_Data_for_Automation_Practice.xlsm"
+        },
+        {
+          "path": "material/04-vba-and-marcos/Task_04_Macro_Buttons_Evidence.pdf",
+          "url": "https://github.com/Sohila-Khaled-Abbas/forage-excel-skills-job-simulation/blob/main/material/04-vba-and-marcos/Task_04_Macro_Buttons_Evidence.pdf"
         }
       ],
       "empty": false,
@@ -1654,7 +1673,10 @@
         "readme_sha": "75e08c77a2c89c162e7a20552f550b95988f8def",
         "fingerprint": "2026-11-03T18:08:56Z"
       },
-      "featured": true
+      "featured": true,
+      "certificate_url": "https://www.theforage.com/completion-certificates/HgpPSsyQpzob6HEh9/SfGxkQ8FacaZR9LnZ_HgpPSsyQpzob6HEh9_6ae9f5fbcfb5bb576b61ccb2_1793821202129_completion_certificate.pdf",
+      "completed_on": "2026-11-04",
+      "status": "completed"
     },
     {
       "repo": "forward-deployed-engineer-roadmap",
