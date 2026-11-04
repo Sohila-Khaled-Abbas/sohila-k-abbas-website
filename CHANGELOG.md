@@ -1,3 +1,9 @@
+## 2026-11-04 — Forage Excel Skills completion
+
+- Added the completed Forage Academy Excel Skills Job Simulation to the portfolio's featured credentials, with its direct completion certificate, project repository, and macro evidence PDF.
+- Updated the work-project record to reflect completion and submission, and documented the Excel methods, formulas, PivotTables, dashboard charts, KPI cards, and VBA macro buttons.
+- Updated the credential-page template to present verified completion evidence separately from enrolled coursework.
+
 # Release notes
 
 ## 2026-10-30 — Portrait palette and repository documentation
