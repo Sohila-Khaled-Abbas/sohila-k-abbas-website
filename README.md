@@ -8,6 +8,10 @@ Data & Analytics Engineer | ML Engineering | Python, SQL, Power BI, dbt, Airflow
 
 The active website source is **[`portfolio-site/`](portfolio-site/)**. Vercel builds this directory from `main` and publishes it at [sohila-khaled-abbas.vercel.app](https://sohila-khaled-abbas.vercel.app/).
 
+## Recent achievement
+
+Completed the **Forage Academy Excel Skills Job Simulation** on **November 4, 2026**. The credential covers practical Excel data-quality review, conditional formatting, formulas, PivotTables, dashboard development, data visualization, and VBA macro automation. [View the completion certificate](https://www.theforage.com/completion-certificates/HgpPSsyQpzob6HEh9/SfGxkQ8FacaZR9LnZ_HgpPSsyQpzob6HEh9_6ae9f5fbcfb5bb576b61ccb2_1793821202129_completion_certificate.pdf) · [Explore the submitted work](https://github.com/Sohila-Khaled-Abbas/forage-excel-skills-job-simulation).
+
 ## What's inside
 
 - A public GitHub collection that discovers new repositories and refreshes project source metadata automatically.
