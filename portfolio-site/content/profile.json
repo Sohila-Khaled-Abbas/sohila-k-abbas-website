@@ -11,6 +11,20 @@
   "summary": "I turn complex, fragmented data into reliable pipelines, actionable insights, and intelligent automation. My work connects data engineering, business intelligence, and AI through Python, SQL, Power BI, dbt, Airflow, PySpark, ETL/ELT, and data warehousing. A background in agricultural research shapes the way I validate information, document decisions, and explain what the results mean.",
   "experience": [
     {
+      "role": "Excel Skills Job Simulation",
+      "organization": "Forage Academy",
+      "dates": "Nov 4, 2026",
+      "mode": "Virtual · Completed simulation",
+      "bullets": [
+        "Reviewed and organized account sales data, using conditional formatting to surface data-quality issues and meaningful patterns.",
+        "Applied SUM, AVERAGE, IF, COUNTIF, SUMIF, and IFERROR to calculate, summarize, and classify sales information.",
+        "Built PivotTables and charts to examine account performance and annual sales trends, then brought key metrics together in an Excel dashboard.",
+        "Recorded and tested VBA sorting macros, assigning them to Form Control buttons to make repeatable workbook operations easier to run."
+      ],
+      "certificate_url": "https://www.theforage.com/completion-certificates/HgpPSsyQpzob6HEh9/SfGxkQ8FacaZR9LnZ_HgpPSsyQpzob6HEh9_6ae9f5fbcfb5bb576b61ccb2_1793821202129_completion_certificate.pdf",
+      "project_url": "https://sohila-khaled-abbas.vercel.app/projects/forage-excel-skills-job-simulation/"
+    },
+    {
       "role": "Data Labeling Analyst — Job Simulation",
       "organization": "Forage Academy",
       "dates": "Nov 3, 2026",
