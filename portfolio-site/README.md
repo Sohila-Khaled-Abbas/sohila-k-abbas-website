@@ -8,6 +8,10 @@ A complete, portable personal portfolio for Sohila Khaled Abbas: data and analyt
 
 This is the active website source. In the GitHub repository it lives in `portfolio-site/`; Vercel builds this directory. The original React application at the repository root is preserved separately.
 
+## Recent achievement
+
+The Forage Academy **Excel Skills Job Simulation** was completed and submitted on **November 4, 2026**. Its verified completion certificate is featured on `/credentials/`, with links to the public project repository and Task 04 evidence PDF. The work covers Excel data-quality review, conditional formatting, formulas, PivotTables, KPI/dashboard development, data visualization, and VBA macros.
+
 ## Content
 
 - Dedicated home, work, dashboards, about, résumé, learning, and contact pages.
