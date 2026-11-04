@@ -1633,7 +1633,13 @@
         "Captured workbook/button and VBA screenshots, assembled a readable PDF evidence file, and submitted the XLSM and PDF through the Forage activity."
       ],
       "flow": null,
-      "media": null,
+      "media": {
+        "src": "/previews/forage-excel-dashboard.webp",
+        "kind": "Excel dashboard preview",
+        "caption": "Account Sales Performance Dashboard — KPI cards, annual sales trend, top 10 accounts, and 2021 sales by account type.",
+        "width": 440,
+        "height": 487
+      },
       "live": null,
       "presentation": null,
       "files": [
