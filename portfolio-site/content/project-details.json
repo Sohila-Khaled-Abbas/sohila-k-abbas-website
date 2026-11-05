@@ -5120,6 +5120,78 @@
         "readme_sha": "fb45c1d6a7c07b10914af4c06ce2f82fa5ffc172",
         "fingerprint": "2025-10-04T17:58:36Z"
       }
+    },
+    {
+      "repo": "powerbi-data-analysis-diploma",
+      "title": "Power BI Data Analysis Diploma — Learning Repository",
+      "summary": "A structured, hands-on learning companion for the 81-lecture Microsoft Power BI Data Analysis Diploma by Eng. Essam Elsayed (MCT). The repository organizes the curriculum into seven learning phases and brings together lecture notes, practice materials, data-source exercises, Power Query M Language references, a progress tracker, and 17 case studies.",
+      "technologies": [
+        "Microsoft Power BI",
+        "Power Query",
+        "M Language",
+        "Data Analysis",
+        "Excel",
+        "SQL",
+        "REST APIs",
+        "JSON",
+        "Web Data"
+      ],
+      "methods": [
+        "Organize 81 lectures into seven learning phases, from data foundations and acquisition to transformation, case studies, and the Power Query engine.",
+        "Document data acquisition patterns across Excel, CSV, PDF, cloud storage, SQL databases, web sources, REST APIs, and JSON.",
+        "Maintain a practical Power Query M Language reference covering reusable expressions, custom functions, error handling, and query patterns.",
+        "Structure hands-on practice materials and lecture-level documentation alongside a curriculum map and personal progress tracker.",
+        "Use 17 case-study sections to connect data preparation and Power BI concepts with applied business scenarios."
+      ],
+      "flow": [
+        "Data foundations",
+        "Data acquisition",
+        "Advanced data extraction",
+        "Governance and automation",
+        "Data transformation",
+        "Applied case studies",
+        "Power Query engine and M Language"
+      ],
+      "media": {
+        "src": "/project-media/powerbi-data-analysis-diploma.svg",
+        "kind": "Learning repository thumbnail",
+        "caption": "Power BI Data Analysis Diploma learning repository — 81 lectures across seven phases, with Power Query, M Language, data governance, and applied case studies."
+      },
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma/blob/main/README.md"
+        },
+        {
+          "path": "CURRICULUM.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma/blob/main/CURRICULUM.md"
+        },
+        {
+          "path": "M_LANGUAGE_CHEATSHEET.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma/blob/main/M_LANGUAGE_CHEATSHEET.md"
+        },
+        {
+          "path": "PROGRESS_TRACKER.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma/blob/main/PROGRESS_TRACKER.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma",
+      "empty": false,
+      "file_count": 202,
+      "source_branch": "main",
+      "github": {
+        "description": "Comprehensive learning repository and documentation hub for the 81-lecture Microsoft Power BI Data Analysis Diploma by Eng. Essam Elsayed (MCT). Includes organized datasets, Power Query M code cheatsheet, and real-world case studies.",
+        "updated_at": "2026-11-05T00:12:37Z",
+        "pushed_at": "2026-11-05T00:12:00Z",
+        "homepage": "https://www.youtube.com/playlist?list=PLkYJ59mAhUsMbZQ4AmBmGt0EEyrTrg5mX",
+        "default_branch": "main",
+        "readme_excerpt": "A structured, hands-on self-study companion for the Microsoft Power BI Data Analysis Diploma. The repository maps 81 lectures into seven phases and includes practice materials, lecture documentation, a Power Query M Language cheatsheet, and a progress tracker.",
+        "fingerprint": "2026-11-05T00:12:00Z"
+      },
+      "auto_generated": false
     }
   ]
 }
