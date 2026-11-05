@@ -1,6 +1,6 @@
 {
   "owner": "Sohila-Khaled-Abbas",
-  "checked_on": "2026-11-03",
+  "checked_on": "2026-11-05",
   "repositories": [
     {
       "id": 979615270,
@@ -1540,6 +1540,32 @@
       "pushed_at": "2025-03-15T15:02:05Z",
       "default_branch": "main",
       "homepage": "https://sohila-khaled-abbas.github.io/Portfolio/",
+      "parent_url": null,
+      "parent_name": null
+    },
+    {
+      "id": 1446320577,
+      "name": "powerbi-data-analysis-diploma",
+      "url": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma",
+      "description": "Comprehensive learning repository and documentation hub for the 81-lecture Microsoft Power BI Data Analysis Diploma by Eng. Essam Elsayed (MCT). Includes organized datasets, Power Query M code cheatsheet, and real-world case studies.",
+      "language": null,
+      "topics": [
+        "arabic",
+        "data-analysis",
+        "data-engineering",
+        "essam-elsayed",
+        "m-language",
+        "microsoft",
+        "power-bi",
+        "powerquery"
+      ],
+      "fork": false,
+      "archived": false,
+      "private": false,
+      "updated_at": "2026-11-05T00:12:37Z",
+      "pushed_at": "2026-11-05T00:12:00Z",
+      "default_branch": "main",
+      "homepage": "https://www.youtube.com/playlist?list=PLkYJ59mAhUsMbZQ4AmBmGt0EEyrTrg5mX",
       "parent_url": null,
       "parent_name": null
     },
