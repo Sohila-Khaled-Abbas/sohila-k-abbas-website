@@ -5191,7 +5191,8 @@
         "readme_excerpt": "A structured, hands-on self-study companion for the Microsoft Power BI Data Analysis Diploma. The repository maps 81 lectures into seven phases and includes practice materials, lecture documentation, a Power Query M Language cheatsheet, and a progress tracker.",
         "fingerprint": "2026-11-05T00:12:00Z"
       },
-      "auto_generated": false
+      "auto_generated": false,
+      "featured": true
     }
   ]
 }

@@ -25,6 +25,12 @@ assert.equal(new Set(data.repositories.map(r=>r.id)).size,data.repositories.leng
 assert(data.repositories.every(r=>r.url.startsWith('https://github.com/Sohila-Khaled-Abbas/')),'Unexpected repository owner');
 const work=documents.get(path.join(out,'work/index.html'));
 assert.equal([...work.matchAll(/class="repo-card(?: |")/g)].length,data.repositories.length,'Catalog lost repository entries');
+const diplomaCard=work.match(/<article class="repo-card[^"]*" data-name="powerbi-data-analysis-diploma"[^>]*>/);
+assert(diplomaCard,'Power BI diploma must have a Work-page card');
+assert(diplomaCard[0].includes('data-category="learning"'),'Power BI diploma must use the Learning & resources category');
+assert(diplomaCard[0].includes('data-featured="true"'),'Power BI diploma must be promoted into the featured gallery group');
+const defaultOrder=[...work.matchAll(/<article class="repo-card[^"]*" data-name="([^"]+)" data-category="([^"]+)" data-kind="([^"]+)" data-status="([^"]+)" data-updated="([^"]+)" data-featured="([^"]+)"/g)].map(m=>({name:m[1],featured:m[6]==='true',updated:m[5]})).sort((a,b)=>Number(b.featured)-Number(a.featured)||Date.parse(b.updated)-Date.parse(a.updated));
+assert(defaultOrder.slice(0,12).some(project=>project.name==='powerbi-data-analysis-diploma'),'Power BI diploma must appear in the first 12 default Work cards');
 assert(!work.includes('Data-Analyst-PM-App')&&!work.includes('fx-rate-analytics'),'Private metadata leaked');
 const config=JSON.parse(await fs.readFile(path.join(root,'vercel.json'),'utf8'));
 const firebase=JSON.parse(await fs.readFile(path.join(root,'firebase.json'),'utf8'));
