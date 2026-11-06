@@ -7,7 +7,7 @@
   "email": "sohila.k.data@gmail.com",
   "github": "https://github.com/Sohila-Khaled-Abbas",
   "linkedin": "https://linkedin.com/in/sohilakabbas",
-  "as_of": "2026-11-04",
+  "as_of": "2026-11-06",
   "summary": "I’m a Data Analyst and BI Developer focused on turning raw, fragmented data into clear insights and reliable reporting. I use SQL and Python to explore, clean, validate, and prepare data, then build business intelligence solutions with Power BI, DAX, and Power Query. I also work with ETL/ELT workflows, dimensional modeling, and data warehousing to make analytics more consistent, traceable, and useful for decision-making. My portfolio brings these skills together through hands-on projects across business reporting, analytics engineering, and data preparation. A background in agricultural research shaped the way I approach evidence, quality checks, and communicating findings.",
   "experience": [
     {
@@ -177,6 +177,13 @@
     }
   ],
   "training": [
+    {
+      "title": "Introduction to Excel",
+      "provider": "365 Data Science",
+      "date": "Nov 6, 2026",
+      "detail": "Revisited Excel fundamentals and passed the course exam on a second attempt. First taken during the 2025 free-access period; retaken in 2026 as structured revision.",
+      "certificate_url": "https://learn.365datascience.com/c/306de45ae9/"
+    },
     {
       "title": "n8n Foundations Professional Certificate",
       "provider": "n8n Academy",

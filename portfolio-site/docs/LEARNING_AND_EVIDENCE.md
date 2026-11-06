@@ -12,11 +12,12 @@ The home page, About, résumé, learning hubs, credential page, and main navigat
 | File | Purpose |
 | --- | --- |
 | `content/learning.json` | Course titles, instructors, public URLs, enrollment status, topics, and related project repositories. |
+| `content/credentials.json` | Featured completed credentials and their verified certificate or supporting-evidence URLs. |
 | `content/professional-evidence.json` | Recommendation authors, short excerpts, dates, source URLs, audience snapshot, and historical recognition. |
 | `content/recruiter-guide.json` | Professional focus areas and the public projects a hiring team can inspect. |
-| `content/profile.json` | Existing experience and dates, plus the current ML focus and review date. |
+| `content/profile.json` | Experience, dated training and certificates, education, skills, current ML focus, and review date. |
 
-Course enrollment was confirmed by Sohila on 1 November 2026. Course descriptions and instructor names were checked against the public Udemy course pages. Do not infer completion percentages, enrollment dates, exams passed, or certificates earned. The seven courses remain labeled **Enrolled**. Related projects are adjacent evidence, not claims that a course assignment or capstone is complete. Next-practice ideas are explicitly proposed exercises.
+Course enrollment was confirmed by Sohila on 1 November 2026. Course descriptions and instructor names were checked against the public Udemy course pages. Do not infer completion percentages, enrollment dates, exams passed, or certificates earned for those seven Udemy course-log entries; all seven remain labeled **Enrolled**. Completed course records are maintained separately in `credentials.json` and `profile.json`. Related projects are adjacent evidence, not claims that a course assignment or capstone is complete. Next-practice ideas are explicitly proposed exercises.
 
 Public catalog pages:
 
@@ -28,7 +29,7 @@ Public catalog pages:
 - [Docker containers in Arabic](https://www.udemy.com/course/a-practical-guide-to-docker-containers/)
 - [Database engineering](https://www.udemy.com/course/database-engines-crash-course/)
 
-The learning page uses Schema.org `Course` items in an `ItemList`, describing the courses rather than awarding Sohila a credential. Course prices, ratings, completion percentages, and borrowed course videos are intentionally absent.
+The learning page uses Schema.org `Course` items in an `ItemList`, describing the courses rather than awarding Sohila a credential. A separate completed-course record documents **Introduction to Excel** from 365 Data Science, completed on 6 November 2026 after a second exam attempt; Sohila first took the course during the 2025 free-access period and revisited it in 2026 as revision. The public certificate link is `https://learn.365datascience.com/c/306de45ae9/`. It is presented as a completed course certificate, not an industry certification. Course prices, ratings, completion percentages, and borrowed course videos are intentionally absent.
 
 ## Recommendations and public recognition
 
