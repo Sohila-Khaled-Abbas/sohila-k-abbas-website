@@ -35,3 +35,10 @@ The portrait-inspired palette is documented in [DESIGN_SYSTEM.md](DESIGN_SYSTEM.
 The previous call-center screenshot was removed at Sohila’s request on 1 November 2026. The project directory card, guided result chapter, and report page now use the original SVG diagrams referenced by the [GitHub README](https://github.com/Sohila-Khaled-Abbas/pwc-switzerland-virtual-case/blob/main/README.md). The galaxy schema is the primary preview; the ETL pipeline, executive KPI tree, and workforce progression funnel are also available to enlarge. Each diagram links to its GitHub original.
 
 The SVG files are copied byte-for-byte into `src/assets/project-media/pwc-*.svg`. `content/project-previews.json` retains each original source URL, Git blob SHA, natural dimensions, caption, and alt text. These are labeled architecture/analytics diagrams, with full-image scaling instead of cropping. The Forage virtual-experience context remains intact; importing visuals does not import the README’s employment, ranking, or business-impact claims.
+
+
+## Repository-derived visual previews
+
+Project cards and detail pages without a genuine screenshot, report image, or documented workflow use a repository-derived source map. It is built from the project's existing title, summary, linked file paths, and declared technologies. Common housekeeping files are de-emphasized when implementation files are available. Forks are labeled as upstream learning resources, and an empty repository is explicitly shown without invented files.
+
+These source maps are intentionally not presented as application screenshots, dashboards, architecture diagrams, or evidence of running infrastructure. They provide a consistent visual entry point while keeping the underlying project evidence inspectable. The visual treatment adapts to the existing analytics, engineering, automation, apps, and learning categories and shared light/dark color tokens.
