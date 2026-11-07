@@ -1,5 +1,5 @@
 {
-  "checked_on": "2026-11-03",
+  "checked_on": "2026-11-07",
   "legacy_source": "https://sohila-k-abbas-website.web.app/",
   "projects": [
     {
@@ -305,13 +305,13 @@
       "old_portfolio": true,
       "github": {
         "description": "An end-to-end data engineering and analytics project analyzing historical Apple Inc. (AAPL) stock market data up to the present day, to extract actionable business insights and investment strategies.",
-        "updated_at": "2026-11-03T03:20:28Z",
-        "pushed_at": "2026-11-03T03:20:24Z",
+        "updated_at": "2026-11-07T01:42:28Z",
+        "pushed_at": "2026-11-07T01:42:24Z",
         "homepage": null,
         "default_branch": "main",
         "readme_excerpt": "[](https://powerbi.microsoft.com/) [](https://www.mysql.com/) [](https://www.python.org/) [](https://jupyter.org/) [](https://github.com/features/actions) [](https://opensource.org/licenses/MIT)",
         "readme_sha": "ee911efa595ab5a770c24a43462ac437c584daa0",
-        "fingerprint": "2026-11-03T03:20:24Z"
+        "fingerprint": "2026-11-07T01:42:24Z"
       }
     },
     {
@@ -1521,13 +1521,13 @@
       "old_portfolio": false,
       "github": {
         "description": "Official portfolio, applied machine learning research paper, and autonomous decision-support agent for Sohila Khaled Abbas (Applied ML Intern & Search Intelligence Engineer at FlyRank AI | BI Developer).",
-        "updated_at": "2026-08-20T18:45:47Z",
-        "pushed_at": "2026-08-20T18:34:58Z",
+        "updated_at": "2026-11-06T17:46:19Z",
+        "pushed_at": "2026-11-06T17:46:16Z",
         "homepage": "https://sohila-khaled-abbas.github.io/flyrank-ml-internship-starter/",
         "default_branch": "main",
         "readme_excerpt": "[](https://sohila-khaled-abbas.github.io/flyrank-ml-internship-starter/) [](https://sohila-khaled-abbas.github.io/flyrank-ml-internship-starter/paper.html) [](https://aifluency.flyrank.ai/verify/sohilakhaled) [](LICENSE)",
-        "readme_sha": "a0338a532380252ba0efe58bde52da95bf79d877",
-        "fingerprint": "2026-08-20T18:34:58Z"
+        "readme_sha": "94b13f0f91c9079647b5afd0f03236bcf1956443",
+        "fingerprint": "2026-11-06T17:46:16Z"
       }
     },
     {
@@ -1640,7 +1640,7 @@
         "width": 440,
         "height": 487
       },
-      "live": null,
+      "live": "https://www.theforage.com/simulations/forage/sponsored-content-excel-skills-jf8r",
       "presentation": null,
       "files": [
         {
@@ -1671,13 +1671,13 @@
       "auto_generated": false,
       "github": {
         "description": "Learning notes and original evidence from the Forage Academy Excel Skills virtual experience program.",
-        "updated_at": "2026-11-03T18:09:00Z",
-        "pushed_at": "2026-11-03T18:08:56Z",
-        "homepage": null,
+        "updated_at": "2026-11-04T20:45:32Z",
+        "pushed_at": "2026-11-04T20:45:29Z",
+        "homepage": "https://www.theforage.com/simulations/forage/sponsored-content-excel-skills-jf8r",
         "default_branch": "main",
-        "readme_excerpt": "A practical learning portfolio documenting my progress through the Excel Skills Virtual Experience Program by Forage Academy.",
-        "readme_sha": "75e08c77a2c89c162e7a20552f550b95988f8def",
-        "fingerprint": "2026-11-03T18:08:56Z"
+        "readme_excerpt": "A comprehensive, hands-on Excel learning portfolio demonstrating data preparation, advanced conditional formatting, dynamic formulas, executive dashboard visualization, and VBA spreadsheet automation.",
+        "readme_sha": "21b4d88d4807c98dd635f468d5922fb937b40d24",
+        "fingerprint": "2026-11-04T20:45:29Z"
       },
       "featured": true,
       "certificate_url": "https://www.theforage.com/completion-certificates/HgpPSsyQpzob6HEh9/SfGxkQ8FacaZR9LnZ_HgpPSsyQpzob6HEh9_6ae9f5fbcfb5bb576b61ccb2_1793821202129_completion_certificate.pdf",
@@ -2115,6 +2115,46 @@
         "readme_excerpt": "[](https://datapill.academy) [](https://datapill.academy) [](https://datapill.academy) [](#)",
         "readme_sha": "2e728d479cfd9784d816dff24c8175b8838bbdbd",
         "fingerprint": "2026-08-07T14:13:57Z"
+      }
+    },
+    {
+      "repo": "home-services-lead-intelligence",
+      "title": "Home Services Lead Intelligence",
+      "summary": "A provenance-first public business-data discovery pipeline for Egypt's home-services market.",
+      "technologies": [
+        "Python",
+        "openstreetmap",
+        "openstreetmap-api",
+        "pssql",
+        "python",
+        "webscraping"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 11770,
+          "url": "https://github.com/Sohila-Khaled-Abbas/home-services-lead-intelligence/blob/main/README.md"
+        }
+      ],
+      "empty": false,
+      "source": "https://github.com/Sohila-Khaled-Abbas/home-services-lead-intelligence",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/home-services-lead-intelligence/blob/main/README.md",
+      "old_portfolio": false,
+      "auto_generated": true,
+      "github": {
+        "description": "A provenance-first public business-data discovery pipeline for Egypt's home-services market.",
+        "updated_at": "2026-11-06T12:39:43Z",
+        "pushed_at": "2026-11-05T00:12:12Z",
+        "homepage": null,
+        "default_branch": "main",
+        "readme_excerpt": "A provenance-first public business-data discovery pipeline for Egypt's home-services market.",
+        "readme_sha": "7c31d6ee5ddf0366b7c6547bb4e872ae327013a2",
+        "fingerprint": "2026-11-05T00:12:12Z"
       }
     },
     {
@@ -3800,6 +3840,80 @@
       }
     },
     {
+      "repo": "powerbi-data-analysis-diploma",
+      "title": "Power BI Data Analysis Diploma — Learning Repository",
+      "summary": "A structured, hands-on learning companion for the 81-lecture Microsoft Power BI Data Analysis Diploma by Eng. Essam Elsayed (MCT). The repository organizes the curriculum into seven learning phases and brings together lecture notes, practice materials, data-source exercises, Power Query M Language references, a progress tracker, and 17 case studies.",
+      "technologies": [
+        "Microsoft Power BI",
+        "Power Query",
+        "M Language",
+        "Data Analysis",
+        "Excel",
+        "SQL",
+        "REST APIs",
+        "JSON",
+        "Web Data"
+      ],
+      "methods": [
+        "Organize 81 lectures into seven learning phases, from data foundations and acquisition to transformation, case studies, and the Power Query engine.",
+        "Document data acquisition patterns across Excel, CSV, PDF, cloud storage, SQL databases, web sources, REST APIs, and JSON.",
+        "Maintain a practical Power Query M Language reference covering reusable expressions, custom functions, error handling, and query patterns.",
+        "Structure hands-on practice materials and lecture-level documentation alongside a curriculum map and personal progress tracker.",
+        "Use 17 case-study sections to connect data preparation and Power BI concepts with applied business scenarios."
+      ],
+      "flow": [
+        "Data foundations",
+        "Data acquisition",
+        "Advanced data extraction",
+        "Governance and automation",
+        "Data transformation",
+        "Applied case studies",
+        "Power Query engine and M Language"
+      ],
+      "media": {
+        "src": "/project-media/powerbi-data-analysis-diploma.svg",
+        "kind": "Learning repository thumbnail",
+        "caption": "Power BI Data Analysis Diploma learning repository — 81 lectures across seven phases, with Power Query, M Language, data governance, and applied case studies."
+      },
+      "live": "https://www.youtube.com/playlist?list=PLkYJ59mAhUsMbZQ4AmBmGt0EEyrTrg5mX",
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma/blob/main/README.md"
+        },
+        {
+          "path": "CURRICULUM.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma/blob/main/CURRICULUM.md"
+        },
+        {
+          "path": "M_LANGUAGE_CHEATSHEET.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma/blob/main/M_LANGUAGE_CHEATSHEET.md"
+        },
+        {
+          "path": "PROGRESS_TRACKER.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma/blob/main/PROGRESS_TRACKER.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma",
+      "empty": false,
+      "file_count": 202,
+      "source_branch": "main",
+      "github": {
+        "description": "Comprehensive learning repository and documentation hub for the 81-lecture Microsoft Power BI Data Analysis Diploma by Eng. Essam Elsayed (MCT). Includes organized datasets, Power Query M code cheatsheet, and real-world case studies.",
+        "updated_at": "2026-11-07T16:30:06Z",
+        "pushed_at": "2026-11-07T16:30:02Z",
+        "homepage": "https://www.youtube.com/playlist?list=PLkYJ59mAhUsMbZQ4AmBmGt0EEyrTrg5mX",
+        "default_branch": "main",
+        "readme_excerpt": "This repository serves as a structured, hands-on self-study companion for the Microsoft Power BI Data Analysis Diploma. It organizes all 81 video lectures into 7 modular phases, providing: - 📂 Structured Practice Folders: Cleanly arranged datasets (.pbix, .xlsx, .csv, .pdf, .json) corresponding directly to each lecture. - 📖 Deep Technical Documentation: In-depth README.md for every single lecture explaining core business concepts, methodology, and step-by-step instructions. - ⚡ M Language Code Reference: Practical, ready-to-use M expressions,",
+        "readme_sha": "b517a95668e09206d770c9c453d3f3768b135257",
+        "fingerprint": "2026-11-07T16:30:02Z"
+      },
+      "auto_generated": false,
+      "featured": true
+    },
+    {
       "repo": "pwc-switzerland-virtual-case",
       "title": "PwC Switzerland Virtual Case Experience",
       "summary": "PwC Switzerland Virtual Case Experience: Enterprise Business Intelligence, Ralph Kimball Galaxy Semantic Model (VertiPaq Engine), DAX KPI Engineering & Executive Excel Application Architecture",
@@ -4514,13 +4628,13 @@
       "old_portfolio": false,
       "github": {
         "description": "This repository contains the source code for a personal data portfolio website built for Sohila Khaled Abbas — a recognized BI Developer, Data Analytics Engineer, and Top 200 Arabic-Speaking Influencer in data education.",
-        "updated_at": "2026-11-01T18:25:27Z",
-        "pushed_at": "2026-11-01T18:25:27Z",
+        "updated_at": "2026-11-07T16:30:09Z",
+        "pushed_at": "2026-11-07T16:30:09Z",
         "homepage": "https://sohila-khaled-abbas.vercel.app/",
         "default_branch": "main",
-        "readme_excerpt": "Data & Analytics Engineer | ML Engineering | Python, SQL, Power BI, dbt, Airflow, PySpark | ETL/ELT & Data Warehousing | AI Automation",
-        "readme_sha": "b2d59fe009421d3ff419bef04c068b6b4ac4ab73",
-        "fingerprint": "2026-11-01T18:25:27Z"
+        "readme_excerpt": "Data Analyst & BI Developer | SQL, Python, Power BI, DAX & Power Query | ETL/ELT & Analytics Engineering",
+        "readme_sha": "16c85e4db64c08946831796971383efe8ff34842",
+        "fingerprint": "2026-11-07T16:30:09Z"
       }
     },
     {
@@ -4592,13 +4706,13 @@
       "old_portfolio": false,
       "github": {
         "description": "Config files for my GitHub profile.",
-        "updated_at": "2026-11-03T09:40:38Z",
-        "pushed_at": "2026-11-03T09:40:34Z",
+        "updated_at": "2026-11-07T08:53:42Z",
+        "pushed_at": "2026-11-07T08:53:39Z",
         "homepage": "https://github.com/Sohila-Khaled-Abbas",
         "default_branch": "main",
-        "readme_excerpt": "I turn complex, fragmented data into reliable pipelines, actionable insights, and intelligent automation. My work connects data engineering, business intelligence, and AI through Python, SQL, Power BI, dbt, Airflow, PySpark, ETL/ELT, and data warehousing. A background in agricultural research shapes the way I validate information, document decisions, and explain what the results mean.",
-        "readme_sha": "42df9751fdcaf3c3004e5e0ba05c43f537d72d22",
-        "fingerprint": "2026-11-03T09:40:34Z"
+        "readme_excerpt": "I’m a Data Analyst and BI Developer focused on turning raw, fragmented data into clear insights and reliable reporting. I use SQL and Python to explore, clean, validate, and prepare data, then build business intelligence solutions with Power BI, DAX, and Power Query. I also work with ETL/ELT workflows, dimensional modeling, and data warehousing to make analytics more consistent, traceable, and useful for decision-making. My portfolio brings these skills together through hands-on projects across business reporting, analytics engineering, and dat",
+        "readme_sha": "8db420191713cd48bcfd5a9566cfb522ac7d6b0f",
+        "fingerprint": "2026-11-07T08:53:39Z"
       }
     },
     {
@@ -5120,79 +5234,6 @@
         "readme_sha": "fb45c1d6a7c07b10914af4c06ce2f82fa5ffc172",
         "fingerprint": "2025-10-04T17:58:36Z"
       }
-    },
-    {
-      "repo": "powerbi-data-analysis-diploma",
-      "title": "Power BI Data Analysis Diploma — Learning Repository",
-      "summary": "A structured, hands-on learning companion for the 81-lecture Microsoft Power BI Data Analysis Diploma by Eng. Essam Elsayed (MCT). The repository organizes the curriculum into seven learning phases and brings together lecture notes, practice materials, data-source exercises, Power Query M Language references, a progress tracker, and 17 case studies.",
-      "technologies": [
-        "Microsoft Power BI",
-        "Power Query",
-        "M Language",
-        "Data Analysis",
-        "Excel",
-        "SQL",
-        "REST APIs",
-        "JSON",
-        "Web Data"
-      ],
-      "methods": [
-        "Organize 81 lectures into seven learning phases, from data foundations and acquisition to transformation, case studies, and the Power Query engine.",
-        "Document data acquisition patterns across Excel, CSV, PDF, cloud storage, SQL databases, web sources, REST APIs, and JSON.",
-        "Maintain a practical Power Query M Language reference covering reusable expressions, custom functions, error handling, and query patterns.",
-        "Structure hands-on practice materials and lecture-level documentation alongside a curriculum map and personal progress tracker.",
-        "Use 17 case-study sections to connect data preparation and Power BI concepts with applied business scenarios."
-      ],
-      "flow": [
-        "Data foundations",
-        "Data acquisition",
-        "Advanced data extraction",
-        "Governance and automation",
-        "Data transformation",
-        "Applied case studies",
-        "Power Query engine and M Language"
-      ],
-      "media": {
-        "src": "/project-media/powerbi-data-analysis-diploma.svg",
-        "kind": "Learning repository thumbnail",
-        "caption": "Power BI Data Analysis Diploma learning repository — 81 lectures across seven phases, with Power Query, M Language, data governance, and applied case studies."
-      },
-      "live": null,
-      "presentation": null,
-      "files": [
-        {
-          "path": "README.md",
-          "url": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma/blob/main/README.md"
-        },
-        {
-          "path": "CURRICULUM.md",
-          "url": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma/blob/main/CURRICULUM.md"
-        },
-        {
-          "path": "M_LANGUAGE_CHEATSHEET.md",
-          "url": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma/blob/main/M_LANGUAGE_CHEATSHEET.md"
-        },
-        {
-          "path": "PROGRESS_TRACKER.md",
-          "url": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma/blob/main/PROGRESS_TRACKER.md"
-        }
-      ],
-      "readme": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma/blob/main/README.md",
-      "source": "https://github.com/Sohila-Khaled-Abbas/powerbi-data-analysis-diploma",
-      "empty": false,
-      "file_count": 202,
-      "source_branch": "main",
-      "github": {
-        "description": "Comprehensive learning repository and documentation hub for the 81-lecture Microsoft Power BI Data Analysis Diploma by Eng. Essam Elsayed (MCT). Includes organized datasets, Power Query M code cheatsheet, and real-world case studies.",
-        "updated_at": "2026-11-05T00:12:37Z",
-        "pushed_at": "2026-11-05T00:12:00Z",
-        "homepage": "https://www.youtube.com/playlist?list=PLkYJ59mAhUsMbZQ4AmBmGt0EEyrTrg5mX",
-        "default_branch": "main",
-        "readme_excerpt": "A structured, hands-on self-study companion for the Microsoft Power BI Data Analysis Diploma. The repository maps 81 lectures into seven phases and includes practice materials, lecture documentation, a Power Query M Language cheatsheet, and a progress tracker.",
-        "fingerprint": "2026-11-05T00:12:00Z"
-      },
-      "auto_generated": false,
-      "featured": true
     }
   ]
 }
