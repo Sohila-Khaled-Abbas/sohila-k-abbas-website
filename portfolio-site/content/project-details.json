@@ -3903,12 +3903,12 @@
       "github": {
         "description": "Comprehensive learning repository and documentation hub for the 81-lecture Microsoft Power BI Data Analysis Diploma by Eng. Essam Elsayed (MCT). Includes organized datasets, Power Query M code cheatsheet, and real-world case studies.",
         "updated_at": "2026-11-07T16:30:06Z",
-        "pushed_at": "2026-11-07T16:30:02Z",
+        "pushed_at": "2026-11-07T16:30:49Z",
         "homepage": "https://www.youtube.com/playlist?list=PLkYJ59mAhUsMbZQ4AmBmGt0EEyrTrg5mX",
         "default_branch": "main",
         "readme_excerpt": "This repository serves as a structured, hands-on self-study companion for the Microsoft Power BI Data Analysis Diploma. It organizes all 81 video lectures into 7 modular phases, providing: - 📂 Structured Practice Folders: Cleanly arranged datasets (.pbix, .xlsx, .csv, .pdf, .json) corresponding directly to each lecture. - 📖 Deep Technical Documentation: In-depth README.md for every single lecture explaining core business concepts, methodology, and step-by-step instructions. - ⚡ M Language Code Reference: Practical, ready-to-use M expressions,",
         "readme_sha": "b517a95668e09206d770c9c453d3f3768b135257",
-        "fingerprint": "2026-11-07T16:30:02Z"
+        "fingerprint": "2026-11-07T16:30:49Z"
       },
       "auto_generated": false,
       "featured": true
@@ -4980,13 +4980,13 @@
       "old_portfolio": false,
       "github": {
         "description": "Live Netflix Catalog & Audience Intelligence ELT Pipeline",
-        "updated_at": "2026-11-01T17:52:34Z",
-        "pushed_at": "2026-11-01T17:52:30Z",
+        "updated_at": "2026-11-07T18:07:19Z",
+        "pushed_at": "2026-11-07T18:07:14Z",
         "homepage": null,
         "default_branch": "main",
         "readme_excerpt": "[](https://www.python.org/) [](https://www.postgresql.org/) [](https://airbyte.com/) [](https://www.docker.com/) [](https://powerbi.microsoft.com/) [](LICENSE)",
         "readme_sha": "702606963e925945f24051506f36d673dd24b6bf",
-        "fingerprint": "2026-11-01T17:52:30Z"
+        "fingerprint": "2026-11-07T18:07:14Z"
       }
     },
     {
@@ -5108,13 +5108,13 @@
       "old_portfolio": false,
       "github": {
         "description": "A data-driven one-page report on the state of the global economy using World Bank and UN HDI datasets.",
-        "updated_at": "2026-11-01T17:22:29Z",
-        "pushed_at": "2026-11-01T17:22:24Z",
+        "updated_at": "2026-11-07T16:53:04Z",
+        "pushed_at": "2026-11-07T16:53:00Z",
         "homepage": null,
         "default_branch": "main",
         "readme_excerpt": "A data-driven one-page report on the state of the global economy using World Bank and UN HDI datasets. This project covers the full ETL pipeline, schema validation, profiling, and insight generation — preparing data for Power BI dashboarding. It now also includes an API deployment workflow with FastAPI + Docker for online access.",
         "readme_sha": "dd34377fc5264b118ab8c2abc4650a3143f919aa",
-        "fingerprint": "2026-11-01T17:22:24Z"
+        "fingerprint": "2026-11-07T16:53:00Z"
       }
     },
     {
