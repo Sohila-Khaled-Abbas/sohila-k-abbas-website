@@ -7,6 +7,8 @@ on:
     branches: [main]
     paths:
       - 'portfolio-site/scripts/sync-github.mjs'
+      - 'portfolio-site/content/profile.json'
+      - 'portfolio-site/content/sync-policy.json'
       - '.github/workflows/sync-projects.yml'
 permissions:
   contents: write
