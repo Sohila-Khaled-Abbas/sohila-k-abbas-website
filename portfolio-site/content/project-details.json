@@ -2854,13 +2854,13 @@
       "old_portfolio": true,
       "github": {
         "description": "A production-grade, self-hosted n8n deployment with queue-mode scaling, PostgreSQL persistence, and an isolated Python/JavaScript code execution sidecar.",
-        "updated_at": "2026-10-30T23:07:58Z",
-        "pushed_at": "2026-10-31T00:13:51Z",
+        "updated_at": "2026-11-07T19:46:31Z",
+        "pushed_at": "2026-11-07T19:46:35Z",
         "homepage": "https://sohila-khaled-abbas.github.io/n8n-production-queue-setup/",
         "default_branch": "main",
         "readme_excerpt": "A production-grade, self-hosted n8n deployment with dynamic worker autoscaling, Puppeteer/Playwright browser automation, queue-mode execution, PostgreSQL persistence, and automated Redis queue monitoring.",
         "readme_sha": "12b5305f01cfacccd7909f927dea36687eef7f6f",
-        "fingerprint": "2026-10-31T00:13:51Z"
+        "fingerprint": "2026-11-07T19:46:35Z"
       }
     },
     {
@@ -4628,13 +4628,13 @@
       "old_portfolio": false,
       "github": {
         "description": "This repository contains the source code for a personal data portfolio website built for Sohila Khaled Abbas — a recognized BI Developer, Data Analytics Engineer, and Top 200 Arabic-Speaking Influencer in data education.",
-        "updated_at": "2026-11-07T16:30:09Z",
-        "pushed_at": "2026-11-07T16:30:09Z",
+        "updated_at": "2026-11-07T18:56:41Z",
+        "pushed_at": "2026-11-07T18:56:41Z",
         "homepage": "https://sohila-khaled-abbas.vercel.app/",
         "default_branch": "main",
         "readme_excerpt": "Data Analyst & BI Developer | SQL, Python, Power BI, DAX & Power Query | ETL/ELT & Analytics Engineering",
         "readme_sha": "16c85e4db64c08946831796971383efe8ff34842",
-        "fingerprint": "2026-11-07T16:30:09Z"
+        "fingerprint": "2026-11-07T18:56:41Z"
       }
     },
     {
@@ -4706,13 +4706,13 @@
       "old_portfolio": false,
       "github": {
         "description": "Config files for my GitHub profile.",
-        "updated_at": "2026-11-07T08:53:42Z",
-        "pushed_at": "2026-11-07T08:53:39Z",
+        "updated_at": "2026-11-07T19:36:37Z",
+        "pushed_at": "2026-11-07T19:36:34Z",
         "homepage": "https://github.com/Sohila-Khaled-Abbas",
         "default_branch": "main",
         "readme_excerpt": "I’m a Data Analyst and BI Developer focused on turning raw, fragmented data into clear insights and reliable reporting. I use SQL and Python to explore, clean, validate, and prepare data, then build business intelligence solutions with Power BI, DAX, and Power Query. I also work with ETL/ELT workflows, dimensional modeling, and data warehousing to make analytics more consistent, traceable, and useful for decision-making. My portfolio brings these skills together through hands-on projects across business reporting, analytics engineering, and dat",
-        "readme_sha": "8db420191713cd48bcfd5a9566cfb522ac7d6b0f",
-        "fingerprint": "2026-11-07T08:53:39Z"
+        "readme_sha": "5119398c4d21ae11d77c6e09fab592f2b2d23bfa",
+        "fingerprint": "2026-11-07T19:36:34Z"
       }
     },
     {
