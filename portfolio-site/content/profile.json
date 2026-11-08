@@ -1,14 +1,14 @@
 {
   "name": "Sohila Khaled Abbas",
-  "role": "Data Analyst & BI Developer",
-  "seo_headline": "Data Analyst & BI Developer | SQL, Python, Power BI, DAX & Power Query | ETL/ELT & Analytics Engineering",
-  "headline": "Data Analyst & BI Developer | SQL, Python, Power BI, DAX & Power Query | ETL/ELT & Analytics Engineering",
+  "role": "Data Analyst | BI Developer",
+  "seo_headline": "Data Analyst | BI Developer",
+  "headline": "Data Analyst | BI Developer",
   "location": "Damietta, Egypt",
   "email": "sohila.k.data@gmail.com",
   "github": "https://github.com/Sohila-Khaled-Abbas",
   "linkedin": "https://linkedin.com/in/sohilakabbas",
-  "as_of": "2026-11-06",
-  "summary": "I’m a Data Analyst and BI Developer focused on turning raw, fragmented data into clear insights and reliable reporting. I use SQL and Python to explore, clean, validate, and prepare data, then build business intelligence solutions with Power BI, DAX, and Power Query. I also work with ETL/ELT workflows, dimensional modeling, and data warehousing to make analytics more consistent, traceable, and useful for decision-making. My portfolio brings these skills together through hands-on projects across business reporting, analytics engineering, and data preparation. A background in agricultural research shaped the way I approach evidence, quality checks, and communicating findings.",
+  "as_of": "2026-11-08",
+  "summary": "Data Analyst and BI Developer with experience in freelance BI delivery, applied machine learning through an internship, and data analytics mentoring. Independent projects span business intelligence, data and analytics engineering, data preparation, and workflow automation.",
   "experience": [
     {
       "role": "Excel Skills Job Simulation",
@@ -232,5 +232,9 @@
     "English · Excellent, written and spoken"
   ],
   "website": "https://sohila-khaled-abbas.vercel.app",
-  "current_focus": "Leakage-aware machine learning, grouped evaluation splits, target-derived features, and decision-support interfaces that keep model outputs understandable."
+  "current_focus": "Leakage-aware machine learning, grouped evaluation splits, target-derived features, and decision-support interfaces that keep model outputs understandable.",
+  "about_paragraphs": [
+    "I’m a Data Analyst and BI Developer who turns business questions into clear, reliable reporting. Through freelance BI work and hands-on projects, I use SQL, Python, Excel, Power BI, DAX, and Power Query to prepare and analyze data, define KPIs, build dimensional models, and create interactive dashboards.",
+    "My work also spans analytics engineering and data engineering—including ETL/ELT pipelines, data warehousing, dimensional modeling, and data quality—alongside applied machine learning and workflow automation. I’ve developed these areas through independent projects, my Machine Learning Engineer internship at FlyRank AI, and mentoring in data analysis. I’m open to remote Data Analyst, BI Developer, and Analytics Engineer roles."
+  ]
 }

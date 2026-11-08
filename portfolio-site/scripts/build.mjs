@@ -103,7 +103,7 @@ home=home.replace('<section id="about"',`<section class="home-path wrap"><div><s
 home=studioHome(profile,cases,ordered,projectDetails,reports,projectStatus,home.match(/<section id="approach"[\s\S]*?<\/section>/)?.[0]);
 home=home.replace('<section id="work"',`<div class="wrap home-recruiter-link"><span>Here with a role or project in mind?</span>${link('/recruiters/','The 60-second overview')}</div><section id="work"`);
 home=home.replace('<section id="notes"',homeLearning(learning)+socialTeaser(linkedinPosts)+'<section id="notes"');
-await write('/','Data & Analytics Engineer | ML Engineering & AI Automation','Sohila Khaled Abbas: Data & Analytics Engineer working across ML engineering and AI automation with Python, SQL, Power BI, dbt, Airflow, PySpark, ETL/ELT and data warehousing.',home);
+await write('/','Sohila Khaled Abbas | Data Analyst | BI Developer | Analytics Engineer','Sohila Khaled Abbas works across data analysis, business intelligence, analytics engineering, applied machine learning, and workflow automation. Open to remote opportunities.',home);
 await write('/work/','Work & GitHub repositories','Browse Sohila’s public GitHub repositories, detailed project case studies, BI dashboards, data pipelines, and automation workflows.',work());
 await write('/dashboards/','Power BI dashboards & report previews','Explore Sohila’s Power BI reports, public interactive dashboards, repository screenshots, and report project files.',dashboardGallery(reports,projectStatus));
 for(const report of reports){
@@ -115,7 +115,7 @@ for(const report of reports){
  const body=original.slice(0,headEnd)+projectStory(p,repo,byRepo.get(report.repo),report,projectStatus,true,experience)+cta();
  await write(reportRoute(report.repo),report.title+' — Dashboard',report.description,body);
 }
-await write('/about/','About Sohila','Meet Sohila Khaled Abbas, a Data & Analytics Engineer working across ML engineering and AI automation based in Egypt. Explore her background, technical skills, and experience.',about(profile).replace('<section class="wrap page-section"><div class="section-label"><span>THE TOOLKIT / CONNECTED BY PURPOSE</span>',aboutLab(aboutSystems,catalog,cases,reports,learning)+'<section class="wrap page-section"><div class="section-label"><span>THE TOOLKIT / CONNECTED BY PURPOSE</span>').replace(cta(),socialTeaser(linkedinPosts)+cta()));
+await write('/about/','About Sohila | Data Analyst | BI Developer','Sohila Khaled Abbas works across data analysis, business intelligence, data and analytics engineering, applied machine learning, and workflow automation.',about(profile)+aboutLab(aboutSystems,catalog,cases,reports,learning)+socialTeaser(linkedinPosts));
 await write('/resume/','Résumé & experience','Sohila’s professional experience, education, technical skills, projects, and selected training. Includes a print-friendly résumé.',resume(profile,cases));
 await write('/learning/','Learning log & enrolled Udemy courses','Explore Sohila Khaled Abbas’s enrolled courses in dbt, Airflow, Excel VBA, cloud data engineering, Docker, operating systems, and database engineering.',learningPage(learning));
 await write('/posts/','LinkedIn posts — recent updates & popular writing','Read and preview Sohila Khaled Abbas’s recent LinkedIn updates and popular writing about data engineering, machine learning, Power BI, and practical learning.',postsPage(linkedinPosts));
