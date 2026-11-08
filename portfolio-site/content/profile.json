@@ -1,14 +1,14 @@
 {
   "name": "Sohila Khaled Abbas",
-  "role": "Data Analyst | BI Developer",
-  "seo_headline": "Data Analyst | BI Developer",
-  "headline": "Data Analyst | BI Developer",
+  "role": "BI Developer | Data Analyst | Analytics Engineer",
+  "seo_headline": "BI Developer | Data Analyst | Analytics Engineer",
+  "headline": "BI Developer | Data Analyst | Analytics Engineer",
   "location": "Damietta, Egypt",
   "email": "sohila.k.data@gmail.com",
   "github": "https://github.com/Sohila-Khaled-Abbas",
   "linkedin": "https://linkedin.com/in/sohilakabbas",
   "as_of": "2026-11-08",
-  "summary": "Data Analyst and BI Developer with experience in freelance BI delivery, applied machine learning through an internship, and data analytics mentoring. Independent projects span business intelligence, data and analytics engineering, data preparation, and workflow automation.",
+  "summary": "BI Developer with nearly two years of freelance experience building Power BI dashboards and decision-ready reporting. My work spans sales and retail, churn, supply chain, e-commerce, customer satisfaction, marketing, HR, and healthcare, with a focus on data preparation, validation, SQL and Power Query, dimensional modeling, and KPI design. I also build analytics projects, explore Python-based model evaluation, streamline reporting with Excel and VBA, and share practical learning through The Data Tea.",
   "experience": [
     {
       "role": "Excel Skills Job Simulation",
@@ -44,55 +44,45 @@
       "dates": "Jul 2026 – Sep 2026",
       "mode": "Remote",
       "bullets": [
-        "Prepared and validated datasets through structured cleaning, quality checks, and documentation.",
-        "Investigated patterns and communicated analytical findings to technical stakeholders.",
-        "Contributed to repeatable workflows with attention to accurate record handling.",
-        "Developed feature-engineering workflows and model-ready datasets with Python, Workbench, and JupyterLab."
+        "Queried an approximately 79-million-row search-performance warehouse with DuckDB and SQL, aggregating Parquet data for analysis.",
+        "Developed Python-based feature-preparation workflows and machine-learning experiments using anonymized search-performance data.",
+        "Explored temporal and client-grouped validation approaches to assess model generalization and identify potential data-leakage risks.",
+        "Completed a capstone project that was independently reviewed and approved."
       ]
     },
     {
-      "role": "Business Intelligence Developer",
+      "role": "Freelance BI Developer",
       "organization": "Freelance",
       "dates": "Dec 2024 – Present",
       "mode": "Remote",
       "bullets": [
-        "Build Power BI dashboards and KPI reports using dimensional modeling and Power Query.",
-        "Document reporting logic, data definitions, and transformation steps for repeatable handover.",
-        "Use Excel, SQL, and Power BI to organize information, identify trends, and communicate findings.",
-        "Automate ingestion and reporting workflows with Python and Apache Airflow."
+        "Deliver confidential BI engagements, translating business questions into Power BI reports, KPI definitions, semantic models, and DAX measures.",
+        "Shape source data with Power Query and SQL, and document metric definitions, transformation logic, and reporting handover."
       ]
     },
     {
-      "role": "Technical Coach",
+      "role": "Freelancing Coach",
       "organization": "Digital Egypt Pioneers Initiative (DEPI)",
       "dates": "Sep 2025 – Jun 2026",
       "mode": "Part-time · Remote",
       "bullets": [
-        "Guide learners through extraction, transformation, warehousing, SQL, and Power BI.",
-        "Develop structured explanations, exercises, and implementation documentation.",
-        "Review learner work and provide practical technical feedback."
+        "Coached aspiring freelancers on professional positioning, portfolio and CV development, freelance-platform profiles, proposal writing, and client communication.",
+        "Reviewed learner portfolios, CVs, and freelance profiles, providing practical feedback and structured weekly development challenges.",
+        "Analyzed freelance project listings to identify recurring skill requirements and help learners position practical services."
       ]
     },
     {
-      "role": "Data Analytics Mentor",
+      "role": "Data Analysis Mentor",
       "organization": "Data Pill",
       "dates": "Jul 2025 – Apr 2026",
       "mode": "Part-time · Remote",
       "bullets": [
-        "Review SQL queries, Python workflows, and dimensional data models.",
-        "Design realistic business-intelligence scenarios for learners.",
-        "Coach learners on analytics-engineering practices and model design."
+        "Mentored learners in Excel formulas and functions, data cleaning, PivotTables, charts, dashboards, Power Query, Power Pivot, and DAX.",
+        "Taught data transformation with Power Query and data modeling with Power Pivot, including DAX calculations in Excel’s Data Model.",
+        "Designed practical exercises and reviewed learner work to strengthen analytical reporting and dashboard skills."
       ]
     }
   ],
-  "education": {
-    "institution": "Damietta University · Faculty of Agriculture",
-    "degree": "B.Sc. in Agriculture Sciences, Horticulture and Landscaping",
-    "year": "2024",
-    "research": "Melatonin Application in Reducing Post-Harvest Quality Losses and Extending Shelf Life of Strawberry Fruits",
-    "research_grade": "Excellent",
-    "research_summary": "Experimental research involving sensory, chemical, and microbiological analysis, data organization, interpretation, and technical reporting."
-  },
   "skill_groups": [
     {
       "title": "Data & analytics engineering",
@@ -165,7 +155,7 @@
       ]
     },
     {
-      "title": "Statistical analysis & research",
+      "title": "Statistical analysis & experimentation",
       "items": [
         "A/B testing",
         "Hypothesis testing",
@@ -232,9 +222,9 @@
     "English · Excellent, written and spoken"
   ],
   "website": "https://sohila-khaled-abbas.vercel.app",
-  "current_focus": "Leakage-aware machine learning, grouped evaluation splits, target-derived features, and decision-support interfaces that keep model outputs understandable.",
+  "current_focus": "Power BI dashboards and decision-ready reporting, supported by trustworthy KPI definitions, dimensional models, data validation, and practical Excel and workflow automation.",
   "about_paragraphs": [
-    "I’m a Data Analyst and BI Developer who turns business questions into clear, reliable reporting. Through freelance BI work and hands-on projects, I use SQL, Python, Excel, Power BI, DAX, and Power Query to prepare and analyze data, define KPIs, build dimensional models, and create interactive dashboards.",
-    "My work also spans analytics engineering and data engineering—including ETL/ELT pipelines, data warehousing, dimensional modeling, and data quality—alongside applied machine learning and workflow automation. I’ve developed these areas through independent projects, my Machine Learning Engineer internship at FlyRank AI, and mentoring in data analysis. I’m open to remote Data Analyst, BI Developer, and Analytics Engineer roles."
+    "I’m a BI Developer with nearly two years of freelance experience turning business questions into reliable Power BI dashboards and reporting. My work spans sales and retail performance, churn, supply chain, e-commerce, customer satisfaction, marketing, HR, and healthcare. I work from data preparation and validation through SQL and Power Query transformations, dimensional modeling, KPI definitions, and interactive report design—because the numbers behind a dashboard matter as much as the visuals.",
+    "Beyond client work, I’m developing projects such as Egyptian Cosmetics Analytics and PixelFed, and using Excel and VBA to make repeatable reporting more efficient. My FlyRank AI internship added hands-on experience with Python feature preparation and point-in-time model evaluation. I’ve also mentored learners in Excel and analytics and coached aspiring freelancers through DEPI. I share practical notes and experiments through The Data Tea: good data should lead to better decisions, not just prettier dashboards."
   ]
 }
