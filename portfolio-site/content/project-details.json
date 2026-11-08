@@ -4706,13 +4706,13 @@
       "old_portfolio": false,
       "github": {
         "description": "Config files for my GitHub profile.",
-        "updated_at": "2026-11-07T23:00:57Z",
-        "pushed_at": "2026-11-07T23:00:53Z",
+        "updated_at": "2026-11-08T09:07:13Z",
+        "pushed_at": "2026-11-08T09:07:09Z",
         "homepage": "https://github.com/Sohila-Khaled-Abbas",
         "default_branch": "main",
         "readme_excerpt": "I’m a Data Analyst and BI Developer focused on turning raw, fragmented data into clear insights and reliable reporting. I use SQL and Python to explore, clean, validate, and prepare data, then build business intelligence solutions with Power BI, DAX, and Power Query. I also work with ETL/ELT workflows, dimensional modeling, and data warehousing to make analytics more consistent, traceable, and useful for decision-making. My portfolio brings these skills together through hands-on projects across business reporting, analytics engineering, and dat",
         "readme_sha": "161f7482e6f3ba07715d1950693339d640383660",
-        "fingerprint": "2026-11-07T23:00:53Z"
+        "fingerprint": "2026-11-08T09:07:09Z"
       }
     },
     {
