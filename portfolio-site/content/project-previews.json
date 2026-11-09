@@ -36,7 +36,7 @@
     {
       "repo": "Wuzzuf-Job-Market-Analysis",
       "title": "Egypt’s Data Job Market",
-      "description": "Explore job trends, in-demand roles, skills, and hiring companies from Wuzzuf.",
+      "description": "A published interactive Power BI report exploring 217 Wuzzuf job postings in Egypt from January–March 2025, with analysis of job trends, in-demand titles and skills, hiring locations and companies, salary indicators, and job duration.",
       "format": "Power BI",
       "live": {
         "url": "https://app.powerbi.com/view?r=eyJrIjoiMGNjZmFlOWItMWU3My00ZjM4LTlhYjQtMWY5N2QzOGQwMTAyIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
@@ -59,6 +59,16 @@
           "label": "wuzzuf_jobs_dashboard.pbix",
           "url": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/report/wuzzuf_jobs_dashboard.pbix",
           "format": "PBIX"
+        },
+        {
+          "label": "wuzzuf_jobs_cleaned.xls",
+          "url": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/data/wuzzuf_jobs_cleaned.xls",
+          "format": "XLS"
+        },
+        {
+          "label": "salaries_table.xls",
+          "url": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/data/salaries_table.xls",
+          "format": "XLS"
         }
       ],
       "source": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis",
