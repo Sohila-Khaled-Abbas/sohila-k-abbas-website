@@ -1948,13 +1948,19 @@
     {
       "repo": "global-layoffs-analysis",
       "title": "Global Layoffs Analysis",
-      "summary": "The Global Layoffs Analysis project uses SQL to explore workforce reduction trends across industries, funding stages, and regions. By analyzing clean and enhanced datasets, it uncovers key drivers of layoffs, highlights global patterns, and provides actionable insights for decision-makers.",
+      "summary": "A reproducible MySQL case study that imports a 3,984-row layoffs CSV, removes 1,992 repeated business-key records, standardizes dates and industry labels, and analyzes company, country, industry, funding-stage, monthly, and annual patterns.",
       "technologies": [
+        "MySQL 8.0",
         "SQL",
-        "Power BI",
-        "Python"
+        "CSV"
       ],
-      "methods": [],
+      "methods": [
+        "Import the repository CSV snapshot into a dedicated MySQL source table with LOAD DATA LOCAL INFILE; preserve the source table while building working staging tables.",
+        "Normalize text, blank values, country punctuation, and date formats before analysis; harmonize the two observed cryptocurrency industry labels.",
+        "Infer a missing industry only when every known record for the same company agrees on one value; leave conflicting mappings unresolved.",
+        "Use ROW_NUMBER() over company, location, industry, layoff measures, and date to remove repeated business records; retain rows when at least one layoff measure is available.",
+        "Explore layoffs by company, country, industry, and funding stage, then calculate monthly rolling totals and annual company rankings with CTEs and window functions."
+      ],
       "flow": null,
       "media": null,
       "live": null,
@@ -1962,36 +1968,45 @@
       "files": [
         {
           "path": "README.md",
-          "size": 5365,
           "url": "https://github.com/Sohila-Khaled-Abbas/global-layoffs-analysis/blob/main/README.md"
         },
         {
+          "path": "sql/00_Load_Source_Data.sql",
+          "url": "https://github.com/Sohila-Khaled-Abbas/global-layoffs-analysis/blob/main/sql/00_Load_Source_Data.sql"
+        },
+        {
           "path": "sql/Data Cleaning.sql",
-          "size": 4236,
           "url": "https://github.com/Sohila-Khaled-Abbas/global-layoffs-analysis/blob/main/sql/Data%20Cleaning.sql"
         },
         {
           "path": "sql/Exploratory Data Analysis.sql",
-          "size": 1774,
           "url": "https://github.com/Sohila-Khaled-Abbas/global-layoffs-analysis/blob/main/sql/Exploratory%20Data%20Analysis.sql"
+        },
+        {
+          "path": "data/layoffs-cleaned.csv",
+          "url": "https://github.com/Sohila-Khaled-Abbas/global-layoffs-analysis/blob/main/data/layoffs-cleaned.csv"
+        },
+        {
+          "path": "data/layoffs-EDA.csv",
+          "url": "https://github.com/Sohila-Khaled-Abbas/global-layoffs-analysis/blob/main/data/layoffs-EDA.csv"
         }
       ],
       "readme": "https://github.com/Sohila-Khaled-Abbas/global-layoffs-analysis/blob/main/README.md",
       "source": "https://github.com/Sohila-Khaled-Abbas/global-layoffs-analysis",
       "empty": false,
-      "file_count": 7,
+      "file_count": 8,
       "source_branch": "main",
       "tree_sha": "f3aed4c73dbdfbea0c23cb488feb6415c7990884",
       "old_portfolio": true,
       "github": {
         "description": "The Global Layoffs Analysis project uses SQL to explore workforce reduction trends across industries, funding stages, and regions. By analyzing clean and enhanced datasets, it uncovers key drivers of layoffs, highlights global patterns, and provides actionable insights for decision-makers.",
-        "updated_at": "2024-11-29T18:42:42Z",
-        "pushed_at": "2024-11-29T18:41:37Z",
+        "updated_at": "2026-11-09T18:09:42Z",
+        "pushed_at": "2026-11-09T18:09:38Z",
         "homepage": null,
         "default_branch": "main",
-        "readme_excerpt": "The Global Layoffs Analysis project explores trends in workforce reductions across industries, regions, and funding stages. Using SQL for data cleaning and analysis, this project uncovers key drivers of layoffs and offers actionable insights into global layoff trends from raw datasets.",
-        "readme_sha": "e2060cf799b56b6d054f5b6174c629fba5ea79fd",
-        "fingerprint": "2024-11-29T18:41:37Z"
+        "readme_excerpt": "A reproducible MySQL case study that imports a 3,984-row layoffs CSV, removes repeated business records, and analyzes company, country, industry, funding-stage, monthly, and annual patterns.",
+        "readme_sha": "a78b000e308a5b51dddecb0e7e4250d364e38249",
+        "fingerprint": "2026-11-09T18:09:38Z"
       }
     },
     {
@@ -5120,17 +5135,18 @@
     {
       "repo": "Wuzzuf-Job-Market-Analysis",
       "title": "Wuzzuf Job Market Analysis",
-      "summary": "Wuzzuf Job Market Analysis is a Power BI Dashboard that analyzes job market trends in Egypt using web scraping and data analytics. This project extracts job postings from Wuzzuf.net, cleans the data, and visualizes key hiring insights.",
+      "summary": "An interactive Power BI report analyzing 217 Wuzzuf job postings in Egypt from January–March 2025. Explore job-posting trends, in-demand titles and skills, hiring cities and companies, salary indicators, and job-open duration using the published report and included Excel extracts.",
       "technologies": [
         "Power BI",
+        "DAX",
         "Python",
-        "DAX"
+        "Excel"
       ],
       "methods": [
-        "Developed Python web scrapers to gather thousands of job postings from the Wuzzuf platform.",
-        "Cleaned text descriptions, extracted key technical skills using regex, and structured salaries into standardized currency bands in Pandas.",
-        "Modeled the cleaned job data in Power BI, implementing DAX measures to analyze job distributions by experience level, location, and industry.",
-        "Created interactive word clouds and bar charts to display dominant tech stacks."
+        "Use Python-based collection to assemble Wuzzuf job-posting data; the original scraper implementation is not included in the tracked repository.",
+        "Provide prepared job-posting and salary extracts as Excel workbooks alongside the editable Power BI report.",
+        "Model the available posting and salary fields in Power BI and use DAX measures to summarize posting volume, role and skill demand, hiring time, and salary indicators.",
+        "Present three report pages—job-market overview, job-role analysis, and company insights—with interactive filters, dynamic titles, conditional formatting, and contextual tooltip pages."
       ],
       "flow": null,
       "media": null,
@@ -5139,13 +5155,35 @@
       "files": [
         {
           "path": "README.md",
-          "size": 4207,
           "url": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/README.md"
         },
         {
           "path": "report/wuzzuf_jobs_dashboard.pbix",
-          "size": 2559034,
           "url": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/report/wuzzuf_jobs_dashboard.pbix"
+        },
+        {
+          "path": "data/wuzzuf_jobs_cleaned.xls",
+          "url": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/data/wuzzuf_jobs_cleaned.xls"
+        },
+        {
+          "path": "data/salaries_table.xls",
+          "url": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/data/salaries_table.xls"
+        },
+        {
+          "path": "images/page1_overview.png",
+          "url": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/images/page1_overview.png"
+        },
+        {
+          "path": "images/page2_roles.png",
+          "url": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/images/page2_roles.png"
+        },
+        {
+          "path": "images/page3_company.png",
+          "url": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/images/page3_company.png"
+        },
+        {
+          "path": "images/details_page.png",
+          "url": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/images/details_page.png"
         }
       ],
       "readme": "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis/blob/main/README.md",
@@ -5157,13 +5195,13 @@
       "old_portfolio": true,
       "github": {
         "description": "Wuzzuf Job Market Analysis is a Power BI Dashboard that analyzes job market trends in Egypt using web scraping and data analytics. This project extracts job postings from Wuzzuf.net, cleans the data, and visualizes key hiring insights.",
-        "updated_at": "2025-03-18T19:30:35Z",
-        "pushed_at": "2025-03-14T20:36:01Z",
+        "updated_at": "2026-11-09T18:03:09Z",
+        "pushed_at": "2026-11-09T18:03:04Z",
         "homepage": null,
         "default_branch": "main",
-        "readme_excerpt": "This Power BI dashboard provides a comprehensive analysis of the job market in Egypt, focusing on hiring trends, job role analysis, and company insights. The data was scraped from Wuzzuf using Python and cleaned using advanced Power BI techniques.",
-        "readme_sha": "6880623fd882d51c129ed571a039fa4a0b0d3531",
-        "fingerprint": "2025-03-14T20:36:01Z"
+        "readme_excerpt": "A Power BI report analyzing the Egyptian job market using a January–March 2025 Wuzzuf dataset, with views for job-market overview, role and skill analysis, and company insights.",
+        "readme_sha": "3b8dc4262dfa7e3067c6899662fe97678947e309",
+        "fingerprint": "2026-11-09T18:03:04Z"
       }
     },
     {
