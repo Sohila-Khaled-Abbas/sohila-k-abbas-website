@@ -1,6 +1,6 @@
 {
   "owner": "Sohila-Khaled-Abbas",
-  "checked_on": "2026-11-08",
+  "checked_on": "2026-11-10",
   "repositories": [
     {
       "id": 979615270,
@@ -639,6 +639,33 @@
       "updated_at": "2026-09-16T19:10:55Z",
       "pushed_at": "2026-09-16T19:10:52Z",
       "default_branch": "master",
+      "homepage": null,
+      "parent_url": null,
+      "parent_name": null
+    },
+    {
+      "id": 1452947895,
+      "name": "eur-egp-rate-monitor",
+      "url": "https://github.com/Sohila-Khaled-Abbas/eur-egp-rate-monitor",
+      "description": "An n8n workflow that monitors EUR/EGP rates, detects fresh changes, generates AI summaries, and sends Telegram alerts.",
+      "language": null,
+      "topics": [
+        "currency-converter",
+        "currency-exchange-rates",
+        "daleelak-api",
+        "n8n",
+        "n8n-template",
+        "n8n-workflow",
+        "openrouter",
+        "openrouter-api",
+        "telegrambot"
+      ],
+      "fork": false,
+      "archived": false,
+      "private": false,
+      "updated_at": "2026-11-10T17:10:56Z",
+      "pushed_at": "2026-11-10T17:06:44Z",
+      "default_branch": "main",
       "homepage": null,
       "parent_url": null,
       "parent_name": null
