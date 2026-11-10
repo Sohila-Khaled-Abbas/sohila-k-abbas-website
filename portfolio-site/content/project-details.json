@@ -843,12 +843,12 @@
       "methods": [],
       "flow": null,
       "media": {
-        "src": "/project-media/deepclean-ui-preview.png",
+        "src": "/project-media/deepclean-ui-preview.svg",
         "kind": "Application preview",
-        "caption": "DeepClean OS — the Streamlit workspace in its default, awaiting-data state.",
-        "width": 400,
-        "height": 250,
-        "source_label": "Static UI reconstruction based on the current app.py layout; this is not a live screenshot."
+        "caption": "DeepClean OS — a vector preview of the Streamlit workspace and its default upload state.",
+        "width": 1600,
+        "height": 1000,
+        "source_label": "Scalable interface reconstruction based on the application layout; not a live screenshot."
       },
       "live": "https://deep-clean-os.streamlit.app",
       "presentation": null,
