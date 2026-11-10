@@ -842,7 +842,14 @@
       ],
       "methods": [],
       "flow": null,
-      "media": null,
+      "media": {
+        "src": "/project-media/deepclean-ui-preview.png",
+        "kind": "Application preview",
+        "caption": "DeepClean OS — the Streamlit workspace in its default, awaiting-data state.",
+        "width": 400,
+        "height": 250,
+        "source_label": "Static UI reconstruction based on the current app.py layout; this is not a live screenshot."
+      },
       "live": "https://deep-clean-os.streamlit.app",
       "presentation": null,
       "files": [
