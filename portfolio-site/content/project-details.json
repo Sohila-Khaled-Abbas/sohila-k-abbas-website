@@ -1,5 +1,5 @@
 {
-  "checked_on": "2026-11-08",
+  "checked_on": "2026-11-10",
   "legacy_source": "https://sohila-k-abbas-website.web.app/",
   "projects": [
     {
@@ -1385,6 +1385,91 @@
         "readme_excerpt": "Domain: Offshore Software House Consulting, Client Freelance Delivery & L&D Tech Academy",
         "readme_sha": "1ec52e109c510615f924b312c424d37fe262cc4c",
         "fingerprint": "2026-09-16T19:10:52Z"
+      }
+    },
+    {
+      "repo": "eur-egp-rate-monitor",
+      "title": "EUR to EGP Rate Monitor",
+      "summary": "An n8n workflow that polls the EUR/EGP feed every five minutes, validates rate freshness, compares both bank directions with a stored baseline, and sends AI-assisted Telegram alerts only when fresh changes are detected.",
+      "technologies": [
+        "n8n",
+        "JavaScript",
+        "REST API",
+        "n8n Data Tables",
+        "OpenRouter",
+        "Telegram Bot API"
+      ],
+      "methods": [
+        "Poll the Daleelak EUR feed on a five-minute Africa/Cairo schedule, then validate the EUR-EGP asset, both directional bank rates, and observation metadata.",
+        "Normalize the customer-sells-EUR and customer-buys-EUR rates with their associated bank labels, keeping the two transaction directions separate.",
+        "Read the stored baseline from an n8n Data Table and compare the latest values using two-decimal differences.",
+        "Gate notifications on both a detected rate change and fresh, non-stale source data.",
+        "Generate a concise AI-assisted interpretation with OpenRouter and deliver the validated comparison through Telegram.",
+        "Update the stored baseline only after Telegram delivery succeeds; unchanged or stale observations exit without sending an alert."
+      ],
+      "flow": [
+        "Schedule Trigger · every 5 minutes",
+        "Fetch Daleelak EUR feed",
+        "Extract and validate EUR-EGP rates",
+        "Read previous rate baseline",
+        "Compare directional changes and freshness",
+        "Generate AI analysis and send Telegram alert",
+        "Update baseline after successful delivery"
+      ],
+      "media": {
+        "src": "/project-media/eur-egp-rate-monitor-architecture.svg",
+        "kind": "Workflow architecture",
+        "caption": "Five-minute polling, freshness-aware comparison, AI explanation, Telegram notification, and post-delivery baseline update.",
+        "alt": "EUR to EGP rate monitoring workflow architecture",
+        "width": 1440,
+        "height": 750
+      },
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 12703,
+          "url": "https://github.com/Sohila-Khaled-Abbas/eur-egp-rate-monitor/blob/main/README.md"
+        },
+        {
+          "path": "workflows/eur-to-egp-rate-monitor.json",
+          "size": 13162,
+          "url": "https://github.com/Sohila-Khaled-Abbas/eur-egp-rate-monitor/blob/main/workflows/eur-to-egp-rate-monitor.json"
+        },
+        {
+          "path": "docs/architecture.svg",
+          "size": 4846,
+          "url": "https://github.com/Sohila-Khaled-Abbas/eur-egp-rate-monitor/blob/main/docs/architecture.svg"
+        },
+        {
+          "path": "docs/DATA_DICTIONARY.md",
+          "size": 2396,
+          "url": "https://github.com/Sohila-Khaled-Abbas/eur-egp-rate-monitor/blob/main/docs/DATA_DICTIONARY.md"
+        },
+        {
+          "path": "docs/SETUP_AND_TESTING.md",
+          "size": 2086,
+          "url": "https://github.com/Sohila-Khaled-Abbas/eur-egp-rate-monitor/blob/main/docs/SETUP_AND_TESTING.md"
+        }
+      ],
+      "readme": "https://github.com/Sohila-Khaled-Abbas/eur-egp-rate-monitor/blob/main/README.md",
+      "source": "https://github.com/Sohila-Khaled-Abbas/eur-egp-rate-monitor",
+      "empty": false,
+      "file_count": 10,
+      "source_branch": "main",
+      "tree_sha": "bc4df2792f29ef4879a359c4e6020c075e54f1d5",
+      "old_portfolio": false,
+      "auto_generated": false,
+      "github": {
+        "description": "An n8n workflow that monitors EUR/EGP rates, detects fresh changes, generates AI summaries, and sends Telegram alerts.",
+        "updated_at": "2026-11-10T17:10:56Z",
+        "pushed_at": "2026-11-10T17:06:44Z",
+        "homepage": null,
+        "default_branch": "main",
+        "readme_excerpt": "This project monitors the EUR/EGP exchange-rate pair using the public Daleelak feed. It validates and normalizes the latest bank rates, compares them with a stored baseline, checks source freshness, and sends a Telegram alert only when a fresh rate change is detected. An AI step adds a short plain-English interpretation before delivery.",
+        "readme_sha": "1278da47379930812a228ddc171e79f6c19ccbe4",
+        "fingerprint": "2026-11-10T17:06:44Z"
       }
     },
     {
