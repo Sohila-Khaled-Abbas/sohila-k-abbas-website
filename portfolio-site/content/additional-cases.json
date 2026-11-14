@@ -147,5 +147,21 @@
       "label": "Inspect the sanitized n8n workflow",
       "url": "https://github.com/Sohila-Khaled-Abbas/eur-egp-rate-monitor/blob/main/workflows/eur-to-egp-rate-monitor.json"
     }
+  },
+  "commonwealth": {
+    "title": "Commonwealth Bank — Introduction to Data Science",
+    "type": "DATA ANALYTICS / VIRTUAL JOB SIMULATION",
+    "intro": "A completed four-task Forage simulation connecting transaction analysis, privacy-aware customer-data preparation, social-media insights, and relational database design.",
+    "problem": "The exercises span different analytical responsibilities: answering business questions from transaction-level records, preparing a useful but privacy-conscious customer release, interpreting social-media interactions, and proposing a structure that preserves post and account relationships.",
+    "approach": [
+      "Used Excel Tables, structured references, SUMIFS, COUNTIFS, data-quality checks, and PivotTables to analyse 50,783 supermarket transaction records and independently reconcile five business metrics.",
+      "Prepared a four-column values-only release from 10,000 customer records by removing direct identifiers, generalising registration dates, creating age and salary bands, and reviewing quasi-identifier group sizes and salary-band diversity.",
+      "Analysed 60 fictional social-media posts with Excel formulas and PivotTables; reviewed the actual text of all 11 records flagged for a response, assessed X API feasibility, and completed the InsightSpark proposal.",
+      "Designed a normalised relational model with Accounts, Posts, Post_References, Post_Mentions, Hashtags, and Post_Hashtags, plus optional media, metric-snapshot, and analysis extensions."
+    ],
+    "takeaway": "The project shows how careful Excel work can move beyond calculation into quality checks, privacy-aware preparation, evidence-based interpretation, and a database design that protects the grain and relationships of the source information.",
+    "caveat": "This is a completed Forage virtual job simulation, not employment at Commonwealth Bank or a paid client engagement. The Task 03 social-media records and engagement values are fictional. X API research was a feasibility exercise, sentiment labels were supplied by the simulation, and Task 04 is a proposed schema rather than a deployed database.",
+    "stack": "Microsoft Excel · Excel Tables · SUMIFS / COUNTIFS · PivotTables · Data Quality · Data Privacy · Relational Database Design",
+    "repo": "commonwealth-bank-intro-data-science"
   }
 }

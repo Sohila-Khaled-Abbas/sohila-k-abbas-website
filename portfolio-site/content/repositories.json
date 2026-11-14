@@ -1,6 +1,6 @@
 {
   "owner": "Sohila-Khaled-Abbas",
-  "checked_on": "2026-11-10",
+  "checked_on": "2026-11-14",
   "repositories": [
     {
       "id": 979615270,
@@ -2127,6 +2127,32 @@
       "private": false,
       "updated_at": "2025-10-04T17:58:39Z",
       "pushed_at": "2025-10-04T17:58:36Z",
+      "default_branch": "main",
+      "homepage": null,
+      "parent_url": null,
+      "parent_name": null
+    },
+    {
+      "id": 1456669537,
+      "name": "commonwealth-bank-intro-data-science",
+      "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science",
+      "description": "A task-by-task learning and portfolio project focused on practical data analysis, data handling, business reasoning, and reproducible documentation.",
+      "language": "Markdown",
+      "topics": [
+        "commonwealth-bank",
+        "data-analysis",
+        "data-privacy",
+        "database-design",
+        "excel",
+        "forage-simulation",
+        "pivot-tables",
+        "social-media-analytics"
+      ],
+      "fork": false,
+      "archived": false,
+      "private": false,
+      "updated_at": "2026-11-13T14:57:32Z",
+      "pushed_at": "2026-11-14T18:17:03Z",
       "default_branch": "main",
       "homepage": null,
       "parent_url": null,

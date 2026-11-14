@@ -1,5 +1,5 @@
 {
-  "checked_on": "2026-11-10",
+  "checked_on": "2026-11-14",
   "legacy_source": "https://sohila-k-abbas-website.web.app/",
   "projects": [
     {
@@ -5364,6 +5364,88 @@
         "readme_sha": "fb45c1d6a7c07b10914af4c06ce2f82fa5ffc172",
         "fingerprint": "2025-10-04T17:58:36Z"
       }
+    },
+    {
+      "repo": "commonwealth-bank-intro-data-science",
+      "title": "Commonwealth Bank — Introduction to Data Science",
+      "summary": "A completed four-task Forage virtual job simulation combining Excel-based transaction analysis, privacy-aware data preparation, descriptive social-media analysis, API feasibility research, and relational database design. The completion certificate records a 10/10 (100%) assessment.",
+      "technologies": [
+        "Microsoft Excel",
+        "Excel Tables",
+        "Structured References",
+        "SUMIFS",
+        "COUNTIFS",
+        "PivotTables",
+        "Data Quality",
+        "Data Privacy",
+        "Social Media Analytics",
+        "X API Documentation",
+        "Relational Database Design",
+        "ER Diagrams"
+      ],
+      "methods": [
+        "Analysed 50,783 supermarket transaction records using Excel Tables, SUMIFS, COUNTIFS, data-quality checks, and two independent PivotTable reconciliations.",
+        "Prepared a privacy-conscious four-field release from 10,000 customer records using direct-identifier removal, date generalisation, age and salary bands, and quasi-identifier group-size and salary-diversity checks.",
+        "Profiled 60 fictional social-media posts and validated topic, engagement, author-type, sentiment, and time summaries with Excel formulas and PivotTables; manually reviewed all 11 records flagged as response-needed.",
+        "Reviewed current X API field, search, access, and metric documentation and completed an InsightSpark proposal; no production API application or integration was created.",
+        "Designed a normalised relational schema with six core tables, optional media/metric/analysis extensions, primary and foreign keys, relationship cardinalities, an ER diagram, and scenario checks."
+      ],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/README.md"
+        },
+        {
+          "path": "docs/final-project-summary.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/final-project-summary.md"
+        },
+        {
+          "path": "docs/task-01-data-aggregation-analysis.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/task-01-data-aggregation-analysis.md"
+        },
+        {
+          "path": "docs/task-02-data-anonymisation.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/task-02-data-anonymisation.md"
+        },
+        {
+          "path": "docs/task-03-propose-data-analysis-approaches.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/task-03-propose-data-analysis-approaches.md"
+        },
+        {
+          "path": "docs/task-04-designing-a-database.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/task-04-designing-a-database.md"
+        },
+        {
+          "path": "docs/project-experience-positioning.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/project-experience-positioning.md"
+        },
+        {
+          "path": "LEARNING_LOG.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/LEARNING_LOG.md"
+        }
+      ],
+      "empty": false,
+      "source": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/README.md",
+      "old_portfolio": false,
+      "auto_generated": false,
+      "github": {
+        "description": "A task-by-task learning and portfolio project focused on practical data analysis, data handling, business reasoning, and reproducible documentation.",
+        "updated_at": "2026-11-13T14:57:32Z",
+        "pushed_at": "2026-11-14T18:17:03Z",
+        "homepage": null,
+        "default_branch": "main",
+        "readme_excerpt": "A completed four-task data-science virtual job simulation documented as an independent, evidence-led portfolio project.",
+        "fingerprint": "2026-11-14T18:17:03Z:2026-11-13T14:57:32Z"
+      },
+      "featured": true,
+      "certificate_url": "https://www.theforage.com/completion-certificates/2sNmYuurxgpFYawco/smwfytX3mcLboA9bf_Z_HgpPSsyQpzob6HEh9_6ae9f5fbcfb5bb576b61ccb2_1794678594629_completion_certificate.pdf",
+      "completed_on": "2026-11-14",
+      "status": "completed"
     }
   ]
 }

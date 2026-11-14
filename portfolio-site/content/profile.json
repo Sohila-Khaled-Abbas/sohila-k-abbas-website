@@ -7,9 +7,21 @@
   "email": "sohila.k.data@gmail.com",
   "github": "https://github.com/Sohila-Khaled-Abbas",
   "linkedin": "https://linkedin.com/in/sohilakabbas",
-  "as_of": "2026-11-08",
+  "as_of": "2026-11-14",
   "summary": "BI Developer with nearly two years of freelance experience building Power BI dashboards and decision-ready reporting. My work spans sales and retail, churn, supply chain, e-commerce, customer satisfaction, marketing, HR, and healthcare, with a focus on data preparation, validation, SQL and Power Query, dimensional modeling, and KPI design. I also hold a BSc and build analytics projects, explore Python-based model evaluation, streamline reporting with Excel and VBA, and share practical learning through The Data Tea.",
   "experience": [
+    {
+      "role": "Data Science Job Simulation",
+      "organization": "Commonwealth Bank · Forage",
+      "dates": "Nov 14, 2026",
+      "mode": "Virtual · Completed job simulation",
+      "bullets": [
+        "Analyzed 50,783 supermarket transaction records in Microsoft Excel using Excel Tables, structured references, SUMIFS, COUNTIFS, data-quality checks, and two PivotTables to reconcile five business metrics. Applied data minimization, field removal, date generalization, and age/salary banding to prepare a values-only release from a 10,000-record customer dataset.",
+        "Analyzed a fictional 60-post social-media sample with Excel formulas and PivotTables; reviewed all 11 response-needed records, assessed X API feasibility, and completed the InsightSpark proposal. Designed a normalized relational model for posts and accounts, including references, mentions, hashtags, keys, and relationships."
+      ],
+      "certificate_url": "https://www.theforage.com/completion-certificates/2sNmYuurxgpFYawco/smwfytX3mcLboA9bf_Z_HgpPSsyQpzob6HEh9_6ae9f5fbcfb5bb576b61ccb2_1794678594629_completion_certificate.pdf",
+      "project_url": "https://sohila-khaled-abbas.vercel.app/projects/commonwealth-bank-intro-data-science/"
+    },
     {
       "role": "Excel Skills Job Simulation",
       "organization": "Forage Academy",
@@ -98,7 +110,8 @@
         "Kimball dimensional modeling",
         "MySQL",
         "SSIS",
-        "Informatica"
+        "Informatica",
+        "Relational database design"
       ]
     },
     {
@@ -142,7 +155,10 @@
         "Obsidian",
         "Macros / VBA",
         "Notion",
-        "Data storytelling"
+        "Data storytelling",
+        "PivotTables",
+        "Data quality",
+        "Data privacy"
       ]
     },
     {
