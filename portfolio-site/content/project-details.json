@@ -463,12 +463,12 @@
       "github": {
         "description": "A task-by-task learning and portfolio project focused on practical data analysis, data handling, business reasoning, and reproducible documentation.",
         "updated_at": "2026-11-13T14:57:32Z",
-        "pushed_at": "2026-11-14T18:17:03Z",
+        "pushed_at": "2026-11-14T18:29:01Z",
         "homepage": null,
         "default_branch": "main",
         "readme_excerpt": "A completed four-task data-science virtual job simulation documented as an independent, evidence-led portfolio project.",
         "readme_sha": "3e356aafadc81117298e11a52a32a3eee317966d",
-        "fingerprint": "2026-11-14T18:17:03Z"
+        "fingerprint": "2026-11-14T18:29:01Z"
       },
       "featured": true,
       "certificate_url": "https://www.theforage.com/completion-certificates/2sNmYuurxgpFYawco/smwfytX3mcLboA9bf_2sNmYuurxgpFYawco_6ae9f5fbcfb5bb576b61ccb2_1794678594628_completion_certificate.pdf",
@@ -4824,13 +4824,13 @@
       "old_portfolio": false,
       "github": {
         "description": "This repository contains the source code for a personal data portfolio website built for Sohila Khaled Abbas — a recognized BI Developer, Data Analytics Engineer, and Top 200 Arabic-Speaking Influencer in data education.",
-        "updated_at": "2026-11-14T18:25:42Z",
-        "pushed_at": "2026-11-14T18:25:42Z",
+        "updated_at": "2026-11-14T18:47:02Z",
+        "pushed_at": "2026-11-14T18:47:02Z",
         "homepage": "https://sohila-khaled-abbas.vercel.app/",
         "default_branch": "main",
         "readme_excerpt": "Data Analyst & BI Developer | SQL, Python, Power BI, DAX & Power Query | ETL/ELT & Analytics Engineering",
         "readme_sha": "16c85e4db64c08946831796971383efe8ff34842",
-        "fingerprint": "2026-11-14T18:25:42Z"
+        "fingerprint": "2026-11-14T18:47:02Z"
       }
     },
     {
