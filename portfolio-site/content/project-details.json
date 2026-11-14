@@ -305,13 +305,13 @@
       "old_portfolio": true,
       "github": {
         "description": "An end-to-end data engineering and analytics project analyzing historical Apple Inc. (AAPL) stock market data up to the present day, to extract actionable business insights and investment strategies.",
-        "updated_at": "2026-11-07T01:42:28Z",
-        "pushed_at": "2026-11-07T01:42:24Z",
+        "updated_at": "2026-11-12T03:44:33Z",
+        "pushed_at": "2026-11-14T02:00:30Z",
         "homepage": null,
         "default_branch": "main",
-        "readme_excerpt": "[](https://powerbi.microsoft.com/) [](https://www.mysql.com/) [](https://www.python.org/) [](https://jupyter.org/) [](https://github.com/features/actions) [](https://opensource.org/licenses/MIT)",
-        "readme_sha": "ee911efa595ab5a770c24a43462ac437c584daa0",
-        "fingerprint": "2026-11-07T01:42:24Z"
+        "readme_excerpt": "An end-to-end financial analytics and data engineering system spanning 1980–present.",
+        "readme_sha": "3e47085f3649438762949859c956db40b1f6caf7",
+        "fingerprint": "2026-11-14T02:00:30Z"
       }
     },
     {
@@ -385,6 +385,89 @@
         "readme_sha": "178df5cfbcc1691bed77808f9d9ce7f3bad43f59",
         "fingerprint": "2026-04-20T21:53:24Z"
       }
+    },
+    {
+      "repo": "commonwealth-bank-intro-data-science",
+      "title": "Commonwealth Bank — Introduction to Data Science",
+      "summary": "A completed four-task Forage virtual job simulation combining Excel-based transaction analysis, privacy-aware data preparation, descriptive social-media analysis, API feasibility research, and relational database design. The completion certificate records a 10/10 (100%) assessment.",
+      "technologies": [
+        "Microsoft Excel",
+        "Excel Tables",
+        "Structured References",
+        "SUMIFS",
+        "COUNTIFS",
+        "PivotTables",
+        "Data Quality",
+        "Data Privacy",
+        "Social Media Analytics",
+        "X API Documentation",
+        "Relational Database Design",
+        "ER Diagrams"
+      ],
+      "methods": [
+        "Analysed 50,783 supermarket transaction records using Excel Tables, SUMIFS, COUNTIFS, data-quality checks, and two independent PivotTable reconciliations.",
+        "Prepared a privacy-conscious four-field release from 10,000 customer records using direct-identifier removal, date generalisation, age and salary bands, and quasi-identifier group-size and salary-diversity checks.",
+        "Profiled 60 fictional social-media posts and validated topic, engagement, author-type, sentiment, and time summaries with Excel formulas and PivotTables; manually reviewed all 11 records flagged as response-needed.",
+        "Reviewed current X API field, search, access, and metric documentation and completed an InsightSpark proposal; no production API application or integration was created.",
+        "Designed a normalised relational schema with six core tables, optional media/metric/analysis extensions, primary and foreign keys, relationship cardinalities, an ER diagram, and scenario checks."
+      ],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/README.md"
+        },
+        {
+          "path": "docs/final-project-summary.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/final-project-summary.md"
+        },
+        {
+          "path": "docs/task-01-data-aggregation-analysis.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/task-01-data-aggregation-analysis.md"
+        },
+        {
+          "path": "docs/task-02-data-anonymisation.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/task-02-data-anonymisation.md"
+        },
+        {
+          "path": "docs/task-03-propose-data-analysis-approaches.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/task-03-propose-data-analysis-approaches.md"
+        },
+        {
+          "path": "docs/task-04-designing-a-database.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/task-04-designing-a-database.md"
+        },
+        {
+          "path": "docs/project-experience-positioning.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/project-experience-positioning.md"
+        },
+        {
+          "path": "LEARNING_LOG.md",
+          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/LEARNING_LOG.md"
+        }
+      ],
+      "empty": false,
+      "source": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/README.md",
+      "old_portfolio": false,
+      "auto_generated": false,
+      "github": {
+        "description": "A task-by-task learning and portfolio project focused on practical data analysis, data handling, business reasoning, and reproducible documentation.",
+        "updated_at": "2026-11-13T14:57:32Z",
+        "pushed_at": "2026-11-14T18:17:03Z",
+        "homepage": null,
+        "default_branch": "main",
+        "readme_excerpt": "A completed four-task data-science virtual job simulation documented as an independent, evidence-led portfolio project.",
+        "readme_sha": "3e356aafadc81117298e11a52a32a3eee317966d",
+        "fingerprint": "2026-11-14T18:17:03Z"
+      },
+      "featured": true,
+      "certificate_url": "https://www.theforage.com/completion-certificates/2sNmYuurxgpFYawco/smwfytX3mcLboA9bf_Z_HgpPSsyQpzob6HEh9_6ae9f5fbcfb5bb576b61ccb2_1794678594629_completion_certificate.pdf",
+      "completed_on": "2026-11-14",
+      "status": "completed"
     },
     {
       "repo": "COURSE-EXCEL-ZERO-TO-HERO",
@@ -596,13 +679,13 @@
       "old_portfolio": false,
       "github": {
         "description": "This project delivers a complete data analytics pipeline for a fictional Telecom company, integrating:  PostgreSQL (staging, star schema, business queries, materialized views) Power BI (dashboard storytelling, KPIs, churn analysis) EDA (Excel + Python Notebook)",
-        "updated_at": "2026-11-01T17:35:03Z",
-        "pushed_at": "2026-11-01T17:33:50Z",
+        "updated_at": "2026-11-10T22:03:10Z",
+        "pushed_at": "2026-11-10T20:43:05Z",
         "homepage": null,
         "default_branch": "main",
-        "readme_excerpt": "This project delivers a complete data analytics pipeline for a fictional Telecom company, integrating:",
-        "readme_sha": "3af9fd5bc2292ee5a55851a2f889ff6efd273a47",
-        "fingerprint": "2026-11-01T17:33:50Z"
+        "readme_excerpt": "A customer analytics pipeline built around PostgreSQL, exploratory analysis, and Power BI storytelling.",
+        "readme_sha": "d50b340abaf9b302771c1be608614daeeb76b8a2",
+        "fingerprint": "2026-11-10T20:43:05Z"
       }
     },
     {
@@ -888,13 +971,13 @@
       "old_portfolio": true,
       "github": {
         "description": "DeepClean is a robust Python-based framework designed to automate the critical stages of the Data Engineering cleaning lifecycle. It is available as both a reproducible Python class for programmatic use and a Streamlit Web Application for interactive data processing.",
-        "updated_at": "2026-05-04T16:52:28Z",
-        "pushed_at": "2026-05-04T16:52:21Z",
+        "updated_at": "2026-11-10T21:15:56Z",
+        "pushed_at": "2026-11-10T18:21:59Z",
         "homepage": null,
         "default_branch": "main",
-        "readme_excerpt": "DeepClean OS is an automated data engineering pipeline designed to transform raw, messy datasets into high-fidelity, ML-ready assets. Utilizing a modular Bento Grid Architecture, it provides both a programmatic engine and a sleek, night-mode web interface.",
-        "readme_sha": "90275add82c30adfa836c1832f6afaef6b9487af",
-        "fingerprint": "2026-05-04T16:52:21Z"
+        "readme_excerpt": "DeepClean OS A practical Python data-cleaning engine with an interactive Streamlit workspace. Turn raw CSV data into a cleaner, structured starting point for analytics and machine-learning workflows.",
+        "readme_sha": "6a90721f4e031d72a6ee034efb18f43f2b047ca1",
+        "fingerprint": "2026-11-10T18:21:59Z"
       }
     },
     {
@@ -1689,13 +1772,13 @@
       "old_portfolio": true,
       "github": {
         "description": "Real-time insights into retailer behavior, operational performance, and customer lifecycle across the Maxab distribution network in Egypt.",
-        "updated_at": "2026-04-27T16:58:49Z",
-        "pushed_at": "2026-03-15T19:35:18Z",
+        "updated_at": "2026-11-09T16:38:44Z",
+        "pushed_at": "2026-11-09T16:38:40Z",
         "homepage": null,
         "default_branch": "main",
-        "readme_excerpt": "Real-time insights into retailer behavior, operational performance, and customer lifecycle across the Maxab distribution network in Egypt.",
-        "readme_sha": "fdff3fc450e1f6521ba3c128ae28fe7334f58aab",
-        "fingerprint": "2026-03-15T19:35:18Z"
+        "readme_excerpt": "A portfolio analytics scenario exploring retailer sales, delivery performance, retention, and category movement in an Egyptian B2B distribution context.",
+        "readme_sha": "7bf318c1bc3df6f461601ccfc92ccc1e87553053",
+        "fingerprint": "2026-11-09T16:38:40Z"
       }
     },
     {
@@ -2092,13 +2175,13 @@
       "old_portfolio": true,
       "github": {
         "description": "The Global Layoffs Analysis project uses SQL to explore workforce reduction trends across industries, funding stages, and regions. By analyzing clean and enhanced datasets, it uncovers key drivers of layoffs, highlights global patterns, and provides actionable insights for decision-makers.",
-        "updated_at": "2026-11-09T18:09:42Z",
-        "pushed_at": "2026-11-09T18:09:38Z",
+        "updated_at": "2026-11-09T18:13:58Z",
+        "pushed_at": "2026-11-09T18:13:54Z",
         "homepage": null,
         "default_branch": "main",
-        "readme_excerpt": "A reproducible MySQL case study that imports a 3,984-row layoffs CSV, removes repeated business records, and analyzes company, country, industry, funding-stage, monthly, and annual patterns.",
-        "readme_sha": "a78b000e308a5b51dddecb0e7e4250d364e38249",
-        "fingerprint": "2026-11-09T18:09:38Z"
+        "readme_excerpt": "A MySQL analytics case study exploring workforce reductions across companies, industries, countries, funding stages, and time.",
+        "readme_sha": "1f593043c9aef80db4bb1ac2aab1086db792f85a",
+        "fingerprint": "2026-11-09T18:13:54Z"
       }
     },
     {
@@ -2961,13 +3044,13 @@
       "old_portfolio": true,
       "github": {
         "description": "A production-grade, self-hosted n8n deployment with queue-mode scaling, PostgreSQL persistence, and an isolated Python/JavaScript code execution sidecar.",
-        "updated_at": "2026-11-07T19:46:31Z",
-        "pushed_at": "2026-11-07T19:46:35Z",
+        "updated_at": "2026-11-09T12:43:07Z",
+        "pushed_at": "2026-11-09T12:43:03Z",
         "homepage": "https://sohila-khaled-abbas.github.io/n8n-production-queue-setup/",
         "default_branch": "main",
         "readme_excerpt": "A production-grade, self-hosted n8n deployment with dynamic worker autoscaling, Puppeteer/Playwright browser automation, queue-mode execution, PostgreSQL persistence, and automated Redis queue monitoring.",
-        "readme_sha": "12b5305f01cfacccd7909f927dea36687eef7f6f",
-        "fingerprint": "2026-11-07T19:46:35Z"
+        "readme_sha": "f632705ac975d9bd8516860c2f885461f8fe834b",
+        "fingerprint": "2026-11-09T12:43:03Z"
       }
     },
     {
@@ -4009,13 +4092,13 @@
       "source_branch": "main",
       "github": {
         "description": "Comprehensive learning repository and documentation hub for the 81-lecture Microsoft Power BI Data Analysis Diploma by Eng. Essam Elsayed (MCT). Includes organized datasets, Power Query M code cheatsheet, and real-world case studies.",
-        "updated_at": "2026-11-07T16:30:06Z",
-        "pushed_at": "2026-11-07T16:30:49Z",
+        "updated_at": "2026-11-11T21:57:16Z",
+        "pushed_at": "2026-11-11T21:40:30Z",
         "homepage": "https://www.youtube.com/playlist?list=PLkYJ59mAhUsMbZQ4AmBmGt0EEyrTrg5mX",
         "default_branch": "main",
-        "readme_excerpt": "This repository serves as a structured, hands-on self-study companion for the Microsoft Power BI Data Analysis Diploma. It organizes all 81 video lectures into 7 modular phases, providing: - 📂 Structured Practice Folders: Cleanly arranged datasets (.pbix, .xlsx, .csv, .pdf, .json) corresponding directly to each lecture. - 📖 Deep Technical Documentation: In-depth README.md for every single lecture explaining core business concepts, methodology, and step-by-step instructions. - ⚡ M Language Code Reference: Practical, ready-to-use M expressions,",
-        "readme_sha": "b517a95668e09206d770c9c453d3f3768b135257",
-        "fingerprint": "2026-11-07T16:30:49Z"
+        "readme_excerpt": "[](https://www.youtube.com/@EssamMCT) [](CURRICULUM.md) [](https://powerbi.microsoft.com/desktop/) [](MLANGUAGECHEATSHEET.md)",
+        "readme_sha": "1604e6c4cd2f1f0ee21474a6bdabe2dfe4ef3c67",
+        "fingerprint": "2026-11-11T21:40:30Z"
       },
       "auto_generated": false,
       "featured": true
@@ -4540,13 +4623,13 @@
       "old_portfolio": true,
       "github": {
         "description": "A comprehensive end-to-end data analytics project using Python, Excel, and Power BI to extract actionable insights from complex supply chain data. This dashboard supports operational and strategic decision-making by visualizing key KPIs in logistics, fulfillment, sales, and fraud detection.",
-        "updated_at": "2025-05-18T19:04:36Z",
-        "pushed_at": "2025-05-18T19:04:27Z",
+        "updated_at": "2026-11-08T21:26:46Z",
+        "pushed_at": "2026-11-08T21:26:43Z",
         "homepage": null,
         "default_branch": "main",
-        "readme_excerpt": "A comprehensive end-to-end data analytics project using Python, Excel, and Power BI to extract actionable insights from complex supply chain data. This dashboard supports operational and strategic decision-making by visualizing key KPIs in logistics, fulfillment, sales, and fraud detection.",
-        "readme_sha": "4bf903a21e69f37dea2ea3b65fe936370a8391a2",
-        "fingerprint": "2025-05-18T19:04:27Z"
+        "readme_excerpt": "A five-page business intelligence solution exploring order fulfillment, customer and market performance, product profitability, shipping operations, time trends, and fraud-related patterns.",
+        "readme_sha": "9ad529b0c1ee192352363c3e5bfea291276f7e4f",
+        "fingerprint": "2026-11-08T21:26:43Z"
       }
     },
     {
@@ -4735,13 +4818,13 @@
       "old_portfolio": false,
       "github": {
         "description": "This repository contains the source code for a personal data portfolio website built for Sohila Khaled Abbas — a recognized BI Developer, Data Analytics Engineer, and Top 200 Arabic-Speaking Influencer in data education.",
-        "updated_at": "2026-11-08T17:14:07Z",
-        "pushed_at": "2026-11-08T17:14:07Z",
+        "updated_at": "2026-11-14T18:25:42Z",
+        "pushed_at": "2026-11-14T18:25:42Z",
         "homepage": "https://sohila-khaled-abbas.vercel.app/",
         "default_branch": "main",
         "readme_excerpt": "Data Analyst & BI Developer | SQL, Python, Power BI, DAX & Power Query | ETL/ELT & Analytics Engineering",
         "readme_sha": "16c85e4db64c08946831796971383efe8ff34842",
-        "fingerprint": "2026-11-08T17:14:07Z"
+        "fingerprint": "2026-11-14T18:25:42Z"
       }
     },
     {
@@ -4813,13 +4896,13 @@
       "old_portfolio": false,
       "github": {
         "description": "Config files for my GitHub profile.",
-        "updated_at": "2026-11-08T09:07:13Z",
-        "pushed_at": "2026-11-08T09:07:09Z",
+        "updated_at": "2026-11-12T10:46:59Z",
+        "pushed_at": "2026-11-14T09:03:46Z",
         "homepage": "https://github.com/Sohila-Khaled-Abbas",
         "default_branch": "main",
-        "readme_excerpt": "I’m a Data Analyst and BI Developer focused on turning raw, fragmented data into clear insights and reliable reporting. I use SQL and Python to explore, clean, validate, and prepare data, then build business intelligence solutions with Power BI, DAX, and Power Query. I also work with ETL/ELT workflows, dimensional modeling, and data warehousing to make analytics more consistent, traceable, and useful for decision-making. My portfolio brings these skills together through hands-on projects across business reporting, analytics engineering, and dat",
-        "readme_sha": "161f7482e6f3ba07715d1950693339d640383660",
-        "fingerprint": "2026-11-08T09:07:09Z"
+        "readme_excerpt": "Nearly 2 years building BI solutions · Power BI dashboards · Reporting · Analytics projects",
+        "readme_sha": "835ed0db513434d9c3012bfc4de569b38c8f781a",
+        "fingerprint": "2026-11-14T09:03:46Z"
       }
     },
     {
@@ -5087,13 +5170,13 @@
       "old_portfolio": false,
       "github": {
         "description": "Live Netflix Catalog & Audience Intelligence ELT Pipeline",
-        "updated_at": "2026-11-07T18:07:19Z",
-        "pushed_at": "2026-11-07T18:07:14Z",
+        "updated_at": "2026-11-10T20:52:35Z",
+        "pushed_at": "2026-11-10T17:28:43Z",
         "homepage": null,
         "default_branch": "main",
         "readme_excerpt": "[](https://www.python.org/) [](https://www.postgresql.org/) [](https://airbyte.com/) [](https://www.docker.com/) [](https://powerbi.microsoft.com/) [](LICENSE)",
         "readme_sha": "702606963e925945f24051506f36d673dd24b6bf",
-        "fingerprint": "2026-11-07T18:07:14Z"
+        "fingerprint": "2026-11-10T17:28:43Z"
       }
     },
     {
@@ -5364,88 +5447,6 @@
         "readme_sha": "fb45c1d6a7c07b10914af4c06ce2f82fa5ffc172",
         "fingerprint": "2025-10-04T17:58:36Z"
       }
-    },
-    {
-      "repo": "commonwealth-bank-intro-data-science",
-      "title": "Commonwealth Bank — Introduction to Data Science",
-      "summary": "A completed four-task Forage virtual job simulation combining Excel-based transaction analysis, privacy-aware data preparation, descriptive social-media analysis, API feasibility research, and relational database design. The completion certificate records a 10/10 (100%) assessment.",
-      "technologies": [
-        "Microsoft Excel",
-        "Excel Tables",
-        "Structured References",
-        "SUMIFS",
-        "COUNTIFS",
-        "PivotTables",
-        "Data Quality",
-        "Data Privacy",
-        "Social Media Analytics",
-        "X API Documentation",
-        "Relational Database Design",
-        "ER Diagrams"
-      ],
-      "methods": [
-        "Analysed 50,783 supermarket transaction records using Excel Tables, SUMIFS, COUNTIFS, data-quality checks, and two independent PivotTable reconciliations.",
-        "Prepared a privacy-conscious four-field release from 10,000 customer records using direct-identifier removal, date generalisation, age and salary bands, and quasi-identifier group-size and salary-diversity checks.",
-        "Profiled 60 fictional social-media posts and validated topic, engagement, author-type, sentiment, and time summaries with Excel formulas and PivotTables; manually reviewed all 11 records flagged as response-needed.",
-        "Reviewed current X API field, search, access, and metric documentation and completed an InsightSpark proposal; no production API application or integration was created.",
-        "Designed a normalised relational schema with six core tables, optional media/metric/analysis extensions, primary and foreign keys, relationship cardinalities, an ER diagram, and scenario checks."
-      ],
-      "flow": null,
-      "media": null,
-      "live": null,
-      "presentation": null,
-      "files": [
-        {
-          "path": "README.md",
-          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/README.md"
-        },
-        {
-          "path": "docs/final-project-summary.md",
-          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/final-project-summary.md"
-        },
-        {
-          "path": "docs/task-01-data-aggregation-analysis.md",
-          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/task-01-data-aggregation-analysis.md"
-        },
-        {
-          "path": "docs/task-02-data-anonymisation.md",
-          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/task-02-data-anonymisation.md"
-        },
-        {
-          "path": "docs/task-03-propose-data-analysis-approaches.md",
-          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/task-03-propose-data-analysis-approaches.md"
-        },
-        {
-          "path": "docs/task-04-designing-a-database.md",
-          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/task-04-designing-a-database.md"
-        },
-        {
-          "path": "docs/project-experience-positioning.md",
-          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/docs/project-experience-positioning.md"
-        },
-        {
-          "path": "LEARNING_LOG.md",
-          "url": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/LEARNING_LOG.md"
-        }
-      ],
-      "empty": false,
-      "source": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science",
-      "readme": "https://github.com/Sohila-Khaled-Abbas/commonwealth-bank-intro-data-science/blob/main/README.md",
-      "old_portfolio": false,
-      "auto_generated": false,
-      "github": {
-        "description": "A task-by-task learning and portfolio project focused on practical data analysis, data handling, business reasoning, and reproducible documentation.",
-        "updated_at": "2026-11-13T14:57:32Z",
-        "pushed_at": "2026-11-14T18:17:03Z",
-        "homepage": null,
-        "default_branch": "main",
-        "readme_excerpt": "A completed four-task data-science virtual job simulation documented as an independent, evidence-led portfolio project.",
-        "fingerprint": "2026-11-14T18:17:03Z:2026-11-13T14:57:32Z"
-      },
-      "featured": true,
-      "certificate_url": "https://www.theforage.com/completion-certificates/2sNmYuurxgpFYawco/smwfytX3mcLboA9bf_Z_HgpPSsyQpzob6HEh9_6ae9f5fbcfb5bb576b61ccb2_1794678594629_completion_certificate.pdf",
-      "completed_on": "2026-11-14",
-      "status": "completed"
     }
   ]
 }
