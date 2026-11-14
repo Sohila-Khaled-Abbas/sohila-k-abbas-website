@@ -6,9 +6,9 @@ The professional profile uses the current public email and GitHub account from t
 
 The current professional positioning uses the exact LinkedIn headline supplied by the owner on 1 November 2026: Data & Analytics Engineer | ML Engineering | Python, SQL, Power BI, dbt, Airflow, PySpark | ETL/ELT & Data Warehousing | AI Automation. Professional headline, profile summary, social preview, and structured data use this positioning. Experience is owner-maintained, and requested exclusions are enforced separately from source discovery.
 
-The project directory contains 91 accessible public repository metadata records checked through the connected GitHub account on 30 October 2026. Five private repositories are excluded. One listed repository that GitHub could not serve is excluded. Fork status, parent attribution, language, and activity dates come from GitHub metadata; editorial subject categories are only navigation aids.
+The project directory contains 99 accessible public repository metadata records checked through the connected GitHub account on 14 November 2026. Five private repositories are excluded. One listed repository that GitHub could not serve is excluded. Fork status, parent attribution, language, and activity dates come from GitHub metadata; editorial subject categories are only navigation aids.
 
-Twelve case studies were written from the public repository READMEs. Sources are linked on each case-study page. Academic work, virtual experiences, synthetic scenarios, and portfolio experiments are labeled accordingly. Company names in repositories do not establish employment or a client relationship.
+Curated case studies are written from public repository evidence, including the completed Commonwealth Bank Introduction to Data Science virtual job simulation. Sources are linked on each case-study page. Academic work, virtual experiences, synthetic scenarios, and portfolio experiments are labeled accordingly. Company names in repositories do not establish employment or a client relationship.
 
 Selected training comes from the owner’s supplied course history. A future-dated course is not represented as completed. Source code does not establish production performance, client impact, certifications, awards, or employer seniority.
 
@@ -21,3 +21,8 @@ The owner's previous public portfolio at `https://sohila-k-abbas-website.web.app
 The supplied LinkedIn profile PDF also corroborated Kimball dimensional modeling, scikit-learn, and Obsidian. These additions do not replace the owner's biography or infer certifications.
 
 Report images and links are documented in [preview sources](preview-sources.md). The current palette comes from the portrait; it does not recolor report evidence or technology trademarks. See [the design system](DESIGN_SYSTEM.md).
+
+
+## Commonwealth Bank — Introduction to Data Science (Forage)
+
+The Forage completion certificate confirms completion on 14 November 2026 with a 10/10 (100%) assessment. The portfolio experience entry and project case study describe this as a virtual job simulation, not employment or a client engagement. The work summary is grounded in the documented four-task Excel analysis, privacy-aware data preparation, fictional social-media sample analysis, and relational schema proposal. Task 03 metrics are labelled simulated; Task 04 remains a design proposal rather than a deployed database. Forage source workbooks, row-level customer/social records, and private working copies are not published.

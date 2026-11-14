@@ -412,7 +412,13 @@
         "Designed a normalised relational schema with six core tables, optional media/metric/analysis extensions, primary and foreign keys, relationship cardinalities, an ER diagram, and scenario checks."
       ],
       "flow": null,
-      "media": null,
+      "media": {
+        "src": "/project-media/commonwealth-data-workflow.svg",
+        "kind": "SVG project workflow",
+        "caption": "Four-task workflow: Excel transaction analysis, privacy-aware preparation, social-media insights, and relational database design.",
+        "width": 1200,
+        "height": 480
+      },
       "live": null,
       "presentation": null,
       "files": [
@@ -465,7 +471,7 @@
         "fingerprint": "2026-11-14T18:17:03Z"
       },
       "featured": true,
-      "certificate_url": "https://www.theforage.com/completion-certificates/2sNmYuurxgpFYawco/smwfytX3mcLboA9bf_Z_HgpPSsyQpzob6HEh9_6ae9f5fbcfb5bb576b61ccb2_1794678594629_completion_certificate.pdf",
+      "certificate_url": "https://www.theforage.com/completion-certificates/2sNmYuurxgpFYawco/smwfytX3mcLboA9bf_2sNmYuurxgpFYawco_6ae9f5fbcfb5bb576b61ccb2_1794678594628_completion_certificate.pdf",
       "completed_on": "2026-11-14",
       "status": "completed"
     },

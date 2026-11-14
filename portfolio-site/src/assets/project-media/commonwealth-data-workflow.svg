@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" aria-labelledby="title desc">
+<title id="title">Commonwealth Bank Forage simulation — four-task workflow</title>
+<desc id="desc">Four connected stages: Excel transaction analysis, privacy-aware data preparation, fictional social-media insights, and relational database design.</desc>
+<defs>
+<linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbf7f3"/><stop offset="1" stop-color="#eee4dc"/></linearGradient>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#8a6257"/></marker>
+<style>.heading{font:700 26px system-ui,sans-serif;fill:#382c2a}.sub{font:400 14px system-ui,sans-serif;fill:#796b66}.card{fill:#fffdfa;stroke:#ddcec5;stroke-width:2}.num{font:700 14px system-ui,sans-serif;fill:#fff}.name{font:700 18px system-ui,sans-serif;fill:#493330}.copy{font:400 14px system-ui,sans-serif;fill:#70615c}.metric{font:700 17px system-ui,sans-serif;fill:#774e45}.foot{font:600 13px system-ui,sans-serif;fill:#7a6862;letter-spacing:.5px}</style>
+</defs>
+<rect width="1200" height="480" rx="24" fill="url(#paper)"/>
+<text x="52" y="58" class="heading">From raw records to a structured data design</text>
+<text x="52" y="86" class="sub">Four connected workstreams · Microsoft Excel applied across analysis, validation, and preparation</text>
+<g transform="translate(40 126)"><rect class="card" width="250" height="260" rx="18"/><circle cx="36" cy="38" r="19" fill="#8c5c50"/><text x="36" y="43" text-anchor="middle" class="num">01</text><text x="26" y="91" class="name">Transaction analysis</text><text x="26" y="122" class="copy">Excel Tables, SUMIFS,</text><text x="26" y="145" class="copy">COUNTIFS and PivotTables</text><path d="M26 170 H224" stroke="#e8dbd2"/><text x="26" y="207" class="metric">50,783 records</text><text x="26" y="232" class="copy">Five metrics reconciled</text></g>
+<path d="M298 256 H326" stroke="#8a6257" stroke-width="3" marker-end="url(#arrow)"/>
+<g transform="translate(340 126)"><rect class="card" width="250" height="260" rx="18"/><circle cx="36" cy="38" r="19" fill="#9b7860"/><text x="36" y="43" text-anchor="middle" class="num">02</text><text x="26" y="91" class="name">Privacy-aware prep</text><text x="26" y="122" class="copy">Identifier removal, date</text><text x="26" y="145" class="copy">generalisation and banding</text><path d="M26 170 H224" stroke="#e8dbd2"/><text x="26" y="207" class="metric">10,000 records</text><text x="26" y="232" class="copy">40 checked profiles</text></g>
+<path d="M598 256 H626" stroke="#8a6257" stroke-width="3" marker-end="url(#arrow)"/>
+<g transform="translate(640 126)"><rect class="card" width="250" height="260" rx="18"/><circle cx="36" cy="38" r="19" fill="#a47d6d"/><text x="36" y="43" text-anchor="middle" class="num">03</text><text x="26" y="91" class="name">Social-media insights</text><text x="26" y="122" class="copy">Topic, engagement, sentiment</text><text x="26" y="145" class="copy">and support-text review</text><path d="M26 170 H224" stroke="#e8dbd2"/><text x="26" y="207" class="metric">60 fictional posts</text><text x="26" y="232" class="copy">11 flagged records reviewed</text></g>
+<path d="M898 256 H926" stroke="#8a6257" stroke-width="3" marker-end="url(#arrow)"/>
+<g transform="translate(940 126)"><rect class="card" width="220" height="260" rx="18"/><circle cx="36" cy="38" r="19" fill="#6c7770"/><text x="36" y="43" text-anchor="middle" class="num">04</text><text x="26" y="91" class="name">Database design</text><text x="26" y="122" class="copy">Posts, accounts, references,</text><text x="26" y="145" class="copy">mentions and hashtags</text><path d="M26 170 H194" stroke="#e8dbd2"/><text x="26" y="207" class="metric">6 core tables</text><text x="26" y="232" class="copy">Keys, ERD and relationships</text></g>
+<text x="52" y="435" class="foot">INDEPENDENT FORAGE VIRTUAL JOB SIMULATION · COMPLETED NOVEMBER 2026 · NOT EMPLOYMENT</text>
+</svg>
