@@ -2049,6 +2049,48 @@
       }
     },
     {
+      "repo": "Global-Billionaire-Wealth-2026",
+      "title": "⚡ Global Billionaire Wealth to GDP (2026)",
+      "summary": "Macroeconomic analytics & Power BI semantic model (PBIP/TMDL) dissecting $19.64T in global billionaire wealth across 3,384 fortunes and 80 nations vs. national GDP.",
+      "technologies": [
+        "Python",
+        "business-intelligence",
+        "data-analytics",
+        "dax",
+        "forbes-billionaires",
+        "kaggle-dataset",
+        "macroeconomics",
+        "pbip"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 19542,
+          "url": "https://github.com/Sohila-Khaled-Abbas/Global-Billionaire-Wealth-2026/blob/main/README.md"
+        }
+      ],
+      "empty": false,
+      "source": "https://github.com/Sohila-Khaled-Abbas/Global-Billionaire-Wealth-2026",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/Global-Billionaire-Wealth-2026/blob/main/README.md",
+      "old_portfolio": false,
+      "auto_generated": true,
+      "github": {
+        "description": "Macroeconomic analytics & Power BI semantic model (PBIP/TMDL) dissecting $19.64T in global billionaire wealth across 3,384 fortunes and 80 nations vs. national GDP.",
+        "updated_at": "2026-11-16T18:43:53Z",
+        "pushed_at": "2026-11-16T20:25:20Z",
+        "homepage": null,
+        "default_branch": "main",
+        "readme_excerpt": "A modern business intelligence and macro-financial model dissecting $19.64 Trillion in private capital across 3,384 fortunes and 80 sovereign economies.",
+        "readme_sha": "c7c74bf056b5b3a5c12c553d7d1503aa883cb2bf",
+        "fingerprint": "2026-11-16T20:25:20Z"
+      }
+    },
+    {
       "repo": "global-horizon-bank-dwh-project",
       "title": "Global Horizon Bank — Enterprise Banking Analytics",
       "summary": "This repository contains the complete architecture and implementation of a data system for Global Horizon Bank. Following industry best practices, the project transitions from a highly normalized Transactional Database (OLTP) to a high-performance dimensional Data Warehouse (OLAP), capable of answering complex business questions at scale.",
@@ -4903,12 +4945,12 @@
       "github": {
         "description": "Config files for my GitHub profile.",
         "updated_at": "2026-11-12T10:46:59Z",
-        "pushed_at": "2026-11-16T09:36:15Z",
+        "pushed_at": "2026-11-16T09:52:41Z",
         "homepage": "https://github.com/Sohila-Khaled-Abbas",
         "default_branch": "main",
         "readme_excerpt": "Nearly 2 years building BI solutions · Power BI dashboards · Reporting · Analytics projects",
         "readme_sha": "835ed0db513434d9c3012bfc4de569b38c8f781a",
-        "fingerprint": "2026-11-16T09:36:15Z"
+        "fingerprint": "2026-11-16T09:52:41Z"
       }
     },
     {
