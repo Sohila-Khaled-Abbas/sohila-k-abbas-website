@@ -1,5 +1,5 @@
 {
-  "checked_on": "2026-11-16",
+  "checked_on": "2026-11-17",
   "legacy_source": "https://sohila-k-abbas-website.web.app/",
   "projects": [
     {
@@ -2082,12 +2082,12 @@
       "github": {
         "description": "Macroeconomic analytics & Power BI semantic model (PBIP/TMDL) dissecting $19.64T in global billionaire wealth across 3,384 fortunes and 80 nations vs. national GDP.",
         "updated_at": "2026-11-16T18:43:53Z",
-        "pushed_at": "2026-11-16T20:25:20Z",
+        "pushed_at": "2026-11-17T00:35:30Z",
         "homepage": null,
         "default_branch": "main",
         "readme_excerpt": "A modern business intelligence and macro-financial model dissecting $19.64 Trillion in private capital across 3,384 fortunes and 80 sovereign economies.",
         "readme_sha": "c7c74bf056b5b3a5c12c553d7d1503aa883cb2bf",
-        "fingerprint": "2026-11-16T20:25:20Z"
+        "fingerprint": "2026-11-17T00:35:30Z"
       }
     },
     {
