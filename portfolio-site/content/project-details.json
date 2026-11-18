@@ -2082,12 +2082,12 @@
       "github": {
         "description": "Macroeconomic analytics & Power BI semantic model (PBIP/TMDL) dissecting $19.64T in global billionaire wealth across 3,384 fortunes and 80 nations vs. national GDP.",
         "updated_at": "2026-11-16T18:43:53Z",
-        "pushed_at": "2026-11-17T22:22:52Z",
+        "pushed_at": "2026-11-18T21:35:21Z",
         "homepage": null,
         "default_branch": "main",
         "readme_excerpt": "An enterprise-grade Power BI dimensional model (PBIP / TMDL) evaluating $19.64 Trillion in private wealth across 3,384 fortunes and 80 sovereign economies.",
         "readme_sha": "0cbf45147acd9ef1732be3bc52f3263b7050f53f",
-        "fingerprint": "2026-11-17T22:22:52Z"
+        "fingerprint": "2026-11-18T21:35:21Z"
       }
     },
     {
@@ -4141,12 +4141,12 @@
       "github": {
         "description": "Comprehensive learning repository and documentation hub for the 81-lecture Microsoft Power BI Data Analysis Diploma by Eng. Essam Elsayed (MCT). Includes organized datasets, Power Query M code cheatsheet, and real-world case studies.",
         "updated_at": "2026-11-11T21:57:16Z",
-        "pushed_at": "2026-11-11T21:40:30Z",
+        "pushed_at": "2026-11-18T19:55:29Z",
         "homepage": "https://www.youtube.com/playlist?list=PLkYJ59mAhUsMbZQ4AmBmGt0EEyrTrg5mX",
         "default_branch": "main",
         "readme_excerpt": "[](https://www.youtube.com/@EssamMCT) [](CURRICULUM.md) [](https://powerbi.microsoft.com/desktop/) [](MLANGUAGECHEATSHEET.md)",
-        "readme_sha": "1604e6c4cd2f1f0ee21474a6bdabe2dfe4ef3c67",
-        "fingerprint": "2026-11-11T21:40:30Z"
+        "readme_sha": "908cb4eb969ea4307f8197af39bbada4515c7b39",
+        "fingerprint": "2026-11-18T19:55:29Z"
       },
       "auto_generated": false,
       "featured": true
