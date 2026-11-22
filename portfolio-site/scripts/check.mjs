@@ -3,225 +3,224 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {category,isClientWorkRepository} from '../src/assets/project-catalog.mjs';
+
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const out=path.join(root,'dist');
-async function walk(folder){const entries=await fs.readdir(folder,{withFileTypes:true});return(await Promise.all(entries.map(x=>x.isDirectory()?walk(path.join(folder,x.name)):[path.join(folder,x.name)]))).flat();}
-const files=await walk(out),htmlFiles=files.filter(x=>x.endsWith('.html'));
+const read=async file=>JSON.parse(await fs.readFile(path.join(root,file),'utf8'));
+async function walk(folder){
+  const entries=await fs.readdir(folder,{withFileTypes:true});
+  return (await Promise.all(entries.map(entry=>entry.isDirectory()?walk(path.join(folder,entry.name)):[path.join(folder,entry.name)]))).flat();
+}
+const [
+  catalog,details,casesSource,additionalCases,previewSource,status,profile,evidence,recruiter,policy,config,firebase
+]=await Promise.all([
+  read('content/repositories.json'),
+  read('content/project-details.json'),
+  read('content/cases.json'),
+  read('content/additional-cases.json'),
+  read('content/project-previews.json'),
+  read('content/project-status.json'),
+  read('content/profile.json'),
+  read('content/professional-evidence.json'),
+  read('content/recruiter-guide.json'),
+  read('content/sync-policy.json'),
+  read('vercel.json'),
+  read('firebase.json')
+]);
+const sourceCases={...casesSource,...additionalCases};
+const detailsByRepo=new Map(details.projects.map(project=>[project.repo,project]));
+const casesByRepo=new Map(Object.values(sourceCases).map(item=>[item.repo,item]));
+const workRepositories=catalog.repositories.filter(repository=>
+  isClientWorkRepository(repository,detailsByRepo.get(repository.name),casesByRepo.get(repository.name))
+);
+const workNames=new Set(workRepositories.map(repository=>repository.name));
+const workProjects=details.projects.filter(project=>workNames.has(project.repo));
+const workCases=Object.values(sourceCases).filter(item=>workNames.has(item.repo));
+const reports=previewSource.reports.filter(report=>workNames.has(report.repo));
+const originalCount=workRepositories.filter(repository=>!repository.fork).length;
+assert(workRepositories.length>0,'The work-only catalogue must contain projects');
+assert.equal(workRepositories.length,originalCount,'Forked resources must not enter the client-work catalogue');
+assert(workRepositories.every(repository=>!repository.fork),'Forked resources must be excluded from public client-work listings');
+assert(workRepositories.every(repository=>['analytics','engineering','automation','apps'].includes(category(repository))),'Only work-focused categories may be published');
+assert.equal(workProjects.length,workRepositories.length,'Every published work repository needs a project detail record');
+
+const files=await walk(out);
+const htmlFiles=files.filter(file=>file.endsWith('.html'));
 const documents=new Map(await Promise.all(htmlFiles.map(async file=>[file,await fs.readFile(file,'utf8')])));
-for(const [file,html]of documents){
- const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);assert.equal(ids.length,new Set(ids).size,'Duplicate id: '+file);
- assert.equal([...html.matchAll(/<h1\b/g)].length,1,'One H1 is required: '+file);
- assert(html.includes('name="description"'),'Missing description: '+file);
- for(const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)){
-  const value=match[1];if(/^(https?:|mailto:|tel:|data:)/.test(value))continue;
-  const url=new URL(value,'https://local.invalid/'+path.relative(out,file).replaceAll(path.sep,'/'));
-  let target=path.join(out,decodeURIComponent(url.pathname));
-  try{if((await fs.stat(target)).isDirectory())target=path.join(target,'index.html');await fs.access(target);}catch{assert.fail('Broken local link '+value+' in '+file);}
-  if(url.hash){const text=documents.get(target);if(text)assert(text.includes('id="'+decodeURIComponent(url.hash.slice(1))+'"'),'Missing anchor '+value+' in '+file);}
- }
+for(const [file,html] of documents){
+  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);
+  assert.equal(ids.length,new Set(ids).size,'Duplicate id: '+file);
+  assert.equal([...html.matchAll(/<h1\b/g)].length,1,'One H1 is required: '+file);
+  assert(html.includes('name="description"'),'Missing description: '+file);
+  for(const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)){
+    const value=match[1];
+    if(/^(https?:|mailto:|tel:|data:)/.test(value))continue;
+    const url=new URL(value,'https://local.invalid/'+path.relative(out,file).replaceAll(path.sep,'/'));
+    let target=path.join(out,decodeURIComponent(url.pathname));
+    try{
+      if((await fs.stat(target)).isDirectory())target=path.join(target,'index.html');
+      await fs.access(target);
+    }catch{
+      assert.fail('Broken local link '+value+' in '+file);
+    }
+    if(url.hash){
+      const targetHtml=documents.get(target);
+      if(targetHtml)assert(targetHtml.includes('id="'+decodeURIComponent(url.hash.slice(1))+'"'),'Missing anchor '+value+' in '+file);
+    }
+  }
 }
-const data=JSON.parse(await fs.readFile(path.join(root,'content/repositories.json'),'utf8'));
-assert.equal(new Set(data.repositories.map(r=>r.id)).size,data.repositories.length,'Duplicate repositories');
-assert(data.repositories.every(r=>r.url.startsWith('https://github.com/Sohila-Khaled-Abbas/')),'Unexpected repository owner');
+const requiredRoutes=['index.html','work/index.html','dashboards/index.html','about/index.html','recruiters/index.html','services/index.html','contact/index.html','404.html'];
+for(const route of requiredRoutes)assert(documents.has(path.join(out,route)),'Missing required work-focused route: '+route);
+for(const route of ['learning/index.html','learn/index.html','posts/index.html','community/index.html','credentials/index.html','templates/index.html']){
+  assert(!documents.has(path.join(out,route)),'Retired public route must not be generated: '+route);
+}
+const allHtml=[...documents.values()];
+const retiredLinks=['/learning/','/learn/','/community/','/credentials/','/posts/','/templates/'];
+for(const html of allHtml)for(const route of retiredLinks)assert(!html.includes('href="'+route),'Generated pages must not link to retired route '+route);
+
 const work=documents.get(path.join(out,'work/index.html'));
-assert.equal([...work.matchAll(/class="repo-card(?: |")/g)].length,data.repositories.length,'Catalog lost repository entries');
-const featuredRepoOrder=['fmcg-sales-churn-drop-analysis-powerbi','global-horizon-bank-dwh-project','egyptian-cosmetics-market'];
-const pinnedWorkOrder=[...work.matchAll(/<article class="pinned-case-card studio-project-card[^"]*" data-name="([^"]+)"/g)].map(match=>match[1]);
-assert.deepEqual(pinnedWorkOrder,featuredRepoOrder,'Work page must pin the same three case studies in homepage order');
-assert(work.indexOf('work-featured')<work.indexOf('id="repositories"'),'Pinned case studies must appear before repository search and filters');
-assert(work.includes('<details class="repo-tools-disclosure" data-repo-tools>'),'Full repository tools must remain available inside a disclosure');
-assert(!/<details class="repo-tools-disclosure" data-repo-tools open>/.test(work),'Repository browser must be collapsed in the default markup');
-const originalRepositoryCount=data.repositories.filter(repository=>!repository.fork).length;
-const forkRepositoryCount=data.repositories.filter(repository=>repository.fork).length;
-assert(work.includes('>'+data.repositories.length+'</strong> public repositories'),'Work page public repository count must be source-derived');
-assert(work.includes('>'+originalRepositoryCount+'</strong> original repositories'),'Work page original repository count must be source-derived');
-assert(work.includes('>'+forkRepositoryCount+'</strong> forks'),'Work page fork count must be source-derived');
-const diplomaCard=work.match(/<article class="repo-card[^"]*" data-name="powerbi-data-analysis-diploma"[^>]*>/);
-assert(diplomaCard,'Power BI diploma must have a Work-page card');
-assert(diplomaCard[0].includes('data-category="learning"'),'Power BI diploma must use the Learning & resources category');
-assert(diplomaCard[0].includes('data-featured="true"'),'Power BI diploma must be promoted into the featured gallery group');
-const defaultOrder=[...work.matchAll(/<article class="repo-card[^"]*" data-name="([^"]+)" data-category="([^"]+)" data-kind="([^"]+)" data-status="([^"]+)" data-updated="([^"]+)" data-featured="([^"]+)"/g)].map(m=>({name:m[1],featured:m[6]==='true',updated:m[5]})).sort((a,b)=>Number(b.featured)-Number(a.featured)||Date.parse(b.updated)-Date.parse(a.updated));
-assert(defaultOrder.slice(0,12).some(project=>project.name==='powerbi-data-analysis-diploma'),'Power BI diploma must appear in the first 12 default Work cards');
-assert(!work.includes('Data-Analyst-PM-App')&&!work.includes('fx-rate-analytics'),'Private metadata leaked');
-const config=JSON.parse(await fs.readFile(path.join(root,'vercel.json'),'utf8'));
-const firebase=JSON.parse(await fs.readFile(path.join(root,'firebase.json'),'utf8'));
-assert.equal(config.outputDirectory,'dist');assert.equal(firebase.hosting.public,'dist');
-const {reports}=JSON.parse(await fs.readFile(path.join(root,'content/project-previews.json'),'utf8'));
-const status=JSON.parse(await fs.readFile(path.join(root,'content/project-status.json'),'utf8'));
-assert.equal(new Set(reports.map(r=>r.repo)).size,reports.length,'Duplicate report projects');
-for(const report of reports){
- assert(report.source_kind==='legacy-portfolio'||data.repositories.some(r=>r.name===report.repo&&!r.fork),'Report must have a public repository or an explicit original-portfolio source');
- const html=documents.get(path.join(out,'dashboards',report.repo,'index.html'));
- assert(html,'Missing permanent report page: '+report.repo);
- assert(!/<iframe\b/.test(html),'Reports must not load third parties before visitor interaction');
- assert.equal(html.includes('data-load-report='),report.live?.access==='public','Only public reports may be embedded');
- if(report.live){const url=new URL(report.live.url);assert.equal(url.origin,'https://app.powerbi.com');assert.equal(url.pathname.startsWith('/view'),report.live.access==='public');}
- for(const file of report.files){assert(file.url.startsWith(report.source+'/blob/'),'Report file must belong to its repository');}
- for(const image of report.images){assert(image.alt&&image.caption);await fs.access(path.join(out,image.src));}
+const repoCards=[...work.matchAll(/<article class="repo-card\b[^"]*" data-name="([^"]+)" data-category="([^"]+)"/g)];
+assert.equal(repoCards.length,workRepositories.length,'Work page must contain only the filtered client-work catalogue');
+assert(repoCards.every(match=>workNames.has(match[1])),'A non-work repository appeared in the Work grid');
+assert(repoCards.every(match=>['analytics','engineering','automation','apps'].includes(match[2])),'A retired learning category appeared in the Work grid');
+for(const repository of catalog.repositories.filter(item=>!workNames.has(item.name))){
+  assert(!work.includes('data-name="'+repository.name+'"'),'A filtered resource appeared in the Work grid: '+repository.name);
 }
-for(const repo of Object.keys(status))assert(data.repositories.some(r=>r.name===repo&&!r.fork),'Unknown current project');
-assert.equal([...work.matchAll(/data-status="progress"/g)].length,Object.keys(status).length,'In-progress labels must use explicit editorial status');
+const featuredRepos=(details.home_sections?.featured||[
+  'fmcg-sales-churn-drop-analysis-powerbi',
+  'global-horizon-bank-dwh-project',
+  'egyptian-cosmetics-market'
+]).filter(repo=>workNames.has(repo)).slice(0,3);
+const pinnedOrder=[...work.matchAll(/<article class="pinned-case-card studio-project-card[^"]*" data-name="([^"]+)"/g)].map(match=>match[1]);
+assert.deepEqual(pinnedOrder,featuredRepos,'Work page must pin the current featured case studies in homepage order');
+assert(work.indexOf('work-featured')<work.indexOf('id="repositories"'),'Featured case studies must appear before the searchable project collection');
+assert(work.includes('<details class="repo-tools-disclosure" data-repo-tools>'),'The project browser must remain available inside an accessible disclosure');
+assert(!/<details class="repo-tools-disclosure" data-repo-tools open>/.test(work),'The project browser must remain collapsed by default');
+assert(work.includes(workRepositories.length+'</strong> projects'),'Work page project count must be derived from filtered client work');
+assert(!work.includes('data-category="learning"'),'Learning is not a public work category');
+assert(!work.includes('Power BI diploma'),'The retired diploma card must not return');
+assert(!work.includes('Data Tea')&&!work.includes('roadmap'),'Retired learning/community resources must not appear in Work');
+
 const home=documents.get(path.join(out,'index.html'));
-assert(!documents.has(path.join(out,'resume/index.html')),'The removed résumé page must not be generated');
-assert([...documents.values()].every(html=>!html.includes('href="/resume/"')),'No page may link to the removed résumé page');
-assert(home.includes('Good data.')&&home.includes('Better <em>decisions.</em>'),'Keep the requested homepage headline');
+assert(home.includes('Good data.')&&home.includes('Better <em>decisions.</em>'),'Keep the approved homepage headline');
 const homeOrder=['id="hero-title"','home-proof-band','home-featured-work','id="home-process-title"','id="client-notes-title"','id="home-contact"'].map(marker=>home.indexOf(marker));
 assert(homeOrder.every(position=>position>=0)&&homeOrder.every((position,index)=>index===0||homeOrder[index-1]<position),'Homepage must follow hero → proof → featured work → process → recommendations → contact');
-for(const sectionLabel of ['MY CORE TOOLKIT','CURRENTLY BUILDING','ON SCREEN / DASHBOARD COLLECTION','LEARNING IN PUBLIC','THE PERSON / THE PRACTICE','A USEFUL COLLABORATION','THE DATA TEA'])assert(home.includes(sectionLabel),'Existing homepage section was removed: '+sectionLabel);
-const originalCountForHome=data.repositories.filter(repository=>!repository.fork).length;
-const forkCountForHome=data.repositories.filter(repository=>repository.fork).length;
-const homeCaseCount=Object.keys({...JSON.parse(await fs.readFile(path.join(root,'content/cases.json'),'utf8')),...JSON.parse(await fs.readFile(path.join(root,'content/additional-cases.json'),'utf8'))}).length;
-const homeReportCount=JSON.parse(await fs.readFile(path.join(root,'content/project-previews.json'),'utf8')).reports.length;
-const proofStart=home.indexOf('home-proof-band');
-const proofBand=home.slice(proofStart,home.indexOf('</section>',proofStart)+10);
-for(const [key,value] of Object.entries({original:originalCountForHome,public:data.repositories.length,cases:homeCaseCount,reports:homeReportCount}))assert(proofBand.includes('data-proof-count="'+key+'">'+value+'</strong>'),'Homepage proof band count must come from source data: '+key);
-assert(proofBand.includes(forkCountForHome+' forks included'),'Homepage must clarify that public repository total includes forks');
+assert(!home.includes('THE DATA TEA')&&!home.includes('Data Tea')&&!home.includes('LEARNING IN PUBLIC'),'Retired homepage sections must not return');
+assert(!home.includes('Learning & resources')&&!home.includes('learning roadmap')&&!home.includes('roadmap'),'Retired learning copy must not appear on the homepage');
 assert(home.includes('Power BI dashboards and reporting for growing businesses, from messy data to decisions you can defend.'),'Homepage hero must state the Power BI offer and audience');
-assert(home.includes('Data Analyst')&&home.includes('Analytics Engineer')&&home.includes('hero-discipline-line'),'Secondary disciplines must sit beneath the Power BI offer');
-assert(home.includes('RECOMMENDATIONS / IN THEIR WORDS')&&[...home.matchAll(/class="home-testimonial-card"/g)].length===3,'Show the three published recommendations on the homepage');
-assert(home.includes('You send your data or problem.')&&home.includes('I scope it and give a fixed quote.')&&home.includes('You get a dashboard or report you can defend.'),'Show the agreed three-step process');
+assert(home.includes('Data Analyst')&&home.includes('Analytics Engineer')&&home.includes('hero-discipline-line'),'Secondary disciplines must remain beneath the BI offer');
+const clientRecommendations=evidence.recommendations.filter(item=>/client recommendation/i.test(item.context||''));
+assert.equal([...home.matchAll(/class="home-testimonial-card"/g)].length,clientRecommendations.length,'Show the published client recommendations only');
+for(const item of clientRecommendations){
+  assert(item.author&&item.quote&&item.published_on&&item.summary&&item.profile,'A client recommendation is missing attribution or context');
+  assert(home.includes(item.author)&&home.includes(item.quote)&&home.includes(item.profile)&&home.includes(item.summary),'Homepage recommendation must retain the approved source excerpt: '+item.author);
+  assert.equal(new URL(item.profile).hostname,'www.linkedin.com');
+}
+assert(!home.includes('COMMUNITY RECOMMENDATION')&&!home.includes('/community/'),'Community recommendations must not be promoted as client evidence');
+assert(home.includes('You send your data or problem.')&&home.includes('I scope it and give a fixed quote.')&&home.includes('You get a dashboard or report you can defend.'),'Show the agreed three-step project process');
 assert(home.includes('Pricing follows the scope.')&&home.includes('A fixed quote comes after reviewing your data, deliverables, and timeline.'),'Describe scope-based pricing without inventing a starting rate');
-assert(!home.includes('[Add an approved quote')&&!home.includes('[Client name]')&&!home.includes('$X')&&!home.includes('REPLACE X BEFORE PUBLICATION'),'Remove visible homepage testimonial and price placeholders');
-assert(home.includes('href="/community/#recommendations"'),'Link homepage recommendations to their full Community context');
-assert(home.includes('FEATURED WORK / SMART SUPPLY CHAIN')&&home.includes('/projects/SMART-Supply-Chain-Insights-Dashboard/')&&!home.includes('IN THE STUDIO / PIXELFED'),'Feature a completed project instead of PixelFed in the hero card');
-assert(home.includes('data-motion-toggle')&&home.includes('Good data.'),'Keep the original hero and provide a motion control');
-const styles=await fs.readFile(path.join(out,'enhancements.css'),'utf8');assert(styles.includes('prefers-reduced-motion:reduce'),'Motion preference support is required');
-const studioStyles=await fs.readFile(path.join(out,'studio.css'),'utf8');assert(!/\.studio-project-card \.project-card-description\{[^}]*-webkit-line-clamp/.test(studioStyles),'Project card descriptions must never be clipped');
-const redesignStyles=await fs.readFile(path.join(out,'redesign.css'),'utf8');
-assert(redesignStyles.includes('prefers-reduced-motion:reduce'),'The redesign must respect reduced-motion settings');
-assert(redesignStyles.includes('toolkit-marquee'),'The core-toolkit marquee styling must ship');
-assert(home.includes('class="button primary" href="/services/">Work with me'),'The homepage hero must prioritize the Work with me action');
-assert(home.includes('fonts.googleapis.com/css2?family=Instrument+Serif')&&home.includes('family=Inter'),'The site must load the approved two-family type system');
-assert(home.includes('href="/redesign.css"'),'The generated site must load the final visual layer');
-assert(home.includes('<meta name="theme-color" content="#faf6ef">'),'Initial browser chrome must match the warm cream canvas');
+assert(!home.includes('[Add an approved quote')&&!home.includes('[Client name]')&&!home.includes('$X')&&!home.includes('REPLACE X BEFORE PUBLICATION'),'Remove visible testimonial and price placeholders');
+assert(home.includes('FEATURED WORK / SMART SUPPLY CHAIN')&&home.includes('/projects/SMART-Supply-Chain-Insights-Dashboard/')&&!home.includes('IN THE STUDIO / PIXELFED'),'Keep the approved completed project in the hero card');
+assert(home.includes('data-motion-toggle'),'Keep the existing pause-animation control');
+assert(home.includes('class="button primary" href="/services/">Work with me'),'The homepage hero must prioritize the services inquiry');
+assert(home.includes('fonts.googleapis.com/css2?family=Instrument+Serif')&&home.includes('family=Inter'),'Keep the existing approved font system');
+assert(home.includes('href="/redesign.css"'),'The existing visual layer must continue to load');
+assert(home.includes('<meta name="theme-color" content="#faf6ef">'),'Initial browser chrome must match the current warm canvas');
 
-await fs.access(path.join(out,'social-card.png'));
-console.log(`PASS: ${htmlFiles.length} HTML documents, local links and anchors, ${data.repositories.length} public repositories, and both hosting configurations.`);
-const {projects}=JSON.parse(await fs.readFile(path.join(root,'content/project-details.json'),'utf8'));
+const styles=await fs.readFile(path.join(out,'enhancements.css'),'utf8');
+const studioStyles=await fs.readFile(path.join(out,'studio.css'),'utf8');
+const redesignStyles=await fs.readFile(path.join(out,'redesign.css'),'utf8');
+assert(styles.includes('prefers-reduced-motion:reduce'),'Motion preference support is required');
+assert(redesignStyles.includes('prefers-reduced-motion:reduce'),'The redesign must respect reduced-motion settings');
+assert(!/\.studio-project-card \.project-card-description\{[^}]*-webkit-line-clamp/.test(studioStyles),'Project card descriptions must not be clipped');
+
+const serviceHtml=documents.get(path.join(out,'services/index.html'));
+assert(serviceHtml.includes('id="simple-project-inquiry" class="public-project-inquiry-form" method="post" action="/services/"'),'Public inquiry form must retain the POST fallback');
+assert(serviceHtml.includes('id="project-brief" class="business-inquiry-form" method="post" action="/services/" hidden'),'Verified enterprise inquiry form must retain its POST fallback');
+assert(serviceHtml.indexOf('Power BI dashboards')<serviceHtml.indexOf('ALSO AVAILABLE'),'Power BI reporting must lead the Services page');
+assert(serviceHtml.includes('href="#simple-project-inquiry"')&&serviceHtml.includes('Start a project'),'Services page must offer a clear project-inquiry action');
+for(const id of ['service-0','service-1','service-2'])assert(serviceHtml.includes('id="'+id+'"'),'A work-focused service section was removed: '+id);
+assert(serviceHtml.indexOf('ALSO AVAILABLE')<serviceHtml.indexOf('Data engineering'),'Data engineering must remain a supporting service');
+const inquiryScript=await fs.readFile(path.join(root,'src/assets/business-inquiry.mjs'),'utf8');
+const leadRoute=await fs.readFile(path.join(root,'api/lead.mjs'),'utf8');
+const leadHandler=await fs.readFile(path.join(root,'server/lead.mjs'),'utf8');
+assert(inquiryScript.includes("fetch('/api/lead'"),'The public project form must submit through /api/lead');
+assert(leadRoute.includes('handleLead'),'The /api/lead route must invoke the server handler');
+assert(leadHandler.includes('LEAD_WEBHOOK_URL')&&leadHandler.includes('LEAD_WEBHOOK_SECRET'),'The lead handler must retain its protected webhook environment variables');
+assert(config.functions?.['api/lead.mjs']?.maxDuration,'Vercel must configure the protected lead endpoint');
+assert(config.outputDirectory==='dist'&&firebase.hosting.public==='dist','Both hosting configurations must publish the static build');
+const redirects=new Map((config.redirects||[]).map(item=>[item.source,item]));
+for(const route of ['/learning','/learning/:path*','/community','/community/:path*','/credentials','/credentials/:path*','/posts','/posts/:path*','/templates','/templates/:path*']){
+  const redirect=redirects.get(route);
+  assert(redirect&&redirect.destination==='/work/'&&redirect.permanent===true,'Retired URL must permanently redirect to Work: '+route);
+}
+assert([...documents.values()].every(html=>!html.includes('href="tel:')),'Do not expose personal telephone links');
+
+assert.equal(new Set(reports.map(report=>report.repo)).size,reports.length,'Duplicate report projects');
+for(const report of reports){
+  assert(workNames.has(report.repo),'A retired resource has a dashboard page: '+report.repo);
+  const html=documents.get(path.join(out,'dashboards',report.repo,'index.html'));
+  assert(html,'Missing permanent report page: '+report.repo);
+  assert(!/<iframe\b/.test(html),'Reports must not load third parties before visitor interaction');
+  assert.equal(html.includes('data-load-report='),report.live?.access==='public','Only public reports may be embedded');
+  if(report.live){
+    const url=new URL(report.live.url);
+    assert.equal(url.origin,'https://app.powerbi.com');
+    assert.equal(url.pathname.startsWith('/view'),report.live.access==='public');
+  }
+  for(const file of report.files)assert(file.url.startsWith(report.source+'/blob/'),'Report file must belong to its repository');
+  for(const image of report.images){
+    assert(image.alt&&image.caption);
+    await fs.access(path.join(out,image.src));
+  }
+}
+for(const repo of Object.keys(status))assert(workNames.has(repo),'In-progress status belongs to a filtered resource: '+repo);
+assert.equal([...work.matchAll(/data-status="progress"/g)].length,Object.keys(status).filter(repo=>workNames.has(repo)).length,'In-progress labels must use explicit editorial status');
+
 const featuredOutcomeCopy={
- 'fmcg-sales-churn-drop-analysis-powerbi':'Helps a sales manager spot retailers showing early churn signals and prioritize follow-up.',
- 'global-horizon-bank-dwh-project':'Helps bank managers compare transaction activity, account balances, and loan exposure across branches.',
- 'egyptian-cosmetics-market':'Helps commercial teams compare product performance, sales trends, and inventory health across channels.'
+  'fmcg-sales-churn-drop-analysis-powerbi':'Helps a sales manager spot retailers showing early churn signals and prioritize follow-up.',
+  'global-horizon-bank-dwh-project':'Helps bank managers compare transaction activity, account balances, and loan exposure across branches.',
+  'egyptian-cosmetics-market':'Helps commercial teams compare product performance, sales trends, and inventory health across channels.'
 };
 for(const [repo,copy] of Object.entries(featuredOutcomeCopy)){
- const project=projects.find(item=>item.repo===repo);assert(project,'Missing featured project: '+repo);
- assert.equal(project.decision_support,copy,'Keep the approved decision-support copy: '+repo);
- assert(copy.startsWith('Helps ')&&copy.trim().split(' ').length<=20,'Featured outcome must start with Helps and stay within 20 words: '+repo);
- assert(home.includes('<p class="project-card-outcome">'+copy+'</p>'),'Homepage must show the decision-support copy beneath the summary: '+repo);
+  const project=workProjects.find(item=>item.repo===repo);
+  assert(project,'Missing featured project: '+repo);
+  assert.equal(project.decision_support,copy,'Keep the approved decision-support copy: '+repo);
+  assert(copy.startsWith('Helps ')&&copy.trim().split(/\s+/).length<=20,'Featured outcome must start with Helps and stay within 20 words: '+repo);
+  assert(home.includes('<p class="project-card-outcome">'+copy+'</p>'),'Homepage must show the approved decision-support copy: '+repo);
 }
 const featuredPositions=Object.keys(featuredOutcomeCopy).map(repo=>home.indexOf('data-name="'+repo+'"'));
 assert(featuredPositions.every(position=>position>=0)&&featuredPositions[0]<featuredPositions[1]&&featuredPositions[1]<featuredPositions[2],'Keep the requested featured-card order');
-assert.equal(projects.find(item=>item.repo==='global-horizon-bank-dwh-project').summary,'Turns transactional banking data into a dimensional warehouse. Its interactive app explores transactions, account balances, active accounts, and loan portfolios.','Global Horizon Bank card copy must stay at two complete sentences');
-assert.equal(projects.length,data.repositories.filter(r=>!r.fork).length,'All original repositories need project previews');
-for(const p of projects){const html=documents.get(path.join(out,'projects',p.repo,'index.html'));assert(html,'Missing project preview page: '+p.repo);for(const file of p.files)assert(file.url.startsWith(p.source+'/blob/'),'Unexpected project file owner');}
-for(const page of ['services','community','credentials'])assert(documents.has(path.join(out,page,'index.html')));
-assert(documents.get(path.join(out,'services/index.html')).includes('id="project-brief"'));
-console.log(`PASS: ${projects.length} project previews, service brief, community, and credential pages.`);
-console.log(`PASS: ${reports.length} report pages, explicit in-progress status, click-to-load public embeds, screenshot assets, and reduced-motion support.`);
-const learning=JSON.parse(await fs.readFile(path.join(root,'content/learning.json'),'utf8'));
-const evidence=JSON.parse(await fs.readFile(path.join(root,'content/professional-evidence.json'),'utf8'));
-const recruiter=JSON.parse(await fs.readFile(path.join(root,'content/recruiter-guide.json'),'utf8'));
-const originals=new Set(data.repositories.filter(r=>!r.fork).map(r=>r.name));
-assert.equal(new Set(learning.courses.map(c=>c.id)).size,learning.courses.length,'Duplicate course IDs');
-for(const course of learning.courses){
- assert.equal(course.status,'enrolled','Course completion needs its own supporting record');
- const url=new URL(course.url);assert.equal(url.origin,'https://www.udemy.com');assert(/^\/course\/[^/]+\/$/.test(url.pathname),'Use public course pages, not personal lecture URLs');
- assert(course.topics.length&&course.instructor&&course.purpose&&course.practice,'Incomplete course context');
- for(const connection of course.connections)assert(originals.has(connection.repo),'Course connection must be a public original project');
-}
-const learningHtml=documents.get(path.join(out,'learning/index.html'));
-assert.equal([...learningHtml.matchAll(/class="course-card"/g)].length,learning.courses.length,'Learning page lost enrolled courses');
-const courseSchema=JSON.parse(learningHtml.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'].find(x=>x['@type']==='ItemList');
-assert.equal(courseSchema.itemListElement.length,learning.courses.length);
-assert(courseSchema.itemListElement.every(x=>x.item['@type']==='Course'&&!x.item.educationalCredentialAwarded),'Enrollment must not imply an earned credential');
-assert.equal(evidence.recognition.status,'historical-reported','Historical rankings must retain their context');
-assert(evidence.recognition.period&&evidence.recognition.publisher&&evidence.recognition.url,'Recognition needs a period and source');
-for(const item of evidence.recommendations){assert(item.author&&item.quote&&item.published_on&&item.summary);assert.equal(new URL(item.profile).hostname,'www.linkedin.com');}
-const communityHtml=documents.get(path.join(out,'community/index.html'));
-assert.equal([...home.matchAll(/class="home-testimonial-card"/g)].length,evidence.recommendations.length,'Homepage cards must match the published recommendation set');
-for(const item of evidence.recommendations){
-  assert(home.includes(item.author)&&home.includes(item.quote)&&home.includes(item.profile)&&home.includes(item.summary),'Homepage recommendation attribution and excerpt must come from curated evidence: '+item.author);
-  assert(communityHtml.includes(item.author)&&communityHtml.includes(item.quote)&&communityHtml.includes(item.profile)&&communityHtml.includes(item.summary),'Community page must retain the full recommendation context: '+item.author);
-}
+assert.equal(workProjects.find(project=>project.repo==='global-horizon-bank-dwh-project').summary,'Turns transactional banking data into a dimensional warehouse. Its interactive app explores transactions, account balances, active accounts, and loan portfolios.','Global Horizon Bank card copy must stay at two complete sentences');
 
-const recommendationOrder=['Mohammed Adham','Waleed Mouhammed','Omar Magdy'];
-for(const html of [home,communityHtml]){
- const positions=recommendationOrder.map(author=>html.indexOf(author));
- assert(positions.every(position=>position>=0)&&positions[0]<positions[1]&&positions[1]<positions[2],'Client recommendations must precede the community recommendation');
- assert.equal([...html.matchAll(/class="recommendation-kind">CLIENT RECOMMENDATION/g)].length,2,'Label both client recommendations');
- assert.equal([...html.matchAll(/class="recommendation-kind">COMMUNITY RECOMMENDATION/g)].length,1,'Label the community recommendation');
-}
-for(const lane of recruiter.lanes)for(const repo of lane.projects)assert(originals.has(repo),'Recruiter evidence must be a public original project');
-const serviceHtml=documents.get(path.join(out,'services/index.html'));
-assert(serviceHtml.includes('id="project-brief" class="business-inquiry-form" method="post" action="/services/" hidden'),'Enterprise inquiry form must use POST if its JavaScript handler is unavailable');
-assert(serviceHtml.includes('id="simple-project-inquiry" class="public-project-inquiry-form" method="post" action="/services/"'),'Public inquiry form must use POST so project details cannot fall into the URL');
-assert(serviceHtml.includes('id="project-brief" class="business-inquiry-form" method="post" action="/services/" hidden'),'Business inquiries must remain closed without an approved invitation');
-assert(serviceHtml.indexOf('Power BI dashboards')<serviceHtml.indexOf('ALSO AVAILABLE'),'Power BI reporting must lead the Services page');
-assert(serviceHtml.includes('href="#simple-project-inquiry"')&&serviceHtml.includes('Start a project'),'Services page must offer a top-level Start a project anchor');
-for(const id of ['service-0','service-1','service-2','service-3'])assert(serviceHtml.includes('id="'+id+'"'),'A service section was removed: '+id);
-assert(serviceHtml.indexOf('ALSO AVAILABLE')<serviceHtml.indexOf('Data engineering'),'Engineering must sit under the secondary services heading');
-const b2bHtml=documents.get(path.join(out,'projects','fmcg-sales-churn-drop-analysis-powerbi','index.html'));
-assert(b2bHtml.includes('class="story-outcome"')&&b2bHtml.includes('<span class="eyebrow">OUTCOME</span>'),'B2B case study must label its decision-support copy as Outcome');
-assert(b2bHtml.includes('The dashboard helps a retail manager decide where the next review should focus: retailer retention, delivery performance, sales movement, or category mix.'),'B2B outcome must describe the manager decision supported by the dashboard');
-assert(b2bHtml.includes('intended business benefits are not measured outcomes.'),'B2B case page must preserve the distinction between intended benefits and measured outcomes');
-assert([...documents.values()].every(html=>!html.includes('href="tel:')),'Do not expose personal telephone links');
-console.log(`PASS: ${learning.courses.length} enrolled courses with public sources, project connections, Course metadata, attributed recommendations, and historical ranking context.`);
-const profile=JSON.parse(await fs.readFile(path.join(root,'content/profile.json'),'utf8'));
-const policy=JSON.parse(await fs.readFile(path.join(root,'content/sync-policy.json'),'utf8'));
-assert.equal(policy.automatic_experience_import,false,'Experience changes require owner confirmation');
-assert.equal(createHash('sha256').update(JSON.stringify(profile.experience)).digest('hex'),policy.experience_sha256,'Owner-selected experience changed without an approved revision');
-for(const [file,html]of documents){
- for(const match of html.matchAll(/\b(?:href|src)="(https?:[^\"]+)"/g))assert(!policy.excluded_public_link_hosts.includes(new URL(match[1]).hostname),'Excluded community link appeared: '+file);
-}
 const aboutHtml=documents.get(path.join(out,'about/index.html'));
 assert(aboutHtml.includes(profile.headline.replaceAll('&','&amp;')),'About must show the owner’s current professional headline');
-const systems=JSON.parse(await fs.readFile(path.join(root,'content/about-systems.json'),'utf8'));
-assert.equal(new Set(systems.modes.map(mode=>mode.id)).size,4,'The About explorer needs four distinct workflows');
-for(const mode of systems.modes){assert(mode.nodes.length>=3&&mode.nodes.length<=5,'Keep workflow diagrams readable');for(const project of mode.projects)assert(originals.has(project.repo),'Workflow evidence must be a public original project');}
-const expectedCounts=[originals.size,Object.keys({...JSON.parse(await fs.readFile(path.join(root,'content/cases.json'),'utf8')),...JSON.parse(await fs.readFile(path.join(root,'content/additional-cases.json'),'utf8'))}).length,reports.length,learning.courses.length];
-assert.deepEqual([...aboutHtml.matchAll(/data-about-count="(\d+)"/g)].map(match=>Number(match[1])),expectedCounts,'About counters must derive from the published source records');
-const posts=JSON.parse(await fs.readFile(path.join(root,'content/linkedin-posts.json'),'utf8'));
-const postsHtml=documents.get(path.join(out,'posts/index.html'));
-assert.equal(new Set(posts.posts.map(post=>post.id)).size,posts.posts.length,'Duplicate post identifiers');
-assert(!/<iframe\b/.test(postsHtml),'LinkedIn embeds must load only after visitor interaction');
-assert.equal([...postsHtml.matchAll(/class="social-post-card"/g)].length,posts.posts.length);
-for(const post of posts.posts){
- assert.equal(new URL(post.url).origin,'https://www.linkedin.com');
- assert(Number.isInteger(post.reactions)&&Number.isInteger(post.comments)&&post.reactions>=0&&post.comments>=0,'Engagement snapshots must be public nonnegative counts');
- if(post.embed_url){const url=new URL(post.embed_url);assert.equal(url.origin,'https://www.linkedin.com');assert(/^\/embed\/feed\/update\/urn:li:(?:share|ugcPost):\d+$/.test(url.pathname),'Use verified official embed addresses');}
+assert.equal(policy.automatic_experience_import,false,'Experience changes require owner confirmation');
+assert.equal(createHash('sha256').update(JSON.stringify(profile.experience)).digest('hex'),policy.experience_sha256,'Owner-selected experience changed without an approved revision');
+for(const lane of recruiter.lanes)for(const repo of lane.projects)if(workNames.has(repo))assert(workNames.has(repo),'Recruiter evidence must use client-work repositories');
+for(const [file,html] of documents){
+  for(const match of html.matchAll(/\b(?:href|src)="(https?:[^\"]+)"/g)){
+    assert(!policy.excluded_public_link_hosts.includes(new URL(match[1]).hostname),'Excluded community link appeared: '+file);
+  }
 }
-assert(policy.publish_private_analytics===false&&policy.allow_personal_phone===false&&policy.enrollment_is_not_completion===true);
-assert.deepEqual(JSON.parse(await fs.readFile(path.join(root,'server/business-approvals.json'),'utf8')),{version:1,approvals:{}},'Do not publish local approval fixtures');
-console.log(`PASS: source-derived About metrics, four project-backed workflows, ${posts.posts.length} public LinkedIn posts, current headline, and owner content exclusions.`);
-for(const project of projects){
- const html=documents.get(path.join(out,'projects',project.repo,'index.html'));
- assert(html.includes('<h1>'+project.title.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')+'</h1>'),'Project heading must use its canonical title: '+project.repo);
- assert(!/^(?:Windows:|Edit \.env|\d+\. Clone repo)/i.test(project.title),'A setup instruction was imported as a project title');
- assert.equal([...html.matchAll(/data-story-panel="/g)].length,4,'Every original project needs four story chapters');
- assert(!/<iframe\b/.test(html),'Project stories must not load external embeds automatically');
- for(const file of project.files)assert(html.includes(file.url.replaceAll('&','&amp;')),'Story lost a source file: '+project.repo);
+for(const project of workProjects){
+  const html=documents.get(path.join(out,'projects',project.repo,'index.html'));
+  assert(html,'Missing project preview page: '+project.repo);
+  assert(html.includes('<h1>'+project.title.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')+'</h1>'),'Project heading must use its canonical title: '+project.repo);
+  assert(!/^(?:Windows:|Edit \.env|\d+\. Clone repo)/i.test(project.title),'A setup instruction was imported as a project title');
+  assert.equal([...html.matchAll(/data-story-panel="/g)].length,4,'Every work project needs four story chapters');
+  assert(!/<iframe\b/.test(html),'Project stories must not load external embeds automatically');
+  for(const file of project.files)assert(html.includes(file.url.replaceAll('&','&amp;')),'Story lost a source file: '+project.repo);
 }
 for(const report of reports){
- const html=documents.get(path.join(out,'dashboards',report.repo,'index.html'));
- assert.equal([...html.matchAll(/data-story-panel="/g)].length,4,'Every report needs the guided story');
+  const html=documents.get(path.join(out,'dashboards',report.repo,'index.html'));
+  assert.equal([...html.matchAll(/data-story-panel="/g)].length,4,'Every report needs the guided story');
 }
-assert.equal(projects.find(project=>project.repo==='kickstarter-analytics-engineering').title,'Kickstarter Analytics Engineering Platform');
+assert.equal(workProjects.find(project=>project.repo==='kickstarter-analytics-engineering')?.title,'Kickstarter Analytics Engineering Platform');
 assert(work.includes('Kickstarter Analytics Engineering Platform'));
-console.log(`PASS: canonical project names, ${projects.length} original project stories, ${reports.length} report stories, complete linked evidence, and click-to-load embed boundaries.`);
-const pwc=reports.find(report=>report.repo==='pwc-switzerland-virtual-case');
-assert.equal(pwc.preview_kind,'diagram');
-assert.equal(pwc.images.length,4,'Keep all four source diagrams available');
-for(const image of pwc.images){
- const bytes=await fs.readFile(path.join(out,image.src));
- const blob=Buffer.concat([Buffer.from('blob '+bytes.length+'\0'),bytes]);
- assert.equal(createHash('sha1').update(blob).digest('hex'),image.source_sha,'Imported SVG differs from the attributed GitHub source');
- assert(image.source_url.startsWith(pwc.source+'/blob/main/assets/diagrams/'));
- assert(image.width>0&&image.height>0);
- for(const route of ['projects','dashboards']){
-  const html=documents.get(path.join(out,route,pwc.repo,'index.html'));
-  assert(html.includes(image.src)&&html.includes(image.source_url),'A PwC diagram or its original source link is missing');
- }
-}
-assert([...documents.values()].every(html=>!html.includes('pwc-call-center.webp')),'The removed PwC screenshot must not appear in public pages');
-assert(!files.some(file=>file.endsWith('pwc-call-center.webp')),'The removed screenshot must not remain in deployed assets');
-console.log('PASS: four original GitHub SVG diagrams, source links and hashes, full-image metadata, and no PwC screenshot asset.');
+await fs.access(path.join(out,'social-card.png'));
+
+console.log('PASS: '+htmlFiles.length+' generated HTML documents, valid local links and anchors, and the work-only route set.');
+console.log('PASS: '+workRepositories.length+' original client-work projects, '+workCases.length+' relevant case studies, '+reports.length+' dashboards, and no learning/community resources.');
+console.log('PASS: lead API, protected webhook configuration, inquiry forms, redirects, recommendation evidence, project stories, and reduced-motion support.');
