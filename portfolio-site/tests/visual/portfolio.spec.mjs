@@ -14,8 +14,9 @@ async function waitForVisualReady(page){
 async function revealFullPage(page){
   await page.evaluate(async()=>{
     const step=Math.max(260,Math.floor(window.innerHeight*.7));
+    document.documentElement.style.scrollBehavior='auto';
     for(let y=0;y<document.documentElement.scrollHeight;y+=step){
-      window.scrollTo(0,y);
+      window.scrollTo({top:y,behavior:'instant'});
       await new Promise(resolve=>setTimeout(resolve,45));
     }
     window.scrollTo(0,0);
