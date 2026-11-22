@@ -37,11 +37,3 @@
 .enterprise-legacy-section{margin:0;padding:0}
 @media(max-width:900px){.public-inquiry-layout{grid-template-columns:minmax(0,1fr) minmax(210px,.7fr);gap:30px}.public-inquiry-two-fields{grid-template-columns:1fr;gap:0}}
 @media(max-width:720px){.public-inquiry-layout{grid-template-columns:1fr;gap:34px}.public-inquiry-contact{border-left:0;border-top:1px solid var(--line);padding:22px 0 0}.public-inquiry-contact article{padding-bottom:22px}.public-inquiry-contact article+article{padding-top:22px}.public-project-inquiry-form input,.public-project-inquiry-form select,.public-project-inquiry-form textarea{font-size:16px}.public-project-inquiry-form .button{width:100%}.public-inquiry-result .button{width:100%;justify-content:center}.enterprise-verification{margin-top:38px}}
-
-.public-inquiry-error{padding:18px 20px;margin:18px 0;border:1px solid var(--line);border-left:3px solid var(--brand);background:var(--soft)}
-.public-inquiry-error[hidden]{display:none}
-.public-inquiry-error p{font-size:13px;line-height:1.8;color:var(--text);margin:0 0 8px}
-.public-inquiry-error p:last-child{margin-bottom:0}
-.public-inquiry-error a{text-decoration:underline;text-underline-offset:3px}
-.public-project-inquiry-form button:disabled{opacity:.65;cursor:wait}
-.public-project-inquiry-form :focus-visible{outline:3px solid var(--focus);outline-offset:3px}

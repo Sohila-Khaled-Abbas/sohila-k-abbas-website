@@ -169,17 +169,9 @@ try{
 
  if(service390){
   const page=service390;
-  const leadCalls=[];
-  let attempt=0;
-  await page.route("**/api/lead",async route=>{
-   assert.equal(route.request().method(),"POST","The public form must POST to /api/lead");
-   leadCalls.push(route.request().postDataJSON());
-   attempt+=1;
-   if(attempt===1){
-    await route.fulfill({status:502,contentType:"application/json",body:JSON.stringify({ok:false,message:"Mock delivery failure for QA."})});
-   }else{
-    await route.fulfill({status:200,contentType:"application/json",body:JSON.stringify({ok:true,message:"Your inquiry has been received."})});
-   }
+  const posts=[];
+  page.on("request",request=>{
+   if(request.method()==="POST")posts.push({method:request.method(),url:new URL(request.url()).pathname});
   });
   await page.locator("#simple-inquiry-name").fill("Test User");
   await page.locator("#simple-inquiry-email").fill("not-an-email");
@@ -187,28 +179,19 @@ try{
   await page.locator("#simple-inquiry-budget").selectOption({label:"Not sure yet"});
   await page.locator("#simple-inquiry-submit").click();
   const invalid=await page.locator("#simple-inquiry-email").evaluate(element=>({valid:element.validity.valid,typeMismatch:element.validity.typeMismatch,message:element.validationMessage}));
-  assert.equal(invalid.valid,false,"Invalid email must be blocked by native validation");
-  assert.equal(invalid.typeMismatch,true,"Invalid email must show a type mismatch");
-  assert(await page.locator("#simple-inquiry-result").evaluate(element=>element.hidden),"Success must not show for an invalid email");
+  assert.equal(invalid.valid,false,"Invalid email should be blocked by native validation");
+  assert.equal(invalid.typeMismatch,true,"Invalid email should show a type mismatch");
+  assert(await page.locator("#simple-inquiry-result").evaluate(element=>element.hidden),"The success message must not show for an invalid email");
   await page.locator("#simple-inquiry-email").fill("test@example.com");
-  await page.waitForTimeout(2200);
   await page.locator("#simple-inquiry-submit").click();
-  await page.locator("#simple-inquiry-error").waitFor({state:"visible"});
-  assert.equal(await page.locator("#simple-inquiry-name").inputValue(),"Test User","Name must be retained after a delivery error");
-  assert.equal(await page.locator("#simple-inquiry-email").inputValue(),"test@example.com","Email must be retained after a delivery error");
-  assert.equal(await page.locator("#simple-inquiry-error a[href^='mailto:']").count(),1,"Fallback email link must remain visible after failure");
-  assert.equal(await page.locator("#simple-inquiry-error a[href*='cal.com']").count(),1,"Fallback booking link must remain visible after failure");
-  await page.locator("#simple-inquiry-submit").click();
-  await page.locator("#simple-inquiry-result").waitFor({state:"visible"});
   const success=await page.locator("#simple-inquiry-result").innerText();
-  assert(success.includes("Your inquiry has been received. Thank you for reaching out."),"The public success state did not appear");
-  assert.equal(leadCalls.length,2,"The dummy inquiry should be retried once against the mock endpoint");
-  assert.equal(leadCalls[0].name,"Test User");
-  assert.equal(leadCalls[0].email,"test@example.com");
-  assert.equal(leadCalls[0].type,"standard");
-  assert.equal(leadCalls[0].budgetRange,"Not sure yet");
-  assert.equal(leadCalls[0].submissionId,leadCalls[1].submissionId,"A retry should reuse the submission ID");
-  console.log("PASS public dummy QA — native validation, mocked POST, retained fields, visible fallback links, and successful retry; no email or live webhook was used.");
+  assert(success.includes("Your message is ready to review. Open the email draft below and send it from your email app when you are happy with it."),"Public inquiry success state did not appear.");
+  const mailto=await page.locator("#simple-inquiry-mailto").getAttribute("href");
+  assert(mailto.startsWith("mailto:"),"Public inquiry did not create an email draft link.");
+  assert(decodeURIComponent(mailto).includes("Test User")&&decodeURIComponent(mailto).includes("test@example.com"),"The generated draft does not contain the dummy contact details.");
+  assert.equal(posts.length,0,"The public form prepares a mailto draft and must not send a POST from the browser.");
+  console.log("PASS public dummy QA — invalid email blocked ("+invalid.message+"); valid details show draft-ready success; no POST request sent.");
+  console.log("PASS public dummy draft — mailto target "+mailto.split("?")[0]+"; no email was sent.");
 
   const apiResult=await page.evaluate(async()=>{
    const response=await fetch("/api/business-inquiry",{
@@ -219,8 +202,8 @@ try{
    });
    return {status:response.status,data:await response.json()};
   });
-  assert.equal(apiResult.status,403,"The private enterprise endpoint must reject a dummy request without an approved invitation");
-  assert.deepEqual(apiResult.data,{ok:false,message:"A current invitation for an approved business is required. Request verification or ask for a new invitation."},"The private enterprise endpoint response changed");
+  assert.equal(apiResult.status,403,"Protected endpoint must reject a dummy submission without an approved invitation");
+  assert.deepEqual(apiResult.data,{ok:false,message:"A current invitation for an approved business is required. Request verification or ask for a new invitation."},"Protected endpoint response changed");
   console.log("PASS protected dummy POST — HTTP "+apiResult.status+" "+JSON.stringify(apiResult.data));
   await page.close();
  }
