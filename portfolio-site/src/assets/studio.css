@@ -144,3 +144,19 @@ html[data-theme=dark] .source-map-card{box-shadow:0 12px 30px #0002}
 .home-price-placeholder{font-size:7px;letter-spacing:1px;color:var(--muted);text-align:right}
 @media(max-width:850px){.home-testimonial-grid,.home-process-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.home-proof-heading,.home-process-heading{align-items:flex-start;flex-direction:column;gap:13px}}
 @media(max-width:650px){.signature-hero .hero-discipline-line{font-size:10px;margin-top:8px}.home-proof-section{padding-top:29px;padding-bottom:28px}.home-proof-heading,.home-process-heading{margin:18px 0 20px}.home-proof-heading h2,.home-process-heading h2{font-size:34px}.home-proof-heading>p,.home-process-heading>p{font-size:11px}.home-testimonial-grid,.home-process-steps{grid-template-columns:minmax(0,1fr);gap:12px}.home-testimonial-card{min-height:0;padding:18px}.home-testimonial-card>p{font-size:16px;margin:14px 0 18px}.home-process-section{padding-top:28px;padding-bottom:38px}.home-process-steps>li{padding:16px 18px}.home-process-number{margin-bottom:13px;font-size:25px}.home-process-steps h3{font-size:15px}.home-price-anchor{align-items:flex-start;flex-direction:column;gap:7px;margin-top:20px}.home-price-anchor>p{font-size:22px}.home-price-placeholder{text-align:left;font-size:6px}.studio-project-card .project-card-description{-webkit-line-clamp:5;line-clamp:5}}
+
+
+/* Published recommendations on the homepage */
+.home-testimonial-card{align-items:stretch}
+.home-testimonial-card .home-testimonial-quote{margin:0 0 20px;min-height:0}
+.home-testimonial-card .home-testimonial-quote p{font-family:var(--serif);font-size:21px;line-height:1.45;letter-spacing:-.35px;margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal}
+.home-testimonial-card figcaption{display:flex;flex-direction:column;align-items:flex-start;gap:5px;margin-top:auto;font-size:9px}
+.home-testimonial-card figcaption>a{font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:7px;color:var(--ink)}
+.home-testimonial-card figcaption>a .icon{width:11px;height:11px}
+.home-testimonial-card figcaption>span,.home-testimonial-card figcaption>time{font-size:9px;line-height:1.6;color:var(--muted)}
+.home-testimonial-card .recommendation-summary{font-family:var(--sans);font-size:10px;line-height:1.8;letter-spacing:0;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin:15px 0 0}
+.home-testimonial-footer{display:flex;justify-content:flex-end;margin-top:22px}
+.home-testimonial-footer .text-link{font-size:10px}
+.home-price-note{font-size:10px;line-height:1.7;color:var(--muted);text-align:right;max-width:470px}
+@media(max-width:850px){.home-testimonial-card .home-testimonial-quote p{font-size:19px}}
+@media(max-width:650px){.home-testimonial-card .home-testimonial-quote p{font-size:18px}.home-testimonial-card .recommendation-summary{font-size:10px}.home-testimonial-footer{justify-content:flex-start}.home-price-note{text-align:left;font-size:9px}}
