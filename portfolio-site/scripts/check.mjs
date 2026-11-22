@@ -59,7 +59,7 @@ assert(home.includes('Data Analyst')&&home.includes('Analytics Engineer')&&home.
 assert(home.includes('RECOMMENDATIONS / IN THEIR WORDS')&&[...home.matchAll(/class="home-testimonial-card"/g)].length===3,'Show the three published recommendations on the homepage');
 assert(home.includes('You send your data or problem.')&&home.includes('I scope it and give a fixed quote.')&&home.includes('You get a dashboard or report you can defend.'),'Show the agreed three-step process');
 assert(home.includes('Pricing follows the scope.')&&home.includes('A fixed quote comes after reviewing your data, deliverables, and timeline.'),'Describe scope-based pricing without inventing a starting rate');
-assert(!/PLACEHOLDER|\\[Client name\\]|\\$X|ADD APPROVED QUOTES/i.test(home),'Remove visible homepage testimonial and price placeholders');
+assert(!/PLACEHOLDER|\[Client name\]|\$X|ADD APPROVED QUOTES/i.test(home),'Remove visible homepage testimonial and price placeholders');
 assert(home.includes('href="/community/#recommendations"'),'Link homepage recommendations to their full Community context');
 assert(home.includes('FEATURED WORK / SMART SUPPLY CHAIN')&&home.includes('/projects/SMART-Supply-Chain-Insights-Dashboard/')&&!home.includes('IN THE STUDIO / PIXELFED'),'Feature a completed project instead of PixelFed in the hero card');
 assert(home.includes('data-motion-toggle')&&home.includes('Good data.'),'Keep the original hero and provide a motion control');
