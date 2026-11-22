@@ -299,3 +299,35 @@ html[data-theme=dark] .home-testimonial-card figcaption a{color:var(--ink)}
  .toolkit-logos{overflow:visible;mask-image:none}
  .scroll-reveal{opacity:1!important;transform:none!important}
 }
+
+/* Keep the two roadmap cards balanced instead of applying the featured-work bento grid. */
+.studio-learning-public .studio-spotlight-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto;
+  max-width:920px;align-items:stretch;
+}
+.studio-learning-public .studio-spotlight-grid>.studio-project-card:first-child{
+  grid-column:auto;grid-row:auto;display:flex;flex-direction:column;min-height:0;
+}
+.studio-learning-public .studio-spotlight-grid>.studio-project-card:first-child .studio-project-cover{
+  flex:none;min-height:0;height:auto;border:0;border-bottom:1px solid var(--line);
+}
+.studio-learning-public .studio-spotlight-grid>.studio-project-card:first-child .project-visual{
+  height:auto;min-height:0;aspect-ratio:1.7;
+}
+.studio-learning-public .studio-spotlight-grid>.studio-project-card:first-child .studio-project-copy{
+  padding:clamp(18px,2.1vw,27px);
+}
+.studio-learning-public .studio-spotlight-grid>.studio-project-card:not(:first-child){
+  display:flex;flex-direction:column;min-height:0;
+}
+.studio-learning-public .studio-spotlight-grid>.studio-project-card:not(:first-child) .studio-project-cover{
+  height:auto;min-height:0;border:0;border-bottom:1px solid var(--line);
+}
+.studio-learning-public .studio-spotlight-grid>.studio-project-card:not(:first-child) .project-visual{
+  height:auto;min-height:0;aspect-ratio:1.7;
+}
+.studio-learning-public .studio-spotlight-grid .studio-project-copy{padding:clamp(18px,2.1vw,27px)}
+@media(max-width:650px){
+ .studio-learning-public .studio-spotlight-grid{grid-template-columns:minmax(0,1fr);max-width:none}
+ .studio-learning-public .studio-spotlight-grid .studio-project-copy{padding:21px}
+}
