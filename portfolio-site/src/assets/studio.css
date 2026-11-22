@@ -110,3 +110,6 @@ html[data-theme=dark] .source-map-card{box-shadow:0 12px 30px #0002}
  .project-preview-shell>.visual-generated .source-map-file-list code{font-size:10px}
 }
 @media(prefers-reduced-motion:reduce){.source-map-card{transition:none}}
+
+.studio-learning-public .studio-spotlight-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:920px}
+@media(max-width:720px){.studio-learning-public .studio-spotlight-grid{grid-template-columns:minmax(0,1fr)}}
