@@ -54,6 +54,15 @@ test('malformed, impossible, local-only, dummy, and extension phone inputs are r
     const response=await prepare({phone});assert.equal(response.status,422,phone);assert((await response.json()).errors.phone);
   }
 });
+test('dummy Test User and test@example.com cannot pass the verified-business POST',async()=>{
+  const response=await prepare({name:'Test User',email:'test@example.com'});
+  assert.equal(response.status,422);
+  const data=await response.json();
+  assert.equal(data.ok,false);
+  assert(data.errors.name);
+  assert(data.errors.email);
+  assert.equal(data.draft,undefined);
+});
 test('approved name, company, and work email cannot be replaced in a forged request',async()=>{
   for(const [key,value]of [['name','Test User'],['company','Unapproved company'],['email','someone@contoso.com'],['email','person@gmail.com'],['email','a\r\nBcc: spam@evil.com']]){
     const response=await prepare({[key]:value});assert.equal(response.status,422);assert((await response.json()).errors[key]);
