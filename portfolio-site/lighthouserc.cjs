@@ -5,13 +5,15 @@ if(origin.protocol!=='https:'||!origin.hostname.endsWith('.vercel.app'))throw ne
 const bypass=process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
 const extraHeaders=bypass?{'x-vercel-protection-bypass':bypass}:{};
 const preset=process.env.LIGHTHOUSE_PRESET==='desktop'?'desktop':'mobile';
+const settings={chromeFlags:'--no-sandbox --headless',extraHeaders};
+if(preset==='desktop')settings.preset='desktop';
 module.exports={
  ci:{
   collect:{
    url:[new URL('/',origin).href],
    numberOfRuns:3,
    chromePath:process.env.CHROME_PATH,
-   settings:{preset,chromeFlags:'--no-sandbox --headless',extraHeaders}
+   settings
   },
   assert:{
    assertions:{
