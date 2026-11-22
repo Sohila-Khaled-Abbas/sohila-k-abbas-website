@@ -136,7 +136,13 @@ async function captureRoute(route,width,height,name){
   const disclosure=page.locator("[data-repo-tools]");
   assert.equal(await disclosure.count(),1,"Full repository search and filters are missing");
   assert.equal(await disclosure.evaluate(element=>element.open),width>=651,"Repository disclosure should be "+(width>=651?"open":"closed")+" at "+width+"px");
-  assert.equal(await page.locator("#repo-grid .repo-card").count(),101,"The full searchable repository collection must remain intact");
+  const repositoryCards=page.locator("#repo-grid .repo-card");
+  const repositoryCount=await repositoryCards.count();
+  const displayedCount=Number((await page.locator(".repo-tools-count").innerText()).match(/\\d+/)?.[0]);
+  assert(repositoryCount>0,"The Work page must show client-work projects");
+  assert.equal(displayedCount,repositoryCount,"The Work-page count must match its filtered project collection");
+  assert.equal(await repositoryCards.locator('[data-kind="fork"]').count(),0,"Forked resources must not appear in the client-work collection");
+  assert.equal(await page.locator('#repo-grid .repo-card[data-category="learning"]').count(),0,"Learning-category resources must not appear in the client-work collection");
  }
  if(name==="services"){
   const publicForm=page.locator("#simple-project-inquiry");
