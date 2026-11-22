@@ -368,8 +368,9 @@ html.reveal-ready [data-reveal].is-visible{opacity:1;transform:translateY(0)}
 .story-outcome p+p{margin-top:8px;color:var(--muted);font-size:11px}
 @media(min-width:1101px){
   .signature-hero{grid-template-columns:minmax(0,1.17fr) minmax(0,.83fr);gap:clamp(32px,4.2vw,58px)}
-  .signature-hero .hero-copy{width:100%;max-width:680px}
-  .signature-hero h1{width:100%;max-width:none;font-size:clamp(58px,5.65vw,82px);letter-spacing:-.065em;line-height:.99;text-wrap:balance}
+  .signature-hero .hero-copy{width:100%;max-width:700px}
+  .signature-hero h1{width:100%;max-width:none;font-size:clamp(58px,5.3vw,74px);letter-spacing:-.065em;line-height:.99;text-wrap:balance}
+  .signature-hero h1 .hero-decision-line{display:inline-block;white-space:nowrap}
 }
 @media(max-width:900px){
   .home-proof-metric{padding:15px 14px}
