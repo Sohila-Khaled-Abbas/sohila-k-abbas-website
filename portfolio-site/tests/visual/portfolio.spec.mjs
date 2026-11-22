@@ -8,7 +8,7 @@ const screenshotRoot=path.resolve(process.cwd(),'../screenshots');
 async function waitForVisualReady(page){
   await page.evaluate(async()=>{
     await Promise.race([document.fonts?.ready||Promise.resolve(),new Promise(resolve=>setTimeout(resolve,5000))]);
-    await Promise.all([...document.images].map(image=>image.decode?.().catch(()=>undefined)));
+    await Promise.race([Promise.all([...document.images].map(image=>image.decode?.().catch(()=>undefined))),new Promise(resolve=>setTimeout(resolve,2500))]);
   });
 }
 async function revealFullPage(page){
@@ -56,6 +56,7 @@ test('homepage is responsive, legible, and free of clipped content at all target
   expected.forEach((name,index)=>expect(featured[index]).toContain(name));
   await expect(page.locator('.home-testimonial-card')).toHaveCount(3);
   await expect(page.getByText('Pricing follows the scope.',{exact:true})).toBeVisible();
+  await expect(page.getByText('A fixed quote comes after reviewing your data, deliverables, and timeline.',{exact:true})).toBeVisible();
 
   for(const width of [360,390,768,1280,1536]){
     await page.setViewportSize({width,height:900});
