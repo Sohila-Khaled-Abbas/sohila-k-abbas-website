@@ -1,10 +1,10 @@
-name: Validate portable portfolio
+name: Portfolio site validation and preview UX
 on:
   push:
-    branches: [main]
-    paths: ['portfolio-site/**', '.github/workflows/portfolio-site.yml']
+    branches: [main, 'redesign/**']
+    paths: ['portfolio-site/**', '.github/workflows/portfolio-site.yml', 'screenshots/**']
   pull_request:
-    paths: ['portfolio-site/**', '.github/workflows/portfolio-site.yml']
+    paths: ['portfolio-site/**', '.github/workflows/portfolio-site.yml', 'screenshots/**']
   workflow_dispatch:
 permissions:
   contents: read
@@ -19,11 +19,74 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: npm ci --ignore-scripts
-      - run: node --test tests/*.test.mjs
-      - run: npm run build
-      - run: npm run check
-      - uses: actions/upload-artifact@v4
+          cache: npm
+          cache-dependency-path: portfolio-site/package-lock.json
+      - name: Install portfolio dependencies
+        run: npm ci --ignore-scripts
+      - name: Unit and regression tests
+        run: node --test tests/*.test.mjs
+      - name: Build static portfolio
+        run: npm run build
+      - name: Validate generated routes, content and links
+        run: npm run check
+      - name: Install pinned visual test tools
+        run: npm install --no-save --package-lock=false --ignore-scripts playwright@1.65.1 @lhci/cli@0.16.1
+      - name: Install Chromium for Playwright and Lighthouse
+        run: |
+          npx playwright install --with-deps chromium
+          node --input-type=module -e "import {chromium} from 'playwright'; console.log('CHROME_PATH=' + chromium.executablePath())" >> "$GITHUB_ENV"
+      - name: Check for the Vercel automation bypass secret
+        id: protection
+        if: github.ref != 'refs/heads/main'
+        env:
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+        run: |
+          if [[ -n "${VERCEL_AUTOMATION_BYPASS_SECRET:-}" ]]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+            echo "Vercel preview authentication is configured."
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::Vercel protects Preview deployments. Add the VERCEL_AUTOMATION_BYPASS_SECRET GitHub Actions secret to enable Playwright and Lighthouse against the real preview. No protection settings were changed."
+          fi
+      - name: Probe the protected Vercel branch preview alias
+        id: preview
+        if: steps.protection.outputs.configured == 'true'
+        env:
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+        run: |
+          preview_url="https://sohila-khaled-abbas-git-red-541d47-sohila-khaled-abbas-projects.vercel.app"
+          for attempt in {1..24}; do
+            if curl --fail --silent --show-error --location --max-time 20               -H "x-vercel-protection-bypass: ${VERCEL_AUTOMATION_BYPASS_SECRET}"               --output /dev/null "$preview_url"; then
+              echo "url=$preview_url" >> "$GITHUB_OUTPUT"
+              echo "Authenticated Vercel preview is reachable: $preview_url"
+              exit 0
+            fi
+            echo "Waiting for the authenticated Vercel branch preview ($attempt/24)."
+            sleep 5
+          done
+          echo "Authenticated Vercel branch preview did not become reachable: $preview_url" >&2
+          exit 1
+      - name: Explain why real-preview browser checks were skipped
+        if: steps.protection.outputs.configured == 'false'
+        run: echo "::notice::Build and content checks passed. Real-preview Playwright/Lighthouse checks were skipped because Vercel Deployment Protection needs a GitHub Actions bypass secret."
+      - name: Responsive Playwright checks and full-page screenshots
+        if: steps.preview.outputs.url != ''
+        run: node tests/visual-preview.mjs
+        env:
+          BASE_URL: ${{ steps.preview.outputs.url }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+      - name: Lighthouse CI — mobile performance, accessibility and SEO
+        if: steps.preview.outputs.url != ''
+        run: npx lhci autorun --config=./lighthouserc.cjs
+        env:
+          BASE_URL: ${{ steps.preview.outputs.url }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+      - name: Upload screenshots and Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: portable-portfolio
-          path: portfolio-site/dist
+          name: portfolio-preview-qa
+          path: |
+            screenshots/
+            portfolio-site/lighthouse-reports/
+          if-no-files-found: warn
