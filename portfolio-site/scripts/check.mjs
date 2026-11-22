@@ -65,6 +65,13 @@ assert(home.includes('FEATURED WORK / SMART SUPPLY CHAIN')&&home.includes('/proj
 assert(home.includes('data-motion-toggle')&&home.includes('Good data.'),'Keep the original hero and provide a motion control');
 const styles=await fs.readFile(path.join(out,'enhancements.css'),'utf8');assert(styles.includes('prefers-reduced-motion:reduce'),'Motion preference support is required');
 const studioStyles=await fs.readFile(path.join(out,'studio.css'),'utf8');assert(!/\.studio-project-card \.project-card-description\{[^}]*-webkit-line-clamp/.test(studioStyles),'Project card descriptions must never be clipped');
+const redesignStyles=await fs.readFile(path.join(out,'redesign.css'),'utf8');
+assert(redesignStyles.includes('prefers-reduced-motion:reduce'),'The redesign must respect reduced-motion settings');
+assert(redesignStyles.includes('toolkit-marquee'),'The core-toolkit marquee styling must ship');
+assert(home.includes('href="/services/" class="button primary">Work with me'),'The homepage hero must prioritize the Work with me action');
+assert(home.includes('fonts.googleapis.com/css2?family=Instrument+Serif')&&home.includes('family=Inter'),'The site must load the approved two-family type system');
+assert(home.includes('href="/redesign.css"'),'The generated site must load the final visual layer');
+
 await fs.access(path.join(out,'social-card.png'));
 console.log(`PASS: ${htmlFiles.length} HTML documents, local links and anchors, ${data.repositories.length} public repositories, and both hosting configurations.`);
 const {projects}=JSON.parse(await fs.readFile(path.join(root,'content/project-details.json'),'utf8'));
