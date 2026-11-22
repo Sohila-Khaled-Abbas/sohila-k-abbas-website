@@ -61,3 +61,22 @@ if(navMore){
   document.addEventListener('click',event=>{if(!navMore.contains(event.target))navMore.open=false;});
   document.addEventListener('keydown',event=>{if(event.key==='Escape')navMore.open=false;});
 }
+
+
+ // Reveal substantial content as it enters the viewport; leave everything visible for reduced-motion users.
+ const revealTargets = [...document.querySelectorAll('.home-testimonial-card,.home-process-steps>li,.studio-project-card,.dashboard-card,.studio-story,.services-teaser-grid>a')];
+ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window && revealTargets.length) {
+   revealTargets.forEach((element,index) => {
+     element.classList.add('scroll-reveal');
+     element.style.setProperty('--reveal-delay', `${(index % 3) * 70}ms`);
+   });
+   const revealObserver = new IntersectionObserver(entries => {
+     entries.forEach(entry => {
+       if (entry.isIntersecting) {
+         entry.target.classList.add('is-visible');
+         revealObserver.unobserve(entry.target);
+       }
+     });
+   }, {threshold:0.1,rootMargin:'0px 0px -32px 0px'});
+   revealTargets.forEach(element => revealObserver.observe(element));
+ }
