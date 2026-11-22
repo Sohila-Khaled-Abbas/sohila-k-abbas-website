@@ -21,6 +21,7 @@ const browser=await chromium.launch({headless:true});
 try{
  for(const viewport of viewports){
   const page=await browser.newPage({viewport,deviceScaleFactor:1});
+  if(process.env.VERCEL_AUTOMATION_BYPASS_SECRET)await page.setExtraHTTPHeaders({'x-vercel-protection-bypass':process.env.VERCEL_AUTOMATION_BYPASS_SECRET});
   const response=await page.goto(new URL('/',parsedBase).href,{waitUntil:'domcontentloaded',timeout:60000});
   assert(response&&response.status()<400,`Homepage returned ${response?.status()??'no response'} at ${viewport.width}px`);
   await page.evaluate(async()=>{if(document.fonts?.ready)await document.fonts.ready;});
@@ -80,6 +81,7 @@ try{
 
  for(const route of ['/services/','/work/','/dashboards/']){
   const page=await browser.newPage({viewport:{width:390,height:900}});
+  if(process.env.VERCEL_AUTOMATION_BYPASS_SECRET)await page.setExtraHTTPHeaders({'x-vercel-protection-bypass':process.env.VERCEL_AUTOMATION_BYPASS_SECRET});
   const response=await page.goto(new URL(route,parsedBase).href,{waitUntil:'domcontentloaded',timeout:60000});
   assert(response&&response.status()<400,`${route} returned ${response?.status()??'no response'}`);
   if(route==='/services/'){

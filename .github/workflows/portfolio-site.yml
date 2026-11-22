@@ -35,32 +35,52 @@ jobs:
         run: |
           npx playwright install --with-deps chromium
           node --input-type=module -e "import {chromium} from 'playwright'; console.log('CHROME_PATH=' + chromium.executablePath())" >> "$GITHUB_ENV"
-      - name: Probe the Vercel branch preview alias
-        id: preview
+      - name: Check for the Vercel automation bypass secret
+        id: protection
         if: github.ref != 'refs/heads/main'
+        env:
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+        run: |
+          if [[ -n "${VERCEL_AUTOMATION_BYPASS_SECRET:-}" ]]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+            echo "Vercel preview authentication is configured."
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::Vercel protects Preview deployments. Add the VERCEL_AUTOMATION_BYPASS_SECRET GitHub Actions secret to enable Playwright and Lighthouse against the real preview. No protection settings were changed."
+          fi
+      - name: Probe the protected Vercel branch preview alias
+        id: preview
+        if: steps.protection.outputs.configured == 'true'
+        env:
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
         run: |
           preview_url="https://sohila-khaled-abbas-git-red-541d47-sohila-khaled-abbas-projects.vercel.app"
           for attempt in {1..24}; do
-            if curl --fail --silent --show-error --location --max-time 20 --output /dev/null "$preview_url"; then
+            if curl --fail --silent --show-error --location --max-time 20               -H "x-vercel-protection-bypass: ${VERCEL_AUTOMATION_BYPASS_SECRET}"               --output /dev/null "$preview_url"; then
               echo "url=$preview_url" >> "$GITHUB_OUTPUT"
-              echo "Preview is reachable: $preview_url"
+              echo "Authenticated Vercel preview is reachable: $preview_url"
               exit 0
             fi
-            echo "Waiting for Vercel branch preview ($attempt/24)."
+            echo "Waiting for the authenticated Vercel branch preview ($attempt/24)."
             sleep 5
           done
-          echo "Vercel branch preview did not become reachable: $preview_url" >&2
+          echo "Authenticated Vercel branch preview did not become reachable: $preview_url" >&2
           exit 1
+      - name: Explain why real-preview browser checks were skipped
+        if: steps.protection.outputs.configured == 'false'
+        run: echo "::notice::Build and content checks passed. Real-preview Playwright/Lighthouse checks were skipped because Vercel Deployment Protection needs a GitHub Actions bypass secret."
       - name: Responsive Playwright checks and full-page screenshots
         if: steps.preview.outputs.url != ''
         run: node tests/visual-preview.mjs
         env:
           BASE_URL: ${{ steps.preview.outputs.url }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
       - name: Lighthouse CI — mobile performance, accessibility and SEO
         if: steps.preview.outputs.url != ''
         run: npx lhci autorun --config=./lighthouserc.cjs
         env:
           BASE_URL: ${{ steps.preview.outputs.url }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
       - name: Upload screenshots and Lighthouse reports
         if: always()
         uses: actions/upload-artifact@v4
