@@ -23,7 +23,7 @@ const repositoryMap = (p,meta={}) => {
     ? p.technologies
     : [meta.language,...(meta.topics || [])].filter(Boolean);
   const tools = [...new Set(listedTools.filter(Boolean))].slice(0,4);
-  const category = ['analytics','engineering','automation','apps','learning'].includes(meta.category) ? meta.category : 'learning';
+  const category = ['analytics','engineering','automation','apps'].includes(meta.category) ? meta.category : 'analytics';
   const status = meta.fork ? 'UPSTREAM RESOURCE' : p.empty ? 'REPOSITORY OVERVIEW' : 'SOURCE MAP';
   const footer = meta.fork ? 'UPSTREAM REFERENCE' : p.empty ? 'NO SOURCE FILES PUBLISHED' : 'PUBLIC REPOSITORY';
   const fileContent = selectedFiles.length

@@ -115,7 +115,7 @@ for(const report of reports){
 }
 await write('/about/','About Sohila | BI Developer | Data Analyst | Analytics Engineer','Sohila Khaled Abbas is a BI Developer with nearly two years of freelance experience, building trusted Power BI dashboards, KPI reporting, and practical analytics solutions.',about(profile));
 await write('/recruiters/','For hiring teams — skills & project evidence','A concise overview of Sohila Khaled Abbas’s BI development experience, reporting projects, analytics engineering work, and remote collaboration details.',recruiterPage(profile,recruiterGuide,projectDetails));
-await write('/services/','Work with Sohila','Remote collaboration in Power BI reporting, data engineering, automation, and technical mentoring. Prepare a project brief.',servicesPage());
+await write('/services/','Work with Sohila','Remote collaboration in Power BI reporting, data engineering, and workflow automation. Prepare a project brief.',servicesPage());
 await write('/contact/','Contact','Connect with Sohila about remote analytics, BI, data engineering, and automation opportunities.',contact(profile));
 for(const project of projectDetails){
  const repo=ordered.find(r=>r.name===project.repo),caseStudy=byRepo.get(project.repo);
