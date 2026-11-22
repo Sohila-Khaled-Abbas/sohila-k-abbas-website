@@ -2823,12 +2823,12 @@
       "github": {
         "description": "End-to-end restaurant analytics pipeline: synthetic POS data generation, SQL Server data warehouse (raw/staging/marts star schema), Python ETL with quarantine gate, and 21-check data quality suite. Saudi multi-branch restaurant case study for teaching T-SQL dimensional modelling and analytics engineering.",
         "updated_at": "2026-11-22T18:51:59Z",
-        "pushed_at": "2026-11-22T18:52:12Z",
+        "pushed_at": "2026-11-22T20:30:55Z",
         "homepage": null,
         "default_branch": "main",
         "readme_excerpt": "End-to-end restaurant analytics pipeline — synthetic POS data · SQL Server data warehouse · Python ETL · Power BI",
         "readme_sha": "c7e3e020590d59d054300130990a56eb461a565d",
-        "fingerprint": "2026-11-22T18:52:12Z"
+        "fingerprint": "2026-11-22T20:30:55Z"
       }
     },
     {
@@ -4197,12 +4197,12 @@
       "github": {
         "description": "Comprehensive learning repository and documentation hub for the 81-lecture Microsoft Power BI Data Analysis Diploma by Eng. Essam Elsayed (MCT). Includes organized datasets, Power Query M code cheatsheet, and real-world case studies.",
         "updated_at": "2026-11-11T21:57:16Z",
-        "pushed_at": "2026-11-18T19:55:29Z",
+        "pushed_at": "2026-11-22T23:29:20Z",
         "homepage": "https://www.youtube.com/playlist?list=PLkYJ59mAhUsMbZQ4AmBmGt0EEyrTrg5mX",
         "default_branch": "main",
         "readme_excerpt": "[](https://www.youtube.com/@EssamMCT) [](CURRICULUM.md) [](https://powerbi.microsoft.com/desktop/) [](MLANGUAGECHEATSHEET.md)",
         "readme_sha": "908cb4eb969ea4307f8197af39bbada4515c7b39",
-        "fingerprint": "2026-11-18T19:55:29Z"
+        "fingerprint": "2026-11-22T23:29:20Z"
       },
       "auto_generated": false,
       "featured": true
@@ -4922,13 +4922,13 @@
       "old_portfolio": false,
       "github": {
         "description": "This repository contains the source code for a personal data portfolio website built for Sohila Khaled Abbas — a recognized BI Developer, Data Analytics Engineer, and Top 200 Arabic-Speaking Influencer in data education.",
-        "updated_at": "2026-11-22T19:26:23Z",
-        "pushed_at": "2026-11-22T19:26:23Z",
+        "updated_at": "2026-11-22T23:32:36Z",
+        "pushed_at": "2026-11-22T23:32:36Z",
         "homepage": "https://sohila-khaled-abbas.vercel.app/",
         "default_branch": "main",
         "readme_excerpt": "Data Analyst & BI Developer | SQL, Python, Power BI, DAX & Power Query | ETL/ELT & Analytics Engineering",
         "readme_sha": "16c85e4db64c08946831796971383efe8ff34842",
-        "fingerprint": "2026-11-22T19:26:23Z"
+        "fingerprint": "2026-11-22T23:32:36Z"
       }
     },
     {
