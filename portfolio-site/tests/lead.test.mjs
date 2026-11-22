@@ -285,6 +285,23 @@ test('Apps Script enforces the same exact EGP budget allow-list as the server',(
     payload.budget=budget;
     assert.equal(callAppsScript(context,payload).code,'INVALID_PAYLOAD',budget);
   }
+  const enterpriseBudgets=[
+    ['500–2000 EGP (Total project budget)',true],
+    ['500–2000 EGP (Per hour)',true],
+    ['499–2000 EGP (Total project budget)',false],
+    ['500–499 EGP (Total project budget)',false],
+    ['500–2000 USD (Total project budget)',false],
+    ['500–2000 EGP (Invalid unit)',false]
+  ];
+  for(const [budget,accepted] of enterpriseBudgets){
+    const {context,secret}=createAppsScriptHarness();
+    const payload=scriptPayload(secret,'123e4567-e89b-42d3-a456-426614174001');
+    payload.type='enterprise';
+    payload.budget=budget;
+    const response=callAppsScript(context,payload);
+    assert.equal(response.ok,accepted,budget);
+    if(!accepted)assert.equal(response.code,'INVALID_PAYLOAD',budget);
+  }
 });
 
 test('Apps Script rejects invalid shared secrets before touching the Sheet or MailApp',()=>{

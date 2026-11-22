@@ -153,6 +153,15 @@ function validLeadPayload(payload) {
     '25,000+ EGP',
     'Not sure yet'
   ].indexOf(budget) === -1) return false;
+
+  if (payload.type === 'enterprise') {
+    const enterpriseBudget = budget.match(/^(\d{1,9}(?:\.\d{1,2})?)–(\d{1,9}(?:\.\d{1,2})?) EGP \((?:Total project budget|Per hour|Per month|Per year)\)$/);
+    if (!enterpriseBudget) return false;
+    const minimum = Number(enterpriseBudget[1]);
+    const maximum = Number(enterpriseBudget[2]);
+    if (minimum < 500 || maximum < 500 || maximum < minimum) return false;
+  }
+
   if (sourcePage !== '/services/') return false;
   return true;
 }
