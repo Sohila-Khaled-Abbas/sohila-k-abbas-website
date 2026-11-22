@@ -1,0 +1,93 @@
+name: Portfolio visual and performance checks
+
+on:
+  deployment_status:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: Vercel preview URL to verify
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  visual-and-performance:
+    if: >-
+      ${{ github.event_name == 'workflow_dispatch' ||
+          (github.event_name == 'deployment_status' &&
+           github.event.deployment_status.state == 'success' &&
+           github.event.deployment.ref != 'main' &&
+           github.event.deployment_status.environment_url != '') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      BASE_URL: ${{ github.event.deployment_status.environment_url || inputs.base_url }}
+    steps:
+      - name: Check out the deployed commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.deployment.sha || github.ref }}
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: portfolio-site/package-lock.json
+
+      - name: Install site dependencies
+        working-directory: portfolio-site
+        run: npm ci
+
+      - name: Run existing unit tests
+        working-directory: portfolio-site
+        run: npm test
+
+      - name: Build and run static checks
+        working-directory: portfolio-site
+        run: |
+          npm run build
+          npm run check
+
+      - name: Wait for the Vercel preview
+        run: |
+          set -euo pipefail
+          node --input-type=module -e 'const u=new URL(process.env.BASE_URL); if(u.protocol!=="https:" || !u.hostname.endsWith(".vercel.app")) throw new Error("BASE_URL must be a Vercel HTTPS preview URL");'
+          ready=0
+          for attempt in $(seq 1 24); do
+            if curl --fail --silent --show-error --location --max-time 20 "$BASE_URL/" -o /dev/null; then ready=1; break; fi
+            echo "Preview is not responding yet (attempt $attempt/24)."
+            sleep 10
+          done
+          test "$ready" -eq 1
+
+      - name: Install browser and Lighthouse test tools
+        working-directory: portfolio-site
+        run: |
+          npm install --no-save --no-package-lock @playwright/test@1.65.1 @lhci/cli@0.16.1
+          npx playwright install --with-deps chromium
+
+      - name: Run responsive Playwright checks and capture full-page screenshots
+        working-directory: portfolio-site
+        run: npx playwright test --config=playwright.config.mjs
+        env:
+          BASE_URL: ${{ env.BASE_URL }}
+          CI: true
+
+      - name: Run mobile Lighthouse CI
+        working-directory: portfolio-site
+        run: npx lhci autorun --config=.lighthouserc.cjs
+        env:
+          BASE_URL: ${{ env.BASE_URL }}
+
+      - name: Upload screenshots and Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-visual-evidence-${{ github.run_id }}
+          path: screenshots/
+          if-no-files-found: warn
+          retention-days: 14
