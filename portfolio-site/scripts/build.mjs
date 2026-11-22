@@ -115,7 +115,7 @@ home=home.replace('  <section id="approach"', homeReports(reports,projectStatus)
 home=home.replace('<h3><button data-project="pixelfed">',progressBadge('pixelfed-analytics-engineering',projectStatus)+'<h3><button data-project="pixelfed">');
 home=home.replace('<h3><button data-project="n8n">',progressBadge('n8n-production-queue-setup',projectStatus)+'<h3><button data-project="n8n">');
 home=studioHome(profile,cases,ordered,projectDetails,reports,projectStatus,home.match(/<section id="approach"[\s\S]*?<\/section>/)?.[0],homeSections,professionalEvidence);
-home=home.replace('<section id="work"',`<div class="wrap home-recruiter-link"><span>Here with a role or project in mind?</span>${link('/recruiters/','The 60-second overview')}</div><section id="work"`);
+home=home.replace('<div id="home-contact" class="home-contact-anchor">',`<div id="home-contact" class="home-contact-anchor"><div class="wrap home-recruiter-link"><span>Here with a role or project in mind?</span>${link('/recruiters/','The 60-second overview')}</div>`);
 home=home.replace('<section id="notes"',homeLearning(learning)+socialTeaser(linkedinPosts)+'<section id="notes"');
 await write('/','Sohila Khaled Abbas | BI Developer | Data Analyst | Analytics Engineer','Sohila Khaled Abbas is a BI Developer with nearly two years of freelance experience building Power BI dashboards and decision-ready reporting across multiple business domains. Explore her BI projects, analytics engineering work, and reporting automation.',home);
 await write('/work/','Work & GitHub repositories','Browse Sohila’s public GitHub repositories, detailed project case studies, BI dashboards, data pipelines, and automation workflows.',work());
