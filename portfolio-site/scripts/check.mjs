@@ -51,8 +51,18 @@ for(const report of reports){
 for(const repo of Object.keys(status))assert(data.repositories.some(r=>r.name===repo&&!r.fork),'Unknown current project');
 assert.equal([...work.matchAll(/data-status="progress"/g)].length,Object.keys(status).length,'In-progress labels must use explicit editorial status');
 const home=documents.get(path.join(out,'index.html'));
+assert(!documents.has(path.join(out,'resume/index.html')),'The removed résumé page must not be generated');
+assert([...documents.values()].every(html=>!html.includes('href="/resume/"')),'No page may link to the removed résumé page');
+assert(home.includes('Good data.')&&home.includes('Better <em>decisions.</em>'),'Keep the requested homepage headline');
+assert(home.includes('Power BI dashboards and reporting for growing businesses, from messy data to decisions you can defend.'),'Homepage hero must state the Power BI offer and audience');
+assert(home.includes('Data Analyst')&&home.includes('Analytics Engineer')&&home.includes('hero-discipline-line'),'Secondary disciplines must sit beneath the Power BI offer');
+assert(home.includes('CLIENT NOTES / TESTIMONIAL PLACEHOLDERS')&&[...home.matchAll(/class="home-testimonial-card"/g)].length===3,'Show three clearly marked testimonial placeholders');
+assert(home.includes('You send your data or problem.')&&home.includes('I scope it and give a fixed quote.')&&home.includes('You get a dashboard or report you can defend.'),'Show the agreed three-step process');
+assert(home.includes('Projects from <strong>$X</strong>')&&home.includes('REPLACE X BEFORE PUBLICATION'),'Keep the starting price visibly marked as a placeholder');
+assert(home.includes('FEATURED WORK / SMART SUPPLY CHAIN')&&home.includes('/projects/SMART-Supply-Chain-Insights-Dashboard/')&&!home.includes('IN THE STUDIO / PIXELFED'),'Feature a completed project instead of PixelFed in the hero card');
 assert(home.includes('data-motion-toggle')&&home.includes('Good data.'),'Keep the original hero and provide a motion control');
 const styles=await fs.readFile(path.join(out,'enhancements.css'),'utf8');assert(styles.includes('prefers-reduced-motion:reduce'),'Motion preference support is required');
+const studioStyles=await fs.readFile(path.join(out,'studio.css'),'utf8');assert(studioStyles.includes('-webkit-line-clamp:5'),'Project card descriptions must clamp cleanly at a word boundary');
 await fs.access(path.join(out,'social-card.png'));
 console.log(`PASS: ${htmlFiles.length} HTML documents, local links and anchors, ${data.repositories.length} public repositories, and both hosting configurations.`);
 const {projects}=JSON.parse(await fs.readFile(path.join(root,'content/project-details.json'),'utf8'));

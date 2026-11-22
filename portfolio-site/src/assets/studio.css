@@ -113,3 +113,34 @@ html[data-theme=dark] .source-map-card{box-shadow:0 12px 30px #0002}
 
 .studio-learning-public .studio-spotlight-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:920px}
 @media(max-width:720px){.studio-learning-public .studio-spotlight-grid{grid-template-columns:minmax(0,1fr)}}
+
+
+/* Homepage conversion sections, project-card descriptions and responsive copy */
+.signature-hero .hero-discipline-line{font-size:11px;line-height:1.6;letter-spacing:.25px;color:var(--muted);margin:10px 0 0}
+.signature-stage .signature-project>img{object-fit:cover}
+.studio-project-card .project-card-description{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:5;line-clamp:5;overflow:hidden;overflow-wrap:break-word;word-break:normal;hyphens:manual;text-overflow:ellipsis}
+.studio-project-card h3{overflow-wrap:break-word;word-break:normal}
+.home-proof-section{padding-top:42px;padding-bottom:40px}
+.home-proof-heading,.home-process-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;margin:22px 0 24px}
+.home-proof-heading h2,.home-process-heading h2{font-size:clamp(30px,3.5vw,43px);line-height:1.12;letter-spacing:-1.6px;margin:0}
+.home-proof-heading h2 em,.home-process-heading h2 em{color:var(--brand);font-weight:400}
+.home-proof-heading>p,.home-process-heading>p{max-width:390px;color:var(--muted);font-size:12px;line-height:1.85;margin:0}
+.home-testimonial-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.home-testimonial-card{margin:0;min-width:0;min-height:175px;padding:20px 21px;border:1px solid var(--line);border-radius:4px;background:var(--surface);display:flex;flex-direction:column;align-items:flex-start}
+.home-testimonial-card>.eyebrow{font-size:7px;letter-spacing:1.1px;color:var(--muted)}
+.home-testimonial-card>p{font-family:var(--serif);font-size:17px;line-height:1.55;letter-spacing:-.2px;margin:17px 0 22px;color:var(--ink);overflow-wrap:break-word;word-break:normal}
+.home-testimonial-card>footer{display:flex;flex-direction:column;gap:4px;margin-top:auto;font-size:9px}
+.home-testimonial-card>footer strong{font-weight:600;color:var(--ink)}
+.home-testimonial-card>footer span{color:var(--muted)}
+.home-process-section{padding-top:34px;padding-bottom:50px;border-top:1px solid var(--line)}
+.home-process-heading{margin-top:20px}
+.home-process-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:0;margin:0;list-style:none;counter-reset:home-steps}
+.home-process-steps>li{min-width:0;padding:18px 20px 21px;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+.home-process-number{display:block;font:28px/1 var(--serif);color:var(--brand);margin-bottom:22px}
+.home-process-steps h3{font-size:16px;line-height:1.5;font-weight:500;letter-spacing:-.2px;margin:0;overflow-wrap:break-word;word-break:normal}
+.home-price-anchor{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin-top:25px;padding-top:18px;border-top:1px solid var(--line)}
+.home-price-anchor>p{font:24px/1.2 var(--serif);letter-spacing:-.5px;margin:0;color:var(--ink)}
+.home-price-anchor>p strong{font-weight:500;color:var(--brand)}
+.home-price-placeholder{font-size:7px;letter-spacing:1px;color:var(--muted);text-align:right}
+@media(max-width:850px){.home-testimonial-grid,.home-process-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.home-proof-heading,.home-process-heading{align-items:flex-start;flex-direction:column;gap:13px}}
+@media(max-width:650px){.signature-hero .hero-discipline-line{font-size:10px;margin-top:8px}.home-proof-section{padding-top:29px;padding-bottom:28px}.home-proof-heading,.home-process-heading{margin:18px 0 20px}.home-proof-heading h2,.home-process-heading h2{font-size:34px}.home-proof-heading>p,.home-process-heading>p{font-size:11px}.home-testimonial-grid,.home-process-steps{grid-template-columns:minmax(0,1fr);gap:12px}.home-testimonial-card{min-height:0;padding:18px}.home-testimonial-card>p{font-size:16px;margin:14px 0 18px}.home-process-section{padding-top:28px;padding-bottom:38px}.home-process-steps>li{padding:16px 18px}.home-process-number{margin-bottom:13px;font-size:25px}.home-process-steps h3{font-size:15px}.home-price-anchor{align-items:flex-start;flex-direction:column;gap:7px;margin-top:20px}.home-price-anchor>p{font-size:22px}.home-price-placeholder{text-align:left;font-size:6px}.studio-project-card .project-card-description{-webkit-line-clamp:5;line-clamp:5}}
