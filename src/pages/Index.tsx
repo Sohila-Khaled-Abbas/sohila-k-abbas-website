@@ -10,15 +10,12 @@ import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
-import Community from "@/components/Community";
-import Credibility from "@/components/Credibility";
-import Certifications from "@/components/Certifications";
 import Hero from "@/components/Hero";
 
 const metrics = [
-  { value: "40%", label: "Manual Overhead Reduced" },
-  { value: "12%", label: "Revenue Leaks Identified" },
-  { value: "50+", label: "Professionals Mentored" },
+  { value: "Power BI", label: "Dashboards & reporting" },
+  { value: "SQL + Python", label: "Data preparation & modeling" },
+  { value: "n8n", label: "Workflow automation" },
 ];
 
 const caseStudies = [
@@ -49,8 +46,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title="Sohila Khaled Abbas — Data & Analytics Engineer for B2B Teams"
-        description="Automated ETL pipelines and interactive BI ecosystems that turn chaotic spreadsheets into executive clarity. Case studies, dashboards, and data engineering work."
+        title="Sohila Khaled Abbas — BI Developer & Data Analyst"
+        description="Power BI dashboards, decision-ready reporting, analytics engineering, data projects, and practical automation for business teams."
         path="/"
       />
       <Header />
@@ -174,9 +171,6 @@ const Index = () => {
         <Experience />
         <Skills />
         <Projects />
-        <Community />
-        <Credibility />
-        <Certifications />
 
         {/* BOTTOM CTA */}
         <section className="py-20 bg-background">

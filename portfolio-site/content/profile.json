@@ -8,48 +8,8 @@
   "github": "https://github.com/Sohila-Khaled-Abbas",
   "linkedin": "https://linkedin.com/in/sohilakabbas",
   "as_of": "2026-11-14",
-  "summary": "BI Developer with nearly two years of freelance experience building Power BI dashboards and decision-ready reporting. My work spans sales and retail, churn, supply chain, e-commerce, customer satisfaction, marketing, HR, and healthcare, with a focus on data preparation, validation, SQL and Power Query, dimensional modeling, and KPI design. I also hold a BSc and build analytics projects, explore Python-based model evaluation, streamline reporting with Excel and VBA, and share practical learning through The Data Tea.",
+  "summary": "BI Developer with nearly two years of freelance experience building Power BI dashboards and decision-ready reporting. My work spans sales and retail, churn, supply chain, e-commerce, customer satisfaction, marketing, HR, and healthcare, with a focus on data preparation, validation, SQL and Power Query, dimensional modeling, and KPI design. I also work with Python and SQL on applied machine-learning projects and use Excel and VBA to streamline repeatable reporting.",
   "experience": [
-    {
-      "role": "Data Science Job Simulation",
-      "organization": "Commonwealth Bank · Forage",
-      "dates": "Nov 14, 2026",
-      "mode": "Virtual · Completed job simulation",
-      "bullets": [
-        "Analyzed 50,783 supermarket transaction records in Microsoft Excel using Excel Tables, structured references, SUMIFS, COUNTIFS, data-quality checks, and two PivotTables to reconcile five business metrics. Applied data minimization, field removal, date generalization, and age/salary banding to prepare a values-only release from a 10,000-record customer dataset.",
-        "Analyzed a fictional 60-post social-media sample with Excel formulas and PivotTables; reviewed all 11 response-needed records, assessed X API feasibility, and completed the InsightSpark proposal. Designed a normalized relational model for posts and accounts, including references, mentions, hashtags, keys, and relationships."
-      ],
-      "certificate_url": "https://www.theforage.com/completion-certificates/2sNmYuurxgpFYawco/smwfytX3mcLboA9bf_2sNmYuurxgpFYawco_6ae9f5fbcfb5bb576b61ccb2_1794678594628_completion_certificate.pdf",
-      "project_url": "https://sohila-khaled-abbas.vercel.app/projects/commonwealth-bank-intro-data-science/"
-    },
-    {
-      "role": "Excel Skills Job Simulation",
-      "organization": "Forage Academy",
-      "dates": "Nov 4, 2026",
-      "mode": "Virtual · Completed simulation",
-      "bullets": [
-        "Reviewed and organized account sales data, using conditional formatting to surface data-quality issues and meaningful patterns.",
-        "Applied SUM, AVERAGE, IF, COUNTIF, SUMIF, and IFERROR to calculate, summarize, and classify sales information.",
-        "Built PivotTables and charts to examine account performance and annual sales trends, then brought key metrics together in an Excel dashboard.",
-        "Recorded and tested VBA sorting macros, assigning them to Form Control buttons to make repeatable workbook operations easier to run."
-      ],
-      "certificate_url": "https://www.theforage.com/completion-certificates/HgpPSsyQpzob6HEh9/SfGxkQ8FacaZR9LnZ_HgpPSsyQpzob6HEh9_6ae9f5fbcfb5bb576b61ccb2_1793821202129_completion_certificate.pdf",
-      "project_url": "https://sohila-khaled-abbas.vercel.app/projects/forage-excel-skills-job-simulation/"
-    },
-    {
-      "role": "Data Labeling Analyst — Job Simulation",
-      "organization": "Forage Academy",
-      "dates": "Nov 3, 2026",
-      "mode": "Virtual · Completed simulation",
-      "bullets": [
-        "Reviewed simulated customer-support messages and classified intent, sentiment, and personally identifiable information (PII) using a consistent labeling schema.",
-        "Evaluated ambiguous edge cases and documented concise rationales for final labeling decisions.",
-        "Reviewed peer labeling, identified inconsistencies, and proposed an improvement to the team's labeling guidelines.",
-        "Applied clear definitions and privacy-aware practices to support consistent, reliable labeled data.",
-        "Practiced human–AI collaboration concepts relevant to AI operations, trust and safety, and machine-learning data support."
-      ],
-      "certificate_url": "https://www.theforage.com/completion-certificates/HgpPSsyQpzob6HEh9/Fnbjyox4Y4SciuEGF_HgpPSsyQpzob6HEh9_6ae9f5fbcfb5bb576b61ccb2_1793724247160_completion_certificate.pdf"
-    },
     {
       "role": "Machine Learning Engineer Intern",
       "organization": "FlyRank AI",
@@ -70,28 +30,6 @@
       "bullets": [
         "Deliver confidential BI engagements, translating business questions into Power BI reports, KPI definitions, semantic models, and DAX measures.",
         "Shape source data with Power Query and SQL, and document metric definitions, transformation logic, and reporting handover."
-      ]
-    },
-    {
-      "role": "Freelancing Coach",
-      "organization": "Digital Egypt Pioneers Initiative (DEPI)",
-      "dates": "Sep 2025 – Jun 2026",
-      "mode": "Part-time · Remote",
-      "bullets": [
-        "Coached aspiring freelancers on professional positioning, portfolio and CV development, freelance-platform profiles, proposal writing, and client communication.",
-        "Reviewed learner portfolios, CVs, and freelance profiles, providing practical feedback and structured weekly development challenges.",
-        "Analyzed freelance project listings to identify recurring skill requirements and help learners position practical services."
-      ]
-    },
-    {
-      "role": "Data Analysis Mentor",
-      "organization": "Data Pill",
-      "dates": "Jul 2025 – Apr 2026",
-      "mode": "Part-time · Remote",
-      "bullets": [
-        "Mentored learners in Excel formulas and functions, data cleaning, PivotTables, charts, dashboards, Power Query, Power Pivot, and DAX.",
-        "Taught data transformation with Power Query and data modeling with Power Pivot, including DAX calculations in Excel’s Data Model.",
-        "Designed practical exercises and reviewed learner work to strengthen analytical reporting and dashboard skills."
       ]
     }
   ],
@@ -182,57 +120,7 @@
       ]
     }
   ],
-  "training": [
-    {
-      "title": "Introduction to Excel",
-      "provider": "365 Data Science",
-      "date": "Nov 6, 2026",
-      "detail": "Revisited Excel fundamentals and passed the course exam on a second attempt. First taken during the 2025 free-access period; retaken in 2026 as structured revision.",
-      "certificate_url": "https://learn.365datascience.com/c/306de45ae9/"
-    },
-    {
-      "title": "n8n Foundations Professional Certificate",
-      "provider": "n8n Academy",
-      "date": "2026",
-      "detail": "Essentials, Integrations, and In Practice: AI, Testing & Best Practices."
-    },
-    {
-      "title": "Fundamentals of Networking for Effective Backend Design",
-      "provider": "Udemy",
-      "date": "Oct 2026",
-      "detail": "Completed course with practical networking labs."
-    },
-    {
-      "title": "Data Analytics Diploma",
-      "provider": "Ahmed Ali · Friendly Analysis",
-      "date": "Mar – May 2026",
-      "detail": "28 sessions covering data analytics."
-    },
-    {
-      "title": "Build with AI: Masr Edition",
-      "provider": "Information Technology Institute (ITI)",
-      "date": "May 2026",
-      "detail": "AI-focused training."
-    },
-    {
-      "title": "Python, APIs & data-platform foundations",
-      "provider": "365 Data Science",
-      "date": "Nov 2025",
-      "detail": "Web Scraping and API Fundamentals in Python; Introduction to Jupyter, Data Warehousing, and Databricks."
-    },
-    {
-      "title": "Power BI Desktop & Power BI Service",
-      "provider": "Maven Analytics",
-      "date": "Oct 2025",
-      "detail": "Business intelligence training."
-    },
-    {
-      "title": "SQL, Python, Excel & data foundations",
-      "provider": "IBM · edX",
-      "date": "Oct 2025",
-      "detail": "SQL for Data Science; Relational Database Basics; Python Basics for Data Science; Analyzing Data with Excel; Data Engineering Basics for Everyone; Data Analytics Basics for Everyone."
-    }
-  ],
+  "training": [],
   "languages": [
     "Arabic · Native",
     "English · Excellent, written and spoken"
@@ -241,6 +129,6 @@
   "current_focus": "Power BI dashboards and decision-ready reporting, supported by trustworthy KPI definitions, dimensional models, data validation, and practical Excel and workflow automation.",
   "about_paragraphs": [
     "I’m a BI Developer with nearly two years of freelance experience turning business questions and scattered data into clear, reliable Power BI dashboards. I work across the reporting process—from data preparation and validation with Excel, SQL, and Power Query to dimensional modeling, DAX measures, KPI definitions, interactive reports, and practical handover documentation.",
-    "My work has touched sales and retail, churn, supply chain, e-commerce, customer satisfaction, marketing, HR, and healthcare. Beyond BI, I’ve worked with Python, SQL, and DuckDB on search-performance data during an ML internship; mentored learners in Excel and analytics; and coached aspiring freelancers. I hold a BSc, and continue to develop through independent analytics projects and Excel/VBA automation, exploring ways to make reporting more efficient and useful."
+    "My work has touched sales and retail, churn, supply chain, e-commerce, customer satisfaction, marketing, HR, and healthcare. Beyond BI, I’ve worked with Python, SQL, and DuckDB on search-performance data during an ML internship, and I build independent analytics and automation projects. I hold a BSc and use Excel/VBA automation to make reporting more efficient and repeatable."
   ]
 }
