@@ -68,7 +68,7 @@ const studioStyles=await fs.readFile(path.join(out,'studio.css'),'utf8');assert(
 const redesignStyles=await fs.readFile(path.join(out,'redesign.css'),'utf8');
 assert(redesignStyles.includes('prefers-reduced-motion:reduce'),'The redesign must respect reduced-motion settings');
 assert(redesignStyles.includes('toolkit-marquee'),'The core-toolkit marquee styling must ship');
-assert(home.includes('href="/services/" class="button primary">Work with me'),'The homepage hero must prioritize the Work with me action');
+assert(home.includes('class="button primary" href="/services/">Work with me'),'The homepage hero must prioritize the Work with me action');
 assert(home.includes('fonts.googleapis.com/css2?family=Instrument+Serif')&&home.includes('family=Inter'),'The site must load the approved two-family type system');
 assert(home.includes('href="/redesign.css"'),'The generated site must load the final visual layer');
 
