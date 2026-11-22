@@ -75,11 +75,19 @@ jobs:
         env:
           BASE_URL: ${{ steps.preview.outputs.url }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
-      - name: Lighthouse CI — mobile performance, accessibility and SEO
+      - name: Lighthouse CI — homepage mobile
         if: steps.preview.outputs.url != ''
         run: npx lhci autorun --config=./lighthouserc.cjs
         env:
           BASE_URL: ${{ steps.preview.outputs.url }}
+          LIGHTHOUSE_PRESET: mobile
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+      - name: Lighthouse CI — homepage desktop
+        if: steps.preview.outputs.url != ''
+        run: npx lhci autorun --config=./lighthouserc.cjs
+        env:
+          BASE_URL: ${{ steps.preview.outputs.url }}
+          LIGHTHOUSE_PRESET: desktop
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
       - name: Upload screenshots and Lighthouse reports
         if: always()
