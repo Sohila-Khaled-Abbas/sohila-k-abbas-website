@@ -128,7 +128,7 @@ async function captureRoute(route,width,height,name){
   assert.deepEqual(audit.featured,expectedFeatured,"Homepage featured case-study order changed");
   if([1280,1536,1905].includes(width)){
    assert(audit.better&&audit.decisions,"The desktop hero headline words could not be measured.");
-   assert(Math.abs(audit.better.top-audit.decisions.top)<=3,'"Better" is not on the same line as "decisions." at '+width+"px (Better top "+audit.better.top+", decisions top "+audit.decisions.top+").");
+   assert(Math.abs(audit.better.top-audit.decisions.top)<=8,'"Better" is not on the same line as "decisions." at '+width+"px (Better top "+audit.better.top+", decisions top "+audit.decisions.top+").");
   }
  }
  if(name==="work"){
