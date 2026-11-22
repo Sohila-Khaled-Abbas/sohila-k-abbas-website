@@ -64,10 +64,24 @@ assert(home.includes('href="/community/#recommendations"'),'Link homepage recomm
 assert(home.includes('FEATURED WORK / SMART SUPPLY CHAIN')&&home.includes('/projects/SMART-Supply-Chain-Insights-Dashboard/')&&!home.includes('IN THE STUDIO / PIXELFED'),'Feature a completed project instead of PixelFed in the hero card');
 assert(home.includes('data-motion-toggle')&&home.includes('Good data.'),'Keep the original hero and provide a motion control');
 const styles=await fs.readFile(path.join(out,'enhancements.css'),'utf8');assert(styles.includes('prefers-reduced-motion:reduce'),'Motion preference support is required');
-const studioStyles=await fs.readFile(path.join(out,'studio.css'),'utf8');assert(studioStyles.includes('-webkit-line-clamp:5'),'Project card descriptions must clamp cleanly at a word boundary');
+const studioStyles=await fs.readFile(path.join(out,'studio.css'),'utf8');assert(!/\.studio-project-card \.project-card-description\{[^}]*-webkit-line-clamp/.test(studioStyles),'Project card descriptions must never be clipped');
 await fs.access(path.join(out,'social-card.png'));
 console.log(`PASS: ${htmlFiles.length} HTML documents, local links and anchors, ${data.repositories.length} public repositories, and both hosting configurations.`);
 const {projects}=JSON.parse(await fs.readFile(path.join(root,'content/project-details.json'),'utf8'));
+const featuredOutcomeCopy={
+ 'fmcg-sales-churn-drop-analysis-powerbi':'Helps a sales manager spot retailers showing early churn signals and prioritize follow-up.',
+ 'global-horizon-bank-dwh-project':'Helps bank managers compare transaction activity, account balances, and loan exposure across branches.',
+ 'egyptian-cosmetics-market':'Helps commercial teams compare product performance, sales trends, and inventory health across channels.'
+};
+for(const [repo,copy] of Object.entries(featuredOutcomeCopy)){
+ const project=projects.find(item=>item.repo===repo);assert(project,'Missing featured project: '+repo);
+ assert.equal(project.decision_support,copy,'Keep the approved decision-support copy: '+repo);
+ assert(copy.startsWith('Helps ')&&copy.trim().split(/\\s+/).length<=20,'Featured outcome must start with Helps and stay within 20 words: '+repo);
+ assert(home.includes('<p class="project-card-outcome">'+copy+'</p>'),'Homepage must show the decision-support copy beneath the summary: '+repo);
+}
+const featuredPositions=Object.keys(featuredOutcomeCopy).map(repo=>home.indexOf('data-name="'+repo+'"'));
+assert(featuredPositions.every(position=>position>=0)&&featuredPositions[0]<featuredPositions[1]&&featuredPositions[1]<featuredPositions[2],'Keep the requested featured-card order');
+assert.equal(projects.find(item=>item.repo==='global-horizon-bank-dwh-project').summary,'Turns transactional banking data into a dimensional warehouse. Its interactive app explores transactions, account balances, active accounts, and loan portfolios.','Global Horizon Bank card copy must stay at two complete sentences');
 assert.equal(projects.length,data.repositories.filter(r=>!r.fork).length,'All original repositories need project previews');
 for(const p of projects){const html=documents.get(path.join(out,'projects',p.repo,'index.html'));assert(html,'Missing project preview page: '+p.repo);for(const file of p.files)assert(file.url.startsWith(p.source+'/blob/'),'Unexpected project file owner');}
 for(const page of ['services','community','credentials'])assert(documents.has(path.join(out,page,'index.html')));
