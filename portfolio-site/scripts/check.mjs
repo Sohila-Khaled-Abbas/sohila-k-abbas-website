@@ -102,7 +102,12 @@ for(const item of evidence.recommendations){
 
 for(const lane of recruiter.lanes)for(const repo of lane.projects)assert(originals.has(repo),'Recruiter evidence must be a public original project');
 const serviceHtml=documents.get(path.join(out,'services/index.html'));
-assert(serviceHtml.includes('id="project-brief" class="business-inquiry-form" hidden'),'Business inquiries must remain closed without an approved invitation');
+assert(serviceHtml.includes('id="project-brief" class="business-inquiry-form" method="post" action="/services/" hidden'),'Enterprise inquiry form must use POST if its JavaScript handler is unavailable');
+assert(serviceHtml.includes('id="simple-project-inquiry" class="public-project-inquiry-form" method="post" action="/services/"'),'Public inquiry form must use POST so project details cannot fall into the URL');
+assert(serviceHtml.includes('id="project-brief" class="business-inquiry-form" method="post" action="/services/" hidden'),'Business inquiries must remain closed without an approved invitation');
+const b2bHtml=documents.get(path.join(out,'projects','fmcg-sales-churn-drop-analysis-powerbi','index.html'));
+assert(b2bHtml.includes('The dashboard helps a retail manager decide where the next review should focus: retailer retention, delivery performance, sales movement, or category mix.'),'B2B outcome must describe the manager decision supported by the dashboard');
+assert(b2bHtml.includes('intended business benefits are not measured outcomes.'),'B2B case page must preserve the distinction between intended benefits and measured outcomes');
 assert([...documents.values()].every(html=>!html.includes('href="tel:')),'Do not expose personal telephone links');
 console.log(`PASS: ${learning.courses.length} enrolled courses with public sources, project connections, Course metadata, attributed recommendations, and historical ranking context.`);
 const profile=JSON.parse(await fs.readFile(path.join(root,'content/profile.json'),'utf8'));
