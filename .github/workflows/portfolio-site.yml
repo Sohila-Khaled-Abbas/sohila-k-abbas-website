@@ -1,7 +1,7 @@
 name: Portfolio site validation and preview UX
 on:
   push:
-    branches: [main, 'redesign/**']
+    branches: [main, 'redesign/**', 'feat/**']
     paths: ['portfolio-site/**', '.github/workflows/portfolio-site.yml', 'screenshots/**']
   pull_request:
     paths: ['portfolio-site/**', '.github/workflows/portfolio-site.yml', 'screenshots/**']
@@ -54,7 +54,7 @@ jobs:
         env:
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
         run: |
-          preview_url="https://sohila-khaled-abbas-git-red-541d47-sohila-khaled-abbas-projects.vercel.app"
+          preview_url="https://sohila-khaled-abbas-git-fea-c92c5e-sohila-khaled-abbas-projects.vercel.app"
           for attempt in {1..24}; do
             if curl --fail --silent --show-error --location --max-time 20               -H "x-vercel-protection-bypass: ${VERCEL_AUTOMATION_BYPASS_SECRET}"               --output /dev/null "$preview_url"; then
               echo "url=$preview_url" >> "$GITHUB_OUTPUT"
@@ -75,12 +75,61 @@ jobs:
         env:
           BASE_URL: ${{ steps.preview.outputs.url }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
-      - name: Lighthouse CI — mobile performance, accessibility and SEO
+      - name: Lighthouse CI — homepage mobile
         if: steps.preview.outputs.url != ''
         run: npx lhci autorun --config=./lighthouserc.cjs
         env:
           BASE_URL: ${{ steps.preview.outputs.url }}
+          LIGHTHOUSE_PRESET: mobile
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+      - name: Lighthouse CI — homepage desktop
+        if: steps.preview.outputs.url != ''
+        run: npx lhci autorun --config=./lighthouserc.cjs
+        env:
+          BASE_URL: ${{ steps.preview.outputs.url }}
+          LIGHTHOUSE_PRESET: desktop
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+      - name: Print Lighthouse category scores
+        if: steps.preview.outputs.url != ''
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+          import path from 'node:path';
+
+          for (const preset of ['mobile', 'desktop']) {
+            const directory = path.resolve('lighthouse-reports', preset);
+            const manifest = JSON.parse(await fs.readFile(path.join(directory, 'manifest.json'), 'utf8'));
+            const report = manifest.find(item => item.isRepresentativeRun) || manifest[0];
+            if (!report?.jsonPath) throw new Error('No representative Lighthouse report for ' + preset);
+
+            const candidates = [
+              report.jsonPath,
+              path.resolve(report.jsonPath),
+              path.resolve(directory, path.basename(report.jsonPath))
+            ];
+            let lhr;
+            for (const candidate of [...new Set(candidates)]) {
+              try {
+                lhr = JSON.parse(await fs.readFile(candidate, 'utf8'));
+                break;
+              } catch {}
+            }
+            if (!lhr) throw new Error('Could not read the representative Lighthouse report for ' + preset);
+
+            const score = key => {
+              const value = lhr.categories?.[key]?.score;
+              if (typeof value !== 'number') throw new Error('Missing Lighthouse category score: ' + key);
+              return Math.round(value * 100);
+            };
+            console.log(
+              'LHCI_SCORE ' + preset +
+              ' Performance=' + score('performance') +
+              ' Accessibility=' + score('accessibility') +
+              ' Best Practices=' + score('best-practices') +
+              ' SEO=' + score('seo')
+            );
+          }
+          NODE
       - name: Upload screenshots and Lighthouse reports
         if: always()
         uses: actions/upload-artifact@v4
