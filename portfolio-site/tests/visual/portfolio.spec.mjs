@@ -51,7 +51,7 @@ test('homepage is responsive, legible, and free of clipped content at all target
   await waitForVisualReady(page);
 
   const expected=['B2B Retail Analytics & Churn Diagnostic','Global Horizon Bank','Egyptian Cosmetics'];
-  const featured=await page.locator('.studio-spotlight-grid .studio-project-card h3').allInnerTexts();
+  const featured=await page.locator('#work .studio-spotlight-grid .studio-project-card h3').allInnerTexts();
   expect(featured).toHaveLength(3);
   expected.forEach((name,index)=>expect(featured[index]).toContain(name));
   await expect(page.locator('.home-testimonial-card')).toHaveCount(3);
