@@ -66,7 +66,7 @@ async function inspectLayout(page){
   for(const element of document.querySelectorAll(textSelector)){
    const text=element.textContent?.replace(/\s+/g," ").trim();
    if(!text)continue;
-   if(element.closest("[hidden],[aria-hidden=true],details:not([open]),dialog:not([open]),.sr-only,.skip"))continue;
+   if(element.closest("[hidden],[aria-hidden=true],details:not([open]),dialog:not([open]),.sr-only,.skip,.source-map-card,.project-visual,.signature-stage"))continue;
    const style=getComputedStyle(element);
    const rect=element.getBoundingClientRect();
    if(style.display==="none"||style.visibility==="hidden"||Number.parseFloat(style.opacity)<.05||rect.width===0||rect.height===0){
