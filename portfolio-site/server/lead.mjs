@@ -95,7 +95,7 @@ const enterpriseFieldNames=[
   'environment','professional','websiteFax'
 ];
 
-function extractFields(payload){
+function extractFields(payload,type){
   if(payload.fields!==undefined){
     let fields=payload.fields;
     if(typeof fields==='string'){
@@ -103,6 +103,15 @@ function extractFields(payload){
     }
     if(!fields||typeof fields!=='object'||Array.isArray(fields))return null;
     return {...fields};
+  }
+  if(type==='standard'){
+    return {
+      name:payload.name,
+      email:payload.email,
+      description:payload.description,
+      budgetRange:payload.budgetRange,
+      websiteFax:payload.websiteFax
+    };
   }
   const output={};
   for(const key of enterpriseFieldNames){
@@ -199,7 +208,7 @@ export async function handleLead(request,{
   if(!['standard','enterprise'].includes(type)){
     return respond(400,{ok:false,message:'Choose a valid inquiry form.'});
   }
-  const fields=extractFields(payload);
+  const fields=extractFields(payload,type);
   if(!fields)return respond(400,{ok:false,message:'The inquiry form data is invalid.'});
 
   if(clean(payload.websiteFax??fields.websiteFax??'')){
