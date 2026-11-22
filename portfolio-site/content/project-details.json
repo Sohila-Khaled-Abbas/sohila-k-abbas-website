@@ -2790,6 +2790,48 @@
       }
     },
     {
+      "repo": "layali-analytics",
+      "title": "🍽️ Layali Analytics",
+      "summary": "End-to-end restaurant analytics pipeline: synthetic POS data generation, SQL Server data warehouse (raw/staging/marts star schema), Python ETL with quarantine gate, and 21-check data quality suite. Saudi multi-branch restaurant case study for teaching T-SQL dimensional modelling and analytics engineering.",
+      "technologies": [
+        "Python",
+        "analytics",
+        "case-study",
+        "data-engineering",
+        "dimensional-modeling",
+        "etl",
+        "power-bi",
+        "python"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 23041,
+          "url": "https://github.com/Sohila-Khaled-Abbas/layali-analytics/blob/main/README.md"
+        }
+      ],
+      "empty": false,
+      "source": "https://github.com/Sohila-Khaled-Abbas/layali-analytics",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/layali-analytics/blob/main/README.md",
+      "old_portfolio": false,
+      "auto_generated": true,
+      "github": {
+        "description": "End-to-end restaurant analytics pipeline: synthetic POS data generation, SQL Server data warehouse (raw/staging/marts star schema), Python ETL with quarantine gate, and 21-check data quality suite. Saudi multi-branch restaurant case study for teaching T-SQL dimensional modelling and analytics engineering.",
+        "updated_at": "2026-11-22T18:51:59Z",
+        "pushed_at": "2026-11-22T18:52:12Z",
+        "homepage": null,
+        "default_branch": "main",
+        "readme_excerpt": "End-to-end restaurant analytics pipeline — synthetic POS data · SQL Server data warehouse · Python ETL · Power BI",
+        "readme_sha": "c7e3e020590d59d054300130990a56eb461a565d",
+        "fingerprint": "2026-11-22T18:52:12Z"
+      }
+    },
+    {
       "repo": "local_data_aggregator",
       "title": "Local Data Aggregator",
       "summary": "Transform your disparate CSV and Excel files into unified, actionable intelligence.",
@@ -4880,13 +4922,13 @@
       "old_portfolio": false,
       "github": {
         "description": "This repository contains the source code for a personal data portfolio website built for Sohila Khaled Abbas — a recognized BI Developer, Data Analytics Engineer, and Top 200 Arabic-Speaking Influencer in data education.",
-        "updated_at": "2026-11-14T18:47:02Z",
-        "pushed_at": "2026-11-14T18:47:02Z",
+        "updated_at": "2026-11-22T19:26:23Z",
+        "pushed_at": "2026-11-22T19:26:23Z",
         "homepage": "https://sohila-khaled-abbas.vercel.app/",
         "default_branch": "main",
         "readme_excerpt": "Data Analyst & BI Developer | SQL, Python, Power BI, DAX & Power Query | ETL/ELT & Analytics Engineering",
         "readme_sha": "16c85e4db64c08946831796971383efe8ff34842",
-        "fingerprint": "2026-11-14T18:47:02Z"
+        "fingerprint": "2026-11-22T19:26:23Z"
       }
     },
     {
