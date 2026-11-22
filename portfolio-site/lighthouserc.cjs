@@ -11,7 +11,7 @@ const screenEmulation=preset==='desktop'
 const settings={
  chromeFlags:'--no-sandbox --headless',
  extraHeaders,
- emulatedFormFactor:preset,
+ formFactor:preset,
  screenEmulation
 };
 module.exports={
