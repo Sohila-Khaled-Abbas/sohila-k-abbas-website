@@ -56,9 +56,11 @@ assert([...documents.values()].every(html=>!html.includes('href="/resume/"')),'N
 assert(home.includes('Good data.')&&home.includes('Better <em>decisions.</em>'),'Keep the requested homepage headline');
 assert(home.includes('Power BI dashboards and reporting for growing businesses, from messy data to decisions you can defend.'),'Homepage hero must state the Power BI offer and audience');
 assert(home.includes('Data Analyst')&&home.includes('Analytics Engineer')&&home.includes('hero-discipline-line'),'Secondary disciplines must sit beneath the Power BI offer');
-assert(home.includes('CLIENT NOTES / TESTIMONIAL PLACEHOLDERS')&&[...home.matchAll(/class="home-testimonial-card"/g)].length===3,'Show three clearly marked testimonial placeholders');
+assert(home.includes('RECOMMENDATIONS / IN THEIR WORDS')&&[...home.matchAll(/class="home-testimonial-card"/g)].length===3,'Show the three published recommendations on the homepage');
 assert(home.includes('You send your data or problem.')&&home.includes('I scope it and give a fixed quote.')&&home.includes('You get a dashboard or report you can defend.'),'Show the agreed three-step process');
-assert(home.includes('Projects from <strong>$X</strong>')&&home.includes('REPLACE X BEFORE PUBLICATION'),'Keep the starting price visibly marked as a placeholder');
+assert(home.includes('Pricing follows the scope.')&&home.includes('A fixed quote comes after reviewing your data, deliverables, and timeline.'),'Describe scope-based pricing without inventing a starting rate');
+assert(!/PLACEHOLDER|\\[Client name\\]|\\$X|ADD APPROVED QUOTES/i.test(home),'Remove visible homepage testimonial and price placeholders');
+assert(home.includes('href="/community/#recommendations"'),'Link homepage recommendations to their full Community context');
 assert(home.includes('FEATURED WORK / SMART SUPPLY CHAIN')&&home.includes('/projects/SMART-Supply-Chain-Insights-Dashboard/')&&!home.includes('IN THE STUDIO / PIXELFED'),'Feature a completed project instead of PixelFed in the hero card');
 assert(home.includes('data-motion-toggle')&&home.includes('Good data.'),'Keep the original hero and provide a motion control');
 const styles=await fs.readFile(path.join(out,'enhancements.css'),'utf8');assert(styles.includes('prefers-reduced-motion:reduce'),'Motion preference support is required');
@@ -91,6 +93,13 @@ assert(courseSchema.itemListElement.every(x=>x.item['@type']==='Course'&&!x.item
 assert.equal(evidence.recognition.status,'historical-reported','Historical rankings must retain their context');
 assert(evidence.recognition.period&&evidence.recognition.publisher&&evidence.recognition.url,'Recognition needs a period and source');
 for(const item of evidence.recommendations){assert(item.author&&item.quote&&item.published_on&&item.summary);assert.equal(new URL(item.profile).hostname,'www.linkedin.com');}
+const communityHtml=documents.get(path.join(out,'community/index.html'));
+assert.equal([...home.matchAll(/class="home-testimonial-card"/g)].length,evidence.recommendations.length,'Homepage cards must match the published recommendation set');
+for(const item of evidence.recommendations){
+  assert(home.includes(item.author)&&home.includes(item.quote)&&home.includes(item.profile)&&home.includes(item.summary),'Homepage recommendation attribution and excerpt must come from curated evidence: '+item.author);
+  assert(communityHtml.includes(item.author)&&communityHtml.includes(item.quote)&&communityHtml.includes(item.profile)&&communityHtml.includes(item.summary),'Community page must retain the full recommendation context: '+item.author);
+}
+
 for(const lane of recruiter.lanes)for(const repo of lane.projects)assert(originals.has(repo),'Recruiter evidence must be a public original project');
 const serviceHtml=documents.get(path.join(out,'services/index.html'));
 assert(serviceHtml.includes('id="project-brief" class="business-inquiry-form" hidden'),'Business inquiries must remain closed without an approved invitation');
