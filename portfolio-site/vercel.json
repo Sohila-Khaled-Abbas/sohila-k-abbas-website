@@ -28,6 +28,10 @@
     "api/business-inquiry.mjs": {
       "maxDuration": 10,
       "includeFiles": "server/business-approvals.json"
+    },
+    "api/lead.mjs": {
+      "maxDuration": 10,
+      "includeFiles": "server/business-approvals.json"
     }
   }
 }
