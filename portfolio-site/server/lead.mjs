@@ -1,5 +1,6 @@
 import {createHmac,randomUUID} from 'node:crypto';
 import {isIP} from 'node:net';
+import {parsePhoneNumberWithError} from 'libphonenumber-js/max';
 import {authorizeInvitation,loadApprovalRegistry} from './business-access.mjs';
 import {validateInquiry,kinds,focuses,units} from '../src/assets/inquiry-rules.mjs';
 
@@ -102,6 +103,7 @@ function extractFields(payload,type){
       try{fields=JSON.parse(fields);}catch{return null;}
     }
     if(!fields||typeof fields!=='object'||Array.isArray(fields))return null;
+    if(type==='standard'&&Object.keys(fields).some(key=>!['name','email','description','budgetRange','websiteFax'].includes(key)))return null;
     return {...fields};
   }
   if(type==='standard'){
@@ -249,10 +251,20 @@ export async function handleLead(request,{
     if(candidate.professional==='on'||candidate.professional==='true')candidate.professional=true;
     if(candidate.professional==='')candidate.professional=false;
     const checked=validateInquiry(candidate,business);
-    if(Object.keys(checked.errors).length){
-      return respond(422,{ok:false,message:'Please correct the highlighted fields.',errors:checked.errors});
-    }
     const value=checked.value;
+    const errors=checked.errors;
+    if(value.phone&&!errors.phone){
+      try{
+        const number=parsePhoneNumberWithError(value.phone,{extract:false});
+        if(!number.isValid()||number.ext)throw new Error('Invalid number');
+        value.phone=number.number;
+      }catch{
+        errors.phone='This number does not match a valid international numbering plan. Include + and the country code, or leave it empty.';
+      }
+    }
+    if(Object.keys(errors).length){
+      return respond(422,{ok:false,message:'Please correct the highlighted fields.',errors});
+    }
     lead={
       name:value.name,
       email:value.email,
