@@ -58,7 +58,7 @@
       "Explore delivery SLA, cohort retention, activation, and sales-drop decomposition.",
       "Organize the reporting experience into executive, operations, retention, and commercial views."
     ],
-    "takeaway": "Look at the model, DAX library, and reporting pages to understand how the business questions are decomposed. The repository connects customer lifecycle questions to operational context.",
+    "takeaway": "The dashboard helps a retail manager decide where the next review should focus: retailer retention, delivery performance, sales movement, or category mix. These are the decisions the report is designed to support, not measured business outcomes.",
     "caveat": "Shown as a portfolio scenario. Company naming in the repository does not establish a client relationship, and intended business benefits are not measured outcomes.",
     "stack": "Power BI · DAX · SQL Server · Star schema",
     "repo": "fmcg-sales-churn-drop-analysis-powerbi"
