@@ -1,5 +1,39 @@
 import {validateInquiry} from './inquiry-rules.mjs';
 
+const publicForm=document.querySelector('#simple-project-inquiry');
+if(publicForm){
+  const result=publicForm.querySelector('#simple-inquiry-result');
+  const emailLink=publicForm.querySelector('#simple-inquiry-mailto');
+  const honeypot=publicForm.elements.namedItem('websiteFax');
+  publicForm.addEventListener('input',()=>{result.hidden=true;});
+  publicForm.addEventListener('submit',event=>{
+    event.preventDefault();
+    if(!publicForm.reportValidity())return;
+    if(honeypot?.value.trim()){
+      publicForm.reset();
+      result.hidden=true;
+      return;
+    }
+    const fields=Object.fromEntries(new FormData(publicForm));
+    const subject='Project inquiry — '+String(fields.name||'').trim();
+    const body=[
+      'Hello Sohila,',
+      '',
+      'Name: '+String(fields.name||'').trim(),
+      'Email: '+String(fields.email||'').trim(),
+      'Budget range: '+String(fields.budgetRange||''),
+      '',
+      'PROJECT DESCRIPTION',
+      String(fields.description||'').trim(),
+      '',
+      'Thank you.'
+    ].join('\\n');
+    emailLink.href='mailto:sohila.k.data@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    result.hidden=false;
+    emailLink.focus({preventScroll:true});
+  });
+}
+
 const form=document.querySelector('#project-brief');
 if(form){
   const gate=document.querySelector('#business-access-gate'),status=document.querySelector('#business-access-status');
@@ -25,7 +59,9 @@ if(form){
     const fragment=new URLSearchParams(location.hash.slice(1));
     if(!fragment.has('business-invite'))return;
     token=fragment.get('business-invite')||'';
-    history.replaceState(null,'',location.pathname+location.search+'#business-inquiry');
+    const enterpriseDetails=document.querySelector('#enterprise-verification');
+    if(enterpriseDetails)enterpriseDetails.open=true;
+    history.replaceState(null,'',location.pathname+location.search+'#enterprise-verification');
     status.textContent='Checking your approved business invitation…';
     document.querySelector('#business-inquiry').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
     try{

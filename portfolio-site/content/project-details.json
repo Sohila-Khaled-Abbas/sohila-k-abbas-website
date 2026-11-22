@@ -1,6 +1,17 @@
 {
   "checked_on": "2026-11-22",
   "legacy_source": "https://sohila-k-abbas-website.web.app/",
+  "home_sections": {
+    "featured": [
+      "fmcg-sales-churn-drop-analysis-powerbi",
+      "global-horizon-bank-dwh-project",
+      "egyptian-cosmetics-market"
+    ],
+    "learning_in_public": [
+      "python-learning-roadmap",
+      "forward-deployed-engineer-roadmap"
+    ]
+  },
   "projects": [
     {
       "repo": "ab-testing-marketing-conversion",
