@@ -29,5 +29,172 @@
       "maxDuration": 10,
       "includeFiles": "server/business-approvals.json"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/learning",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/learning/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/learn",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/posts",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/posts/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/community",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/community/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/credentials",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/credentials/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/templates",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/templates/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/ai-automation-roadmap/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/Airbnb_Athens_Analysis/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/commonwealth-bank-intro-data-science/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/COURSE-EXCEL-ZERO-TO-HERO/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/customer-360-banking-etl/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/data-career-roadmap-generator/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/data-engineering-learning-roadmap/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/docker-hadoop/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/docker-workshop/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/Excel-VBA-Second-Brain/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/forage-excel-skills-job-simulation/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/forward-deployed-engineer-roadmap/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/fundamentals-of-operating-systems-labs/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/hive-scd2-datapill-lab/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/kafka-cluster/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/powerbi-data-analysis-diploma/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/pwc-switzerland-virtual-case/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/python-learning-roadmap/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/the-data-tea/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/Python_EDA_Case_Study/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/udemy-networking-fundamentals/:path*",
+      "destination": "/work/",
+      "permanent": true
+    }
+  ]
 }

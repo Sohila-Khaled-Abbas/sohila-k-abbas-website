@@ -11,60 +11,18 @@ export function about(profile){
   const ml=profile.experience.find(item=>item.role==='Machine Learning Engineer Intern');
   const roles=profile.headline.split('|').map(role=>role.trim()).filter(Boolean);
   const domains=['Sales','Retail','Customer churn','Supply chain','E-commerce','Customer satisfaction','Marketing','HR','Healthcare'];
-  return \`<section class="wrap page-section about-profile" aria-labelledby="about-title">
-    <div class="about-profile-visual">
-      <figure class="about-portrait">
-        <img src="/sohila-portrait.webp" alt="Sohila Khaled Abbas" width="681" height="1024">
-        <figcaption><span>SOHILA KHALED ABBAS</span><span>THE PERSON BEHIND THE WORK</span></figcaption>
-      </figure>
-      <div class="about-visual-card" aria-hidden="true">
-        <div class="about-visual-card-head"><span>FROM DATA TO DECISIONS</span><span class="about-visual-spark">✳</span></div>
-        <svg class="about-visual-chart" viewBox="0 0 300 112" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 89H292" stroke="currentColor" stroke-opacity=".18"/>
-          <path d="M8 62H292" stroke="currentColor" stroke-opacity=".1" stroke-dasharray="3 5"/>
-          <path d="M12 78L72 65L124 72L178 38L228 46L286 16" stroke="var(--brand)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M12 78L72 65L124 72L178 38L228 46L286 16V89H12V78Z" fill="var(--brand)" fill-opacity=".09"/>
-          <circle cx="72" cy="65" r="4" fill="var(--brand)"/><circle cx="178" cy="38" r="4" fill="var(--brand)"/><circle cx="286" cy="16" r="4" fill="var(--brand)"/>
-        </svg>
-        <div class="about-visual-steps"><span>PREPARE</span><i>→</i><span>MODEL</span><i>→</i><span>REPORT</span></div>
-        <small>AN ILLUSTRATIVE WORKFLOW · NOT CLIENT DATA</small>
-      </div>
-    </div>
-    <div class="about-profile-copy">
-      <span class="eyebrow">ABOUT / SOHILA KHALED ABBAS</span>
-      <h1 id="about-title">From business questions<br>to <em>useful BI reporting.</em></h1>
-      <p class="about-lead">\${e(profile.about_paragraphs[0])}</p>
-      <div class="about-role-pills" aria-label="\${e(profile.headline)}">\${roles.map(role=>\`<span>\${e(role)}</span>\`).join('')}</div>
-      <div class="about-proof-grid">
-        <div><span class="mono">FREELANCE BI DEVELOPMENT</span><strong>\${e(freelance?.dates||'Dec 2024 – Present')}</strong><small>Building dashboards and decision-ready reporting</small></div>
-        <div><span class="mono">MY APPROACH</span><strong>End to end</strong><small>Preparation, modeling, KPIs, reporting, and handover</small></div>
-      </div>
-      <div class="about-actions">\${link('/work/','Explore my work','button primary')}\${link('/contact/','Let’s connect')}</div>
-    </div>
-  </section>
-  <section class="wrap page-section about-context" aria-labelledby="about-context-title">
-    <div class="about-context-heading"><span class="eyebrow">BUSINESS CONTEXTS</span><h2 id="about-context-title">Analytics grounded in<br><em>real operating questions.</em></h2><p>My portfolio explores reporting and analysis across different teams, customers, and business models.</p></div>
-    <div class="about-domain-list">\${domains.map((domain,index)=>\`<span><i>\${String(index+1).padStart(2,'0')}</i>\${e(domain)}</span>\`).join('')}</div>
-  </section>
-  <section class="wrap page-section about-beyond" aria-labelledby="about-beyond-title">
-    <div class="about-beyond-heading"><div><span class="eyebrow">APPLIED EXPERIENCE</span><h2 id="about-beyond-title">Different data problems.<br><em>One practical mindset.</em></h2></div><p>\${e(profile.about_paragraphs[1])}</p></div>
-    <div class="about-beyond-grid">
-      <article class="about-beyond-card">
-        <div class="about-beyond-card-top"><span class="about-card-index">01 / APPLIED ML</span><img src="/logos/python.svg" alt="" width="30" height="30"></div>
-        <span class="about-card-date">\${e(ml?.dates||'Jul 2026 – Sep 2026')}</span>
-        <h3>Search-performance data and model evaluation.</h3>
-        <p>Python feature preparation, model experiments, and SQL analysis over a large search-performance warehouse.</p>
-        <div class="about-card-tags"><span>Python</span><span>SQL</span><span>DuckDB</span></div>
-      </article>
-      <article class="about-beyond-card">
-        <div class="about-beyond-card-top"><span class="about-card-index">02 / INDEPENDENT BUILDS</span><img src="/logos/powerbi.svg" alt="" width="30" height="30"></div>
-        <span class="about-card-date">Analytics · Power BI · Automation</span>
-        <h3>Making reporting dependable.</h3>
-        <p>Independent data projects connect source preparation, quality checks, semantic models, clear KPIs, and practical reporting workflows.</p>
-        <div class="about-card-tags"><span>Analytics projects</span><span>Power BI</span><span>Automation</span></div>
-      </article>
-    </div>
-  </section>\`;
+  return '<section class="wrap page-section about-profile" aria-labelledby="about-title">'
+    +'<div class="about-profile-visual"><figure class="about-portrait"><img src="/sohila-portrait.webp" alt="Sohila Khaled Abbas" width="681" height="1024"><figcaption><span>SOHILA KHALED ABBAS</span><span>THE PERSON BEHIND THE WORK</span></figcaption></figure>'
+    +'<div class="about-visual-card" aria-hidden="true"><div class="about-visual-card-head"><span>FROM DATA TO DECISIONS</span><span class="about-visual-spark">✳</span></div><svg class="about-visual-chart" viewBox="0 0 300 112" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 89H292" stroke="currentColor" stroke-opacity=".18"/><path d="M8 62H292" stroke="currentColor" stroke-opacity=".1" stroke-dasharray="3 5"/><path d="M12 78L72 65L124 72L178 38L228 46L286 16" stroke="var(--brand)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 78L72 65L124 72L178 38L228 46L286 16V89H12V78Z" fill="var(--brand)" fill-opacity=".09"/><circle cx="72" cy="65" r="4" fill="var(--brand)"/><circle cx="178" cy="38" r="4" fill="var(--brand)"/><circle cx="286" cy="16" r="4" fill="var(--brand)"/></svg><div class="about-visual-steps"><span>PREPARE</span><i>→</i><span>MODEL</span><i>→</i><span>REPORT</span></div><small>AN ILLUSTRATIVE WORKFLOW · NOT CLIENT DATA</small></div></div>'
+    +'<div class="about-profile-copy"><span class="eyebrow">ABOUT / SOHILA KHALED ABBAS</span><h1 id="about-title">From business questions<br>to <em>useful BI reporting.</em></h1><p class="about-lead">'+e(profile.about_paragraphs[0])+'</p>'
+    +'<div class="about-role-pills" aria-label="'+e(profile.headline)+'">'+roles.map(role=>'<span>'+e(role)+'</span>').join('')+'</div>'
+    +'<div class="about-proof-grid"><div><span class="mono">FREELANCE BI DEVELOPMENT</span><strong>'+e(freelance?.dates||'Dec 2024 – Present')+'</strong><small>Building dashboards and decision-ready reporting</small></div><div><span class="mono">MY APPROACH</span><strong>End to end</strong><small>Preparation, modeling, KPIs, reporting, and handover</small></div></div>'
+    +'<div class="about-actions">'+link('/work/','Explore my work','button primary')+link('/contact/','Let’s connect')+'</div></div></section>'
+    +'<section class="wrap page-section about-context" aria-labelledby="about-context-title"><div class="about-context-heading"><span class="eyebrow">BUSINESS CONTEXTS</span><h2 id="about-context-title">Analytics grounded in<br><em>real operating questions.</em></h2><p>My portfolio explores reporting and analysis across different teams, customers, and business models.</p></div><div class="about-domain-list">'+domains.map((domain,index)=>'<span><i>'+String(index+1).padStart(2,'0')+'</i>'+e(domain)+'</span>').join('')+'</div></section>'
+    +'<section class="wrap page-section about-beyond" aria-labelledby="about-beyond-title"><div class="about-beyond-heading"><div><span class="eyebrow">APPLIED EXPERIENCE</span><h2 id="about-beyond-title">Different data problems.<br><em>One practical mindset.</em></h2></div><p>'+e(profile.about_paragraphs[1])+'</p></div><div class="about-beyond-grid">'
+    +'<article class="about-beyond-card"><div class="about-beyond-card-top"><span class="about-card-index">01 / APPLIED ML</span><img src="/logos/python.svg" alt="" width="30" height="30"></div><span class="about-card-date">'+e(ml?.dates||'Jul 2026 – Sep 2026')+'</span><h3>Search-performance data and model evaluation.</h3><p>Python feature preparation, model experiments, and SQL analysis over a large search-performance warehouse.</p><div class="about-card-tags"><span>Python</span><span>SQL</span><span>DuckDB</span></div></article>'
+    +'<article class="about-beyond-card"><div class="about-beyond-card-top"><span class="about-card-index">02 / INDEPENDENT BUILDS</span><img src="/logos/powerbi.svg" alt="" width="30" height="30"></div><span class="about-card-date">Analytics · Power BI · Automation</span><h3>Making reporting dependable.</h3><p>Independent data projects connect source preparation, quality checks, semantic models, clear KPIs, and practical reporting workflows.</p><div class="about-card-tags"><span>Analytics projects</span><span>Power BI</span><span>Automation</span></div></article>'
+    +'</div></section>';
 }
 
 export function contact(profile){return `${intro('CONTACT / LET’S CONNECT THE DOTS','A good conversation.<br><em>A useful next step.</em>','I’m interested in remote Data Analyst and BI Developer opportunities, as well as project-based collaborations involving Power BI reporting, SQL and Python analysis, ETL/ELT, and analytics engineering.')}<section class="wrap page-section contact-page-grid"><div class="contact-options"><article><span class="mono muted">01 / EMAIL</span><h2>Say <em>hello.</em></h2><a class="contact-email" href="mailto:${e(profile.email)}">${e(profile.email)}</a><button class="copy-email text-link" aria-label="Copy email address">Copy email <svg class="icon"><use href="#copy"/></svg></button></article><article><span class="mono muted">02 / PROFESSIONAL LINKS</span>${link('/services/#business-inquiry','Verified business inquiries')}${link(profile.linkedin,'Connect on LinkedIn')}${link(profile.github,'Explore my GitHub')}</article></div><aside class="conversation-card"><span class="note-star">✳</span><h2>Something to<br><em>start with.</em></h2><p>Tell me about the question you’re trying to answer, the data or tools involved, and what a useful outcome would look like.</p><ul><li>Power BI reporting & dimensional models</li><li>Python / SQL ETL/ELT & data warehousing</li><li>Machine learning & predictive modeling</li><li>n8n workflows & practical automation</li><li>Implementation handover & documentation</li></ul><span class="mono">BASED IN EGYPT · WORKING REMOTELY</span></aside></section>`;}
