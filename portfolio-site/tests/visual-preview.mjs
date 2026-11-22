@@ -193,14 +193,18 @@ try{
   console.log("PASS public dummy QA — invalid email blocked ("+invalid.message+"); valid details show draft-ready success; no POST request sent.");
   console.log("PASS public dummy draft — mailto target "+mailto.split("?")[0]+"; no email was sent.");
 
-  const apiResponse=await page.request.post(new URL("/api/business-inquiry",parsedBase).href,{
-   headers:{Origin:parsedBase.origin,"X-Inquiry-Client":"portfolio-v1","Content-Type":"application/json"},
-   data:{action:"prepare",token:"",fields:{name:"Test User",email:"test@example.com"}}
+  const apiResult=await page.evaluate(async()=>{
+   const response=await fetch("/api/business-inquiry",{
+    method:"POST",
+    credentials:"same-origin",
+    headers:{"X-Inquiry-Client":"portfolio-v1","Content-Type":"application/json"},
+    body:JSON.stringify({action:"prepare",token:"",fields:{name:"Test User",email:"test@example.com"}})
+   });
+   return {status:response.status,data:await response.json()};
   });
-  const apiData=await apiResponse.json();
-  assert.equal(apiResponse.status(),403,"Protected endpoint must reject a dummy submission without an approved invitation");
-  assert.deepEqual(apiData,{ok:false,message:"A current invitation for an approved business is required. Request verification or ask for a new invitation."},"Protected endpoint response changed");
-  console.log("PASS protected dummy POST — HTTP "+apiResponse.status()+" "+JSON.stringify(apiData));
+  assert.equal(apiResult.status,403,"Protected endpoint must reject a dummy submission without an approved invitation");
+  assert.deepEqual(apiResult.data,{ok:false,message:"A current invitation for an approved business is required. Request verification or ask for a new invitation."},"Protected endpoint response changed");
+  console.log("PASS protected dummy POST — HTTP "+apiResult.status+" "+JSON.stringify(apiResult.data));
   await page.close();
  }
  await fs.writeFile(path.join(screenshotDir,"qa-matrix.json"),JSON.stringify(matrix,null,2));
