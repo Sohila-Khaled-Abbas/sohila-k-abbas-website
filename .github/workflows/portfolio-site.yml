@@ -8,7 +8,6 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
-  deployments: read
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -36,34 +35,22 @@ jobs:
         run: |
           npx playwright install --with-deps chromium
           node --input-type=module -e "import {chromium} from 'playwright'; console.log('CHROME_PATH=' + chromium.executablePath())" >> "$GITHUB_ENV"
-      - name: Resolve the successful Vercel preview URL
+      - name: Probe the Vercel branch preview alias
         id: preview
         if: github.ref != 'refs/heads/main'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const sha = context.payload.pull_request?.head?.sha ?? context.sha;
-            const {owner,repo} = context.repo;
-            const sleep = ms => new Promise(resolve => setTimeout(resolve,ms));
-            for (let attempt=1; attempt<=36; attempt++) {
-              const {data:deployments} = await github.rest.repos.listDeployments({owner,repo,sha,per_page:30});
-              for (const deployment of deployments) {
-                const environment = String(deployment.environment || '').toLowerCase();
-                if (environment && !environment.includes('preview')) continue;
-                const {data:statuses} = await github.rest.repos.listDeploymentStatuses({owner,repo, deployment_id:deployment.id, per_page:10});
-                const ready = statuses.find(status => status.state === 'success' && status.environment_url);
-                if (!ready) continue;
-                const url = new URL(ready.environment_url);
-                if (url.protocol === 'https:' && url.hostname.endsWith('.vercel.app') && url.hostname !== 'sohila-khaled-abbas.vercel.app') {
-                  core.setOutput('url',url.origin);
-                  core.info('Testing successful Vercel preview: ' + url.origin);
-                  return;
-                }
-              }
-              core.info('Waiting for Vercel preview deployment status (' + attempt + '/36).');
-              await sleep(10000);
-            }
-            throw new Error('No successful Vercel Preview deployment was found for commit ' + sha + '.');
+        run: |
+          preview_url="https://sohila-khaled-abbas-git-red-541d47-sohila-khaled-abbas-projects.vercel.app"
+          for attempt in {1..24}; do
+            if curl --fail --silent --show-error --location --max-time 20 --output /dev/null "$preview_url"; then
+              echo "url=$preview_url" >> "$GITHUB_OUTPUT"
+              echo "Preview is reachable: $preview_url"
+              exit 0
+            fi
+            echo "Waiting for Vercel branch preview ($attempt/24)."
+            sleep 5
+          done
+          echo "Vercel branch preview did not become reachable: $preview_url" >&2
+          exit 1
       - name: Responsive Playwright checks and full-page screenshots
         if: steps.preview.outputs.url != ''
         run: node tests/visual-preview.mjs
