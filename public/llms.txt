@@ -1,12 +1,9 @@
 # Sohila Khaled Abbas — Portfolio
 
-> BI Developer focused on Power BI dashboards, decision-ready reporting, analytics engineering, SQL, Python, data quality, and practical automation.
+> Portfolio of a BI Developer & Data Analytics Engineer specializing in Power BI, SQL, Python, and scalable data architectures. Includes curated Notion roadmaps and a project inquiry form for data consulting engagements.
 
 ## Pages
 
-- [Home](/): A focused portfolio of business case studies, dashboards, and data projects.
-- [Work](/work/): Searchable project collection with case studies, BI dashboards, data pipelines, and automation.
-- [Services](/services/): Remote Power BI reporting, data engineering, and workflow automation engagements.
-- [About](/about/): Professional background and business domains.
-- [Project Inquiry](/services/#business-inquiry): Project inquiry form for prospective clients.
-
+- [Home](/): Full portfolio showcasing BI dashboards, data engineering projects, skills, certifications, community volunteering, and professional credibility metrics.
+- [Templates](/templates): Curated Notion roadmaps and learning templates for Excel, SQL, Python Web Scraping, and Data Engineering.
+- [Project Inquiry](/intake): Data & BI project intake form for clients seeking consulting or collaboration on data infrastructure and analytics.
