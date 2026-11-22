@@ -9,7 +9,7 @@ const now=Date.UTC(2026,10,1,12);
 const business={legalName:'Fixture Analytics Limited (test only)',contactName:'Rana Hassan',email:'recruiting@contoso.com',website:'https://contoso.com',country:'GB',registrationReference:'TEST-ONLY-123',registryUrl:'https://find-and-update.company-information.service.gov.uk/',checks:{registryChecked:true,businessDomainChecked:true,workEmailConfirmed:true}};
 const invitation=issueInvitation(business,{now});
 const registry={version:1,approvals:{[invitation.id]:invitation.entry}};
-const fields={name:business.contactName,company:business.legalName,email:business.email,role:'Recruitment manager',phone:'',kind:'project',focus:'bi',title:'Remote Power BI reporting project',currency:'USD',budgetMin:'1200',budgetMax:'2000',budgetUnit:'project',timeline:'month',reference:'https://contoso.com/careers',brief:'We need a remote Power BI developer to model our sales and inventory data, define consistent commercial metrics, and build a maintainable reporting workflow for the operations team.',outcome:'Deliver a documented semantic model, sales and inventory report pages, and a clear handover explaining refresh steps and metric definitions.',environment:'SQL Server source data and Power BI reporting, with scheduled refresh and documented data definitions.',professional:true,websiteFax:''};
+const fields={name:business.contactName,company:business.legalName,email:business.email,role:'Recruitment manager',phone:'',kind:'project',focus:'bi',title:'Remote Power BI reporting project',currency:'EGP',budgetMin:'1200',budgetMax:'2000',budgetUnit:'project',timeline:'month',reference:'https://contoso.com/careers',brief:'We need a remote Power BI developer to model our sales and inventory data, define consistent commercial metrics, and build a maintainable reporting workflow for the operations team.',outcome:'Deliver a documented semantic model, sales and inventory report pages, and a clear handover explaining refresh steps and metric definitions.',environment:'SQL Server source data and Power BI reporting, with scheduled refresh and documented data definitions.',professional:true,websiteFax:''};
 const request=(payload,headers={})=>new Request(productionOrigin+'/api/business-inquiry',{method:'POST',headers:{Origin:productionOrigin,'Content-Type':'application/json','X-Inquiry-Client':'portfolio-v1',...headers},body:JSON.stringify(payload)});
 const prepare=(overrides={},extra={})=>handleBusinessInquiry(request({action:'prepare',token:invitation.token,fields:{...fields,...overrides}}),{registry,now,...extra});
 
@@ -42,7 +42,7 @@ test('opening a valid invitation returns only its approved identity',async()=>{
 });
 test('valid business inquiry creates an email draft without sending it',async()=>{
   const response=await prepare();assert.equal(response.status,200);const {draft}=await response.json();
-  assert.equal(draft.to,'sohila.k.data@gmail.com');assert.match(draft.body,/Fixture Analytics/);assert.match(draft.body,/Work arrangement: Remote/);assert(draft.mailto.startsWith('mailto:'));assert(!draft.body.includes(invitation.token));
+  assert.equal(draft.to,'sohila.k.data@gmail.com');assert.match(draft.body,/Fixture Analytics/);assert.match(draft.body,/Work arrangement: Remote/);assert.match(draft.body,/Budget \/ compensation: 1200 - 2000 EGP \(Total project budget\)/);assert(draft.mailto.startsWith('mailto:'));assert(!draft.body.includes(invitation.token));
 });
 test('format-valid international phone is normalized using the complete numbering metadata',async()=>{
   for(const phone of ['+1 (213) 373-4253','+١ ٢١٣ ٣٧٣ ٤٢٥٣']){
@@ -73,8 +73,9 @@ test('personal requests, placeholder scope, unsupported work types, and honeypot
     assert.equal((await prepare(patch)).status,422,JSON.stringify(patch));
   }
 });
-test('budget, reference URL, HTML, unknown fields, and wrong JSON types are checked on the server',async()=>{
-  for(const patch of [{budgetMin:'0'},{budgetMin:'1e5'},{budgetMin:'5000',budgetMax:'100'},{budgetMax:'1.001'},{currency:'FAKE'},{kind:'employment',budgetUnit:'project'},{reference:'javascript:alert(1)'},{reference:'https://contoso.com.evil.com'},{reference:'https://contoso.com@evil.com'},{brief:'<script>alert(1)</script>'+fields.brief},{unexpected:'value'},{phone:['+12133734253']}]){
+test('EGP-only budget fields enforce a 500 EGP minimum and reject other currencies',async()=>{
+  assert.equal((await prepare({budgetMin:'500',budgetMax:'500'})).status,200);
+  for(const patch of [{budgetMin:'499'},{budgetMax:'499'},{currency:'USD'},{currency:'EUR'},{budgetMin:'0'},{budgetMin:'1e5'},{budgetMin:'5000',budgetMax:'100'},{budgetMax:'1.001'},{currency:'FAKE'},{kind:'employment',budgetUnit:'project'},{reference:'javascript:alert(1)'},{reference:'https://contoso.com.evil.com'},{reference:'https://contoso.com@evil.com'},{brief:'<script>alert(1)</script>'+fields.brief},{unexpected:'value'},{phone:['+12133734253']}]){
     assert.equal((await prepare(patch)).status,422,JSON.stringify(patch));
   }
 });

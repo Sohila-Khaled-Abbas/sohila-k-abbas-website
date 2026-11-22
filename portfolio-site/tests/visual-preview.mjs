@@ -190,7 +190,21 @@ try{
   await page.locator("#simple-inquiry-name").fill("Test User");
   await page.locator("#simple-inquiry-email").fill("not-an-email");
   await page.locator("#simple-inquiry-description").fill("Dummy QA submission only. Please do not process this as a real project inquiry.");
-  await page.locator("#simple-inquiry-budget").selectOption({label:"Not sure yet"});
+  const expectedBudgetOptions=[
+   "500 - 2,000 EGP",
+   "2,000 - 5,000 EGP",
+   "5,000 - 10,000 EGP",
+   "10,000 - 25,000 EGP",
+   "25,000+ EGP",
+   "Not sure yet"
+  ];
+  const budgetSelect=page.locator("#simple-inquiry-budget");
+  const displayedBudgetOptions=await budgetSelect.locator("option").evaluateAll(options=>options.slice(1).map(option=>option.textContent.trim()));
+  assert.deepEqual(displayedBudgetOptions,expectedBudgetOptions,"The public budget options must be the exact EGP ranges");
+  assert.equal(await page.locator('label[for="simple-inquiry-budget"]').innerText(),"Budget range (EGP) *");
+  const budgetFieldText=await budgetSelect.evaluate(element=>element.parentElement.innerText);
+  assert(budgetFieldText.includes("Minimum project budget: 500 EGP. Projects below 500 EGP are not offered."));
+  await budgetSelect.selectOption({label:"500 - 2,000 EGP"});
   await page.locator("#simple-inquiry-submit").click();
   const invalid=await page.locator("#simple-inquiry-email").evaluate(element=>({valid:element.validity.valid,typeMismatch:element.validity.typeMismatch,message:element.validationMessage}));
   assert.equal(invalid.valid,false,"Invalid email must be blocked by native validation");
@@ -212,7 +226,7 @@ try{
   assert.equal(leadCalls[0].name,"Test User");
   assert.equal(leadCalls[0].email,"test@example.com");
   assert.equal(leadCalls[0].type,"standard");
-  assert.equal(leadCalls[0].budgetRange,"Not sure yet");
+  assert.equal(leadCalls[0].budgetRange,"500 - 2,000 EGP");
   assert.equal(leadCalls[0].submissionId,leadCalls[1].submissionId,"A retry should reuse the submission ID");
   console.log("PASS public dummy QA — native validation, mocked POST, retained fields, visible fallback links, and successful retry; no email or live webhook was used.");
 
