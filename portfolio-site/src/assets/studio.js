@@ -61,3 +61,6 @@ if(navMore){
   document.addEventListener('click',event=>{if(!navMore.contains(event.target))navMore.open=false;});
   document.addEventListener('keydown',event=>{if(event.key==='Escape')navMore.open=false;});
 }
+
+const repositoryTools=document.querySelector('[data-repo-tools]');
+if(repositoryTools&&window.matchMedia('(min-width: 651px)').matches)repositoryTools.open=true;
