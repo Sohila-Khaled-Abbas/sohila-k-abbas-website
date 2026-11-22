@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       base_url:
-        description: Optional Vercel preview URL to verify
+        description: Optional URL to test (use only an accessible preview)
         required: false
         type: string
 
@@ -20,7 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
-      BASE_URL: ${{ inputs.base_url || 'https://sohila-khaled-abbas-git-red-a1eef7-sohila-khaled-abbas-projects.vercel.app' }}
+      PREVIEW_URL: https://sohila-khaled-abbas-git-red-a1eef7-sohila-khaled-abbas-projects.vercel.app
+      BASE_URL: http://127.0.0.1:4173
     steps:
       - name: Check out the PR head
         uses: actions/checkout@v4
@@ -49,17 +50,34 @@ jobs:
           npm run build
           npm run check
 
-      - name: Wait for the Vercel preview
+      - name: Check whether Vercel preview is publicly accessible and start the exact PR build locally
+        working-directory: portfolio-site
+        env:
+          PREVIEW_URL: ${{ inputs.base_url || env.PREVIEW_URL }}
+          BASE_URL: ${{ env.BASE_URL }}
         run: |
           set -euo pipefail
-          node --input-type=module -e 'const u=new URL(process.env.BASE_URL); if(u.protocol!=="https:" || !u.hostname.endsWith(".vercel.app")) throw new Error("BASE_URL must be a Vercel HTTPS preview URL");'
+          preview_file="$(mktemp)"
+          status="$(curl --silent --show-error --location --max-time 20 -o "$preview_file" -w '%{http_code}' "$PREVIEW_URL/" || true)"
+          if grep -Eqi 'Log in to Vercel|Deployment Protection|Sign in to Vercel' "$preview_file"; then
+            echo "Vercel preview protection detected (HTTP $status). Keeping protection enabled; UI tests will use this workflow's freshly built dist output."
+          elif [ "$status" = "200" ] && grep -q 'signature-hero' "$preview_file"; then
+            echo "Vercel preview is publicly accessible."
+          else
+            echo "Preview response did not contain the portfolio hero (HTTP $status). UI tests will use the freshly built dist output."
+          fi
+          rm -f "$preview_file"
+          npm run dev > /tmp/portfolio-visual-preview.log 2>&1 &
+          echo $! > /tmp/portfolio-visual-preview.pid
           ready=0
-          for attempt in $(seq 1 24); do
-            if curl --fail --silent --show-error --location --max-time 20 "$BASE_URL/" -o /dev/null; then ready=1; break; fi
-            echo "Preview is not responding yet (attempt $attempt/24)."
-            sleep 10
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent --show-error --max-time 5 "$BASE_URL/" -o /tmp/portfolio-local-home.html; then
+              if grep -q 'signature-hero' /tmp/portfolio-local-home.html; then ready=1; break; fi
+            fi
+            sleep 2
           done
-          test "$ready" -eq 1
+          if [ "$ready" -ne 1 ]; then cat /tmp/portfolio-visual-preview.log; exit 1; fi
+          echo "Playwright and Lighthouse will test the built output from commit $GITHUB_SHA at $BASE_URL."
 
       - name: Install browser and Lighthouse test tools
         working-directory: portfolio-site
