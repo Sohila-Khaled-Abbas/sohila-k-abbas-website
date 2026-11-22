@@ -54,7 +54,7 @@ jobs:
         env:
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
         run: |
-          preview_url="https://sohila-khaled-abbas-git-fea-c92c5e-sohila-khaled-abbas-projects.vercel.app"
+          preview_url="https://sohila-khaled-abbas-git-cho-3dd296-sohila-khaled-abbas-projects.vercel.app"
           for attempt in {1..24}; do
             if curl --fail --silent --show-error --location --max-time 20               -H "x-vercel-protection-bypass: ${VERCEL_AUTOMATION_BYPASS_SECRET}"               --output /dev/null "$preview_url"; then
               echo "url=$preview_url" >> "$GITHUB_OUTPUT"
