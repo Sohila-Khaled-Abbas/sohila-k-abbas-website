@@ -1283,7 +1283,8 @@
         "readme_excerpt": "[](https://www.python.org/) [](https://www.microsoft.com/en-us/sql-server/) [](https://powerbi.microsoft.com/) [](https://learn.microsoft.com/en-us/powerquery-m/) [](https://learn.microsoft.com/en-us/dax/) [](#-data-quality-framework--quarantine-ledger) [](https://github.com/Sohila-Khaled-Abbas/egyptian-cosmetics-market/actions/workflows/cidatavalidation.yml) [](#-kimball-star-schema-data-warehouse) [](#-business-scenario) [](LICENSE)",
         "readme_sha": "45a6cd056f433f01a054a2c980ecc93259e98e1d",
         "fingerprint": "2026-11-01T17:35:28Z"
-      }
+      },
+      "decision_support": "Helps commercial teams compare product performance, sales trends, and inventory health across channels."
     },
     {
       "repo": "Emergency-Room-Dashboard",
@@ -1796,7 +1797,8 @@
         "readme_excerpt": "A portfolio analytics scenario exploring retailer sales, delivery performance, retention, and category movement in an Egyptian B2B distribution context.",
         "readme_sha": "7bf318c1bc3df6f461601ccfc92ccc1e87553053",
         "fingerprint": "2026-11-09T16:38:40Z"
-      }
+      },
+      "decision_support": "Helps a sales manager spot retailers showing early churn signals and prioritize follow-up."
     },
     {
       "repo": "forage-excel-skills-job-simulation",
@@ -2104,7 +2106,7 @@
     {
       "repo": "global-horizon-bank-dwh-project",
       "title": "Global Horizon Bank — Enterprise Banking Analytics",
-      "summary": "This repository contains the complete architecture and implementation of a data system for Global Horizon Bank. Following industry best practices, the project transitions from a highly normalized Transactional Database (OLTP) to a high-performance dimensional Data Warehouse (OLAP), capable of answering complex business questions at scale.",
+      "summary": "Turns transactional banking data into a dimensional warehouse. Its interactive app explores transactions, account balances, active accounts, and loan portfolios.",
       "technologies": [
         "SQL",
         "Python",
@@ -2177,7 +2179,8 @@
         "readme_excerpt": "[](https://www.python.org) [](https://streamlit.io/) [](https://pandas.pydata.org/) [](https://plotly.com/)",
         "readme_sha": "dff71c0116477c8cabce668fa871ca8827f3d9e6",
         "fingerprint": "2026-05-03T11:35:29Z"
-      }
+      },
+      "decision_support": "Helps bank managers compare transaction activity, account balances, and loan exposure across branches."
     },
     {
       "repo": "global-layoffs-analysis",
