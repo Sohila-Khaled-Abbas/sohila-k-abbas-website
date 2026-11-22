@@ -23,17 +23,18 @@ const base={
   sourcePage:'/services/'
 };
 function request(payload,options={}){
+  const method=options.method||'POST';
   const headers={
     Origin:productionOrigin,
     'Content-Type':'application/json',
     'X-Real-IP':'203.0.113.10',
     ...(options.headers||{})
   };
-  return new Request(productionOrigin+'/api/lead',{
-    method:options.method||'POST',
-    headers,
-    body:options.body===undefined?JSON.stringify(payload):options.body
-  });
+  const init={method,headers};
+  if(method!=='GET'&&method!=='HEAD'){
+    init.body=options.body===undefined?JSON.stringify(payload):options.body;
+  }
+  return new Request(productionOrigin+'/api/lead',init);
 }
 const mockFetch=async()=>new Response(JSON.stringify({ok:true,notificationSent:true}),{
   status:200,headers:{'Content-Type':'application/json'}
