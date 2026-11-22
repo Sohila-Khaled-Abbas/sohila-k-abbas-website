@@ -71,6 +71,7 @@ assert(redesignStyles.includes('toolkit-marquee'),'The core-toolkit marquee styl
 assert(home.includes('class="button primary" href="/services/">Work with me'),'The homepage hero must prioritize the Work with me action');
 assert(home.includes('fonts.googleapis.com/css2?family=Instrument+Serif')&&home.includes('family=Inter'),'The site must load the approved two-family type system');
 assert(home.includes('href="/redesign.css"'),'The generated site must load the final visual layer');
+assert(home.includes('<meta name="theme-color" content="#faf6ef">'),'Initial browser chrome must match the warm cream canvas');
 
 await fs.access(path.join(out,'social-card.png'));
 console.log(`PASS: ${htmlFiles.length} HTML documents, local links and anchors, ${data.repositories.length} public repositories, and both hosting configurations.`);
