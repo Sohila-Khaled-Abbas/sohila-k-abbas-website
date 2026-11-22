@@ -59,7 +59,7 @@ assert(home.includes('Data Analyst')&&home.includes('Analytics Engineer')&&home.
 assert(home.includes('CLIENT NOTES / TESTIMONIAL PLACEHOLDERS')&&[...home.matchAll(/class="home-testimonial-card"/g)].length===3,'Show three clearly marked testimonial placeholders');
 assert(home.includes('You send your data or problem.')&&home.includes('I scope it and give a fixed quote.')&&home.includes('You get a dashboard or report you can defend.'),'Show the agreed three-step process');
 assert(home.includes('Projects from <strong>$X</strong>')&&home.includes('REPLACE X BEFORE PUBLICATION'),'Keep the starting price visibly marked as a placeholder');
-assert(home.includes('/projects/SMART-Supply-Chain-Insights-Dashboard/')&&!home.includes('href="/projects/pixelfed-analytics-engineering/"'),'Feature a completed project instead of PixelFed in the hero card');
+assert(home.includes('FEATURED WORK / SMART SUPPLY CHAIN')&&home.includes('/projects/SMART-Supply-Chain-Insights-Dashboard/')&&!home.includes('IN THE STUDIO / PIXELFED'),'Feature a completed project instead of PixelFed in the hero card');
 assert(home.includes('data-motion-toggle')&&home.includes('Good data.'),'Keep the original hero and provide a motion control');
 const styles=await fs.readFile(path.join(out,'enhancements.css'),'utf8');assert(styles.includes('prefers-reduced-motion:reduce'),'Motion preference support is required');
 const studioStyles=await fs.readFile(path.join(out,'studio.css'),'utf8');assert(studioStyles.includes('-webkit-line-clamp:5'),'Project card descriptions must clamp cleanly at a word boundary');
