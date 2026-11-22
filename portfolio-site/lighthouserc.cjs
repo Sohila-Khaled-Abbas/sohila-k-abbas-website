@@ -10,10 +10,15 @@ const screenEmulation=preset==='desktop'
  :{mobile:true,width:390,height:844,deviceScaleFactor:2,disabled:false};
 const settings={
  chromeFlags:'--no-sandbox --headless',
- extraHeaders,
- formFactor:preset,
- screenEmulation
+ extraHeaders
 };
+if(preset==='desktop'){
+ settings.preset='desktop';
+ settings.screenEmulation=screenEmulation;
+}else{
+ settings.formFactor='mobile';
+ settings.screenEmulation=screenEmulation;
+}
 module.exports={
  ci:{
   collect:{
