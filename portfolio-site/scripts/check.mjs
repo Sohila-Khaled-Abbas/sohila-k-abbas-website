@@ -76,7 +76,7 @@ const featuredOutcomeCopy={
 for(const [repo,copy] of Object.entries(featuredOutcomeCopy)){
  const project=projects.find(item=>item.repo===repo);assert(project,'Missing featured project: '+repo);
  assert.equal(project.decision_support,copy,'Keep the approved decision-support copy: '+repo);
- assert(copy.startsWith('Helps ')&&copy.trim().split(/\\s+/).length<=20,'Featured outcome must start with Helps and stay within 20 words: '+repo);
+ assert(copy.startsWith('Helps ')&&copy.trim().split(' ').length<=20,'Featured outcome must start with Helps and stay within 20 words: '+repo);
  assert(home.includes('<p class="project-card-outcome">'+copy+'</p>'),'Homepage must show the decision-support copy beneath the summary: '+repo);
 }
 const featuredPositions=Object.keys(featuredOutcomeCopy).map(repo=>home.indexOf('data-name="'+repo+'"'));
