@@ -25,6 +25,17 @@ assert.equal(new Set(data.repositories.map(r=>r.id)).size,data.repositories.leng
 assert(data.repositories.every(r=>r.url.startsWith('https://github.com/Sohila-Khaled-Abbas/')),'Unexpected repository owner');
 const work=documents.get(path.join(out,'work/index.html'));
 assert.equal([...work.matchAll(/class="repo-card(?: |")/g)].length,data.repositories.length,'Catalog lost repository entries');
+const featuredRepoOrder=['fmcg-sales-churn-drop-analysis-powerbi','global-horizon-bank-dwh-project','egyptian-cosmetics-market'];
+const pinnedWorkOrder=[...work.matchAll(/<article class="pinned-case-card studio-project-card[^"]*" data-name="([^"]+)"/g)].map(match=>match[1]);
+assert.deepEqual(pinnedWorkOrder,featuredRepoOrder,'Work page must pin the same three case studies in homepage order');
+assert(work.indexOf('class="work-featured"')<work.indexOf('id="repositories"'),'Pinned case studies must appear before repository search and filters');
+assert(work.includes('<details class="repo-tools-disclosure" data-repo-tools>'),'Full repository tools must remain available inside a disclosure');
+assert(!/<details class="repo-tools-disclosure" data-repo-tools open>/.test(work),'Repository browser must be collapsed in the default markup');
+const originalRepositoryCount=data.repositories.filter(repository=>!repository.fork).length;
+const forkRepositoryCount=data.repositories.filter(repository=>repository.fork).length;
+assert(work.includes('>'+data.repositories.length+'</strong> public repositories'),'Work page public repository count must be source-derived');
+assert(work.includes('>'+originalRepositoryCount+'</strong> original repositories'),'Work page original repository count must be source-derived');
+assert(work.includes('>'+forkRepositoryCount+'</strong> forks'),'Work page fork count must be source-derived');
 const diplomaCard=work.match(/<article class="repo-card[^"]*" data-name="powerbi-data-analysis-diploma"[^>]*>/);
 assert(diplomaCard,'Power BI diploma must have a Work-page card');
 assert(diplomaCard[0].includes('data-category="learning"'),'Power BI diploma must use the Learning & resources category');
@@ -54,6 +65,17 @@ const home=documents.get(path.join(out,'index.html'));
 assert(!documents.has(path.join(out,'resume/index.html')),'The removed résumé page must not be generated');
 assert([...documents.values()].every(html=>!html.includes('href="/resume/"')),'No page may link to the removed résumé page');
 assert(home.includes('Good data.')&&home.includes('Better <em>decisions.</em>'),'Keep the requested homepage headline');
+const homeOrder=['id="hero-title"','class="home-proof-band"','class="home-featured-work"','id="home-process-title"','id="client-notes-title"','id="home-contact"'].map(marker=>home.indexOf(marker));
+assert(homeOrder.every(position=>position>=0)&&homeOrder.every((position,index)=>index===0||homeOrder[index-1]<position),'Homepage must follow hero → proof → featured work → process → recommendations → contact');
+for(const sectionLabel of ['MY CORE TOOLKIT','CURRENTLY BUILDING','ON SCREEN / DASHBOARD COLLECTION','LEARNING IN PUBLIC','THE PERSON / THE PRACTICE','A USEFUL COLLABORATION','THE DATA TEA'])assert(home.includes(sectionLabel),'Existing homepage section was removed: '+sectionLabel);
+const originalCountForHome=data.repositories.filter(repository=>!repository.fork).length;
+const forkCountForHome=data.repositories.filter(repository=>repository.fork).length;
+const homeCaseCount=Object.keys({...JSON.parse(await fs.readFile(path.join(root,'content/cases.json'),'utf8')),...JSON.parse(await fs.readFile(path.join(root,'content/additional-cases.json'),'utf8'))}).length;
+const homeReportCount=JSON.parse(await fs.readFile(path.join(root,'content/project-previews.json'),'utf8')).reports.length;
+const proofStart=home.indexOf('class="home-proof-band"');
+const proofBand=home.slice(proofStart,home.indexOf('</section>',proofStart)+10);
+for(const [key,value] of Object.entries({original:originalCountForHome,public:data.repositories.length,cases:homeCaseCount,reports:homeReportCount}))assert(proofBand.includes('data-proof-count="'+key+'">'+value+'</strong>'),'Homepage proof band count must come from source data: '+key);
+assert(proofBand.includes(forkCountForHome+' forks included'),'Homepage must clarify that public repository total includes forks');
 assert(home.includes('Power BI dashboards and reporting for growing businesses, from messy data to decisions you can defend.'),'Homepage hero must state the Power BI offer and audience');
 assert(home.includes('Data Analyst')&&home.includes('Analytics Engineer')&&home.includes('hero-discipline-line'),'Secondary disciplines must sit beneath the Power BI offer');
 assert(home.includes('RECOMMENDATIONS / IN THEIR WORDS')&&[...home.matchAll(/class="home-testimonial-card"/g)].length===3,'Show the three published recommendations on the homepage');
@@ -122,12 +144,24 @@ for(const item of evidence.recommendations){
   assert(communityHtml.includes(item.author)&&communityHtml.includes(item.quote)&&communityHtml.includes(item.profile)&&communityHtml.includes(item.summary),'Community page must retain the full recommendation context: '+item.author);
 }
 
+const recommendationOrder=['Mohammed Adham','Waleed Mouhammed','Omar Magdy'];
+for(const html of [home,communityHtml]){
+ const positions=recommendationOrder.map(author=>html.indexOf(author));
+ assert(positions.every(position=>position>=0)&&positions[0]<positions[1]&&positions[1]<positions[2],'Client recommendations must precede the community recommendation');
+ assert.equal([...html.matchAll(/class="recommendation-kind">CLIENT RECOMMENDATION/g)].length,2,'Label both client recommendations');
+ assert.equal([...html.matchAll(/class="recommendation-kind">COMMUNITY RECOMMENDATION/g)].length,1,'Label the community recommendation');
+}
 for(const lane of recruiter.lanes)for(const repo of lane.projects)assert(originals.has(repo),'Recruiter evidence must be a public original project');
 const serviceHtml=documents.get(path.join(out,'services/index.html'));
 assert(serviceHtml.includes('id="project-brief" class="business-inquiry-form" method="post" action="/services/" hidden'),'Enterprise inquiry form must use POST if its JavaScript handler is unavailable');
 assert(serviceHtml.includes('id="simple-project-inquiry" class="public-project-inquiry-form" method="post" action="/services/"'),'Public inquiry form must use POST so project details cannot fall into the URL');
 assert(serviceHtml.includes('id="project-brief" class="business-inquiry-form" method="post" action="/services/" hidden'),'Business inquiries must remain closed without an approved invitation');
+assert(serviceHtml.indexOf('Power BI dashboards')<serviceHtml.indexOf('ALSO AVAILABLE'),'Power BI reporting must lead the Services page');
+assert(serviceHtml.includes('href="#simple-project-inquiry"')&&serviceHtml.includes('Start a project'),'Services page must offer a top-level Start a project anchor');
+for(const id of ['service-0','service-1','service-2','service-3'])assert(serviceHtml.includes('id="'+id+'"'),'A service section was removed: '+id);
+assert(serviceHtml.indexOf('ALSO AVAILABLE')<serviceHtml.indexOf('Data engineering'),'Engineering must sit under the secondary services heading');
 const b2bHtml=documents.get(path.join(out,'projects','fmcg-sales-churn-drop-analysis-powerbi','index.html'));
+assert(b2bHtml.includes('class="story-outcome"')&&b2bHtml.includes('<span class="eyebrow">OUTCOME</span>'),'B2B case study must label its decision-support copy as Outcome');
 assert(b2bHtml.includes('The dashboard helps a retail manager decide where the next review should focus: retailer retention, delivery performance, sales movement, or category mix.'),'B2B outcome must describe the manager decision supported by the dashboard');
 assert(b2bHtml.includes('intended business benefits are not measured outcomes.'),'B2B case page must preserve the distinction between intended benefits and measured outcomes');
 assert([...documents.values()].every(html=>!html.includes('href="tel:')),'Do not expose personal telephone links');
