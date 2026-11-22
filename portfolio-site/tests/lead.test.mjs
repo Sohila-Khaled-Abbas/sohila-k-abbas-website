@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import vm from 'node:vm';
 import {handleLead,allowedBudgets} from '../server/lead.mjs';
 import {productionOrigin,issueInvitation} from '../server/business-access.mjs';
 
@@ -193,20 +194,122 @@ test('missing webhook configuration, missing source IP, and webhook failures fai
   assert.equal(failed.status,502);
 });
 
-test('the Apps Script source enforces secret checks, locking, sheet schema, and owner-only notification',async()=>{
-  const source=await fs.readFile(new URL('../scripts/google-apps-script/LeadWebhook.gs',import.meta.url),'utf8');
-  assert(source.includes("getProperty('LEAD_WEBHOOK_SECRET')"));
-  assert(source.includes('constantTimeEqual'));
-  assert(source.includes('LockService.getScriptLock()'));
-  assert(source.includes('CacheService.getScriptCache()'));
-  for(const header of ['Timestamp','Name','Email','Project','Budget','Source page','Type','Status','Notes']){
-    assert(source.includes("'" + header + "'"));
+function createAppsScriptHarness(){
+  const values=new Map();
+  const rows=[];
+  const emails=[];
+  const secret='test-apps-script-secret';
+  const sheet={
+    getLastRow(){return rows.length;},
+    appendRow(row){rows.push(row);},
+    getRange(row,column){
+      return {
+        getValues(){return [rows[row-1]||[]];},
+        setValue(value){if(rows[row-1])rows[row-1][column-1]=value;}
+      };
+    }
+  };
+  const context={
+    PropertiesService:{getScriptProperties:()=>({getProperty:key=>key==='LEAD_WEBHOOK_SECRET'?secret:''})},
+    LockService:{getScriptLock:()=>({waitLock(){},releaseLock(){}})},
+    CacheService:{getScriptCache:()=>({
+      get:key=>values.has(key)?values.get(key):null,
+      put:(key,value)=>values.set(key,String(value))
+    })},
+    SpreadsheetApp:{getActiveSpreadsheet:()=>({getSheetByName:name=>name==='Leads'?sheet:null})},
+    MailApp:{sendEmail:message=>emails.push(message)},
+    ContentService:{
+      MimeType:{JSON:'application/json'},
+      createTextOutput:text=>({text,setMimeType(){return this;}})
+    }
+  };
+  vm.runInNewContext(appsScriptSource,context);
+  return {context,rows,emails,secret};
+}
+const appsScriptPath=new URL('../scripts/google-apps-script/LeadWebhook.gs',import.meta.url);
+const appsScriptSource=await fs.readFile(appsScriptPath,'utf8');
+function scriptPayload(secret,submissionId,rateKey='c'.repeat(64)){
+  return {
+    secret,submissionId,rateKey,
+    name:'Test User',
+    email:'test@example.com',
+    project:'Dummy project inquiry used only by the isolated Apps Script test harness.',
+    budget:'Not sure yet',
+    sourcePage:'/services/',
+    type:'standard',
+    notes:''
+  };
+}
+function callAppsScript(context,payload){
+  const output=context.doPost({postData:{contents:JSON.stringify(payload)}});
+  return JSON.parse(output.text);
+}
+
+test('Apps Script validates the secret, writes the exact row schema, and emails only the owner with the lead Reply-To',()=>{
+  const {context,rows,emails,secret}=createAppsScriptHarness();
+  const result=callAppsScript(context,scriptPayload(secret,'123e4567-e89b-42d3-a456-426614174000'));
+  assert.equal(result.ok,true);
+  assert.equal(result.notificationSent,true);
+  assert.equal(rows.length,2);
+  assert.deepEqual(Array.from(rows[0]),['Timestamp','Name','Email','Project','Budget','Source page','Type','Status','Notes']);
+  assert.equal(rows[1][1],'Test User');
+  assert.equal(rows[1][2],'test@example.com');
+  assert.equal(rows[1][7],'New');
+  assert.equal(emails.length,1);
+  assert.equal(emails[0].to,'sohila.k.data@gmail.com');
+  assert.equal(emails[0].replyTo,'test@example.com');
+  assert.equal(emails[0].subject,'New lead: Test User - Not sure yet');
+  assert(!('secret' in rows[1]));
+});
+
+test('Apps Script rejects invalid shared secrets before touching the Sheet or MailApp',()=>{
+  const {context,rows,emails,secret}=createAppsScriptHarness();
+  const result=callAppsScript(context,scriptPayload('wrong-secret','123e4567-e89b-42d3-a456-426614174000'));
+  assert.equal(result.code,'UNAUTHORIZED');
+  assert.equal(rows.length,0);
+  assert.equal(emails.length,0);
+  assert.equal(secret,'test-apps-script-secret');
+});
+
+test('Apps Script cache and lock enforce the per-IP limit and deduplicate retry submissions',()=>{
+  const {context,rows,emails,secret}=createAppsScriptHarness();
+  for(let index=0;index<5;index++){
+    const result=callAppsScript(context,scriptPayload(
+      secret,
+      '123e4567-e89b-42d3-a456-42661417400'+index
+    ));
+    assert.equal(result.ok,true);
   }
-  assert(source.includes("getSheetByName(SHEET_NAME)"));
-  assert(source.includes('sheet.appendRow('));
-  assert(source.includes("'New'"));
-  assert(source.includes('replyTo: payload.email'));
-  assert(source.includes('to: OWNER_EMAIL'));
-  assert(!source.includes('to: payload.email'));
-  assert(!source.includes('within 2 business days'));
+  const limited=callAppsScript(context,scriptPayload(
+    secret,
+    '123e4567-e89b-42d3-a456-426614174099'
+  ));
+  assert.equal(limited.code,'RATE_LIMITED');
+  assert.equal(rows.length,6);
+  assert.equal(emails.length,5);
+
+  const duplicateHarness=createAppsScriptHarness();
+  const duplicatePayload=scriptPayload(
+    duplicateHarness.secret,
+    '123e4567-e89b-42d3-a456-426614174555'
+  );
+  const first=callAppsScript(duplicateHarness.context,duplicatePayload);
+  const retry=callAppsScript(duplicateHarness.context,duplicatePayload);
+  assert.equal(first.ok,true);
+  assert.equal(retry.ok,true);
+  assert.equal(retry.duplicate,true);
+  assert.equal(duplicateHarness.rows.length,2);
+  assert.equal(duplicateHarness.emails.length,1);
+});
+
+test('Apps Script records a notification failure in Notes without sending a respondent auto-reply',()=>{
+  const {context,rows,emails,secret}=createAppsScriptHarness();
+  context.MailApp.sendEmail=()=>{throw new Error('mock mail failure');};
+  const result=callAppsScript(context,scriptPayload(secret,'123e4567-e89b-42d3-a456-426614174777'));
+  assert.equal(result.ok,true);
+  assert.equal(result.notificationSent,false);
+  assert.match(rows[1][8],/notification could not be sent/i);
+  assert.equal(emails.length,0);
+  assert(!appsScriptSource.includes('within 2 business days'));
+  assert(!appsScriptSource.includes('to: payload.email'));
 });
