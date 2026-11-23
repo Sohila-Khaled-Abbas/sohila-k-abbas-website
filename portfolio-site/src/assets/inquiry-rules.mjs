@@ -1,6 +1,6 @@
 export const kinds = {employment:'Employment opportunity',contract:'Contract role',project:'Paid freelance project',consultation:'Paid technical consultation'};
 export const focuses = {bi:'Power BI & business intelligence',engineering:'Data engineering & ETL/ELT',ml:'Machine learning & predictive modeling',automation:'Automation & AI workflows'};
-export const currencies = ['EGP','USD','EUR','GBP','AED','SAR','CAD','AUD'];
+export const currencies = ['EGP'];
 export const units = {project:'Total project budget',hour:'Per hour',month:'Per month',year:'Per year'};
 export const timelines = {soon:'Within two weeks',month:'Within one month',quarter:'Within three months',planning:'Planning the engagement'};
 const freeDomains = new Set(['gmail.com','googlemail.com','yahoo.com','yahoo.co.uk','hotmail.com','outlook.com','live.com','msn.com','aol.com','icloud.com','me.com','proton.me','protonmail.com','yandex.com','gmx.com','mail.com','mailinator.com','guerrillamail.com','tempmail.com','10minutemail.com']);
@@ -52,8 +52,8 @@ export function validateInquiry(raw,business){
   if(!Object.hasOwn(kinds,value.kind))errors.kind='Choose an employment, contract, paid project, or paid consultation inquiry.';
   if(!Object.hasOwn(focuses,value.focus))errors.focus='Choose a relevant data, BI, machine learning, or automation focus.';
   if(!meaningful(value.title,5,140)||/[\r\n]/u.test(value.title))errors.title='Enter a clear role or project title, using 5-140 characters.';
-  if(!currencies.includes(value.currency))errors.currency='Select the budget currency.';
-  for(const key of ['budgetMin','budgetMax'])if(!/^\d{1,9}(?:\.\d{1,2})?$/.test(value[key])||Number(value[key])<=0)errors[key]='Enter a positive amount, with at most two decimal places.';
+  if(!currencies.includes(value.currency))errors.currency='Select EGP as the budget currency.';
+  for(const key of ['budgetMin','budgetMax'])if(!/^\d{1,9}(?:\.\d{1,2})?$/.test(value[key])||Number(value[key])<500)errors[key]='Enter an amount of at least 500 EGP, with at most two decimal places.';
   if(!errors.budgetMin&&!errors.budgetMax&&Number(value.budgetMax)<Number(value.budgetMin))errors.budgetMax='The maximum amount must be at least the minimum.';
   if(!Object.hasOwn(units,value.budgetUnit))errors.budgetUnit='Select how the budget or compensation is measured.';
   if(value.kind==='employment'&&value.budgetUnit==='project')errors.budgetUnit='Use hourly, monthly, or annual compensation for employment.';

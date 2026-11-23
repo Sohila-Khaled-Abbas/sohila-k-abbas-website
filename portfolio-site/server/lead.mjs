@@ -5,11 +5,11 @@ import {authorizeInvitation,loadApprovalRegistry} from './business-access.mjs';
 import {validateInquiry,kinds,focuses,units} from '../src/assets/inquiry-rules.mjs';
 
 export const allowedBudgets=Object.freeze([
-  'Under $500',
-  '$500–$1,000',
-  '$1,000–$3,000',
-  '$3,000–$5,000',
-  '$5,000+',
+  '500 - 2,000 EGP',
+  '2,000 - 5,000 EGP',
+  '5,000 - 10,000 EGP',
+  '10,000 - 25,000 EGP',
+  '25,000+ EGP',
   'Not sure yet'
 ]);
 const MAX_BODY=16384;
@@ -235,7 +235,7 @@ export async function handleLead(request,{
     if(project.length<25||project.length>1800||/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/u.test(project)){
       errors.description='Describe the project in 25-1,800 characters.';
     }
-    if(!allowedBudgets.includes(budget))errors.budgetRange='Choose one of the listed USD budget ranges.';
+    if(!allowedBudgets.includes(budget))errors.budgetRange='Choose one of the listed EGP budget ranges (minimum 500 EGP).';
     if(Object.keys(errors).length)return respond(422,{ok:false,message:'Please correct the highlighted fields.',errors});
     lead={name,email,project,budget,sourcePage:page,type,submissionId:submission};
   }else{

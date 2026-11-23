@@ -5,8 +5,20 @@ if(origin.protocol!=='https:'||!origin.hostname.endsWith('.vercel.app'))throw ne
 const bypass=process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
 const extraHeaders=bypass?{'x-vercel-protection-bypass':bypass}:{};
 const preset=process.env.LIGHTHOUSE_PRESET==='desktop'?'desktop':'mobile';
-const settings={chromeFlags:'--no-sandbox --headless',extraHeaders};
-if(preset==='desktop')settings.preset='desktop';
+const screenEmulation=preset==='desktop'
+ ?{mobile:false,width:1280,height:900,deviceScaleFactor:1,disabled:false}
+ :{mobile:true,width:390,height:844,deviceScaleFactor:2,disabled:false};
+const settings={
+ chromeFlags:'--no-sandbox --headless',
+ extraHeaders
+};
+if(preset==='desktop'){
+ settings.preset='desktop';
+ settings.screenEmulation=screenEmulation;
+}else{
+ settings.formFactor='mobile';
+ settings.screenEmulation=screenEmulation;
+}
 module.exports={
  ci:{
   collect:{

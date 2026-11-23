@@ -138,6 +138,25 @@ assert(!/\.studio-project-card \.project-card-description\{[^}]*-webkit-line-cla
 const serviceHtml=documents.get(path.join(out,'services/index.html'));
 assert(serviceHtml.includes('id="simple-project-inquiry" class="public-project-inquiry-form" method="post" action="/services/"'),'Public inquiry form must retain the POST fallback');
 assert(serviceHtml.includes('id="project-brief" class="business-inquiry-form" method="post" action="/services/" hidden'),'Verified enterprise inquiry form must retain its POST fallback');
+assert(serviceHtml.includes('<label for="simple-inquiry-budget">Budget range (EGP) *</label>'),'Public project budget label must use EGP');
+const expectedPublicBudgets=[
+  '500 - 2,000 EGP',
+  '2,000 - 5,000 EGP',
+  '5,000 - 10,000 EGP',
+  '10,000 - 25,000 EGP',
+  '25,000+ EGP',
+  'Not sure yet'
+];
+for(const budget of expectedPublicBudgets)assert(serviceHtml.includes('<option value="'+budget+'">'+budget+'</option>'),'Missing exact public EGP budget option: '+budget);
+assert(serviceHtml.includes('Minimum project budget: 500 EGP. Projects below 500 EGP are not offered.'),'Public budget helper must explain the 500 EGP minimum');
+assert(!serviceHtml.includes('USD')&&!serviceHtml.includes('Under $500')&&!serviceHtml.includes('$500–'),'Services page must not display legacy USD pricing');
+assert(serviceHtml.includes('Currency (EGP) *')&&serviceHtml.includes('Minimum budget or compensation (EGP) *')&&serviceHtml.includes('Maximum budget or compensation (EGP) *'),'Invitation-only budgets must identify EGP');
+assert((serviceHtml.match(/min="500"/g)||[]).length>=2,'Both invitation-only budget amounts must enforce the 500 EGP HTML minimum');
+const inquiryRules=await fs.readFile(path.join(root,'src/assets/inquiry-rules.mjs'),'utf8');
+assert(inquiryRules.includes("export const currencies = ['EGP'];"),'Invitation-only inquiries must accept EGP only');
+assert(inquiryRules.includes("Number(value[key])<500"),'Invitation-only server validation must enforce the 500 EGP minimum');
+const contactHtml=documents.get(path.join(out,'contact/index.html'));
+assert(contactHtml.includes('href="/services/#business-inquiry"'),'Contact page must lead to the EGP-enabled project inquiry form');
 assert(serviceHtml.indexOf('Power BI dashboards')<serviceHtml.indexOf('ALSO AVAILABLE'),'Power BI reporting must lead the Services page');
 assert(serviceHtml.includes('href="#simple-project-inquiry"')&&serviceHtml.includes('Start a project'),'Services page must offer a clear project-inquiry action');
 for(const id of ['service-0','service-1','service-2'])assert(serviceHtml.includes('id="'+id+'"'),'A work-focused service section was removed: '+id);

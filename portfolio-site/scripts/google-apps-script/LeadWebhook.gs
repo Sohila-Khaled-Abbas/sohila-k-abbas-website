@@ -146,9 +146,22 @@ function validLeadPayload(payload) {
   if (project.length < 25 || project.length > 5000 || /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(project)) return false;
   if (!budget || budget.length > 120 || /[\r\n\u0000-\u001f\u007f]/.test(budget)) return false;
   if (payload.type === 'standard' && [
-    'Under $500', '$500–$1,000', '$1,000–$3,000',
-    '$3,000–$5,000', '$5,000+', 'Not sure yet'
+    '500 - 2,000 EGP',
+    '2,000 - 5,000 EGP',
+    '5,000 - 10,000 EGP',
+    '10,000 - 25,000 EGP',
+    '25,000+ EGP',
+    'Not sure yet'
   ].indexOf(budget) === -1) return false;
+
+  if (payload.type === 'enterprise') {
+    const enterpriseBudget = budget.match(/^(\d{1,9}(?:\.\d{1,2})?)–(\d{1,9}(?:\.\d{1,2})?) EGP \((?:Total project budget|Per hour|Per month|Per year)\)$/);
+    if (!enterpriseBudget) return false;
+    const minimum = Number(enterpriseBudget[1]);
+    const maximum = Number(enterpriseBudget[2]);
+    if (minimum < 500 || maximum < 500 || maximum < minimum) return false;
+  }
+
   if (sourcePage !== '/services/') return false;
   return true;
 }

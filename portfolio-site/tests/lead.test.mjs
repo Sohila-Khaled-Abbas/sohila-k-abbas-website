@@ -61,15 +61,24 @@ test('standard leads are validated and forwarded through the configured webhook'
   assert.equal(sent.body.secret,secret);
 });
 
-test('all six public USD budget ranges are accepted; unlisted values are rejected',async()=>{
-  assert.equal(allowedBudgets.length,6);
+test('the six exact EGP budget ranges are accepted and legacy or unlisted values are rejected',async()=>{
+  assert.deepEqual(allowedBudgets,[
+    '500 - 2,000 EGP',
+    '2,000 - 5,000 EGP',
+    '5,000 - 10,000 EGP',
+    '10,000 - 25,000 EGP',
+    '25,000+ EGP',
+    'Not sure yet'
+  ]);
   for(const budgetRange of allowedBudgets){
     const response=await handleLead(request({...base,budgetRange}),{env,now,fetchImpl:mockFetch});
     assert.equal(response.status,200,budgetRange);
   }
-  const response=await handleLead(request({...base,budgetRange:'$20,000'}),{env,now,fetchImpl:mockFetch});
-  assert.equal(response.status,422);
-  assert((await response.json()).errors.budgetRange);
+  for(const budgetRange of ['Under 500 EGP','500 - 2,000 USD','Under $500','$500–$1,000','500 - 2,000 EGP extra']){
+    const response=await handleLead(request({...base,budgetRange}),{env,now,fetchImpl:mockFetch});
+    assert.equal(response.status,422,budgetRange);
+    assert((await response.json()).errors.budgetRange);
+  }
 });
 
 test('invalid name, email, description, and missing values fail before webhook delivery',async()=>{
@@ -77,7 +86,7 @@ test('invalid name, email, description, and missing values fail before webhook d
     {name:'A'},
     {email:'not-an-email'},
     {description:'A short brief'},
-    {budgetRange:'$9000'},
+    {budgetRange:'Under 500 EGP'},
     {description:'x'.repeat(1801)}
   ];
   for(const patch of cases){
@@ -152,7 +161,7 @@ test('enterprise submissions re-check their invitation and existing field rules'
   const fields={
     name:business.contactName,company:business.legalName,email:business.email,
     role:'Recruitment manager',phone:'',kind:'project',focus:'bi',
-    title:'Remote Power BI reporting project',currency:'USD',budgetMin:'1200',
+    title:'Remote Power BI reporting project',currency:'EGP',budgetMin:'1200',
     budgetMax:'2000',budgetUnit:'project',timeline:'month',
     reference:'https://contoso.com/careers',
     brief:'We need a remote Power BI developer to model our sales and inventory data, define consistent commercial metrics, and build a maintainable reporting workflow for the operations team.',
@@ -172,7 +181,7 @@ test('enterprise submissions re-check their invitation and existing field rules'
   assert.equal(forwarded.type,'enterprise');
   assert.match(forwarded.project,/Business: Fixture Analytics Limited/);
   assert.match(forwarded.project,/RESPONSIBILITIES \/ DELIVERABLES/);
-  assert.equal(forwarded.budget,'1200–2000 USD (Total project budget)');
+  assert.equal(forwarded.budget,'1200–2000 EGP (Total project budget)');
   assert.equal(forwarded.email,business.email);
 });
 
@@ -261,6 +270,38 @@ test('Apps Script validates the secret, writes the exact row schema, and emails 
   assert.equal(emails[0].replyTo,'test@example.com');
   assert.equal(emails[0].subject,'New lead: Test User - Not sure yet');
   assert(!('secret' in rows[1]));
+});
+
+test('Apps Script enforces the same exact EGP budget allow-list as the server',()=>{
+  for(const [index,budget] of allowedBudgets.entries()){
+    const {context,secret}=createAppsScriptHarness();
+    const payload=scriptPayload(secret,'123e4567-e89b-42d3-a456-42661417400'+index);
+    payload.budget=budget;
+    assert.equal(callAppsScript(context,payload).ok,true,budget);
+  }
+  for(const budget of ['Under 500 EGP','500 - 2,000 USD','Under $500','$500–$1,000']){
+    const {context,secret}=createAppsScriptHarness();
+    const payload=scriptPayload(secret,'123e4567-e89b-42d3-a456-426614174000');
+    payload.budget=budget;
+    assert.equal(callAppsScript(context,payload).code,'INVALID_PAYLOAD',budget);
+  }
+  const enterpriseBudgets=[
+    ['500–2000 EGP (Total project budget)',true],
+    ['500–2000 EGP (Per hour)',true],
+    ['499–2000 EGP (Total project budget)',false],
+    ['500–499 EGP (Total project budget)',false],
+    ['500–2000 USD (Total project budget)',false],
+    ['500–2000 EGP (Invalid unit)',false]
+  ];
+  for(const [budget,accepted] of enterpriseBudgets){
+    const {context,secret}=createAppsScriptHarness();
+    const payload=scriptPayload(secret,'123e4567-e89b-42d3-a456-426614174001');
+    payload.type='enterprise';
+    payload.budget=budget;
+    const response=callAppsScript(context,payload);
+    assert.equal(response.ok,accepted,budget);
+    if(!accepted)assert.equal(response.code,'INVALID_PAYLOAD',budget);
+  }
 });
 
 test('Apps Script rejects invalid shared secrets before touching the Sheet or MailApp',()=>{
