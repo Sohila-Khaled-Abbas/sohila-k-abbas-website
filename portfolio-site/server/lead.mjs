@@ -136,9 +136,8 @@ function validSourcePage(value,origin){
   const candidate=clean(value||'/services/');
   try{
     const parsed=new URL(candidate,origin);
-    return parsed.origin===origin&&
-      (parsed.pathname==='/services/'||parsed.pathname==='/services')&&
-      !parsed.search&&!parsed.hash?'/services/':'';
+    const allowed=['/services/','/services','/contact/','/contact'];
+    return parsed.origin===origin&&allowed.includes(parsed.pathname)&&!parsed.search&&!parsed.hash?'/services/':'';
   }catch{return '';}
 }
 function clientIp(requestHeaders){
@@ -220,7 +219,7 @@ export async function handleLead(request,{
   if(ageMessage)return respond(422,{ok:false,message:ageMessage,errors:{form:ageMessage}});
 
   const page=validSourcePage(payload.sourcePage,origin);
-  if(!page)return respond(422,{ok:false,message:'Reload the inquiry form from the Work with me page.',errors:{form:'The source page is not valid.'}});
+  if(!page)return respond(422,{ok:false,message:'Reload the inquiry form from the Contact or Work with me page.',errors:{form:'The source page is not valid.'}});
 
   const submission=safeSubmissionId(payload.submissionId);
   let lead;
