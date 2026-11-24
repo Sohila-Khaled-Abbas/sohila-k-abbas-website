@@ -34,7 +34,7 @@ systemPreference?.addEventListener?.('change',event=>{
 const menuButton = $('.menu-toggle');
 const navigation = $('#navigation');
 const menuShell = menuButton.closest('.nav-shell');
-const temporarilyHidden = [...menuShell.querySelectorAll('.brand,.nav-actions button:not(.menu-toggle)')];
+const temporarilyHidden = [...menuShell.querySelectorAll('.brand,.nav-actions button:not(.menu-toggle),.nav-actions a')];
 const originalTabIndexes = new Map(temporarilyHidden.map(element => [element, element.getAttribute('tabindex')]));
 function closeMenu(restoreFocus = false) {
   navigation.classList.remove('open');
@@ -68,18 +68,17 @@ document.addEventListener('keydown', event => {
   }
   if (event.key !== 'Tab') return;
   const items = [...navigation.querySelectorAll('a[href]')];
+  if (!items.length) return;
   const first = items[0], last = items[items.length - 1];
-  if (event.shiftKey && document.activeElement === first) {
+  const activeIndex = items.indexOf(document.activeElement);
+  if (event.shiftKey && (activeIndex === 0 || activeIndex === -1)) {
     event.preventDefault();
-    last.focus();
-  } else if (!event.shiftKey && document.activeElement === last) {
+    last.focus({preventScroll:true});
+  } else if (!event.shiftKey && (activeIndex === items.length - 1 || activeIndex === -1)) {
     event.preventDefault();
-    first.focus();
-  } else if (!items.includes(document.activeElement)) {
-    event.preventDefault();
-    first.focus();
+    first.focus({preventScroll:true});
   }
-});
+}, true);
 
 $$('.filter').forEach(button => button.addEventListener('click', () => {
   $$('.filter').forEach(item => {
