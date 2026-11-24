@@ -592,22 +592,41 @@ async function testContactInquiryPayload(){
  await addProtectionHeader(page);
  await page.goto(new URL("/contact/",base).href,{waitUntil:"domcontentloaded"});
  const captured=[];
+ let releaseRequest;
  await page.route("**/api/lead",async route=>{
   assert.equal(route.request().method(),"POST","Contact form must keep its existing /api/lead POST.");
   captured.push(route.request().postDataJSON());
+  await new Promise(resolve=>{releaseRequest=resolve;});
   await route.fulfill({status:200,contentType:"application/json",body:JSON.stringify({ok:true,message:"Mock Contact QA success."})});
  });
- await page.locator("#simple-inquiry-name").fill("QA Contact");
- await page.locator("#simple-inquiry-email").fill("qa.contact@example.com");
- await page.locator("#simple-inquiry-description").fill("QA only: verify the Contact form payload without sending to the live Apps Script endpoint.");
+ const name=page.locator("#simple-inquiry-name");
+ const email=page.locator("#simple-inquiry-email");
+ const description=page.locator("#simple-inquiry-description");
  const budget=page.locator("#simple-inquiry-budget");
+ const submit=page.locator("#simple-inquiry-submit");
+ await name.fill("Q");
+ await email.fill("not-an-email");
+ await description.fill("Too short");
+ await submit.click();
+ for(const field of ["name","email","description","budgetRange"])assert(await page.locator("#simple-inquiry-"+field+"-error").isVisible(),"Inline validation is missing for "+field+".");
+ assert.equal(captured.length,0,"Invalid form data must not be sent.");
+ await name.fill("QA Contact");
+ await email.fill("qa.contact@example.com");
+ await description.fill("QA only: verify the Contact form payload without sending to the live Apps Script endpoint.");
  assert.deepEqual(await budget.locator("option").evaluateAll(items=>items.slice(1).map(x=>x.textContent.trim())),["500 - 2,000 EGP","2,000 - 5,000 EGP","5,000 - 10,000 EGP","10,000 - 25,000 EGP","25,000+ EGP","Not sure yet"]);
  assert((await budget.evaluate(el=>el.parentElement.innerText)).includes("Minimum project budget: 500 EGP"));
  await budget.selectOption({label:"500 - 2,000 EGP"});
  await page.waitForTimeout(2200);
- await page.locator("#simple-inquiry-submit").click();
- await page.locator("#simple-inquiry-result").waitFor({state:"visible"});
+ await submit.click();
+ await page.waitForFunction(()=>document.querySelector("#simple-project-inquiry")?.getAttribute("aria-busy")==="true");
+ assert(await submit.isDisabled(),"Submit button must be disabled while sending.");
+ assert(await name.isDisabled()&&await email.isDisabled()&&await description.isDisabled()&&await budget.isDisabled(),"All form fields must be disabled while sending.");
  assert.equal(captured.length,1,"One mocked request should be sent.");
+ releaseRequest();
+ await page.locator("#simple-inquiry-result").waitFor({state:"visible"});
+ assert.equal(await page.locator("#simple-inquiry-result").getAttribute("role"),"status","Success must be announced to assistive technology.");
+ assert.equal(await submit.isDisabled(),false);
+ assert.equal(await name.isDisabled(),false);
  const payload=captured[0];
  assert.deepEqual(Object.keys(payload).sort(),["budgetRange","description","email","formStartedAt","name","sourcePage","submissionId","type","websiteFax"].sort(),"Apps Script request field names must remain unchanged.");
  assert.equal(payload.type,"standard");
@@ -619,7 +638,7 @@ async function testContactInquiryPayload(){
  assert.equal(typeof payload.submissionId,"string");
  assert.equal(payload.websiteFax,"");
  await page.close();
- console.log("PASS Contact form EGP validation and unchanged /api/lead payload. Mocked request only; no real Apps Script submission.");
+ console.log("PASS Contact inline validation, disabled-while-sending, EGP validation and unchanged /api/lead payload. Mocked request only; no real Apps Script submission.");
 }
 
 try{
