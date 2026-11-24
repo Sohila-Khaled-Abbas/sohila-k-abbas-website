@@ -188,6 +188,7 @@
     "dataset_context": "A saved extract of 217 Wuzzuf job postings collected in Egypt during January–March 2025, alongside salary-related Excel data. The repository contains prepared Excel extracts and the Power BI report.",
     "contribution": "The repository documents a Python-based collection workflow, prepared Excel data extracts, and the Power BI report. The tracked repository does not include the original collection script.",
     "model": "A Power BI reporting model with DAX measures, interactive slicers, dynamic titles, conditional formatting, tooltip pages, and geographic visuals.",
-    "findings": "The README records Data Analyst as the most common title, AI as the most requested skill, and New Cairo as the leading city in this particular dataset snapshot. Salary observations depend on the incomplete salary records."
+    "findings": "The README records Data Analyst as the most common title, AI as the most requested skill, and New Cairo as the leading city in this particular dataset snapshot. Salary observations depend on the incomplete salary records.",
+    "repo": "Wuzzuf-Job-Market-Analysis"
   }
 }
