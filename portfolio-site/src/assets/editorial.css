@@ -483,3 +483,26 @@ button,input,select,textarea{font:inherit}
   padding:1.15rem;
  }
 }
+
+
+/* Case-study connected-work cards: collapse to one readable column on phones. */
+@media(max-width:760px){
+ .story-related>div:last-child{
+  grid-template-columns:minmax(0,1fr);
+  width:100%;
+  min-width:0;
+ }
+ .story-related>div:last-child>a{
+  display:flex;
+  width:100%;
+  min-width:0;
+  max-width:100%;
+  box-sizing:border-box;
+ }
+ .story-related>div:last-child h3,
+ .story-related>div:last-child p,
+ .story-related>div:last-child .text-link{
+  max-width:100%;
+  overflow-wrap:anywhere;
+ }
+}

@@ -196,7 +196,8 @@ async function captureRoute(route,width,height,theme,name){
  }
  if(name==="resume"){
   assert(await page.locator("[data-print-resume]").count()===1,"Resume should have print/save PDF action.");
-  assert(await page.locator('a[href^="mailto:"]').count()===1,"Resume must retain its professional email.");
+  assert.equal(await page.locator(".resume-contact-line a[href^='mailto:']").count(),1,"Resume must retain one professional email in its contact row.");
+ assert(await page.locator(".resume-contact-line a[href^='mailto:']").isVisible(),"Resume email must remain visible.");
  }
  if(name==="about"){
   const aboutText=await page.locator("main").innerText();
@@ -306,6 +307,18 @@ async function testReportLoading(){
  assert.equal(await page.locator("iframe").count(),0,"Power BI iframe must not be created before visitor request.");
  const reportUrl=await button.getAttribute("data-load-report");
  assert(reportUrl?.startsWith("https://app.powerbi.com/view?r="),"Only the existing verified public Power BI report may be loaded.");
+ const visibilityDiagnostics=await button.evaluate(element=>{
+  const chain=[];
+  for(let node=element;node&&node instanceof HTMLElement;node=node.parentElement){
+   const style=getComputedStyle(node),rect=node.getBoundingClientRect();
+   chain.push({tag:node.tagName.toLowerCase(),className:typeof node.className==="string"?node.className:"",id:node.id,hidden:node.hidden,ariaHidden:node.getAttribute("aria-hidden"),display:style.display,visibility:style.visibility,opacity:style.opacity,width:Math.round(rect.width),height:Math.round(rect.height),left:Math.round(rect.left),top:Math.round(rect.top),overflow:style.overflow});
+   if(node.tagName==="MAIN")break;
+  }
+  const rect=element.getBoundingClientRect();
+  const hit=rect.width&&rect.height?document.elementFromPoint(rect.left+Math.min(rect.width/2,10),rect.top+Math.min(rect.height/2,10)):null;
+  return {chain,rect:{width:rect.width,height:rect.height,left:rect.left,right:rect.right,top:rect.top,bottom:rect.bottom},hit:hit?{tag:hit.tagName.toLowerCase(),className:typeof hit.className==="string"?hit.className:"",id:hit.id}:null};
+ });
+ console.log("REPORT LOAD CONTROL VISIBILITY "+JSON.stringify(visibilityDiagnostics));
  await button.click();
  const frame=page.locator("iframe");
  await frame.waitFor({state:"attached"});
