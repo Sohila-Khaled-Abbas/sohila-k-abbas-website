@@ -153,8 +153,8 @@ const inquiryRules=await fs.readFile(path.join(root,'src/assets/inquiry-rules.mj
 assert(inquiryRules.includes("export const currencies = ['EGP'];"),'Invitation-only inquiries must accept EGP only');
 assert(inquiryRules.includes("Number(value[key])<500"),'Invitation-only server validation must enforce the 500 EGP minimum');
 const contactHtml=documents.get(path.join(out,'contact/index.html'));
-assert(contactHtml.includes('Contact me about a role')&&contactHtml.includes('href="/resume/"'),'Contact page must prioritize recruiter conversations and the resume.');
-assert(!contactHtml.includes('/services/#business-inquiry'),'Contact page must not prioritize the freelance inquiry funnel.');
+assert(contactHtml.includes('CONTACT / REMOTE ROLE OPPORTUNITIES')&&contactHtml.includes('href="/resume/"'),'Contact page must prioritize recruiter conversations and the resume.');
+assert(contactHtml.includes('href="/services/#business-inquiry"'),'Preserve the existing verified business inquiry path as a secondary contact option.');
 assert(serviceHtml.indexOf('Power BI dashboards')<serviceHtml.indexOf('ALSO AVAILABLE'),'Power BI reporting must lead the Services page');
 assert(serviceHtml.includes('href="#simple-project-inquiry"')&&serviceHtml.includes('Start a project'),'Services page must offer a clear project-inquiry action');
 for(const id of ['service-0','service-1','service-2'])assert(serviceHtml.includes('id="'+id+'"'),'A work-focused service section was removed: '+id);
