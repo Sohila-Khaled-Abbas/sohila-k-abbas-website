@@ -287,7 +287,7 @@ async function captureRoute(route,width,height,theme,name){
   assert(await menu.evaluate(el=>el===document.activeElement),"Closing the menu with Escape should restore focus to the toggle.");
  }
  console.log("PASS "+name+" "+theme+" "+width+"px — HTTP "+response.status()+", theme resolved, no horizontal overflow/clipped text. Screenshot: "+path.basename(screenshot));
- return {page:name,theme,width,status:"PASS",screenshot:path.basename(screenshot)};
+ return {page:name,theme,width,status:"PASS",title:seo.title,screenshot:path.basename(screenshot)};
  }finally{await page.close();}
 }
 async function testThemePersistence(){
@@ -655,12 +655,16 @@ try{
    }
   }
  }
+ const routeTitles=matrix.filter(item=>item.theme==="light"&&item.width===390);
+ assert.equal(new Set(routeTitles.map(item=>item.title)).size,pages.length,"Every generated page must have a unique title under 60 characters.");
  await testThemePersistence();
  await testPreviewDialog();
  await testClipboard();
  await testReportLoading();
  await testB2BProjectPageEmbed();
+ await testB2BWorkCardEmbed();
  await testDashboardCardEmbeds();
+ await testSitewideSEO();
  await testContactInquiryPayload();
  await testResumePrint();
  await testInquirySafety();
