@@ -400,7 +400,7 @@ async function testDashboardCardEmbeds(){
   for(let i=0;i<count;i++){
    const card=cards.nth(i),button=card.locator("[data-load-report]");
    assert.equal(await card.locator("iframe").count(),0,"Dashboard iframes must not be loaded without a click.");
-   const title=(await card.locator("h2").innerText()).trim();
+   const title=(await card.locator(".dashboard-card-copy h2").innerText()).trim();
    const url=await button.getAttribute("data-load-report");
    assert(url?.startsWith("https://app.powerbi.com/view?r="),"Dashboard button must use a valid published URL.");
    assert.equal(await button.getAttribute("data-report-title"),title,"Embed button needs a report-specific accessible title.");
