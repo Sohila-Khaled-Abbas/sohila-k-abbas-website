@@ -59,37 +59,30 @@ menuButton.addEventListener('click', () => {
   else openMenu();
 });
 $('#navigation a').forEach(a => a.addEventListener('click', () => closeMenu()));
-function handleNavigationKeys(event) {
+document.addEventListener('keydown', event => {
   if (menuButton.getAttribute('aria-expanded') !== 'true') return;
   if (event.key === 'Escape') {
     event.preventDefault();
-    event.stopPropagation();
+    event.stopImmediatePropagation();
     closeMenu(true);
     return;
   }
   if (event.key !== 'Tab') return;
   const items = [...navigation.querySelectorAll('a[href]')].filter(item =>
-    item.getClientRects().length > 0 && getComputedStyle(item).visibility !== 'hidden'
+    item.getClientRects().length > 0 &&
+    getComputedStyle(item).visibility !== 'hidden' &&
+    item.tabIndex >= 0
   );
   if (!items.length) return;
-  const first = items[0], last = items[items.length - 1];
-  const target = event.target;
-  if (event.shiftKey && (target === first || document.activeElement === first)) {
+  const activeIndex = items.indexOf(document.activeElement);
+  if (event.shiftKey && activeIndex <= 0) {
     event.preventDefault();
-    event.stopPropagation();
-    last.focus({preventScroll:true});
-  } else if (!event.shiftKey && (target === last || document.activeElement === last)) {
+    event.stopImmediatePropagation();
+    items[items.length - 1].focus({preventScroll:true});
+  } else if (!event.shiftKey && (activeIndex === items.length - 1 || activeIndex < 0)) {
     event.preventDefault();
-    event.stopPropagation();
-    first.focus({preventScroll:true});
-  }
-}
-navigation.addEventListener('keydown', handleNavigationKeys, true);
-document.addEventListener('keydown', event => {
-  if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
-    event.preventDefault();
-    event.stopPropagation();
-    closeMenu(true);
+    event.stopImmediatePropagation();
+    items[0].focus({preventScroll:true});
   }
 }, true);
 

@@ -183,7 +183,7 @@ for(const route of ['/learning','/learning/:path*','/community','/community/:pat
   const redirect=redirects.get(route);
   assert(redirect&&redirect.destination==='/work/'&&redirect.permanent===true,'Retired URL must permanently redirect to Work: '+route);
 }
-for(const repo of ['docker-hadoop','enterprise-hr-analytics','sql-server-data-platform'])for(const suffix of ['', '/:path*']){
+for(const repo of ['docker-hadoop','enterprise-hr-analytics','sql-server-data-platform','MaxAB_B2B_Retail_Wallet_Optimization','maxab-b2b-retail-wallet-optimization'])for(const suffix of ['', '/', '/:path*']){
   const route='/projects/'+repo+suffix;
   const redirect=redirects.get(route);
   assert(redirect&&redirect.destination==='/work/'&&redirect.statusCode===301,'Removed project URL must permanently redirect to Work: '+route);

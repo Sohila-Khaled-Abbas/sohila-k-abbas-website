@@ -572,13 +572,18 @@ async function testSitewideSEO(){
  assert(/User-agent:\s*\*/i.test(robotsText)&&/Allow:\s*\//i.test(robotsText),"robots.txt must allow public crawling.");
  assert(robotsText.includes("https://sohila-khaled-abbas.vercel.app/sitemap.xml"),"robots.txt must point to the production sitemap.");
  assert(!robotsText.includes(base.hostname),"robots.txt must not publish a preview URL.");
- const removed=await page.request.get(new URL("/projects/MaxAB_B2B_Retail_Wallet_Optimization",base).href,{headers,maxRedirects:0});
- assert.equal(removed.status(),301,"Removed MaxAB project route must issue a 301 redirect.");
- assert.equal(new URL(removed.headers().location,base).pathname,"/work/","Removed project must redirect to Work.");
+ async function assertRedirectToWork(legacyPath,label){
+  const canonicalPath=legacyPath.endsWith("/")?legacyPath:legacyPath+"/";
+  const canonical=await page.request.get(new URL(canonicalPath,base).href,{headers,maxRedirects:0});
+  assert.equal(canonical.status(),301,label+" canonical route must issue a 301 redirect.");
+  assert.equal(new URL(canonical.headers().location,base).pathname,"/work/",label+" 301 destination must be /work/.");
+  const resolved=await page.request.get(new URL(legacyPath,base).href,{headers});
+  assert.equal(resolved.status(),200,label+" legacy URL must resolve successfully after redirects.");
+  assert.equal(new URL(resolved.url()).pathname,"/work/",label+" legacy URL must finish at /work/.");
+ }
+ await assertRedirectToWork("/projects/MaxAB_B2B_Retail_Wallet_Optimization","MaxAB");
  for(const repo of ["docker-hadoop","enterprise-hr-analytics","sql-server-data-platform"]){
-  const retired=await page.request.get(new URL("/projects/"+repo,base).href,{headers,maxRedirects:0});
-  assert.equal(retired.status(),301,"Removed repository route must issue a 301 redirect: "+repo);
-  assert.equal(new URL(retired.headers().location,base).pathname,"/work/","Removed repository must redirect to Work: "+repo);
+  await assertRedirectToWork("/projects/"+repo,repo);
  }
  const notFound=await page.goto(new URL("/404.html",base).href,{waitUntil:"domcontentloaded"});
  assert(notFound&&notFound.status()<400,"Custom 404 page must render.");
