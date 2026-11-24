@@ -129,7 +129,7 @@ for(const term of ['Power BI','SQL','DAX','data modeling','Power Query','Analyti
 assert(!home.includes('Work with me')&&!home.includes('Fixed quote')&&!home.includes('You send your data or problem.'),'Homepage must not read as a freelance-services funnel.');
 assert(!home.includes('Data Tea')&&!home.includes('LEARNING IN PUBLIC')&&!home.includes('roadmap'),'Retired learning/community material must not appear on the homepage.');
 assert(!home.includes('class="home-testimonial-card"')&&!home.includes('data-motion-toggle'),'Decorative testimonial counters and obsolete motion controls must not be reintroduced.');
-assert(home.includes('Cormorant+Garamond')&&home.includes('DM+Sans'),'Homepage must use the editorial serif and sans-serif pairing.');
+assert(home.includes('Instrument+Serif')&&home.includes('DM+Sans'),'Homepage must use the Instrument Serif and DM Sans editorial pairing.');
 assert(home.includes('href="/editorial.css"'),'Editorial presentation layer must load.');
 const themeBootPosition=home.indexOf('document.documentElement.dataset.theme=');
 const firstStylePosition=home.indexOf('rel="stylesheet"');
