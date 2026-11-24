@@ -506,3 +506,40 @@ button,input,select,textarea{font:inherit}
   overflow-wrap:anywhere;
  }
 }
+
+
+/* Recruiter-first proof, quick trust links and an in-card Power BI preview. */
+.editorial-hero-proof{max-width:62ch;margin:1rem 0;padding-left:1rem;border-left:3px solid var(--brand);font-size:1rem;line-height:1.6;font-weight:700;color:var(--ink)}
+.editorial-trust-links{display:flex;flex-wrap:wrap;align-items:center;gap:.65rem 1.1rem;margin-top:1.25rem}
+.editorial-trust-links a,.editorial-trust-links button{font-size:.88rem}
+.editorial-trust-links .copy-email{border:0;padding:0;background:transparent;cursor:pointer;text-decoration:underline;text-underline-offset:4px;color:var(--ink)}
+.editorial-location{font-size:.95rem}
+.work-card-live-preview{min-width:0;width:100%;max-width:100%;margin:1rem 0;box-sizing:border-box}
+.work-card-embed-shell{position:relative;width:100%;max-width:100%;min-width:0;aspect-ratio:16/9;padding:0;margin:0;box-sizing:border-box;overflow:hidden}
+.work-card-embed-shell .report-load-prompt{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;gap:.25rem;max-width:none;padding:.7rem;text-align:center}
+.work-card-embed-shell .report-load-prompt>img{width:24px;height:24px;margin:0;padding:6px}
+.work-card-embed-shell .report-load-prompt h4{margin:.35rem 0;font-size:clamp(.95rem,1.5vw,1.2rem)}
+.work-card-embed-shell .report-load-prompt p{max-width:42ch;margin:.25rem 0;font-size:.85rem;line-height:1.45}
+.work-card-embed-shell .report-load-prompt .button{min-height:44px;margin:.25rem 0 0;padding:.55rem .8rem;font-size:.82rem}
+.work-card-embed-shell .report-embed-host{position:absolute;inset:0;width:100%;height:100%}
+.work-card-embed-shell .report-embed-host:empty{display:none}
+.work-card-embed-shell .report-embed-host iframe{position:absolute;inset:0;width:100%;height:100%;min-height:0;max-height:none}
+.work-card-live-preview .report-scenario-disclaimer{width:100%;margin:.55rem 0;padding:.65rem .8rem;font-size:.82rem}
+.work-card-live-preview .embed-fallback{margin:.4rem 0;font-size:.82rem}
+.work-card-live-preview .embed-fallback .text-link{font-size:inherit}
+.editorial-case-copy,.studio-project-copy,.repo-card{min-width:0;max-width:100%}
+.editorial-case-copy p,.story-panel>p,.story-methods p,.story-context>p,.project-card-description,.dashboard-card-copy p,.report-load-prompt p{font-size:1rem;line-height:1.7}
+.story-context>p{max-width:75ch}
+.repo-filter>span,.source-map-status{color:var(--muted)}
+.source-map-status{font-size:.72rem}
+.editorial-hero h1{max-width:15ch}
+@media(max-width:760px){
+ .editorial-hero-proof{font-size:.94rem}
+ .editorial-trust-links{gap:.8rem 1rem}
+ .work-card-embed-shell .report-load-prompt p{font-size:.78rem}
+ .work-card-embed-shell .report-load-prompt h4{font-size:.92rem}
+ .work-card-embed-shell .report-load-prompt .button{font-size:.76rem}
+}
+@media(prefers-reduced-motion:reduce){
+ .editorial-hero *,.work-card-live-preview *{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+}
