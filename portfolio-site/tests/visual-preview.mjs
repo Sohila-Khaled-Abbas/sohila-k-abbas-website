@@ -94,11 +94,14 @@ async function inspectLayout(page){
    const left=Number.parseFloat(style.left)||0,widthValue=Number.parseFloat(style.width)||0;
    return {parent:element.tagName.toLowerCase()+"."+String(element.className||""),pseudo,left,width:widthValue,position:style.position,transform:style.transform,content:style.content};
   })).filter(item=>item&&item.left+item.width>width).slice(0,20);
-  return {width,rootWidth,bodyWidth,clipped,overflowCandidates,overflowingScrollContainers,pseudoOverflow,theme:document.documentElement.dataset.theme,background:getComputedStyle(document.body).backgroundColor};
+  const root=document.documentElement,body=document.body,scroll=document.scrollingElement;
+  const rootMetrics={rootRect:Math.round(root.getBoundingClientRect().width),rootClient:root.clientWidth,rootScroll:root.scrollWidth,bodyRect:Math.round(body.getBoundingClientRect().width),bodyClient:body.clientWidth,bodyScroll:body.scrollWidth,scrollLeft:scroll?.scrollLeft,rootMargin:getComputedStyle(root).margin,bodyMargin:getComputedStyle(body).margin,rootPadding:getComputedStyle(root).padding,bodyPadding:getComputedStyle(body).padding};
+  const bodyChildren=[...body.children].map(element=>{const r=element.getBoundingClientRect(),st=getComputedStyle(element);return {tag:element.tagName.toLowerCase(),id:element.id||"",className:typeof element.className==="string"?element.className:"",left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width),scrollWidth:element.scrollWidth,clientWidth:element.clientWidth,position:st.position,transform:st.transform,overflowX:st.overflowX};});
+  return {width,rootWidth,bodyWidth,rootMetrics,bodyChildren,clipped,overflowCandidates,overflowingScrollContainers,pseudoOverflow,theme:document.documentElement.dataset.theme,background:getComputedStyle(document.body).backgroundColor};
  });
 }
 function assertLayout(audit,width,label){
- assert(audit.rootWidth<=width,"Horizontal overflow on "+label+": document.scrollWidth "+audit.rootWidth+"px > "+width+"px. Right-edge elements: "+JSON.stringify(audit.overflowCandidates));
+ assert(audit.rootWidth<=width,"Horizontal overflow on "+label+": document.scrollWidth "+audit.rootWidth+"px > "+width+"px. Root: "+JSON.stringify(audit.rootMetrics)+" Body children: "+JSON.stringify(audit.bodyChildren)+" Scroll containers: "+JSON.stringify(audit.overflowingScrollContainers)+" Pseudo: "+JSON.stringify(audit.pseudoOverflow)+" Right-edge elements: "+JSON.stringify(audit.overflowCandidates));
  assert(audit.bodyWidth<=width,"Body overflow on "+label+": body.scrollWidth "+audit.bodyWidth+"px > "+width+"px");
  assert.equal(audit.clipped.length,0,"Clipped/ellipsized text on "+label+": "+JSON.stringify(audit.clipped));
 }
