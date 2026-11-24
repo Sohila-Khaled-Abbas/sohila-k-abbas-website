@@ -3,19 +3,32 @@ const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 const externalIcon = '<svg class="icon"><use href="#external"/></svg>';
 
-// Remember the visitor’s preferred color theme.
+// Start with the no-flash pre-paint value, honor explicit choice, otherwise follow system preference.
 const themeButton = $('.theme-toggle');
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
   const chromeColor=document.querySelector('meta[name="theme-color"]');
-  if(chromeColor)chromeColor.content=theme==='dark'?'#211916':'#faf6ef';
-  themeButton.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+  if(chromeColor)chromeColor.content=theme==='dark'?'#181415':'#f7f3ed';
+  if(themeButton){
+    themeButton.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+    themeButton.setAttribute('aria-pressed', String(theme === 'dark'));
+    themeButton.setAttribute('title', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+  }
 }
-try { applyTheme(localStorage.getItem('sohila-theme') || 'light'); } catch { applyTheme('light'); }
-themeButton.addEventListener('click', () => {
-  const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+let savedTheme=null;
+try { savedTheme=localStorage.getItem('sohila-theme'); } catch { /* Use system preference. */ }
+const systemTheme=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+applyTheme(savedTheme==='dark'||savedTheme==='light'?savedTheme:(document.documentElement.dataset.theme||systemTheme));
+if(themeButton)themeButton.addEventListener('click',()=>{
+  const theme=document.documentElement.dataset.theme==='dark'?'light':'dark';
   applyTheme(theme);
-  try { localStorage.setItem('sohila-theme', theme); } catch { /* Theme still works for this visit. */ }
+  try { localStorage.setItem('sohila-theme',theme); } catch { /* Theme remains active for this visit. */ }
+});
+const systemPreference=window.matchMedia?.('(prefers-color-scheme: dark)');
+systemPreference?.addEventListener?.('change',event=>{
+  let explicit=null;
+  try { explicit=localStorage.getItem('sohila-theme'); } catch {}
+  if(explicit!=='dark'&&explicit!=='light')applyTheme(event.matches?'dark':'light');
 });
 
 const menuButton = $('.menu-toggle');
