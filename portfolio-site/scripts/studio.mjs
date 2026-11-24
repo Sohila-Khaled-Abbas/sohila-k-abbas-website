@@ -7,7 +7,7 @@ const sourceTitle = p => p.empty ? 'Repository overview' : p.flow ? 'Workflow ov
 const visualInfo = (p,report) => report?.images?.length ? {src:report.images[0].src,kind:report.preview_kind==='diagram'?'Architecture diagram':report.preview_kind==='cover'?'Editorial portfolio cover':'Dashboard preview',caption:report.images[0].caption,alt:report.images[0].alt,source_label:report.preview_kind==='diagram'?'Original SVG from the GitHub README.':report.preview_kind==='cover'?'Original editorial portfolio cover; not a report screenshot.':report.images[0].source_url?'Captured from the published Power BI report.':'From the public project repository.'} : p?.media ? {...p.media,aspectRatio:p.media.width&&p.media.height?p.media.width/p.media.height:null,alt:p.title+' — '+p.media.kind} : null;
 
 const wrapPreviewText = (value,limit=30,maxLines=3) => {
-  const words=String(value||'').trim().split(/\\s+/).filter(Boolean);
+  const words=String(value||'').trim().split(/\s+/).filter(Boolean);
   const lines=[];
   let line='';
   for(const word of words){
@@ -27,7 +27,7 @@ const projectPreviewSvg = (p,meta={}) => {
   const repo=String(p.repo||'project').slice(0,72);
   const title=String(p.title||repo).trim();
   const category=String(meta.category||p.category||'analytics').replace(/[^a-z0-9 &+.-]/gi,' ').toUpperCase().slice(0,28);
-  const summary=String(p.summary||'An original project built around a practical data workflow.').replace(/\\s+/g,' ').trim();
+  const summary=String(p.summary||'An original project built around a practical data workflow.').replace(/\s+/g,' ').trim();
   const titleLines=wrapPreviewText(title,25,3);
   const summaryLines=wrapPreviewText(summary,52,3);
   const listedTools=Array.isArray(p.technologies)&&p.technologies.length?p.technologies:[meta.language,...(meta.topics||[])].filter(Boolean);
