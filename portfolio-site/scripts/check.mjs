@@ -285,9 +285,9 @@ for(const report of reports){
 }
 assert.equal(workProjects.find(project=>project.repo==='kickstarter-analytics-engineering')?.title,'Kickstarter Analytics Engineering Platform');
 assert(work.includes('Kickstarter Analytics Engineering Platform'));
-const contactHtml=documents.get(path.join(out,'contact/index.html'));
-assert(/<form[^>]*id="simple-project-inquiry"[^>]*novalidate/.test(contactHtml),'Contact form must route invalid data through the inline validator.');
-for(const field of ['name','email','description','budgetRange'])assert(contactHtml.includes('id="simple-inquiry-'+field+'-error"'),'Contact field is missing its inline error target: '+field);
+const contactInquiryHtml=documents.get(path.join(out,'contact/index.html'));
+assert(/<form[^>]*id="simple-project-inquiry"[^>]*novalidate/.test(contactInquiryHtml),'Contact form must route invalid data through the inline validator.');
+for(const field of ['name','email','description','budgetRange'])assert(contactInquiryHtml.includes('id="simple-inquiry-'+field+'-error"'),'Contact field is missing its inline error target: '+field);
 const paletteLiterals=new Set(['#faf6ef','#382724','#a66e51']);
 for(const cssFile of files.filter(file=>file.endsWith('.css'))){
  const css=await fs.readFile(cssFile,'utf8');
