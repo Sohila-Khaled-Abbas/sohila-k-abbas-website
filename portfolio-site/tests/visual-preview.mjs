@@ -57,25 +57,35 @@ async function settlePage(page){
  let fontState;
  if(!typographyVerified){
   try{
-   await page.waitForFunction(()=>[...document.querySelectorAll('link[rel="stylesheet"]')].some(link=>link.href.includes("fonts.googleapis.com/css2?family=Cormorant")&&link.sheet),{timeout:12000});
+   await page.waitForFunction(
+    ()=>[...document.querySelectorAll('link[rel="stylesheet"]')].some(link=>link.href.includes("fonts.googleapis.com/css2?family=Cormorant")),
+    null,
+    {timeout:12000}
+   );
    fontState=await page.evaluate(async()=>{
+    await document.fonts.ready;
     const [sansFaces,displayFaces]=await Promise.all([
      document.fonts.load('600 16px "DM Sans"'),
      document.fonts.load('italic 500 16px "Cormorant Garamond"')
     ]);
     const heading=document.querySelector("main h1");
     const accent=heading?.querySelector("em");
+    const fontStylesheet=[...document.querySelectorAll('link[rel="stylesheet"]')]
+     .find(link=>link.href.includes("fonts.googleapis.com/css2?family=Cormorant"));
     return {
      sansLoaded:sansFaces.length>0,
      displayLoaded:displayFaces.length>0,
      headingFamily:heading?getComputedStyle(heading).fontFamily:"",
-     accentFamily:accent?getComputedStyle(accent).fontFamily:null
+     accentFamily:accent?getComputedStyle(accent).fontFamily:null,
+     stylesheetHref:fontStylesheet?.href||null,
+     stylesheetLoaded:!!fontStylesheet?.sheet,
+     registeredFonts:[...document.fonts].map(face=>({family:face.family,status:face.status,weight:face.weight,style:face.style}))
     };
    });
-   assert(fontState.sansLoaded,"DM Sans must load before visual QA screenshots.");
+   assert(fontState.sansLoaded,"DM Sans must load before visual QA screenshots. Font diagnostics: "+JSON.stringify(fontState));
    assert.match(fontState.headingFamily,/DM Sans/i,"Page headline must use DM Sans; found "+fontState.headingFamily);
    if(fontState.accentFamily){
-    assert(fontState.displayLoaded,"Cormorant Garamond must load for the italic accent.");
+    assert(fontState.displayLoaded,"Cormorant Garamond must load for the italic accent. Font diagnostics: "+JSON.stringify(fontState));
     assert.match(fontState.accentFamily,/Cormorant Garamond/i,"Italic accent must use Cormorant Garamond; found "+fontState.accentFamily);
    }
    typographyVerified=true;
