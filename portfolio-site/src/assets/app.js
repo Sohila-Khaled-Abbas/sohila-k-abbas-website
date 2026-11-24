@@ -59,24 +59,37 @@ menuButton.addEventListener('click', () => {
   else openMenu();
 });
 $('#navigation a').forEach(a => a.addEventListener('click', () => closeMenu()));
-document.addEventListener('keydown', event => {
+function handleNavigationKeys(event) {
   if (menuButton.getAttribute('aria-expanded') !== 'true') return;
   if (event.key === 'Escape') {
     event.preventDefault();
+    event.stopPropagation();
     closeMenu(true);
     return;
   }
   if (event.key !== 'Tab') return;
-  const items = [...navigation.querySelectorAll('a[href]')];
+  const items = [...navigation.querySelectorAll('a[href]')].filter(item =>
+    item.getClientRects().length > 0 && getComputedStyle(item).visibility !== 'hidden'
+  );
   if (!items.length) return;
   const first = items[0], last = items[items.length - 1];
-  const activeIndex = items.indexOf(document.activeElement);
-  if (event.shiftKey && (activeIndex === 0 || activeIndex === -1)) {
+  const target = event.target;
+  if (event.shiftKey && (target === first || document.activeElement === first)) {
     event.preventDefault();
+    event.stopPropagation();
     last.focus({preventScroll:true});
-  } else if (!event.shiftKey && (activeIndex === items.length - 1 || activeIndex === -1)) {
+  } else if (!event.shiftKey && (target === last || document.activeElement === last)) {
     event.preventDefault();
+    event.stopPropagation();
     first.focus({preventScroll:true});
+  }
+}
+navigation.addEventListener('keydown', handleNavigationKeys, true);
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+    event.preventDefault();
+    event.stopPropagation();
+    closeMenu(true);
   }
 }, true);
 
