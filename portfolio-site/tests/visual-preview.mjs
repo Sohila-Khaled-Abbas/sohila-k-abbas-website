@@ -441,30 +441,38 @@ async function testDashboardCardEmbeds(){
  const cards=loadPage.locator('.dashboard-card[data-access="live"]');
  const count=await cards.count();
  assert.equal(count,12,"All 12 public Power BI reports must remain listed; found "+count+".");
- const loadedTitles=[];
+ const loadedTitles=[],reportFailures=[];
  for(let i=0;i<count;i++){
   const card=cards.nth(i),button=card.locator("[data-load-report]");
-  assert.equal(await card.locator("iframe").count(),0,"Dashboard iframes must stay unloaded until clicked.");
   const title=(await card.locator(".dashboard-card-copy h2").innerText()).trim();
   const url=await button.getAttribute("data-load-report");
-  assert(url?.startsWith("https://app.powerbi.com/view?r="),"Dashboard button must use the published URL for "+title+".");
-  assert.equal(await button.getAttribute("data-report-title"),title,"Embed button needs an accessible report title.");
-  assert.equal(await card.locator('a[href^="https://app.powerbi.com/view?r="]').getAttribute("href"),url,"Open full report link should match the embed URL.");
-  const source=await card.getAttribute("data-source-url");
-  if(source?.startsWith("https://github.com/"))assert.equal(await card.locator('a[href^="https://github.com/"]').getAttribute("href"),source,"GitHub source link must match for "+title+".");
-  await button.click();
-  const frame=card.locator("iframe");
-  await frame.waitFor({state:"attached"});
-  assert((await frame.getAttribute("title")).includes("interactive Power BI report"),"Dashboard iframe title is required for "+title+".");
-  assert.equal(await frame.getAttribute("src"),url,"Dashboard iframe src changed for "+title+".");
-  const contentFrame=await frame.contentFrame();
-  assert(contentFrame,"Power BI iframe browsing context was not created for "+title+".");
-  await contentFrame.waitForLoadState("domcontentloaded",{timeout:45000});
-  assert(contentFrame.url().startsWith("https://app.powerbi.com/"),"Published Power BI report did not navigate for "+title+": "+contentFrame.url());
-  loadedTitles.push(title);
-  console.log("PASS live Power BI report loaded: "+title);
+  const fallback=await card.locator('a[href^="https://app.powerbi.com/view?r="]').getAttribute("href").catch(()=>null);
+  try{
+   assert.equal(await card.locator("iframe").count(),0,"Dashboard iframes must stay unloaded until clicked.");
+   assert(url?.startsWith("https://app.powerbi.com/view?r="),"Dashboard button must use the published URL for "+title+".");
+   assert.equal(await button.getAttribute("data-report-title"),title,"Embed button needs an accessible report title.");
+   assert.equal(fallback,url,"Open full report link should match the embed URL.");
+   const source=await card.getAttribute("data-source-url");
+   if(source?.startsWith("https://github.com/"))assert.equal(await card.locator('a[href^="https://github.com/"]').getAttribute("href"),source,"GitHub source link must match for "+title+".");
+   await button.click();
+   const frame=card.locator("iframe");
+   await frame.waitFor({state:"attached",timeout:8000});
+   assert((await frame.getAttribute("title")).includes("interactive Power BI report"),"Dashboard iframe title is required for "+title+".");
+   assert.equal(await frame.getAttribute("src"),url,"Dashboard iframe src changed for "+title+".");
+   const contentFrame=await frame.contentFrame();
+   assert(contentFrame,"Power BI iframe browsing context was not created for "+title+".");
+   await contentFrame.waitForLoadState("domcontentloaded",{timeout:18000});
+   assert(contentFrame.url().startsWith("https://app.powerbi.com/"),"Published Power BI report did not navigate for "+title+": "+contentFrame.url());
+   loadedTitles.push(title);
+   console.log("PASS live Power BI report loaded: "+title+" | "+url);
+  }catch(error){
+   const failure={title,url,fallback,error:error?.message||String(error)};
+   reportFailures.push(failure);
+   console.error("LIVE_REPORT_FAILURE "+JSON.stringify(failure));
+  }
  }
  await loadPage.close();
+ if(reportFailures.length)throw new Error("Power BI report load failures ("+reportFailures.length+"/"+count+"): "+JSON.stringify(reportFailures));
  assert.equal(new Set(loadedTitles).size,count,"Every public report should be unique and loaded exactly once.");
  console.log("PASS all "+count+" published Power BI reports loaded through their own click-to-load controls.");
 
