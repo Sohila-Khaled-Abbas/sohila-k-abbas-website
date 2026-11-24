@@ -61,7 +61,7 @@ for(const [file,html] of documents){
   assert.equal(ids.length,new Set(ids).size,'Duplicate id: '+file);
   assert.equal([...html.matchAll(/<h1\b/g)].length,1,'One H1 is required: '+file);
   assert(html.includes('name="description"'),'Missing description: '+file);
-  assert(html.includes('family=Instrument+Serif'),'Instrument Serif must load on every generated page: '+file);
+  assert(html.includes('family=Cormorant+Garamond'),'Instrument Serif must load on every generated page: '+file);
   for(const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)){
     const value=match[1];
     if(/^(https?:|mailto:|tel:|data:)/.test(value))continue;
@@ -129,7 +129,7 @@ for(const term of ['Power BI','SQL','DAX','data modeling','Power Query','Analyti
 assert(!home.includes('Work with me')&&!home.includes('Fixed quote')&&!home.includes('You send your data or problem.'),'Homepage must not read as a freelance-services funnel.');
 assert(!home.includes('Data Tea')&&!home.includes('LEARNING IN PUBLIC')&&!home.includes('roadmap'),'Retired learning/community material must not appear on the homepage.');
 assert(!home.includes('class="home-testimonial-card"')&&!home.includes('data-motion-toggle'),'Decorative testimonial counters and obsolete motion controls must not be reintroduced.');
-assert(home.includes('Instrument+Serif')&&home.includes('DM+Sans'),'Homepage must use the Instrument Serif and DM Sans editorial pairing.');
+assert(home.includes('Cormorant+Garamond')&&home.includes('DM+Sans'),'Homepage must use the Instrument Serif and DM Sans editorial pairing.');
 assert(home.includes('href="/editorial.css"'),'Editorial presentation layer must load.');
 const themeBootPosition=home.indexOf('document.documentElement.dataset.theme=');
 const firstStylePosition=home.indexOf('rel="stylesheet"');
@@ -295,7 +295,7 @@ for(const cssFile of files.filter(file=>file.endsWith('.css'))){
 }
 const paletteTheme=await fs.readFile(path.join(out,'theme.css'),'utf8');
 assert(paletteTheme.includes('--ivory:#FAF6EF')&&paletteTheme.includes('--espresso:#382724')&&paletteTheme.includes('--copper:#A66E51'),'The exact approved brand palette must remain the source of theme colors.');
-assert(paletteTheme.includes('--display:"Instrument Serif"'),'Instrument Serif must be the site display font.');
+assert(paletteTheme.includes('--display:"Cormorant Garamond"'),'Instrument Serif must be the site display font.');
 
 const brandArtworkFiles=[
  path.join(root,'src/assets/favicon.svg'),
