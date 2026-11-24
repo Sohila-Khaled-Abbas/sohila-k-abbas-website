@@ -660,7 +660,18 @@ async function testSitewideSEO(){
  assert(/User-agent:\s*\*/i.test(robotsText)&&/Allow:\s*\//i.test(robotsText),"robots.txt must allow public crawling.");
  assert(robotsText.includes("https://sohila-khaled-abbas.vercel.app/sitemap.xml"),"robots.txt must point to the production sitemap.");
  assert(!robotsText.includes(base.hostname),"robots.txt must not publish a preview URL.");
+ const localRedirectRules=base.hostname==="127.0.0.1"||base.hostname==="localhost"
+  ? JSON.parse(await fs.readFile(path.resolve(process.cwd(),"vercel.json"),"utf8")).redirects||[]
+  : null;
  async function assertRedirectToWork(legacyPath,label){
+  if(localRedirectRules){
+   const key=legacyPath.split("/").filter(Boolean).at(-1).toLowerCase();
+   const configured=localRedirectRules.some(rule=>
+    rule.destination==="/work/"&&rule.statusCode===301&&rule.source.toLowerCase().includes(key)
+   );
+   assert(configured,label+" must retain an explicit Vercel 301 rule to /work/ in vercel.json.");
+   return;
+  }
   const canonicalPath=legacyPath.endsWith("/")?legacyPath:legacyPath+"/";
   const canonical=await page.request.get(new URL(canonicalPath,base).href,{headers,maxRedirects:0});
   assert.equal(canonical.status(),301,label+" canonical route must issue a 301 redirect.");
