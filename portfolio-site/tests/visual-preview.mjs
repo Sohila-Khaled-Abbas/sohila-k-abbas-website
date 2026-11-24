@@ -387,7 +387,7 @@ async function testReportLoading(){
  console.log("PASS click-to-load public Power BI embed, iframe title, and original source link.");
 }
 async function testB2BProjectPageEmbed(){
- for(const width of [390,768,1280,1920]){
+ for(const width of [360,390,768,1024,1280,1920]){
   const page=await browser.newPage({viewport:{width,height:900}});
   await page.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
   await page.route("https://app.powerbi.com/**",route=>route.abort());
@@ -418,35 +418,84 @@ async function testB2BProjectPageEmbed(){
  }
 }
 async function testDashboardCardEmbeds(){
- for(const width of [390,768,1280,1920]){
+ const loadPage=await browser.newPage({viewport:{width:1280,height:900}});
+ await loadPage.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
+ await addProtectionHeader(loadPage);
+ await loadPage.goto(new URL("/dashboards/",base).href,{waitUntil:"domcontentloaded"});
+ const cards=loadPage.locator('.dashboard-card[data-access="live"]');
+ const count=await cards.count();
+ assert(count>=11,"All public Power BI reports must remain listed; found "+count+".");
+ const loadedTitles=[];
+ for(let i=0;i<count;i++){
+  const card=cards.nth(i),button=card.locator("[data-load-report]");
+  assert.equal(await card.locator("iframe").count(),0,"Dashboard iframes must stay unloaded until clicked.");
+  const title=(await card.locator(".dashboard-card-copy h2").innerText()).trim();
+  const url=await button.getAttribute("data-load-report");
+  assert(url?.startsWith("https://app.powerbi.com/view?r="),"Dashboard button must use the published URL for "+title+".");
+  assert.equal(await button.getAttribute("data-report-title"),title,"Embed button needs an accessible report title.");
+  assert.equal(await card.locator('a[href^="https://app.powerbi.com/view?r="]').getAttribute("href"),url,"Open full report link should match the embed URL.");
+  const source=await card.getAttribute("data-source-url");
+  if(source?.startsWith("https://github.com/"))assert.equal(await card.locator('a[href^="https://github.com/"]').getAttribute("href"),source,"GitHub source link must match for "+title+".");
+  await button.click();
+  const frame=card.locator("iframe");
+  await frame.waitFor({state:"attached"});
+  assert((await frame.getAttribute("title")).includes("interactive Power BI report"),"Dashboard iframe title is required for "+title+".");
+  assert.equal(await frame.getAttribute("src"),url,"Dashboard iframe src changed for "+title+".");
+  const contentFrame=await frame.contentFrame();
+  assert(contentFrame,"Power BI iframe browsing context was not created for "+title+".");
+  await contentFrame.waitForLoadState("domcontentloaded",{timeout:45000});
+  assert(contentFrame.url().startsWith("https://app.powerbi.com/"),"Published Power BI report did not navigate for "+title+": "+contentFrame.url());
+  loadedTitles.push(title);
+  console.log("PASS live Power BI report loaded: "+title);
+ }
+ await loadPage.close();
+ assert.equal(new Set(loadedTitles).size,count,"Every public report should be unique and loaded exactly once.");
+ console.log("PASS all "+count+" published Power BI reports loaded through their own click-to-load controls.");
+
+ for(const width of [360,390,768,1024,1280,1920]){
   const page=await browser.newPage({viewport:{width,height:900}});
   await page.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
   await page.route("https://app.powerbi.com/**",route=>route.abort());
   await addProtectionHeader(page);
   await page.goto(new URL("/dashboards/",base).href,{waitUntil:"domcontentloaded"});
-  const cards=page.locator('.dashboard-card[data-access="live"]');
-  const count=await cards.count();
-  assert(count>0,"Dashboard page should include public live-report cards.");
-  for(let i=0;i<count;i++){
-   const card=cards.nth(i),button=card.locator("[data-load-report]");
-   assert.equal(await card.locator("iframe").count(),0,"Dashboard iframes must not be loaded without a click.");
-   const title=(await card.locator(".dashboard-card-copy h2").innerText()).trim();
-   const url=await button.getAttribute("data-load-report");
-   assert(url?.startsWith("https://app.powerbi.com/view?r="),"Dashboard button must use a valid published URL.");
-   assert.equal(await button.getAttribute("data-report-title"),title,"Embed button needs a report-specific accessible title.");
-   assert.equal(await card.locator('a[href^="https://app.powerbi.com/view?r="]').getAttribute("href"),url,"Open full report link should match the embed URL.");
-  }
-  const card=cards.first(),button=card.locator("[data-load-report]");
-  await button.click();
-  const frame=card.locator("iframe");
+  const first=page.locator('.dashboard-card[data-access="live"]').first();
+  await first.locator("[data-load-report]").click();
+  const frame=first.locator("iframe");
   await frame.waitFor({state:"attached"});
-  assert((await frame.getAttribute("title")).includes("interactive Power BI report"),"Dashboard iframe title is required.");
-  const box=await frame.evaluate(el=>{const f=el.getBoundingClientRect(),c=el.closest(".dashboard-card").getBoundingClientRect();return {left:f.left,right:f.right,width:f.width,cardLeft:c.left,cardRight:c.right};});
-  assert(box.width>0&&box.left>=box.cardLeft-1&&box.right<=box.cardRight+1,"Dashboard iframe overflows at "+width+"px: "+JSON.stringify(box));
+  const geometry=await frame.evaluate(el=>{
+   const f=el.getBoundingClientRect(),shell=el.closest(".report-embed-shell").getBoundingClientRect();
+   return {left:f.left,right:f.right,width:f.width,shellLeft:shell.left,shellRight:shell.right,shellWidth:shell.width,ratio:shell.width/shell.height};
+  });
+  assert(geometry.width>0&&geometry.left>=geometry.shellLeft-1&&geometry.right<=geometry.shellRight+1,"Dashboard iframe overflows at "+width+"px: "+JSON.stringify(geometry));
+  assert(Math.abs(geometry.ratio-(width<=760?4/3:16/9))<.04,"Dashboard embed aspect ratio changed at "+width+"px.");
   await page.close();
-  console.log("PASS Dashboard live iframe at "+width+"px.");
+  console.log("PASS responsive Dashboard iframe frame at "+width+"px.");
  }
 }
+async function testB2BWorkCardEmbed(){
+ for(const width of [360,390,768,1024,1280,1920]){
+  const page=await browser.newPage({viewport:{width,height:900}});
+  await page.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
+  await page.route("https://app.powerbi.com/**",route=>route.abort());
+  await addProtectionHeader(page);
+  await page.goto(new URL("/work/",base).href,{waitUntil:"domcontentloaded"});
+  const card=page.locator(".work-featured .pinned-case-card").first();
+  const button=card.locator(".work-card-live-preview [data-load-report]");
+  const url=await button.getAttribute("data-load-report");
+  await button.click();
+  const frame=card.locator(".work-card-live-preview iframe");
+  await frame.waitFor({state:"attached"});
+  assert.equal(await frame.getAttribute("src"),url);
+  assert((await frame.getAttribute("title")).includes("interactive Power BI report"));
+  const geometry=await frame.evaluate(el=>{const f=el.getBoundingClientRect(),shell=el.closest(".report-embed-shell").getBoundingClientRect();return {left:f.left,right:f.right,width:f.width,shellLeft:shell.left,shellRight:shell.right,ratio:shell.width/shell.height};});
+  assert(geometry.width>0&&geometry.left>=geometry.shellLeft-1&&geometry.right<=geometry.shellRight+1,"B2B Work-card iframe overflow at "+width+"px: "+JSON.stringify(geometry));
+  assert(Math.abs(geometry.ratio-(width<=760?4/3:16/9))<.04,"B2B Work-card aspect ratio changed at "+width+"px.");
+  assert.equal((await card.locator(".report-scenario-disclaimer").innerText()).trim(),"Portfolio scenario. Report branding is from the practice dataset.");
+  await page.close();
+  console.log("PASS B2B Work-card click-to-load embed at "+width+"px.");
+ }
+}
+
 async function testResumePrint(){
  const page=await browser.newPage({viewport:{width:1280,height:900}});
  await page.addInitScript(()=>{window.__printCalled=false;window.print=()=>{window.__printCalled=true;};});
