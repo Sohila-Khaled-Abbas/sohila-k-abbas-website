@@ -475,7 +475,9 @@ async function testDashboardCardEmbeds(){
    await frame.waitFor({state:"attached",timeout:8000});
    assert((await frame.getAttribute("title")).includes("interactive Power BI report"),"Dashboard iframe title is required for "+title+".");
    assert.equal(await frame.getAttribute("src"),url,"Dashboard iframe src changed for "+title+".");
-   const contentFrame=await frame.contentFrame();
+   const frameHandle=await frame.elementHandle();
+   assert(frameHandle,"Power BI iframe element was not attached for "+title+".");
+   const contentFrame=await frameHandle.contentFrame();
    assert(contentFrame,"Power BI iframe browsing context was not created for "+title+".");
    await contentFrame.waitForLoadState("domcontentloaded",{timeout:18000});
    assert(contentFrame.url().startsWith("https://app.powerbi.com/"),"Published Power BI report did not navigate for "+title+": "+contentFrame.url());
