@@ -36,6 +36,26 @@
   },
   "redirects": [
     {
+      "source": "/projects/maxab-b2b-retail-wallet-optimization/:path*",
+      "destination": "/work/",
+      "statusCode": 301
+    },
+    {
+      "source": "/projects/maxab-b2b-retail-wallet-optimization",
+      "destination": "/work/",
+      "statusCode": 301
+    },
+    {
+      "source": "/projects/MaxAB_B2B_Retail_Wallet_Optimization/:path*",
+      "destination": "/work/",
+      "statusCode": 301
+    },
+    {
+      "source": "/projects/MaxAB_B2B_Retail_Wallet_Optimization",
+      "destination": "/work/",
+      "statusCode": 301
+    },
+    {
       "source": "/learning",
       "destination": "/work/",
       "permanent": true
