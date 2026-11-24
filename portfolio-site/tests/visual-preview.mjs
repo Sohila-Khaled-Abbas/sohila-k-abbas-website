@@ -192,7 +192,7 @@ async function captureRoute(route,width,height,theme,name){
  const page=await browser.newPage({viewport:{width,height},deviceScaleFactor:1});
  const browserErrors=[];
  page.on("console",message=>{if(message.type()==="error")browserErrors.push("console: "+message.text());});
- page.on("pageerror",error=>browserErrors.push("pageerror: "+error.message));
+ page.on("pageerror",error=>browserErrors.push("pageerror: "+error.message+"\n"+(error.stack||"")));
  page.on("response",response=>{
   const request=response.request();
   if(response.status()>=400&&["document","script","stylesheet","image","font"].includes(request.resourceType())){
