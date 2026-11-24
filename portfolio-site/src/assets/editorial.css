@@ -573,3 +573,7 @@ button,a,input,select,textarea,summary,[tabindex]:not([tabindex="-1"]){-webkit-t
  .dashboard-live-preview .report-load-prompt h2,.report-page #interactive .report-load-prompt h2,.story-report-experience .report-load-prompt h2{font-size:clamp(1.5rem,6vw,2rem)}
  .dashboard-live-preview .report-load-prompt p,.report-page #interactive .report-load-prompt p,.story-report-experience .report-load-prompt p{font-size:.9rem}
 }
+
+/* Keep editorial secondary controls and source-map labels WCAG-readable. */
+.github-source-update details summary{color:var(--ink)!important;opacity:1}
+.repo-filter,.repo-filter>span,.source-map-status,.source-map-overline{color:var(--ink)!important;opacity:1}
