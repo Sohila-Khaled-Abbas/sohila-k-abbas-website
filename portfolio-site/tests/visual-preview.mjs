@@ -357,32 +357,35 @@ async function testReportLoading(){
  console.log("PASS click-to-load public Power BI embed, iframe title, and original source link.");
 }
 async function testB2BProjectPageEmbed(){
- const page=await browser.newPage({viewport:{width:390,height:844}});
- await page.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
- await page.route("https://app.powerbi.com/**",route=>route.abort());
- await addProtectionHeader(page);
- await page.goto(new URL("/projects/fmcg-sales-churn-drop-analysis-powerbi/",base).href,{waitUntil:"domcontentloaded"});
- const chapter=page.locator('[data-story-chapter="result"]');
- assert.equal(await chapter.count(),1,"B2B case page must show its result chapter.");
- await chapter.click();
- await page.locator("#story-result").waitFor({state:"visible"});
- const note=page.locator("#story-result .report-scenario-disclaimer");
- assert.equal((await note.innerText()).replace(/\\s+/g," ").trim(),"Portfolio scenario. Report branding is from the practice dataset.");
- const button=page.locator("#story-result [data-load-report]");
- assert.equal(await button.count(),1,"B2B project page needs a click-to-load live report.");
- assert.equal(await page.locator("#story-result iframe").count(),0,"B2B iframe must remain absent before the user clicks.");
- const url=await button.getAttribute("data-load-report");
- assert(url?.startsWith("https://app.powerbi.com/view?r="),"B2B iframe must use the existing published URL.");
- await button.click();
- const frame=page.locator("#story-result iframe");
- await frame.waitFor({state:"attached"});
- assert((await frame.getAttribute("title")).includes("interactive Power BI report"),"B2B iframe needs an accessible title.");
- assert.equal(await frame.getAttribute("src"),url);
- const geometry=await frame.evaluate(el=>{const a=el.getBoundingClientRect(),b=el.closest(".report-embed-shell").getBoundingClientRect();return {left:a.left,right:a.right,width:a.width,shellLeft:b.left,shellRight:b.right,shellWidth:b.width};});
- assert(geometry.width>0&&geometry.left>=geometry.shellLeft-1&&geometry.right<=geometry.shellRight+1,"B2B iframe overflows its responsive shell: "+JSON.stringify(geometry));
- assert(await page.locator('#story-result a[href^="https://github.com/"]').count()>0,"B2B GitHub source link must remain.");
- await page.close();
- console.log("PASS B2B project-page disclaimer, click-to-load iframe, accessible title, GitHub source and mobile containment.");
+ for(const width of [390,768,1280,1920]){
+  const page=await browser.newPage({viewport:{width,height:900}});
+  await page.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
+  await page.route("https://app.powerbi.com/**",route=>route.abort());
+  await addProtectionHeader(page);
+  await page.goto(new URL("/projects/fmcg-sales-churn-drop-analysis-powerbi/",base).href,{waitUntil:"domcontentloaded"});
+  const chapter=page.locator('[data-story-chapter="result"]');
+  assert.equal(await chapter.count(),1,"B2B case page must show its result chapter.");
+  await chapter.click();
+  await page.locator("#story-result").waitFor({state:"visible"});
+  const note=page.locator("#story-result .report-scenario-disclaimer");
+  assert.equal(await note.count(),1,"B2B case page must show one practice-dataset disclaimer.");
+  assert.equal((await note.innerText()).replace(/\\s+/g," ").trim(),"Portfolio scenario. Report branding is from the practice dataset.");
+  const button=page.locator("#story-result [data-load-report]");
+  assert.equal(await button.count(),1,"B2B project page needs a click-to-load live report.");
+  assert.equal(await page.locator("#story-result iframe").count(),0,"B2B iframe must remain absent before the user clicks.");
+  const url=await button.getAttribute("data-load-report");
+  assert(url?.startsWith("https://app.powerbi.com/view?r="),"B2B iframe must use the existing published URL.");
+  await button.click();
+  const frame=page.locator("#story-result iframe");
+  await frame.waitFor({state:"attached"});
+  assert((await frame.getAttribute("title")).includes("interactive Power BI report"),"B2B iframe needs an accessible title.");
+  assert.equal(await frame.getAttribute("src"),url);
+  const geometry=await frame.evaluate(el=>{const a=el.getBoundingClientRect(),b=el.closest(".report-embed-shell").getBoundingClientRect();return {left:a.left,right:a.right,width:a.width,shellLeft:b.left,shellRight:b.right,shellWidth:b.width};});
+  assert(geometry.width>0&&geometry.left>=geometry.shellLeft-1&&geometry.right<=geometry.shellRight+1,"B2B iframe overflows at "+width+"px: "+JSON.stringify(geometry));
+  assert(await page.locator('#story-result a[href^="https://github.com/"]').count()>0,"B2B GitHub source link must remain.");
+  await page.close();
+  console.log("PASS B2B project-page iframe and disclaimer at "+width+"px.");
+ }
 }
 async function testDashboardCardEmbeds(){
  for(const width of [390,768,1280,1920]){
