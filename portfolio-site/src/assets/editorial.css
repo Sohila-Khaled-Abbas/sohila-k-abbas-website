@@ -579,3 +579,7 @@ button,a,input,select,textarea,summary,[tabindex]:not([tabindex="-1"]){-webkit-t
 @media(max-width:760px){
  .work-card-embed-shell{aspect-ratio:4/3}
 }
+
+/* Keep the selected typographic hierarchy explicit across the full cascade. */
+h1,h2,h3,h4{font-family:"DM Sans",Inter,Arial,Helvetica,sans-serif!important}
+h1 em,h2 em,h3 em,h4 em{font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif!important;font-style:italic}
