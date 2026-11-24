@@ -534,6 +534,7 @@ button,input,select,textarea{font:inherit}
 .source-map-status{font-size:.72rem}
 .editorial-hero h1{max-width:15ch}
 @media(max-width:760px){
+ .work-card-embed-shell{aspect-ratio:4/3}
  .editorial-hero-proof{font-size:.94rem}
  .editorial-trust-links{gap:.8rem 1rem}
  .work-card-embed-shell .report-load-prompt p{font-size:.78rem}
