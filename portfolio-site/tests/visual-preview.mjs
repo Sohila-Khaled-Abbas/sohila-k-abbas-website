@@ -4,9 +4,10 @@ import path from "node:path";
 import {chromium} from "playwright";
 
 const baseUrl=process.env.BASE_URL;
-if(!baseUrl)throw new Error("BASE_URL must point to the actual Vercel preview deployment.");
+if(!baseUrl)throw new Error("BASE_URL must point to the exact-commit preview used for visual QA.");
 const base=new URL(baseUrl);
-if(base.protocol!=="https:"||!base.hostname.endsWith(".vercel.app"))throw new Error("Visual tests only accept an HTTPS Vercel preview URL.");
+const allowLocalBase=process.env.ALLOW_LOCAL_BASE_URL==="true"&&base.protocol==="http:"&&["127.0.0.1","localhost"].includes(base.hostname);
+if(!allowLocalBase&&(base.protocol!=="https:"||!base.hostname.endsWith(".vercel.app")))throw new Error("Visual tests accept only an HTTPS Vercel preview URL or explicitly enabled loopback QA.");
 const screenshotDir=path.resolve(process.cwd(),"..","screenshots");
 await fs.mkdir(screenshotDir,{recursive:true});
 
