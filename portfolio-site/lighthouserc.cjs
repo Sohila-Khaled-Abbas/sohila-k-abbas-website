@@ -22,8 +22,8 @@ if(preset==='desktop'){
 module.exports={
  ci:{
   collect:{
-   url:[new URL('/',origin).href],
-   numberOfRuns:3,
+   url:['/','/work/','/projects/fmcg-sales-churn-drop-analysis-powerbi/','/dashboards/','/contact/','/resume/'].map(route=>new URL(route,origin).href),
+   numberOfRuns:1,
    chromePath:process.env.CHROME_PATH,
    settings
   },
