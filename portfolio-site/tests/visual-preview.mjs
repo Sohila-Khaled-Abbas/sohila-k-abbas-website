@@ -308,7 +308,7 @@ async function captureRoute(route,width,height,theme,name){
    await moreProjects.click();
    await page.waitForFunction(previous=>{
     const status=document.querySelector("#repo-status");
-    const match=status?.textContent.match(/Showing (\\d+) of /);
+    const match=status?.textContent.match(/Showing (\d+) of /);
     return match&&Number(match[1])>previous;
    },visibleBefore,{timeout:5000});
    moreClicks++;
