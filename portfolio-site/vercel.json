@@ -294,6 +294,36 @@
       "source": "/projects/the-data-tea/:path*",
       "destination": "/work/",
       "permanent": true
+    },
+    {
+      "source": "/projects/docker-hadoop",
+      "destination": "/work/",
+      "statusCode": 301
+    },
+    {
+      "source": "/projects/docker-hadoop/:path*",
+      "destination": "/work/",
+      "statusCode": 301
+    },
+    {
+      "source": "/projects/enterprise-hr-analytics",
+      "destination": "/work/",
+      "statusCode": 301
+    },
+    {
+      "source": "/projects/enterprise-hr-analytics/:path*",
+      "destination": "/work/",
+      "statusCode": 301
+    },
+    {
+      "source": "/projects/sql-server-data-platform",
+      "destination": "/work/",
+      "statusCode": 301
+    },
+    {
+      "source": "/projects/sql-server-data-platform/:path*",
+      "destination": "/work/",
+      "statusCode": 301
     }
   ]
 }

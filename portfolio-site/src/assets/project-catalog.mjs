@@ -1,7 +1,7 @@
 export const OWNER='Sohila-Khaled-Abbas';
 export function category(repo){const n=repo.name.toLowerCase();if(repo.fork||/roadmap|second.brain|course|diploma|fundamentals|workshop|^linux$|bootdev|awesome|tidytuesday|anshlamba|forage|job.simulation/.test(n))return 'learning';if(/n8n|nl2sql|sentiment|gpt-oss|eur-egp|rate-monitor/.test(n))return 'automation';if(/portfolio|website|showcase|deep.clean|local_data_aggregator|^the-data-tea$|hr-analytics-hub|data-career-roadmap-generator/.test(n))return 'apps';if(/pipeline|dwh|warehouse|etl|kafka|hadoop|streampulse|employee-directory|pixelfed|cosmetics|kickstarter|enterprise-hr|sql-server-data-platform|novatel/.test(n))return 'engineering';return 'analytics';}
 export function safeHomepage(value){try{const u=new URL(value);return u.protocol==='https:'&&!u.username&&!u.password?u.href:null;}catch{return null;}}
-const excludedPortfolioRepositories=new Set(['MaxAB_B2B_Retail_Wallet_Optimization','flyrank-ml-internship-starter']);
+const excludedPortfolioRepositories=new Set(['MaxAB_B2B_Retail_Wallet_Optimization','flyrank-ml-internship-starter','docker-hadoop','enterprise-hr-analytics','sql-server-data-platform']);
 const nonWorkTitlePattern=/\b(?:learning roadmap|learning repository|learning in public|tutorial|course(?:work)?|diploma|workshop|bootcamp|job simulation|virtual experience|data tea|second brain|mentor|mentoring|community resource|community hub|forked resource|roadmap)\b/i;
 export function isClientWorkRepository(repository,project={},caseStudy=null){
   if(!repository||repository.fork||excludedPortfolioRepositories.has(repository.name)||category(repository)==='learning')return false;

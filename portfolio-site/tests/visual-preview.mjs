@@ -107,13 +107,29 @@ async function inspectLayout(page){
   const root=document.documentElement,body=document.body,scroll=document.scrollingElement;
   const rootMetrics={rootRect:Math.round(root.getBoundingClientRect().width),rootClient:root.clientWidth,rootScroll:root.scrollWidth,bodyRect:Math.round(body.getBoundingClientRect().width),bodyClient:body.clientWidth,bodyScroll:body.scrollWidth,scrollLeft:scroll?.scrollLeft,rootMargin:getComputedStyle(root).margin,bodyMargin:getComputedStyle(body).margin,rootPadding:getComputedStyle(root).padding,bodyPadding:getComputedStyle(body).padding};
   const bodyChildren=[...body.children].map(element=>{const r=element.getBoundingClientRect(),st=getComputedStyle(element);return {tag:element.tagName.toLowerCase(),id:element.id||"",className:typeof element.className==="string"?element.className:"",left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width),scrollWidth:element.scrollWidth,clientWidth:element.clientWidth,position:st.position,transform:st.transform,overflowX:st.overflowX};});
-  return {width,rootWidth,bodyWidth,rootMetrics,bodyChildren,clipped,overflowCandidates,overflowingScrollContainers,pseudoOverflow,theme:document.documentElement.dataset.theme,background:getComputedStyle(document.body).backgroundColor};
+  const overlapSelectors=[".editorial-hero-copy",".editorial-hero-portrait",".editorial-about-copy",".editorial-about-portrait",".editorial-contact-main",".editorial-contact-note",".editorial-case-media",".editorial-case-copy",".resume-main",".resume-aside",".dashboard-card",".pinned-case-card",".story-panel"];
+  const overlapNodes=[...document.querySelectorAll(overlapSelectors.join(","))].filter(element=>{
+   if(element.closest("[hidden],[aria-hidden=true],details:not([open]),dialog:not([open])"))return false;
+   const rect=element.getBoundingClientRect(),style=getComputedStyle(element);
+   return rect.width>0&&rect.height>0&&style.display!=="none"&&style.visibility!=="hidden"&&Number.parseFloat(style.opacity)>=.05;
+  });
+  const overlaps=[];
+  for(let i=0;i<overlapNodes.length;i++)for(let j=i+1;j<overlapNodes.length;j++){
+   const first=overlapNodes[i],second=overlapNodes[j];
+   if(first.parentElement!==second.parentElement)continue;
+   const a=first.getBoundingClientRect(),b=second.getBoundingClientRect();
+   const intersectionWidth=Math.min(a.right,b.right)-Math.max(a.left,b.left);
+   const intersectionHeight=Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top);
+   if(intersectionWidth>2&&intersectionHeight>2)overlaps.push({first:first.className||first.tagName,second:second.className||second.tagName,intersectionWidth:Math.round(intersectionWidth),intersectionHeight:Math.round(intersectionHeight)});
+  }
+  return {width,rootWidth,bodyWidth,rootMetrics,bodyChildren,clipped,overlaps,overflowCandidates,overflowingScrollContainers,pseudoOverflow,theme:document.documentElement.dataset.theme,background:getComputedStyle(document.body).backgroundColor};
  });
 }
 function assertLayout(audit,width,label){
  assert(audit.rootWidth<=width,"Horizontal overflow on "+label+": document.scrollWidth "+audit.rootWidth+"px > "+width+"px. Root: "+JSON.stringify(audit.rootMetrics)+" Body children: "+JSON.stringify(audit.bodyChildren)+" Scroll containers: "+JSON.stringify(audit.overflowingScrollContainers)+" Pseudo: "+JSON.stringify(audit.pseudoOverflow)+" Right-edge elements: "+JSON.stringify(audit.overflowCandidates));
  assert(audit.bodyWidth<=width,"Body overflow on "+label+": body.scrollWidth "+audit.bodyWidth+"px > "+width+"px");
  assert.equal(audit.clipped.length,0,"Clipped/ellipsized text on "+label+": "+JSON.stringify(audit.clipped));
+ assert.equal(audit.overlaps.length,0,"Overlapping layout blocks on "+label+": "+JSON.stringify(audit.overlaps));
 }
 async function captureRoute(route,width,height,theme,name){
  const page=await browser.newPage({viewport:{width,height},deviceScaleFactor:1});
@@ -132,14 +148,14 @@ async function captureRoute(route,width,height,theme,name){
  assert.equal(h1,1,name+" must have exactly one main H1.");
  const seo=await page.evaluate(()=>{
   const graph=[...document.querySelectorAll('script[type="application/ld+json"]')].flatMap(node=>{try{const data=JSON.parse(node.textContent);return data['@graph']||[data];}catch{return [];}});
-  return {title:document.title,description:document.querySelector('meta[name="description"]')?.content||'',canonical:document.querySelector('link[rel="canonical"]')?.href||'',lang:document.documentElement.lang,themeColor:document.querySelector('meta[name="theme-color"]')?.content||'',ogImage:document.querySelector('meta[property="og:image"]')?.content||'',ogWidth:document.querySelector('meta[property="og:image:width"]')?.content||'',ogHeight:document.querySelector('meta[property="og:image:height"]')?.content||'',twitter:document.querySelector('meta[name="twitter:card"]')?.content||'',robots:document.querySelector('meta[name="robots"]')?.content||'',types:graph.map(item=>item['@type'])};
+  return {title:document.title,description:document.querySelector('meta[name="description"]')?.content||'',canonical:document.querySelector('link[rel="canonical"]')?.href||'',lang:document.documentElement.lang,themeColor:document.querySelector('meta[name="theme-color"]')?.content||'',ogImage:document.querySelector('meta[property="og:image"]')?.content||'',ogType:document.querySelector('meta[property="og:image:type"]')?.content||'',ogWidth:document.querySelector('meta[property="og:image:width"]')?.content||'',ogHeight:document.querySelector('meta[property="og:image:height"]')?.content||'',twitter:document.querySelector('meta[name="twitter:card"]')?.content||'',robots:document.querySelector('meta[name="robots"]')?.content||'',types:graph.map(item=>item['@type'])};
  });
  assert(seo.title.length>0&&seo.title.length<60,name+" title must be under 60 characters: "+seo.title);
  assert(seo.description.length>0&&seo.description.length<160,name+" meta description must be under 160 characters.");
  assert.equal(seo.lang,"en",name+" document language must be English.");
  assert(seo.canonical.startsWith("https://sohila-khaled-abbas.vercel.app/"),name+" canonical must point to production.");
  assert.equal(seo.themeColor,theme==="dark"?"#181415":"#f7f3ed",name+" theme-color must match the active color scheme.");
- assert(seo.ogImage.endsWith("/social-card.svg")&&seo.ogWidth==="1200"&&seo.ogHeight==="630",name+" must use the 1200x630 editorial social image.");
+ assert(seo.ogImage.endsWith("/social-card.png")&&seo.ogType==="image/png"&&seo.ogWidth==="1200"&&seo.ogHeight==="630",name+" must use the 1200x630 editorial social image.");
  assert.equal(seo.twitter,"summary_large_image",name+" Twitter card metadata is missing.");
  assert(seo.types.includes("Person")&&seo.types.includes("WebSite")&&seo.types.includes("BreadcrumbList"),name+" needs Person, WebSite and Breadcrumb structured data.");
  if(name==="b2b-retail-scenario"||name==="smart-supply-chain"||name==="wuzzuf-job-market")assert(seo.types.includes("CreativeWork"),name+" project page needs CreativeWork structured data.");
@@ -557,6 +573,11 @@ async function testSitewideSEO(){
  const removed=await page.request.get(new URL("/projects/MaxAB_B2B_Retail_Wallet_Optimization",base).href,{headers,maxRedirects:0});
  assert.equal(removed.status(),301,"Removed MaxAB project route must issue a 301 redirect.");
  assert.equal(new URL(removed.headers().location,base).pathname,"/work/","Removed project must redirect to Work.");
+ for(const repo of ["docker-hadoop","enterprise-hr-analytics","sql-server-data-platform"]){
+  const retired=await page.request.get(new URL("/projects/"+repo,base).href,{headers,maxRedirects:0});
+  assert.equal(retired.status(),301,"Removed repository route must issue a 301 redirect: "+repo);
+  assert.equal(new URL(retired.headers().location,base).pathname,"/work/","Removed repository must redirect to Work: "+repo);
+ }
  const notFound=await page.goto(new URL("/404.html",base).href,{waitUntil:"domcontentloaded"});
  assert(notFound&&notFound.status()<400,"Custom 404 page must render.");
  assert(await page.locator('main a[href="/work/"]').count()>0&&await page.locator('main a[href="/contact/"]').count()>0,"Custom 404 must link back to Work and Contact.");
@@ -678,7 +699,7 @@ async function testContactInquiryPayload(){
 try{
  const matrix=[];
  const routeFailures=[];
- const requiredWideRoutes=new Set(["work","dashboards","contact","resume","b2b-retail-scenario"]);
+ const requiredWideRoutes=new Set(["home","work","dashboards","contact","resume","b2b-retail-scenario"]);
 for(const page of pages)for(const theme of themes){
   const pageViewports=requiredWideRoutes.has(page.name)?[...viewports,...wideWorkViewports]:viewports;
   for(const viewport of pageViewports){

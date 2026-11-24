@@ -37,11 +37,15 @@ const workRepositories=catalog.repositories.filter(repository=>
 const workNames=new Set(workRepositories.map(repository=>repository.name));
 const workProjects=details.projects.filter(project=>workNames.has(project.repo));
 const workCases=Object.values(sourceCases).filter(item=>workNames.has(item.repo));
-const reports=previewSource.reports.filter(report=>workNames.has(report.repo));
+const legacyDashboardOnlyRepos=new Set(['mobile-technical-support-analytics']);
+const reports=previewSource.reports.filter(report=>workNames.has(report.repo)||legacyDashboardOnlyRepos.has(report.repo));
 const originalCount=workRepositories.filter(repository=>!repository.fork).length;
 assert(workRepositories.length>0,'The work-only catalogue must contain projects');
 assert.equal(workRepositories.length,originalCount,'Forked resources must not enter the client-work catalogue');
 assert(workRepositories.every(repository=>!repository.fork),'Forked resources must be excluded from public client-work listings');
+const explicitlyExcludedRepos=['docker-hadoop','enterprise-hr-analytics','sql-server-data-platform'];
+assert(explicitlyExcludedRepos.every(repo=>!workNames.has(repo)),'Course, training-lab, and employer/client-delivery repositories must be excluded from Work');
+assert.equal(reports.filter(report=>report.live?.access==='public').length,12,'All 12 public Power BI reports must remain available, including the legacy dashboard-only report');
 assert(workRepositories.every(repository=>['analytics','engineering','automation','apps'].includes(category(repository))),'Only work-focused categories may be published');
 assert.equal(workProjects.length,workRepositories.length,'Every published work repository needs a project detail record');
 
@@ -179,11 +183,17 @@ for(const route of ['/learning','/learning/:path*','/community','/community/:pat
   const redirect=redirects.get(route);
   assert(redirect&&redirect.destination==='/work/'&&redirect.permanent===true,'Retired URL must permanently redirect to Work: '+route);
 }
+for(const repo of ['docker-hadoop','enterprise-hr-analytics','sql-server-data-platform'])for(const suffix of ['', '/:path*']){
+  const route='/projects/'+repo+suffix;
+  const redirect=redirects.get(route);
+  assert(redirect&&redirect.destination==='/work/'&&redirect.statusCode===301,'Removed project URL must permanently redirect to Work: '+route);
+}
 assert([...documents.values()].every(html=>!html.includes('href="tel:')),'Do not expose personal telephone links');
 
 assert.equal(new Set(reports.map(report=>report.repo)).size,reports.length,'Duplicate report projects');
 for(const report of reports){
-  assert(workNames.has(report.repo),'A retired resource has a dashboard page: '+report.repo);
+  assert(workNames.has(report.repo)||legacyDashboardOnlyRepos.has(report.repo),'A retired resource has a dashboard page: '+report.repo);
+  if(legacyDashboardOnlyRepos.has(report.repo))assert.equal(report.source_kind,'legacy-portfolio','Dashboard-only report must remain an owner-maintained legacy asset');
   const html=documents.get(path.join(out,'dashboards',report.repo,'index.html'));
   assert(html,'Missing permanent report page: '+report.repo);
   assert(!/<iframe\b/.test(html),'Reports must not load third parties before visitor interaction');
@@ -268,7 +278,15 @@ for(const report of reports){
 }
 assert.equal(workProjects.find(project=>project.repo==='kickstarter-analytics-engineering')?.title,'Kickstarter Analytics Engineering Platform');
 assert(work.includes('Kickstarter Analytics Engineering Platform'));
-await fs.access(path.join(out,'social-card.svg'));
+const socialCard=await fs.readFile(path.join(out,'social-card.png'));
+assert.equal(socialCard.subarray(0,8).toString('hex'),'89504e470d0a1a0a','Social sharing image must be a PNG.');
+assert.equal(socialCard.readUInt32BE(16),1200,'Social image width must be 1200px.');
+assert.equal(socialCard.readUInt32BE(20),630,'Social image height must be 630px.');
+for(const [file,html] of documents){
+  assert(html.includes('/social-card.png'),'Generated page must reference the PNG social image: '+file);
+  assert(html.includes('<meta property="og:image:type" content="image/png">'),'Generated page must declare PNG image type: '+file);
+  assert(html.includes('<meta property="og:image:width" content="1200">')&&html.includes('<meta property="og:image:height" content="630">'),'Generated page must declare 1200x630 social image size: '+file);
+}
 
 console.log('PASS: '+htmlFiles.length+' generated HTML documents, valid local links and anchors, and the work-only route set.');
 console.log('PASS: '+workRepositories.length+' original client-work projects, '+workCases.length+' relevant case studies, '+reports.length+' dashboards, and no learning/community resources.');
