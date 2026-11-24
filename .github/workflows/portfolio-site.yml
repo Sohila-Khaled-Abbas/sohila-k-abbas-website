@@ -90,6 +90,7 @@ jobs:
         run: node tests/visual-preview.mjs
         env:
           BASE_URL: ${{ steps.local_preview.outputs.url }}
+          ALLOW_LOCAL_BASE_URL: 'true'
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
       - name: Build production-indexable site for Lighthouse
         if: steps.local_preview.outputs.url != ''
