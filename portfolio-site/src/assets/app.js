@@ -101,6 +101,15 @@ navigation.addEventListener('focusout', event => {
     destination.focus({preventScroll:true});
   });
 }, true);
+window.addEventListener('focusin', event => {
+  if (menuButton.getAttribute('aria-expanded') !== 'true') return;
+  if (navigation.contains(event.target) || event.target === menuButton) return;
+  const items = visibleNavigationItems();
+  if (!items.length) return;
+  event.stopImmediatePropagation();
+  const destination = navigationTabDirection === 'backward' ? items[items.length - 1] : items[0];
+  destination.focus({preventScroll:true});
+}, true);
 
 $$('.filter').forEach(button => button.addEventListener('click', () => {
   $$('.filter').forEach(item => {
