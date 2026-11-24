@@ -77,6 +77,7 @@ document.querySelectorAll('[data-load-report]').forEach(button => button.addEven
   frame.setAttribute('allow', 'fullscreen');
   const shell = button.closest('.report-embed-shell');
   shell.querySelector('.report-embed-host').append(frame);
+  if (shell.closest('.dashboard-live-preview')) shell.closest('.dashboard-live-preview').classList.add('report-loaded');
   shell.querySelector('.report-load-prompt').hidden = true;
   frame.focus();
 }));
