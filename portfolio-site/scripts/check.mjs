@@ -134,7 +134,7 @@ assert(home.includes('href="/editorial.css"'),'Editorial presentation layer must
 const themeBootPosition=home.indexOf('document.documentElement.dataset.theme=');
 const firstStylePosition=home.indexOf('rel="stylesheet"');
 assert(themeBootPosition>=0&&firstStylePosition>=0&&themeBootPosition<firstStylePosition,'Explicit/system theme must be applied before CSS to prevent flash.');
-assert(home.includes('<meta name="theme-color" content="#f7f3ed">'),'Browser chrome must match the editorial light canvas.');
+assert(home.includes('<meta name="theme-color" content="#FAF6EF">'),'Browser chrome must match the approved ivory canvas.');
 const caseTitles=[
  'B2B Retail Analytics &amp; Churn Diagnostic — Portfolio Scenario',
  'SMART Supply Chain Insights',
