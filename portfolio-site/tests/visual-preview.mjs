@@ -512,6 +512,23 @@ async function testB2BWorkCardEmbed(){
  }
 }
 
+async function testUniquePageTitles(){
+ const page=await browser.newPage({viewport:{width:1280,height:900}});
+ await addProtectionHeader(page);
+ const titles=[];
+ for(const item of pages){
+  const response=await page.goto(new URL(item.route,base).href,{waitUntil:"domcontentloaded"});
+  assert(response&&response.status()===200,"SEO title route failed to load: "+item.route);
+  const metadata=await page.evaluate(()=>({title:document.title,description:document.querySelector('meta[name="description"]')?.content||''}));
+  assert(metadata.title.length>0&&metadata.title.length<60,item.route+" title must be under 60 characters.");
+  assert(metadata.description.length>0&&metadata.description.length<160,item.route+" description must be under 160 characters.");
+  titles.push(metadata.title);
+ }
+ assert.equal(new Set(titles).size,pages.length,"Every generated route must have a unique SEO title: "+JSON.stringify(titles));
+ await page.close();
+ console.log("PASS unique page titles and descriptions for all "+pages.length+" generated routes.");
+}
+
 async function testSitewideSEO(){
  const page=await browser.newPage({viewport:{width:1280,height:900}});
  await addProtectionHeader(page);
@@ -665,8 +682,7 @@ for(const page of pages)for(const theme of themes){
    }
   }
  }
- const routeTitles=matrix.filter(item=>item.theme==="light"&&item.width===390);
- assert.equal(new Set(routeTitles.map(item=>item.title)).size,pages.length,"Every generated page must have a unique title under 60 characters.");
+
  await testThemePersistence();
  await testPreviewDialog();
  await testClipboard();
@@ -674,6 +690,7 @@ for(const page of pages)for(const theme of themes){
  await testB2BProjectPageEmbed();
  await testB2BWorkCardEmbed();
  await testDashboardCardEmbeds();
+ await testUniquePageTitles();
  await testSitewideSEO();
  await testContactInquiryPayload();
  await testResumePrint();
