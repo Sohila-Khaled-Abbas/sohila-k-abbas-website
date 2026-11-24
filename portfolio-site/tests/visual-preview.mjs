@@ -78,11 +78,16 @@ async function inspectLayout(page){
     clipped.push({tag:element.tagName.toLowerCase(),className:typeof element.className==="string"?element.className:"",text:element.textContent.trim().replace(/\s+/g," ").slice(0,90),scrollWidth:element.scrollWidth,clientWidth:element.clientWidth,scrollHeight:element.scrollHeight,clientHeight:element.clientHeight,clamp:style.webkitLineClamp});
    }
   }
-  return {width,rootWidth,bodyWidth,clipped,theme:document.documentElement.dataset.theme,background:getComputedStyle(document.body).backgroundColor};
+  const overflowCandidates=[...document.querySelectorAll("body *")].map(element=>{
+   const rect=element.getBoundingClientRect();
+   const style=getComputedStyle(element);
+   return {tag:element.tagName.toLowerCase(),className:typeof element.className==="string"?element.className:"",text:element.textContent.trim().replace(/\\s+/g," ").slice(0,65),left:Math.round(rect.left),right:Math.round(rect.right),width:Math.round(rect.width),position:style.position,overflowX:style.overflowX};
+  }).filter(item=>item.right>width+1&&item.left<width+1).sort((a,b)=>b.right-a.right).slice(0,16);
+  return {width,rootWidth,bodyWidth,clipped,overflowCandidates,theme:document.documentElement.dataset.theme,background:getComputedStyle(document.body).backgroundColor};
  });
 }
 function assertLayout(audit,width,label){
- assert(audit.rootWidth<=width,"Horizontal overflow on "+label+": document.scrollWidth "+audit.rootWidth+"px > "+width+"px");
+ assert(audit.rootWidth<=width,"Horizontal overflow on "+label+": document.scrollWidth "+audit.rootWidth+"px > "+width+"px. Right-edge elements: "+JSON.stringify(audit.overflowCandidates));
  assert(audit.bodyWidth<=width,"Body overflow on "+label+": body.scrollWidth "+audit.bodyWidth+"px > "+width+"px");
  assert.equal(audit.clipped.length,0,"Clipped/ellipsized text on "+label+": "+JSON.stringify(audit.clipped));
 }
@@ -94,6 +99,8 @@ async function captureRoute(route,width,height,theme,name){
  assert(response&&response.status()<400,route+" returned "+(response?.status()??"no response")+" at "+width+"px");
  await settlePage(page);
  const audit=await inspectLayout(page);
+ const screenshot=path.join(screenshotDir,name+"-"+theme+"-"+width+".png");
+ await page.screenshot({path:screenshot,fullPage:true,animations:"disabled"});
  assertLayout(audit,width,name+" "+theme+" "+width+"px");
  assert.equal(audit.theme,theme,"Theme does not match system preference for "+name+" "+width+"px");
  const h1=await page.locator("main h1").count();
@@ -173,8 +180,6 @@ async function captureRoute(route,width,height,theme,name){
   await page.keyboard.press("Escape");
   assert.equal(await menu.getAttribute("aria-expanded"),"false","Escape should close the mobile navigation.");
  }
- const screenshot=path.join(screenshotDir,name+"-"+theme+"-"+width+".png");
- await page.screenshot({path:screenshot,fullPage:true,animations:"disabled"});
  console.log("PASS "+name+" "+theme+" "+width+"px — HTTP "+response.status()+", theme resolved, no horizontal overflow/clipped text. Screenshot: "+path.basename(screenshot));
  await page.close();
  return {page:name,theme,width,status:"PASS",screenshot:path.basename(screenshot)};
