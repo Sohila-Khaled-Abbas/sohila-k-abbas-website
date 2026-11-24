@@ -276,8 +276,15 @@ async function captureRoute(route,width,height,theme,name){
   await menu.click();
   assert.equal(await menu.getAttribute("aria-expanded"),"true","Mobile navigation did not open.");
   assert(await page.locator("#navigation a[href='/contact/']").isVisible(),"Contact must appear in mobile navigation.");
+  const firstNav=page.locator("#navigation a[href]").first();
+  assert(await firstNav.evaluate(el=>el===document.activeElement),"Opening the mobile menu should move focus into navigation.");
+  await page.keyboard.press("Shift+Tab");
+  assert(await menu.evaluate(el=>el===document.activeElement),"Shift+Tab from the first menu item should wrap to the menu toggle.");
+  await page.keyboard.press("Tab");
+  assert(await firstNav.evaluate(el=>el===document.activeElement),"Tab from the menu toggle should wrap to the first navigation link.");
   await page.keyboard.press("Escape");
   assert.equal(await menu.getAttribute("aria-expanded"),"false","Escape should close the mobile navigation.");
+  assert(await menu.evaluate(el=>el===document.activeElement),"Closing the menu with Escape should restore focus to the toggle.");
  }
  console.log("PASS "+name+" "+theme+" "+width+"px — HTTP "+response.status()+", theme resolved, no horizontal overflow/clipped text. Screenshot: "+path.basename(screenshot));
  return {page:name,theme,width,status:"PASS",screenshot:path.basename(screenshot)};
@@ -496,6 +503,32 @@ async function testB2BWorkCardEmbed(){
  }
 }
 
+async function testSitewideSEO(){
+ const page=await browser.newPage({viewport:{width:1280,height:900}});
+ await addProtectionHeader(page);
+ const bypass=process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
+ const headers=bypass?{"x-vercel-protection-bypass":bypass}:{};
+ const sitemap=await page.request.get(new URL("/sitemap.xml",base).href,{headers});
+ assert.equal(sitemap.status(),200,"sitemap.xml must be served on the preview.");
+ const sitemapText=await sitemap.text();
+ assert(sitemapText.includes("https://sohila-khaled-abbas.vercel.app/"),"Sitemap must use production canonical URLs.");
+ assert(!sitemapText.includes(base.hostname),"Sitemap must never contain preview URLs.");
+ assert(!/MaxAB_B2B_Retail_Wallet_Optimization|maxab-b2b-retail-wallet-optimization|AI_tools_nontechnical|AnshLambaYoutube|awesome-data-engineering|flyrank-ml-internship-starter/i.test(sitemapText),"Removed or work-linked routes must not appear in the sitemap.");
+ const robots=await page.request.get(new URL("/robots.txt",base).href,{headers});
+ assert.equal(robots.status(),200,"robots.txt must be served on the preview.");
+ const robotsText=await robots.text();
+ assert(/User-agent:\\s*\\*/i.test(robotsText)&&/Allow:\\s*\\//i.test(robotsText),"robots.txt must allow public crawling.");
+ assert(robotsText.includes("https://sohila-khaled-abbas.vercel.app/sitemap.xml"),"robots.txt must point to the production sitemap.");
+ assert(!robotsText.includes(base.hostname),"robots.txt must not publish a preview URL.");
+ const removed=await page.request.get(new URL("/projects/MaxAB_B2B_Retail_Wallet_Optimization",base).href,{headers,maxRedirects:0});
+ assert.equal(removed.status(),301,"Removed MaxAB project route must issue a 301 redirect.");
+ assert.equal(new URL(removed.headers().location,base).pathname,"/work/","Removed project must redirect to Work.");
+ const notFound=await page.goto(new URL("/404.html",base).href,{waitUntil:"domcontentloaded"});
+ assert(notFound&&notFound.status()<400,"Custom 404 page must render.");
+ assert(await page.locator('main a[href="/work/"]').count()>0&&await page.locator('main a[href="/contact/"]').count()>0,"Custom 404 must link back to Work and Contact.");
+ await page.close();
+ console.log("PASS sitemap, robots, removed-project 301, preview protection and custom 404.");
+}
 async function testResumePrint(){
  const page=await browser.newPage({viewport:{width:1280,height:900}});
  await page.addInitScript(()=>{window.__printCalled=false;window.print=()=>{window.__printCalled=true;};});
