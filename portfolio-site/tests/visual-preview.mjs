@@ -281,6 +281,10 @@ async function captureRoute(route,width,height,theme,name){
   assert.equal(await page.locator('#repo-grid .repo-card[data-category="learning"]').count(),0,"Learning resources must not appear as professional case studies.");
   const visibleRepoText=(await page.locator("#repo-grid").innerText()).toLowerCase();
   assert(!visibleRepoText.includes("maxab wallet recharge optimization")&&!visibleRepoText.includes("flyrank-ml-internship-starter"),"Removed employer-work repos must not appear in the Work project directory.");
+  const moreProjects=page.locator("#repo-more");
+  let moreClicks=0;
+  while(await moreProjects.isVisible()&&moreClicks<10){await moreProjects.click();moreClicks++;}
+  assert.equal(await moreProjects.isVisible(),false,"All original projects must be expanded before preview coverage is checked.");
   await page.locator("#repo-grid .repo-card .project-visual img").evaluateAll(async images=>{
    for(const image of images){image.loading="eager";try{await image.decode();}catch{}}
   });
