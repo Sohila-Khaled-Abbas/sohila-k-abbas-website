@@ -99,37 +99,28 @@ jobs:
           for (const preset of ['mobile', 'desktop']) {
             const directory = path.resolve('lighthouse-reports', preset);
             const manifest = JSON.parse(await fs.readFile(path.join(directory, 'manifest.json'), 'utf8'));
-            const report = manifest.find(item => item.isRepresentativeRun) || manifest[0];
-            if (!report?.jsonPath) throw new Error('No representative Lighthouse report for ' + preset);
+            if (!manifest.length) throw new Error('No Lighthouse reports for ' + preset);
 
-            const candidates = [
-              report.jsonPath,
-              path.resolve(report.jsonPath),
-              path.resolve(directory, path.basename(report.jsonPath))
-            ];
-            let lhr;
-            for (const candidate of [...new Set(candidates)]) {
-              try {
-                lhr = JSON.parse(await fs.readFile(candidate, 'utf8'));
-                break;
-              } catch {}
+            for (const report of manifest) {
+              if (!report.jsonPath) throw new Error('Missing Lighthouse JSON path for ' + preset);
+              const candidates = [report.jsonPath, path.resolve(report.jsonPath), path.resolve(directory, path.basename(report.jsonPath))];
+              let lhr;
+              for (const candidate of [...new Set(candidates)]) {
+                try { lhr = JSON.parse(await fs.readFile(candidate, 'utf8')); break; } catch {}
+              }
+              if (!lhr) throw new Error('Could not read Lighthouse JSON for ' + (report.url || preset));
+              const score = key => {
+                const value = lhr.categories?.[key]?.score;
+                if (typeof value !== 'number') throw new Error('Missing Lighthouse category score: ' + key);
+                return Math.round(value * 100);
+              };
+              console.log('LHCI_SCORE ' + preset + ' URL=' + (report.url || lhr.finalDisplayedUrl) +
+                ' Performance=' + score('performance') +
+                ' Accessibility=' + score('accessibility') +
+                ' Best Practices=' + score('best-practices') +
+                ' SEO=' + score('seo'));
             }
-            if (!lhr) throw new Error('Could not read the representative Lighthouse report for ' + preset);
-
-            const score = key => {
-              const value = lhr.categories?.[key]?.score;
-              if (typeof value !== 'number') throw new Error('Missing Lighthouse category score: ' + key);
-              return Math.round(value * 100);
-            };
-            console.log(
-              'LHCI_SCORE ' + preset +
-              ' Performance=' + score('performance') +
-              ' Accessibility=' + score('accessibility') +
-              ' Best Practices=' + score('best-practices') +
-              ' SEO=' + score('seo')
-            );
-          }
-          NODE
+          }          NODE
       - name: Upload screenshots and Lighthouse reports
         if: always()
         uses: actions/upload-artifact@v4
