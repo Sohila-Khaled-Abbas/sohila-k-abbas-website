@@ -1651,6 +1651,45 @@
       }
     },
     {
+      "repo": "flyrank-ml-internship-starter",
+      "title": "Sohila Khaled Abbas · Applied ML & Search Intelligence Portfolio",
+      "summary": "Official portfolio, applied machine learning research paper, and autonomous decision-support agent for Sohila Khaled Abbas (Applied ML Intern & Search Intelligence Engineer at FlyRank AI | BI Developer).",
+      "technologies": [
+        "Python",
+        "flyrank",
+        "flyrank-ai",
+        "flyrank-capstone",
+        "flyrank-internship"
+      ],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": "https://sohila-khaled-abbas.github.io/flyrank-ml-internship-starter/",
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 7324,
+          "url": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/README.md"
+        }
+      ],
+      "empty": false,
+      "source": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/README.md",
+      "old_portfolio": false,
+      "auto_generated": true,
+      "github": {
+        "description": "Official portfolio, applied machine learning research paper, and autonomous decision-support agent for Sohila Khaled Abbas (Applied ML Intern & Search Intelligence Engineer at FlyRank AI | BI Developer).",
+        "updated_at": "2026-11-06T17:46:19Z",
+        "pushed_at": "2026-11-06T17:46:16Z",
+        "homepage": "https://sohila-khaled-abbas.github.io/flyrank-ml-internship-starter/",
+        "default_branch": "main",
+        "readme_excerpt": "[](https://sohila-khaled-abbas.github.io/flyrank-ml-internship-starter/) [](https://sohila-khaled-abbas.github.io/flyrank-ml-internship-starter/paper.html) [](https://aifluency.flyrank.ai/verify/sohilakhaled) [](LICENSE)",
+        "readme_sha": "94b13f0f91c9079647b5afd0f03236bcf1956443",
+        "fingerprint": "2026-11-06T17:46:16Z"
+      }
+    },
+    {
       "repo": "fmcg-sales-churn-drop-analysis-powerbi",
       "title": "B2B Retail Analytics & Churn Diagnostic — Portfolio Scenario",
       "summary": "A portfolio scenario exploring retailer sales, customer lifecycle, delivery performance, and commercial mix in an Egyptian B2B grocery-distribution context. The report is a practice project, not a client engagement.",
@@ -2933,6 +2972,39 @@
         "readme_excerpt": "A Streamlit dashboard for exploring marketing campaign conversion, acquisition cost, return on investment, channel performance, and customer segments stored in PostgreSQL.",
         "readme_sha": "ce96823e1b5cd499324fefdcc8f2d051a0ae9913",
         "fingerprint": "2026-11-01T17:24:41Z"
+      }
+    },
+    {
+      "repo": "MaxAB_B2B_Retail_Wallet_Optimization",
+      "title": "MaxAB Wallet Recharge Optimization: Databricks & Power BI",
+      "summary": "This project audits the operational efficiency and financial viability of wallet recharge mechanisms for MaxAB, a B2B retail platform. By ingesting raw operational logs and transaction data into a Databricks Lakehouse, this pipeline cleans, models, and serves data to a Power BI semantic model. The final dashboards provide actionable insights into agent logistics (transit vs. transaction times) and cost optimization (digital vs. manual recharge channels).",
+      "technologies": [],
+      "methods": [],
+      "flow": null,
+      "media": null,
+      "live": null,
+      "presentation": null,
+      "files": [
+        {
+          "path": "README.md",
+          "size": 4660,
+          "url": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization/blob/main/README.md"
+        }
+      ],
+      "empty": false,
+      "source": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization",
+      "readme": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization/blob/main/README.md",
+      "old_portfolio": false,
+      "auto_generated": true,
+      "github": {
+        "description": "",
+        "updated_at": "2026-02-25T22:39:26Z",
+        "pushed_at": "2026-02-25T22:39:22Z",
+        "homepage": null,
+        "default_branch": "main",
+        "readme_excerpt": "This project audits the operational efficiency and financial viability of wallet recharge mechanisms for MaxAB, a B2B retail platform. By ingesting raw operational logs and transaction data into a Databricks Lakehouse, this pipeline cleans, models, and serves data to a Power BI semantic model. The final dashboards provide actionable insights into agent logistics (transit vs. transaction times) and cost optimization (digital vs. manual recharge channels).",
+        "readme_sha": "262492d183e3072cfe5ccde05e2ca9ef1c1e0d3c",
+        "fingerprint": "2026-02-25T22:39:22Z"
       }
     },
     {
@@ -4788,13 +4860,13 @@
       "old_portfolio": false,
       "github": {
         "description": "This repository contains the source code for a personal data portfolio website built for Sohila Khaled Abbas — a recognized BI Developer, Data Analytics Engineer, and Top 200 Arabic-Speaking Influencer in data education.",
-        "updated_at": "2026-11-23T00:03:10Z",
-        "pushed_at": "2026-11-23T00:03:10Z",
+        "updated_at": "2026-11-24T18:15:58Z",
+        "pushed_at": "2026-11-24T18:15:58Z",
         "homepage": "https://sohila-khaled-abbas.vercel.app/",
         "default_branch": "main",
         "readme_excerpt": "Data Analyst & BI Developer | SQL, Python, Power BI, DAX & Power Query | ETL/ELT & Analytics Engineering",
         "readme_sha": "16c85e4db64c08946831796971383efe8ff34842",
-        "fingerprint": "2026-11-23T00:03:10Z"
+        "fingerprint": "2026-11-24T18:15:58Z"
       }
     },
     {
