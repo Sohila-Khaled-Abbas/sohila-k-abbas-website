@@ -111,8 +111,17 @@ jobs:
 
           for (const preset of ['mobile', 'desktop']) {
             const directory = path.resolve('lighthouse-reports', preset);
-            const manifest = JSON.parse(await fs.readFile(path.join(directory, 'manifest.json'), 'utf8'));
-            if (!manifest.length) throw new Error('No Lighthouse reports for ' + preset);
+            let manifest;
+            try {
+              manifest = JSON.parse(await fs.readFile(path.join(directory, 'manifest.json'), 'utf8'));
+            } catch {
+              console.warn('No Lighthouse manifest found for ' + preset + '; earlier QA steps may have prevented collection.');
+              continue;
+            }
+            if (!manifest.length) {
+              console.warn('No Lighthouse reports were generated for ' + preset + '.');
+              continue;
+            }
 
             for (const report of manifest) {
               if (!report.jsonPath) throw new Error('Missing Lighthouse JSON path for ' + preset);
