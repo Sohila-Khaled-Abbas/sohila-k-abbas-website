@@ -70,7 +70,7 @@ for(const [file,html] of documents){
     }
   }
 }
-const requiredRoutes=['index.html','work/index.html','dashboards/index.html','about/index.html','recruiters/index.html','services/index.html','contact/index.html','404.html'];
+const requiredRoutes=['index.html','work/index.html','dashboards/index.html','about/index.html','resume/index.html','recruiters/index.html','services/index.html','contact/index.html','404.html'];
 for(const route of requiredRoutes)assert(documents.has(path.join(out,route)),'Missing required work-focused route: '+route);
 for(const route of ['learning/index.html','learn/index.html','posts/index.html','community/index.html','credentials/index.html','templates/index.html']){
   assert(!documents.has(path.join(out,route)),'Retired public route must not be generated: '+route);
@@ -97,36 +97,33 @@ assert.deepEqual(pinnedOrder,featuredRepos,'Work page must pin the current featu
 assert(work.indexOf('work-featured')<work.indexOf('id="repositories"'),'Featured case studies must appear before the searchable project collection');
 assert(work.includes('<details class="repo-tools-disclosure" data-repo-tools>'),'The project browser must remain available inside an accessible disclosure');
 assert(!/<details class="repo-tools-disclosure" data-repo-tools open>/.test(work),'The project browser must remain collapsed by default');
-assert(work.includes(workRepositories.length+'</strong> projects'),'Work page project count must be derived from filtered client work');
+assert(work.includes('class="repo-tools-count">'+workRepositories.length+' projects</span>'),'Work page project count must be derived from filtered client work');
 assert(!work.includes('data-category="learning"'),'Learning is not a public work category');
 assert(!work.includes('Power BI diploma'),'The retired diploma card must not return');
 assert(!work.includes('Data Tea')&&!work.includes('roadmap'),'Retired learning/community resources must not appear in Work');
 
 const home=documents.get(path.join(out,'index.html'));
-assert(home.includes('Good data.')&&home.includes('Better <em>decisions.</em>'),'Keep the approved homepage headline');
-const homeOrder=['id="hero-title"','home-proof-band','home-featured-work','id="home-process-title"','id="client-notes-title"','id="home-contact"'].map(marker=>home.indexOf(marker));
-assert(homeOrder.every(position=>position>=0)&&homeOrder.every((position,index)=>index===0||homeOrder[index-1]<position),'Homepage must follow hero → proof → featured work → process → recommendations → contact');
-assert(!home.includes('THE DATA TEA')&&!home.includes('Data Tea')&&!home.includes('LEARNING IN PUBLIC'),'Retired homepage sections must not return');
-assert(!home.includes('Learning & resources')&&!home.includes('learning roadmap')&&!home.includes('roadmap'),'Retired learning copy must not appear on the homepage');
-assert(home.includes('Power BI dashboards and reporting for growing businesses, from messy data to decisions you can defend.'),'Homepage hero must state the Power BI offer and audience');
-assert(home.includes('Data Analyst')&&home.includes('Analytics Engineer')&&home.includes('hero-discipline-line'),'Secondary disciplines must remain beneath the BI offer');
-const clientRecommendations=evidence.recommendations.filter(item=>/client recommendation/i.test(item.context||''));
-assert.equal([...home.matchAll(/class="home-testimonial-card"/g)].length,clientRecommendations.length,'Show the published client recommendations only');
-for(const item of clientRecommendations){
-  assert(item.author&&item.quote&&item.published_on&&item.summary&&item.profile,'A client recommendation is missing attribution or context');
-  assert(home.includes(item.author)&&home.includes(item.quote)&&home.includes(item.profile)&&home.includes(item.summary),'Homepage recommendation must retain the approved source excerpt: '+item.author);
-  assert.equal(new URL(item.profile).hostname,'www.linkedin.com');
-}
-assert(!home.includes('COMMUNITY RECOMMENDATION')&&!home.includes('/community/'),'Community recommendations must not be promoted as client evidence');
-assert(home.includes('You send your data or problem.')&&home.includes('I scope it and give a fixed quote.')&&home.includes('You get a dashboard or report you can defend.'),'Show the agreed three-step project process');
-assert(home.includes('Pricing follows the scope.')&&home.includes('A fixed quote comes after reviewing your data, deliverables, and timeline.'),'Describe scope-based pricing without inventing a starting rate');
-assert(!home.includes('[Add an approved quote')&&!home.includes('[Client name]')&&!home.includes('$X')&&!home.includes('REPLACE X BEFORE PUBLICATION'),'Remove visible testimonial and price placeholders');
-assert(home.includes('FEATURED WORK / SMART SUPPLY CHAIN')&&home.includes('/projects/SMART-Supply-Chain-Insights-Dashboard/')&&!home.includes('IN THE STUDIO / PIXELFED'),'Keep the approved completed project in the hero card');
-assert(home.includes('data-motion-toggle'),'Keep the existing pause-animation control');
-assert(home.includes('class="button primary" href="/services/">Work with me'),'The homepage hero must prioritize the services inquiry');
-assert(home.includes('fonts.googleapis.com/css2?family=Instrument+Serif')&&home.includes('family=Inter'),'Keep the existing approved font system');
-assert(home.includes('href="/redesign.css"'),'The existing visual layer must continue to load');
-assert(home.includes('<meta name="theme-color" content="#faf6ef">'),'Initial browser chrome must match the current warm canvas');
+assert(home.includes('Business questions.')&&home.includes('Clearer decisions.'),'Homepage must lead with the BI and analytics case-study proposition.');
+const homeOrder=['id="hero-title"','id="capabilities"','id="case-studies"','id="approach"','id="experience-summary"','id="home-contact"'].map(marker=>home.indexOf(marker));
+assert(homeOrder.every(position=>position>=0)&&homeOrder.every((position,index)=>index===0||homeOrder[index-1]<position),'Homepage must follow identity → disciplines → case studies → approach → experience → contact.');
+assert(home.includes('Damietta, Egypt')&&home.includes('Open to remote employee roles'),'Homepage must identify location and remote employee availability.');
+assert(home.includes('Explore case studies')&&home.includes('href="/work/#case-studies"'),'Homepage must offer a case-study CTA.');
+assert(home.includes('View resume')&&home.includes('href="/resume/"'),'Homepage must offer the resume CTA.');
+for(const term of ['Power BI','SQL','DAX','data modeling','Power Query','Analytics Engineer'])assert(home.includes(term),'Homepage is missing the verified discipline '+term);
+assert(!home.includes('Work with me')&&!home.includes('Fixed quote')&&!home.includes('You send your data or problem.'),'Homepage must not read as a freelance-services funnel.');
+assert(!home.includes('Data Tea')&&!home.includes('LEARNING IN PUBLIC')&&!home.includes('roadmap'),'Retired learning/community material must not appear on the homepage.');
+assert(!home.includes('class="home-testimonial-card"')&&!home.includes('data-motion-toggle'),'Decorative testimonial counters and obsolete motion controls must not be reintroduced.');
+assert(home.includes('Cormorant+Garamond')&&home.includes('DM+Sans'),'Homepage must use the editorial serif and sans-serif pairing.');
+assert(home.includes('href="/editorial.css"'),'Editorial presentation layer must load.');
+assert(home.includes('data-theme=')&&home.indexOf('localStorage.getItem(\'sohila-theme\')')<home.indexOf('href="/styles.css"'),'Explicit/system theme must be applied before CSS to prevent flash.');
+assert(home.includes('<meta name="theme-color" content="#f7f3ed">'),'Browser chrome must match the editorial light canvas.');
+const caseTitles=[
+ 'B2B Retail Analytics &amp; Churn Diagnostic — Portfolio Scenario',
+ 'SMART Supply Chain Insights',
+ 'Wuzzuf Job Market Analysis'
+];
+for(const title of caseTitles)assert(home.includes(title),'Homepage is missing selected evidence-backed project '+title);
+assert(!home.includes('Maxab distribution network')&&!home.includes('Real-time insights into retailer behavior'),'B2B scenario must not imply a Maxab engagement.');
 
 const styles=await fs.readFile(path.join(out,'enhancements.css'),'utf8');
 const studioStyles=await fs.readFile(path.join(out,'studio.css'),'utf8');
@@ -156,7 +153,8 @@ const inquiryRules=await fs.readFile(path.join(root,'src/assets/inquiry-rules.mj
 assert(inquiryRules.includes("export const currencies = ['EGP'];"),'Invitation-only inquiries must accept EGP only');
 assert(inquiryRules.includes("Number(value[key])<500"),'Invitation-only server validation must enforce the 500 EGP minimum');
 const contactHtml=documents.get(path.join(out,'contact/index.html'));
-assert(contactHtml.includes('href="/services/#business-inquiry"'),'Contact page must lead to the EGP-enabled project inquiry form');
+assert(contactHtml.includes('Contact me about a role')&&contactHtml.includes('href="/resume/"'),'Contact page must prioritize recruiter conversations and the resume.');
+assert(!contactHtml.includes('/services/#business-inquiry'),'Contact page must not prioritize the freelance inquiry funnel.');
 assert(serviceHtml.indexOf('Power BI dashboards')<serviceHtml.indexOf('ALSO AVAILABLE'),'Power BI reporting must lead the Services page');
 assert(serviceHtml.includes('href="#simple-project-inquiry"')&&serviceHtml.includes('Start a project'),'Services page must offer a clear project-inquiry action');
 for(const id of ['service-0','service-1','service-2'])assert(serviceHtml.includes('id="'+id+'"'),'A work-focused service section was removed: '+id);
@@ -198,25 +196,50 @@ for(const repo of Object.keys(status))assert(workNames.has(repo),'In-progress st
 assert.equal([...work.matchAll(/data-status="progress"/g)].length,Object.keys(status).filter(repo=>workNames.has(repo)).length,'In-progress labels must use explicit editorial status');
 
 const featuredOutcomeCopy={
-  'fmcg-sales-churn-drop-analysis-powerbi':'Helps a sales manager spot retailers showing early churn signals and prioritize follow-up.',
-  'global-horizon-bank-dwh-project':'Helps bank managers compare transaction activity, account balances, and loan exposure across branches.',
-  'egyptian-cosmetics-market':'Helps commercial teams compare product performance, sales trends, and inventory health across channels.'
+ 'fmcg-sales-churn-drop-analysis-powerbi':'A portfolio scenario for examining retailer retention, delivery performance, sales movement, and category mix.',
+ 'SMART-Supply-Chain-Insights-Dashboard':'A structured view of order fulfillment, customer and market patterns, product profitability, and shipping operations.',
+ 'Wuzzuf-Job-Market-Analysis':'Explores role demand, requested skills, hiring locations, company activity, and limits in the available salary data.'
 };
 for(const [repo,copy] of Object.entries(featuredOutcomeCopy)){
   const project=workProjects.find(item=>item.repo===repo);
   assert(project,'Missing featured project: '+repo);
-  assert.equal(project.decision_support,copy,'Keep the approved decision-support copy: '+repo);
-  assert(copy.startsWith('Helps ')&&copy.trim().split(/\s+/).length<=20,'Featured outcome must start with Helps and stay within 20 words: '+repo);
-  assert(home.includes('<p class="project-card-outcome">'+copy+'</p>'),'Homepage must show the approved decision-support copy: '+repo);
+  assert.equal(project.decision_support,copy,'Keep the approved evidence-led decision-support copy: '+repo);
+  assert(work.includes(project.title.replaceAll('&','&amp;')),'Work page must include the featured project title: '+repo);
 }
-const featuredPositions=Object.keys(featuredOutcomeCopy).map(repo=>home.indexOf('data-name="'+repo+'"'));
-assert(featuredPositions.every(position=>position>=0)&&featuredPositions[0]<featuredPositions[1]&&featuredPositions[1]<featuredPositions[2],'Keep the requested featured-card order');
-assert.equal(workProjects.find(project=>project.repo==='global-horizon-bank-dwh-project').summary,'Turns transactional banking data into a dimensional warehouse. Its interactive app explores transactions, account balances, active accounts, and loan portfolios.','Global Horizon Bank card copy must stay at two complete sentences');
+const featuredPositions=Object.keys(featuredOutcomeCopy).map(repo=>home.indexOf('data-featured-case="'+repo+'"'));
+assert(featuredPositions.every(position=>position>=0)&&featuredPositions[0]<featuredPositions[1]&&featuredPositions[1]<featuredPositions[2],'Keep the requested homepage featured-card order.');
+assert(work.indexOf('work-featured')<work.indexOf('id="repositories"'),'Featured case studies must precede the full project collection.');
+
+const b2bRepo='fmcg-sales-churn-drop-analysis-powerbi';
+const b2bProject=workProjects.find(project=>project.repo===b2bRepo);
+const b2bReport=reports.find(report=>report.repo===b2bRepo);
+const b2bCase=workCases.find(item=>item.repo===b2bRepo);
+const b2bHtml=documents.get(path.join(out,'projects',b2bRepo,'index.html'));
+assert(b2bProject&&b2bProject.title.includes('Portfolio Scenario'),'B2B project title must clearly identify the portfolio scenario.');
+assert(b2bReport&&b2bReport.title.includes('Portfolio Scenario'),'B2B report title must clearly identify the portfolio scenario.');
+assert(b2bCase&&b2bCase.caveat.includes('not a client engagement'),'B2B case-study limitations must state that no client engagement is claimed.');
+assert(b2bHtml.includes('Portfolio Scenario'),'B2B project page must display the scenario label.');
+assert(b2bHtml.includes('DATASET &amp; PROVENANCE')&&b2bHtml.includes('MY CONTRIBUTION')&&b2bHtml.includes('MODEL &amp; MEASURES')&&b2bHtml.includes('FINDINGS / INTERPRETATION'),'Case study must present supported provenance, contribution, model, and findings sections.');
+assert(!b2bHtml.includes('Maxab distribution network')&&!b2bHtml.includes('Real-time insights into retailer behavior'),'B2B project page must not imply Maxab employment or a client engagement.');
+assert(!b2bHtml.includes('OUTCOME</span>'),'B2B portfolio scenario must not imply a measured business outcome.');
+assert(b2bHtml.includes('Copy page link')&&b2bHtml.includes('button-secondary')&&b2bHtml.includes('data-copy-page'),'Copy page action must be styled as a secondary button.');
+const wuzzufHtml=documents.get(path.join(out,'projects','Wuzzuf-Job-Market-Analysis','index.html'));
+assert(wuzzufHtml&&wuzzufHtml.includes('217 Wuzzuf job postings')&&wuzzufHtml.includes('January–March 2025'),'Wuzzuf story must preserve its source sample and collection period.');
+assert(wuzzufHtml.includes('Salary data is incomplete'),'Wuzzuf story must state its salary-data limitation.');
+const resumeHtml=documents.get(path.join(out,'resume/index.html'));
+assert(resumeHtml&&resumeHtml.includes('Print / save as PDF'),'Public resume route must offer browser print/save.');
+assert(resumeHtml.includes(profile.email)&&resumeHtml.includes(profile.linkedin)&&resumeHtml.includes(profile.github),'Resume must retain approved professional contact links.');
+assert(resumeHtml.includes('Open to remote employee roles'),'Resume must indicate target work arrangement.');
+const dashboardHtml=documents.get(path.join(out,'dashboards/index.html'));
+assert(dashboardHtml.includes('dashboard-preview-figure')&&dashboardHtml.includes('data-lightbox'),'Dashboard gallery must have captions and full-size, accessible preview links.');
+assert(dashboardHtml.includes('Saved report view'),'Dashboard preview must distinguish a screenshot from a live report.');
+assert(dashboardHtml.includes('Interactive public reports load only when requested'),'Dashboard gallery must explain click-to-load report behavior.');
 
 const aboutHtml=documents.get(path.join(out,'about/index.html'));
 assert(aboutHtml.includes(profile.headline.replaceAll('&','&amp;')),'About must show the owner’s current professional headline');
 assert.equal(policy.automatic_experience_import,false,'Experience changes require owner confirmation');
 assert.equal(createHash('sha256').update(JSON.stringify(profile.experience)).digest('hex'),policy.experience_sha256,'Owner-selected experience changed without an approved revision');
+
 for(const lane of recruiter.lanes)for(const repo of lane.projects)if(workNames.has(repo))assert(workNames.has(repo),'Recruiter evidence must use client-work repositories');
 for(const [file,html] of documents){
   for(const match of html.matchAll(/\b(?:href|src)="(https?:[^\"]+)"/g)){
