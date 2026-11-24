@@ -1,7 +1,7 @@
 name: Portfolio site validation and preview UX
 on:
   push:
-    branches: [main, 'redesign/**', 'feat/**']
+    branches: [main, 'redesign/**', 'redesign-v2', 'feat/**']
     paths: ['portfolio-site/**', '.github/workflows/portfolio-site.yml', 'screenshots/**']
   pull_request:
     paths: ['portfolio-site/**', '.github/workflows/portfolio-site.yml', 'screenshots/**']

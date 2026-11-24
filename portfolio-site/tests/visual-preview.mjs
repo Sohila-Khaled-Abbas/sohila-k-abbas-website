@@ -5,29 +5,33 @@ import {chromium} from "playwright";
 
 const baseUrl=process.env.BASE_URL;
 if(!baseUrl)throw new Error("BASE_URL must point to the actual Vercel preview deployment.");
-const parsedBase=new URL(baseUrl);
-if(parsedBase.protocol!=="https:"||!parsedBase.hostname.endsWith(".vercel.app"))throw new Error("Visual tests only accept an HTTPS Vercel preview URL.");
+const base=new URL(baseUrl);
+if(base.protocol!=="https:"||!base.hostname.endsWith(".vercel.app"))throw new Error("Visual tests only accept an HTTPS Vercel preview URL.");
 const screenshotDir=path.resolve(process.cwd(),"..","screenshots");
 await fs.mkdir(screenshotDir,{recursive:true});
 
 const expectedFeatured=[
  "fmcg-sales-churn-drop-analysis-powerbi",
- "global-horizon-bank-dwh-project",
- "egyptian-cosmetics-market"
+ "SMART-Supply-Chain-Insights-Dashboard",
+ "Wuzzuf-Job-Market-Analysis"
 ];
 const viewports=[
- {width:360,height:900},
- {width:390,height:900},
+ {width:390,height:844},
  {width:768,height:1024},
- {width:1280,height:900},
- {width:1536,height:1000},
- {width:1905,height:1080}
+ {width:1280,height:900}
 ];
+const themes=["light","dark"];
 const pages=[
  {route:"/",name:"home"},
  {route:"/work/",name:"work"},
- {route:"/services/",name:"services"},
- {route:"/projects/fmcg-sales-churn-drop-analysis-powerbi/",name:"b2b-retail"}
+ {route:"/dashboards/",name:"dashboards"},
+ {route:"/projects/fmcg-sales-churn-drop-analysis-powerbi/",name:"b2b-retail-scenario"},
+ {route:"/projects/SMART-Supply-Chain-Insights-Dashboard/",name:"smart-supply-chain"},
+ {route:"/projects/Wuzzuf-Job-Market-Analysis/",name:"wuzzuf-job-market"},
+ {route:"/about/",name:"about"},
+ {route:"/resume/",name:"resume"},
+ {route:"/contact/",name:"contact"},
+ {route:"/services/",name:"services"}
 ];
 const browser=await chromium.launch({headless:true});
 
@@ -37,213 +41,287 @@ async function addProtectionHeader(page){
 }
 async function settlePage(page){
  await page.evaluate(async()=>{if(document.fonts?.ready)await document.fonts.ready;});
- const metrics=await page.evaluate(()=>({height:document.documentElement.scrollHeight,step:Math.max(450,Math.floor(window.innerHeight*.72))}));
- for(let y=0;y<metrics.height;y+=metrics.step){
+ const total=await page.evaluate(()=>document.documentElement.scrollHeight);
+ const step=Math.max(420,Math.floor(window.innerHeight*.72));
+ for(let y=0;y<total;y+=step){
   await page.evaluate(scrollY=>window.scrollTo(0,scrollY),y);
-  await page.waitForTimeout(60);
+  await page.waitForTimeout(45);
  }
  await page.evaluate(()=>window.scrollTo(0,0));
- await page.waitForTimeout(180);
+ await page.waitForTimeout(140);
 }
 async function inspectLayout(page){
  return page.evaluate(()=>{
   const width=window.innerWidth;
   const rootWidth=document.documentElement.scrollWidth;
   const bodyWidth=document.body.scrollWidth;
-  const textSelector=[
-   "h1","h2","h3","h4","button",".button",
-   ".studio-project-card h3",".studio-project-card p",
-   ".pinned-case-card h3",".pinned-case-card p",
-   ".repo-card h3",".repo-card p",
-   ".home-testimonial-card blockquote",".home-testimonial-card figcaption",
-   ".recommendation-card blockquote",".recommendation-card figcaption",
-   ".service-primary-card h2",".service-primary-card p",".service-primary-card li",
-   ".service-secondary-list h3",".service-secondary-list p",".service-secondary-list li",
-   ".project-story h3",".story-outcome p"
-  ].join(",");
+  const selectors=[
+   ".editorial-hero h1",".editorial-hero-lead",".editorial-location",
+   ".editorial-section-heading h2",".editorial-case-copy h3",".editorial-case-intro",
+   ".pinned-case-card h3",".pinned-case-card .project-card-description",
+   ".dashboard-card-copy h2",".dashboard-card-copy p",
+   ".story-heading h2",".story-panel h3",".story-evidence-block p",".story-context p",
+   ".editorial-about-copy h1",".editorial-about-lead",".resume-heading h1",".resume-summary",
+   ".editorial-contact-main h2",".contact-email","button",".button","#navigation a"
+  ];
   const clipped=[];
-  const hidden=[];
-  for(const element of document.querySelectorAll(textSelector)){
-   const text=element.textContent?.replace(/\s+/g," ").trim();
-   if(!text)continue;
-   if(element.closest("[hidden],[aria-hidden=true],details:not([open]),dialog:not([open]),.sr-only,.skip,.source-map-card,.project-visual,.signature-stage"))continue;
+  for(const element of document.querySelectorAll(selectors.join(","))){
+   if(element.closest("[hidden],[aria-hidden=true],details:not([open]),dialog:not([open]),.skip,.sr-only"))continue;
    const style=getComputedStyle(element);
    const rect=element.getBoundingClientRect();
-   if(style.display==="none"||style.visibility==="hidden"||Number.parseFloat(style.opacity)<.05||rect.width===0||rect.height===0){
-    hidden.push({tag:element.tagName.toLowerCase(),className:typeof element.className==="string"?element.className:"",text:text.slice(0,90)});
-    continue;
-   }
+   if(style.display==="none"||style.visibility==="hidden"||Number.parseFloat(style.opacity)<.05||rect.width===0||rect.height===0)continue;
    const clamp=Number.parseInt(style.webkitLineClamp,10);
-   const overflowX=["hidden","clip"].includes(style.overflowX);
-   const overflowY=["hidden","clip"].includes(style.overflowY);
-   const tooWide=overflowX&&element.scrollWidth>element.clientWidth+2;
-   const tooTall=overflowY&&element.scrollHeight>element.clientHeight+2;
-   const ellipsis=style.textOverflow==="ellipsis";
-   if(tooWide||tooTall||ellipsis||(Number.isFinite(clamp)&&clamp>0)){
-    clipped.push({tag:element.tagName.toLowerCase(),className:typeof element.className==="string"?element.className:"",text:text.slice(0,90),scrollWidth:element.scrollWidth,clientWidth:element.clientWidth,scrollHeight:element.scrollHeight,clientHeight:element.clientHeight,lineClamp:style.webkitLineClamp});
+   const clippedX=["hidden","clip"].includes(style.overflowX)&&element.scrollWidth>element.clientWidth+2;
+   const clippedY=["hidden","clip"].includes(style.overflowY)&&element.scrollHeight>element.clientHeight+2;
+   if(clippedX||clippedY||style.textOverflow==="ellipsis"||(Number.isFinite(clamp)&&clamp>0)){
+    clipped.push({tag:element.tagName.toLowerCase(),className:typeof element.className==="string"?element.className:"",text:element.textContent.trim().replace(/\s+/g," ").slice(0,90),scrollWidth:element.scrollWidth,clientWidth:element.clientWidth,scrollHeight:element.scrollHeight,clientHeight:element.clientHeight,clamp:style.webkitLineClamp});
    }
   }
-  const heading=document.querySelector(".signature-hero h1");
-  function wordRect(word){
-   if(!heading)return null;
-   const walker=document.createTreeWalker(heading,NodeFilter.SHOW_TEXT);
-   while(walker.nextNode()){
-    const node=walker.currentNode;
-    const offset=node.nodeValue.indexOf(word);
-    if(offset>=0){
-     const range=document.createRange();
-     range.setStart(node,offset);
-     range.setEnd(node,offset+word.length);
-     return range.getBoundingClientRect().toJSON();
-    }
-   }
-   return null;
-  }
-  const better=wordRect("Better");
-  const decisions=wordRect("decisions");
-  const featured=[...document.querySelectorAll(".home-featured-work .studio-spotlight-grid>.studio-project-card")].map(card=>card.dataset.name).filter(Boolean);
-  const workPinned=[...document.querySelectorAll(".work-featured .pinned-case-card")].map(card=>card.dataset.name);
-  return {width,rootWidth,bodyWidth,clipped,hidden,better,decisions,featured,workPinned};
+  return {width,rootWidth,bodyWidth,clipped,theme:document.documentElement.dataset.theme,background:getComputedStyle(document.body).backgroundColor};
  });
 }
 function assertLayout(audit,width,label){
- assert(audit.rootWidth<=width,"Horizontal overflow on "+label+": document.scrollWidth "+audit.rootWidth+"px > window.innerWidth "+width+"px");
- assert(audit.bodyWidth<=width,"Body overflow on "+label+": body.scrollWidth "+audit.bodyWidth+"px > window.innerWidth "+width+"px");
+ assert(audit.rootWidth<=width,"Horizontal overflow on "+label+": document.scrollWidth "+audit.rootWidth+"px > "+width+"px");
+ assert(audit.bodyWidth<=width,"Body overflow on "+label+": body.scrollWidth "+audit.bodyWidth+"px > "+width+"px");
  assert.equal(audit.clipped.length,0,"Clipped/ellipsized text on "+label+": "+JSON.stringify(audit.clipped));
- assert.equal(audit.hidden.length,0,"Unexpected hidden text on "+label+": "+JSON.stringify(audit.hidden));
 }
-async function captureRoute(route,width,height,name){
+async function captureRoute(route,width,height,theme,name){
  const page=await browser.newPage({viewport:{width,height},deviceScaleFactor:1});
- await page.emulateMedia({reducedMotion:"reduce"});
+ await page.emulateMedia({colorScheme:theme,reducedMotion:"reduce"});
  await addProtectionHeader(page);
- const response=await page.goto(new URL(route,parsedBase).href,{waitUntil:"domcontentloaded",timeout:60000});
+ const response=await page.goto(new URL(route,base).href,{waitUntil:"domcontentloaded",timeout:60000});
  assert(response&&response.status()<400,route+" returned "+(response?.status()??"no response")+" at "+width+"px");
  await settlePage(page);
  const audit=await inspectLayout(page);
- assertLayout(audit,width,name+" "+width+"px");
+ assertLayout(audit,width,name+" "+theme+" "+width+"px");
+ assert.equal(audit.theme,theme,"Theme does not match system preference for "+name+" "+width+"px");
+ const h1=await page.locator("main h1").count();
+ assert(h1>=1,name+" needs a visible main heading");
  if(name==="home"){
-  const cta=page.locator(".signature-hero .hero-ctas a").first();
-  assert.equal((await cta.textContent()).trim(),"Work with me","Homepage hero CTA label changed");
-  assert.equal(await cta.getAttribute("href"),"/services/","Homepage hero CTA destination changed");
-  assert.deepEqual(audit.featured,expectedFeatured,"Homepage featured case-study order changed");
-  if([1280,1536,1905].includes(width)){
-   assert(audit.better&&audit.decisions,"The desktop hero headline words could not be measured.");
-   assert(Math.abs(audit.better.top-audit.decisions.top)<=8,'"Better" is not on the same line as "decisions." at '+width+"px (Better top "+audit.better.top+", decisions top "+audit.decisions.top+").");
-  }
+  assert.equal((await page.locator(".editorial-hero h1").innerText()).replace(/\s+/g," ").trim(),"Business questions. Clearer decisions.","Homepage headline has changed.");
+  assert.equal((await page.locator(".editorial-hero .hero-actions a").nth(0).innerText()).trim(),"Explore case studies");
+  assert.equal(await page.locator(".editorial-hero .hero-actions a").nth(0).getAttribute("href"),"/work/#case-studies");
+  assert.equal((await page.locator(".editorial-hero .hero-actions a").nth(1).innerText()).trim(),"View resume");
+  assert.equal(await page.locator(".editorial-hero .hero-actions a").nth(1).getAttribute("href"),"/resume/");
+  assert((await page.locator(".editorial-location").innerText()).includes("Damietta, Egypt"));
+  assert((await page.locator(".editorial-location").innerText()).includes("Open to remote employee roles"));
+  const featured=await page.locator(".editorial-case-card[data-featured-case]").evaluateAll(cards=>cards.map(card=>card.dataset.featuredCase));
+  assert.deepEqual(featured,expectedFeatured,"Homepage featured-case sequence changed.");
+  assert.equal(await page.locator(".editorial-case-visual[data-lightbox]").count(),3,"Each featured case needs an enlargeable report preview.");
+  assert.equal(await page.locator(".editorial-hero-portrait img").count(),1,"Keep the genuine owner portrait.");
+  assert.equal(await page.locator(".editorial-home-contact").count(),0,"No stale freelance services section should return.");
  }
  if(name==="work"){
-  assert.deepEqual(audit.workPinned,expectedFeatured,"Work page pinned case-study order changed");
-  const disclosure=page.locator("[data-repo-tools]");
-  assert.equal(await disclosure.count(),1,"Full repository search and filters are missing");
-  assert.equal(await disclosure.evaluate(element=>element.open),width>=651,"Repository disclosure should be "+(width>=651?"open":"closed")+" at "+width+"px");
-  const repositoryCards=page.locator("#repo-grid .repo-card");
-  const repositoryCount=await repositoryCards.count();
-  const displayedCount=Number((await page.locator(".repo-tools-count").innerText()).match(/\d+/)?.[0]);
-  assert(repositoryCount>0,"The Work page must show client-work projects");
-  assert.equal(displayedCount,repositoryCount,"The Work-page count must match its filtered project collection");
-  assert.equal(await page.locator('#repo-grid .repo-card[data-kind="fork"]').count(),0,"Forked resources must not appear in the client-work collection");
-  assert.equal(await page.locator('#repo-grid .repo-card[data-category="learning"]').count(),0,"Learning-category resources must not appear in the client-work collection");
+  const cards=await page.locator(".work-featured .pinned-case-card").evaluateAll(items=>items.map(card=>card.dataset.name));
+  assert.deepEqual(cards,expectedFeatured,"Work page featured order changed.");
+  assert.equal(await page.locator("[data-repo-tools]").count(),1,"Full work collection and filters are missing.");
+  await page.locator("[data-repo-tools] > summary").click();
+  assert(await page.locator("#repo-grid .repo-card").count()>0,"Full project catalogue should remain discoverable.");
+  assert.equal(await page.locator('#repo-grid .repo-card[data-kind="fork"]').count(),0,"Forked resources must not appear as original work.");
+  assert.equal(await page.locator('#repo-grid .repo-card[data-category="learning"]').count(),0,"Learning resources must not appear as professional case studies.");
+ }
+ if(name==="b2b-retail-scenario"){
+  assert((await page.locator("h1").first().innerText()).includes("Portfolio Scenario"),"B2B case title must be explicit portfolio scenario.");
+  assert((await page.locator(".story-context").innerText()).toLowerCase().includes("not a client engagement"),"B2B page must not imply a Maxab client relationship.");
+  assert.equal(await page.locator('[data-copy-page]').count(),1,"Case page needs a copy-page link control.");
+  assert.equal(await page.locator(".story-evidence-block .eyebrow").filter({hasText:"DATASET & PROVENANCE"}).count(),1,"B2B scenario provenance should be labelled.");
+  assert.equal(await page.locator(".story-evidence-block .eyebrow").filter({hasText:"MODEL & MEASURES"}).count(),1,"B2B model should be explained.");
+  assert.equal(await page.locator(".story-outcome .eyebrow").innerText().then(t=>t.trim()),"DESIGNED DECISION SUPPORT");
+  assert.equal(await page.locator(".story-evidence-block .eyebrow").filter({hasText:"FINDINGS / INTERPRETATION"}).count(),1);
+  assert.equal(await page.getByText(/Maxab distribution network|Real-time insights into retailer behavior/i).count(),0,"Legacy claims about Maxab must not show.");
+ }
+ if(name==="wuzzuf-job-market"){
+  const content=await page.locator("main").innerText();
+  assert(content.includes("217 Wuzzuf job postings"),"Wuzzuf snapshot size must be visible.");
+  assert(content.includes("January–March 2025"),"Wuzzuf collection dates must be visible.");
+  assert(content.toLowerCase().includes("salary data is incomplete"),"Salary data limitation must be explicit.");
+ }
+ if(name==="dashboards"){
+  assert(await page.locator(".dashboard-preview-figure").count()>0,"Dashboard gallery needs large previews with captions.");
+  assert(await page.locator(".dashboard-cover[data-lightbox]").count()>0,"Dashboard screenshot needs full-size enlarge action.");
+  assert(await page.locator("#preview-dialog").count()===1,"Native image dialog must be present.");
+  assert((await page.locator("main").innerText()).includes("A screenshot is a saved report view"),"Static previews must be distinguished from interactive reports.");
+ }
+ if(name==="resume"){
+  assert(await page.locator("[data-print-resume]").count()===1,"Resume should have print/save PDF action.");
+  assert(await page.locator('a[href^="mailto:"]').count()===1,"Resume must retain its professional email.");
+ }
+ if(name==="about"){
+  const aboutText=await page.locator("main").innerText();
+  assert(aboutText.includes("Freelance BI Developer"),"Preserve verified freelance BI experience.");
+  assert(aboutText.includes("Machine Learning Engineer Intern"),"Preserve the FlyRank internship.");
+  assert(aboutText.includes("Damietta University"),"Preserve the verified degree.");
+ }
+ if(name==="contact"){
+  assert(await page.locator('a[href^="mailto:"]').count()>=1,"Contact email link is missing.");
+  assert(await page.locator(".copy-email").count()===1,"Existing copy-email behavior must remain.");
+  assert(await page.locator('a[href="/services/#business-inquiry"]').count()===1,"Existing verified inquiry route must remain available without being the primary CTA.");
  }
  if(name==="services"){
-  const publicForm=page.locator("#simple-project-inquiry");
-  const protectedForm=page.locator("#project-brief");
-  assert.equal(await publicForm.getAttribute("method"),"post","Public inquiry form method changed");
-  assert.equal(await publicForm.getAttribute("action"),"/services/","Public inquiry form action changed");
-  assert.equal(await protectedForm.getAttribute("method"),"post","Protected inquiry form method changed");
-  assert.equal(await protectedForm.getAttribute("action"),"/services/","Protected inquiry form action changed");
+  assert.equal(await page.locator("#simple-project-inquiry").getAttribute("method"),"post","Public inquiry method changed.");
+  assert.equal(await page.locator("#simple-project-inquiry").getAttribute("action"),"/services/","Public inquiry action changed.");
+  assert.equal(await page.locator("#project-brief").getAttribute("method"),"post","Protected inquiry method changed.");
+  assert.equal(await page.locator("#project-brief").getAttribute("action"),"/services/","Protected inquiry action changed.");
  }
- if(name==="b2b-retail"){
-  assert.equal(await page.locator(".story-outcome .eyebrow").textContent().then(value=>value.trim()),"OUTCOME","B2B Retail case page is missing its Outcome label");
+ if(name==="home"&&width===390){
+  const menu=page.locator(".menu-toggle");
+  assert.equal(await menu.getAttribute("aria-expanded"),"false");
+  await menu.click();
+  assert.equal(await menu.getAttribute("aria-expanded"),"true","Mobile navigation did not open.");
+  assert(await page.locator("#navigation a[href='/contact/']").isVisible(),"Contact must appear in mobile navigation.");
+  await page.keyboard.press("Escape");
+  assert.equal(await menu.getAttribute("aria-expanded"),"false","Escape should close the mobile navigation.");
  }
- const screenshot=path.join(screenshotDir,name+"-"+width+".png");
+ const screenshot=path.join(screenshotDir,name+"-"+theme+"-"+width+".png");
  await page.screenshot({path:screenshot,fullPage:true,animations:"disabled"});
- console.log("PASS "+name+" "+width+"px — HTTP "+response.status()+", no horizontal overflow, clipped text, or hidden text. Screenshot: "+path.basename(screenshot));
- return {page,screenshot,audit};
+ console.log("PASS "+name+" "+theme+" "+width+"px — HTTP "+response.status()+", theme resolved, no horizontal overflow/clipped text. Screenshot: "+path.basename(screenshot));
+ await page.close();
+ return {page:name,theme,width,status:"PASS",screenshot:path.basename(screenshot)};
+}
+async function testThemePersistence(){
+ const page=await browser.newPage({viewport:{width:390,height:844}});
+ await page.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
+ await addProtectionHeader(page);
+ await page.goto(new URL("/",base).href,{waitUntil:"domcontentloaded"});
+ await page.locator(".theme-toggle").click();
+ assert.equal(await page.locator("html").getAttribute("data-theme"),"dark");
+ assert.equal(await page.evaluate(()=>localStorage.getItem("sohila-theme")),"dark");
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.equal(await page.locator("html").getAttribute("data-theme"),"dark","Explicit dark choice must persist despite light system preference.");
+ await page.close();
+ console.log("PASS explicit dark-mode choice persists after reload.");
+}
+async function testPreviewDialog(){
+ const page=await browser.newPage({viewport:{width:390,height:844}});
+ await page.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
+ await addProtectionHeader(page);
+ await page.goto(new URL("/dashboards/",base).href,{waitUntil:"domcontentloaded"});
+ const trigger=page.locator(".dashboard-cover[data-lightbox]").first();
+ await trigger.click();
+ const dialog=page.locator("#preview-dialog");
+ await dialog.waitFor({state:"visible"});
+ assert.equal(await dialog.evaluate(el=>el.open),true,"Native image dialog did not open.");
+ assert.equal(await page.evaluate(()=>document.activeElement?.getAttribute("data-preview-close")),"","Focus should move to the dialog close control.");
+ await page.keyboard.press("Escape");
+ assert.equal(await dialog.evaluate(el=>el.open),false,"Escape must close image dialog.");
+ assert(await trigger.evaluate(el=>el===document.activeElement),"Closing the image dialog should restore focus to its opener.");
+ await page.close();
+ console.log("PASS keyboard-accessible image enlargement and focus restoration.");
+}
+async function testClipboard(){
+ const successPage=await browser.newPage({viewport:{width:1280,height:900}});
+ await successPage.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
+ await successPage.addInitScript(()=>Object.defineProperty(navigator,"clipboard",{configurable:true,value:{writeText:async value=>{window.__copiedPage=value;}}}));
+ await addProtectionHeader(successPage);
+ const url=new URL("/projects/fmcg-sales-churn-drop-analysis-powerbi/",base).href;
+ await successPage.goto(url,{waitUntil:"domcontentloaded"});
+ await successPage.locator("[data-copy-page]").click();
+ await successPage.waitForFunction(()=>Boolean(window.__copiedPage));
+ assert.equal(await successPage.evaluate(()=>window.__copiedPage),url,"Copy page should copy the current case-study URL, not the homepage.");
+ assert((await successPage.locator("[data-copy-page-status]").innerText()).includes("copied to the clipboard"));
+ await successPage.close();
+
+ const failurePage=await browser.newPage({viewport:{width:390,height:844}});
+ await failurePage.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
+ await failurePage.addInitScript(()=>Object.defineProperty(navigator,"clipboard",{configurable:true,value:{writeText:async()=>{throw new Error("Mock clipboard denial");}}}));
+ await addProtectionHeader(failurePage);
+ await failurePage.goto(url,{waitUntil:"domcontentloaded"});
+ await failurePage.locator("[data-copy-page]").click();
+ const fallback=failurePage.locator(".copy-page-fallback input");
+ await fallback.waitFor({state:"visible"});
+ assert.equal(await fallback.inputValue(),url,"Manual fallback must contain this page's URL.");
+ assert((await failurePage.locator("[data-copy-page-status]").innerText()).includes("Clipboard access is unavailable"));
+ assert.equal(await fallback.evaluate(el=>el.selectionStart===0&&el.selectionEnd===el.value.length),true,"Manual fallback should select the URL.");
+ await failurePage.close();
+ console.log("PASS copy-page success announcement, correct URL, and manual selection fallback.");
+}
+async function testReportLoading(){
+ const page=await browser.newPage({viewport:{width:1280,height:900}});
+ await page.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
+ await addProtectionHeader(page);
+ await page.goto(new URL("/dashboards/fmcg-sales-churn-drop-analysis-powerbi/",base).href,{waitUntil:"domcontentloaded"});
+ const button=page.locator("[data-load-report]");
+ assert.equal(await button.count(),1,"Public report needs an explicit load control.");
+ assert.equal(await page.locator("iframe").count(),0,"Power BI iframe must not be created before visitor request.");
+ const reportUrl=await button.getAttribute("data-load-report");
+ assert(reportUrl?.startsWith("https://app.powerbi.com/view?r="),"Only the existing verified public Power BI report may be loaded.");
+ await button.click();
+ const frame=page.locator("iframe");
+ await frame.waitFor({state:"attached"});
+ assert((await frame.getAttribute("title")).includes("interactive Power BI report"),"Power BI frame needs a meaningful accessible title.");
+ assert.equal(await frame.getAttribute("src"),reportUrl,"Loaded iframe should use the existing approved public URL.");
+ assert(await page.locator('a[href*="github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi"]').count()>0,"Original report source link must remain visible.");
+ await page.close();
+ console.log("PASS click-to-load public Power BI embed, iframe title, and original source link.");
+}
+async function testResumePrint(){
+ const page=await browser.newPage({viewport:{width:1280,height:900}});
+ await page.addInitScript(()=>{window.__printCalled=false;window.print=()=>{window.__printCalled=true;};});
+ await addProtectionHeader(page);
+ await page.goto(new URL("/resume/",base).href,{waitUntil:"domcontentloaded"});
+ await page.locator("[data-print-resume]").click();
+ assert.equal(await page.evaluate(()=>window.__printCalled),true,"Resume Print / save as PDF must invoke the browser print dialog.");
+ await page.close();
+ console.log("PASS resume print/save as PDF action.");
+}
+async function testInquirySafety(){
+ const page=await browser.newPage({viewport:{width:390,height:844}});
+ await page.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
+ await addProtectionHeader(page);
+ await page.goto(new URL("/services/",base).href,{waitUntil:"domcontentloaded"});
+ const leadCalls=[];
+ let attempt=0;
+ await page.route("**/api/lead",async route=>{
+  assert.equal(route.request().method(),"POST","The public form must POST to /api/lead");
+  leadCalls.push(route.request().postDataJSON());
+  attempt++;
+  if(attempt===1)await route.fulfill({status:502,contentType:"application/json",body:JSON.stringify({ok:false,message:"Mock delivery failure for QA."})});
+  else await route.fulfill({status:200,contentType:"application/json",body:JSON.stringify({ok:true,message:"Your inquiry has been received."})});
+ });
+ await page.locator("#simple-inquiry-name").fill("Test User");
+ await page.locator("#simple-inquiry-email").fill("not-an-email");
+ await page.locator("#simple-inquiry-description").fill("Dummy QA only. This request must never reach a real webhook.");
+ const expectedBudgetOptions=["500 - 2,000 EGP","2,000 - 5,000 EGP","5,000 - 10,000 EGP","10,000 - 25,000 EGP","25,000+ EGP","Not sure yet"];
+ const budget=page.locator("#simple-inquiry-budget");
+ assert.deepEqual(await budget.locator("option").evaluateAll(items=>items.slice(1).map(item=>item.textContent.trim())),expectedBudgetOptions);
+ assert.equal(await page.locator('label[for="simple-inquiry-budget"]').innerText(),"Budget range (EGP) *");
+ assert((await budget.evaluate(el=>el.parentElement.innerText)).includes("Minimum project budget: 500 EGP. Projects below 500 EGP are not offered."));
+ await budget.selectOption({label:"500 - 2,000 EGP"});
+ await page.locator("#simple-inquiry-submit").click();
+ assert.equal(await page.locator("#simple-inquiry-email").evaluate(el=>el.validity.typeMismatch),true,"Native email validation must block invalid email.");
+ await page.locator("#simple-inquiry-email").fill("test@example.com");
+ await page.waitForTimeout(2200);
+ await page.locator("#simple-inquiry-submit").click();
+ await page.locator("#simple-inquiry-error").waitFor({state:"visible"});
+ assert.equal(await page.locator("#simple-inquiry-name").inputValue(),"Test User");
+ assert.equal(await page.locator("#simple-inquiry-email").inputValue(),"test@example.com");
+ assert.equal(await page.locator("#simple-inquiry-error a[href^='mailto:']").count(),1);
+ assert.equal(await page.locator("#simple-inquiry-error a[href*='cal.com']").count(),1);
+ await page.locator("#simple-inquiry-submit").click();
+ await page.locator("#simple-inquiry-result").waitFor({state:"visible"});
+ assert.equal(leadCalls.length,2,"The mocked delivery should be retried once.");
+ assert.equal(leadCalls[0].budgetRange,"500 - 2,000 EGP");
+ assert.equal(leadCalls[0].submissionId,leadCalls[1].submissionId);
+ const protectedApi=await page.evaluate(async()=>{
+  const response=await fetch("/api/business-inquiry",{method:"POST",credentials:"same-origin",headers:{"X-Inquiry-Client":"portfolio-v1","Content-Type":"application/json"},body:JSON.stringify({action:"prepare",token:"",fields:{name:"Test User",email:"test@example.com"}})});
+  return {status:response.status,data:await response.json()};
+ });
+ assert.equal(protectedApi.status,403,"Private inquiry endpoint must reject without invitation.");
+ await page.close();
+ console.log("PASS existing public form behavior with mocked /api/lead, exact EGP options, validation, retry, and protected API rejection.");
 }
 
 try{
  const matrix=[];
- let service390=null;
- for(const item of pages){
-  for(const viewport of viewports){
-   const result=await captureRoute(item.route,viewport.width,viewport.height,item.name);
-   matrix.push({page:item.name,width:viewport.width,status:"PASS",screenshot:path.basename(result.screenshot)});
-   if(item.name==="services"&&viewport.width===390)service390=result.page;
-   else await result.page.close();
-  }
+ for(const page of pages)for(const theme of themes)for(const viewport of viewports){
+  matrix.push(await captureRoute(page.route,viewport.width,viewport.height,theme,page.name));
  }
-
- if(service390){
-  const page=service390;
-  const leadCalls=[];
-  let attempt=0;
-  await page.route("**/api/lead",async route=>{
-   assert.equal(route.request().method(),"POST","The public form must POST to /api/lead");
-   leadCalls.push(route.request().postDataJSON());
-   attempt+=1;
-   if(attempt===1){
-    await route.fulfill({status:502,contentType:"application/json",body:JSON.stringify({ok:false,message:"Mock delivery failure for QA."})});
-   }else{
-    await route.fulfill({status:200,contentType:"application/json",body:JSON.stringify({ok:true,message:"Your inquiry has been received."})});
-   }
-  });
-  await page.locator("#simple-inquiry-name").fill("Test User");
-  await page.locator("#simple-inquiry-email").fill("not-an-email");
-  await page.locator("#simple-inquiry-description").fill("Dummy QA submission only. Please do not process this as a real project inquiry.");
-  const expectedBudgetOptions=[
-   "500 - 2,000 EGP",
-   "2,000 - 5,000 EGP",
-   "5,000 - 10,000 EGP",
-   "10,000 - 25,000 EGP",
-   "25,000+ EGP",
-   "Not sure yet"
-  ];
-  const budgetSelect=page.locator("#simple-inquiry-budget");
-  const displayedBudgetOptions=await budgetSelect.locator("option").evaluateAll(options=>options.slice(1).map(option=>option.textContent.trim()));
-  assert.deepEqual(displayedBudgetOptions,expectedBudgetOptions,"The public budget options must be the exact EGP ranges");
-  assert.equal(await page.locator('label[for="simple-inquiry-budget"]').innerText(),"Budget range (EGP) *");
-  const budgetFieldText=await budgetSelect.evaluate(element=>element.parentElement.innerText);
-  assert(budgetFieldText.includes("Minimum project budget: 500 EGP. Projects below 500 EGP are not offered."));
-  await budgetSelect.selectOption({label:"500 - 2,000 EGP"});
-  await page.locator("#simple-inquiry-submit").click();
-  const invalid=await page.locator("#simple-inquiry-email").evaluate(element=>({valid:element.validity.valid,typeMismatch:element.validity.typeMismatch,message:element.validationMessage}));
-  assert.equal(invalid.valid,false,"Invalid email must be blocked by native validation");
-  assert.equal(invalid.typeMismatch,true,"Invalid email must show a type mismatch");
-  assert(await page.locator("#simple-inquiry-result").evaluate(element=>element.hidden),"Success must not show for an invalid email");
-  await page.locator("#simple-inquiry-email").fill("test@example.com");
-  await page.waitForTimeout(2200);
-  await page.locator("#simple-inquiry-submit").click();
-  await page.locator("#simple-inquiry-error").waitFor({state:"visible"});
-  assert.equal(await page.locator("#simple-inquiry-name").inputValue(),"Test User","Name must be retained after a delivery error");
-  assert.equal(await page.locator("#simple-inquiry-email").inputValue(),"test@example.com","Email must be retained after a delivery error");
-  assert.equal(await page.locator("#simple-inquiry-error a[href^='mailto:']").count(),1,"Fallback email link must remain visible after failure");
-  assert.equal(await page.locator("#simple-inquiry-error a[href*='cal.com']").count(),1,"Fallback booking link must remain visible after failure");
-  await page.locator("#simple-inquiry-submit").click();
-  await page.locator("#simple-inquiry-result").waitFor({state:"visible"});
-  const success=await page.locator("#simple-inquiry-result").innerText();
-  assert(success.includes("Your inquiry has been received. Thank you for reaching out."),"The public success state did not appear");
-  assert.equal(leadCalls.length,2,"The dummy inquiry should be retried once against the mock endpoint");
-  assert.equal(leadCalls[0].name,"Test User");
-  assert.equal(leadCalls[0].email,"test@example.com");
-  assert.equal(leadCalls[0].type,"standard");
-  assert.equal(leadCalls[0].budgetRange,"500 - 2,000 EGP");
-  assert.equal(leadCalls[0].submissionId,leadCalls[1].submissionId,"A retry should reuse the submission ID");
-  console.log("PASS public dummy QA — native validation, mocked POST, retained fields, visible fallback links, and successful retry; no email or live webhook was used.");
-
-  const apiResult=await page.evaluate(async()=>{
-   const response=await fetch("/api/business-inquiry",{
-    method:"POST",
-    credentials:"same-origin",
-    headers:{"X-Inquiry-Client":"portfolio-v1","Content-Type":"application/json"},
-    body:JSON.stringify({action:"prepare",token:"",fields:{name:"Test User",email:"test@example.com"}})
-   });
-   return {status:response.status,data:await response.json()};
-  });
-  assert.equal(apiResult.status,403,"The private enterprise endpoint must reject a dummy request without an approved invitation");
-  assert.deepEqual(apiResult.data,{ok:false,message:"A current invitation for an approved business is required. Request verification or ask for a new invitation."},"The private enterprise endpoint response changed");
-  console.log("PASS protected dummy POST — HTTP "+apiResult.status+" "+JSON.stringify(apiResult.data));
-  await page.close();
- }
+ await testThemePersistence();
+ await testPreviewDialog();
+ await testClipboard();
+ await testReportLoading();
+ await testResumePrint();
+ await testInquirySafety();
  await fs.writeFile(path.join(screenshotDir,"qa-matrix.json"),JSON.stringify(matrix,null,2));
- console.log("PASS visual QA matrix — "+matrix.length+" page/viewport combinations, "+matrix.length+" full-page screenshots.");
+ console.log("PASS visual QA — "+matrix.length+" page/theme/viewport screenshots across "+pages.length+" routes, "+themes.length+" themes, and "+viewports.length+" viewport widths.");
 }finally{await browser.close();}

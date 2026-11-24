@@ -125,7 +125,4 @@ if (screenshotDialog) {
   });
 }
 
-document.querySelectorAll('[data-copy-page]').forEach(button => button.addEventListener('click', async () => {
-  try { await navigator.clipboard.writeText(location.origin + location.pathname); toast('Project link copied.'); }
-  catch { toast('Copy this page’s address from your browser.'); }
-}));
+// Page-link copying is handled by redesign.js, including its accessible manual-copy fallback.
