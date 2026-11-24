@@ -146,6 +146,10 @@ async function captureRoute(route,width,height,theme,name){
    });
    assert(supply.descriptionRight<=supply.copyRight-8,"SMART Supply Chain description must retain right padding on mobile.");
   }
+  const firstCover=page.locator(".work-featured .pinned-case-card").first().locator(".project-visual img");
+  assert((await firstCover.getAttribute("src")).includes("fmcg-portfolio-cover.svg"),"B2B Work card must use its neutral portfolio cover, not the branded report screenshot.");
+  assert((await firstCover.getAttribute("alt")).includes("Neutral editorial cover"),"B2B cover alternative text must identify the neutral scenario artwork.");
+  assert.equal(await page.getByText(/MAXAB ANALYTICS|Built for Maxab Analytics|Welcome back, Sohila/i).count(),0,"The B2B Work card must not display client-branded report content.");
   assert.equal(await page.locator("[data-repo-tools]").count(),1,"Full work collection and filters are missing.");
   await page.locator("[data-repo-tools] > summary").click();
   assert(await page.locator("#repo-grid .repo-card").count()>0,"Full project catalogue should remain discoverable.");
@@ -275,6 +279,12 @@ async function testReportLoading(){
  await page.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
  await addProtectionHeader(page);
  await page.goto(new URL("/dashboards/fmcg-sales-churn-drop-analysis-powerbi/",base).href,{waitUntil:"domcontentloaded"});
+ const disclaimer=page.locator(".report-scenario-disclaimer");
+ assert.equal(await disclaimer.count(),1,"The public B2B report embed must be preceded by a practice-dataset disclaimer.");
+ assert.equal((await disclaimer.innerText()).replace(/\\s+/g," ").trim(),"Portfolio scenario. Report branding is from the practice dataset.");
+ const reportCover=page.locator(".report-main-preview img");
+ assert((await reportCover.getAttribute("src")).includes("fmcg-portfolio-cover.svg"),"B2B report detail must use the neutral portfolio cover.");
+ assert((await reportCover.getAttribute("alt")).includes("Neutral editorial cover"),"B2B cover must not claim to be a report screenshot.");
  const button=page.locator("[data-load-report]");
  assert.equal(await button.count(),1,"Public report needs an explicit load control.");
  assert.equal(await page.locator("iframe").count(),0,"Power BI iframe must not be created before visitor request.");

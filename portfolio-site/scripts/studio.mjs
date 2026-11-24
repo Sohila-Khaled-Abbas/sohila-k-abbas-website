@@ -4,7 +4,7 @@ import {progressBadge, reportRoute, homeReports, currentWork, toolkit} from './p
 
 const route = repo => '/projects/' + repo + '/';
 const sourceTitle = p => p.empty ? 'Repository overview' : p.flow ? 'Workflow overview' : 'Source preview';
-const visualInfo = (p,report) => report?.images?.length ? {src:report.images[0].src,kind:report.preview_kind==='diagram'?'Architecture diagram':'Dashboard preview',caption:report.images[0].caption,alt:report.images[0].alt,source_label:report.preview_kind==='diagram'?'Original SVG from the GitHub README.':report.images[0].source_url?'Captured from the published Power BI report.':'From the public project repository.'} : p?.media ? {...p.media,aspectRatio:p.media.width&&p.media.height?p.media.width/p.media.height:null,alt:p.title+' — '+p.media.kind} : null;
+const visualInfo = (p,report) => report?.images?.length ? {src:report.images[0].src,kind:report.preview_kind==='diagram'?'Architecture diagram':report.preview_kind==='cover'?'Editorial portfolio cover':'Dashboard preview',caption:report.images[0].caption,alt:report.images[0].alt,source_label:report.preview_kind==='diagram'?'Original SVG from the GitHub README.':report.preview_kind==='cover'?'Original editorial portfolio cover; not a report screenshot.':report.images[0].source_url?'Captured from the published Power BI report.':'From the public project repository.'} : p?.media ? {...p.media,aspectRatio:p.media.width&&p.media.height?p.media.width/p.media.height:null,alt:p.title+' — '+p.media.kind} : null;
 
 const repositoryMap = (p,meta={}) => {
   const repo = p.repo || 'repository';
