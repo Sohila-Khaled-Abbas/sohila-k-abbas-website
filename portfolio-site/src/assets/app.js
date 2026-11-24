@@ -219,7 +219,7 @@ if ($('#repo-grid')) {
   const reset=()=>{query.value='';if(kind)kind.value='all';status.value='all';sort.value='featured';category='all';limit=12;render();query.focus();};
   const resetButton=$('#repo-reset');
   if(resetButton)resetButton.addEventListener('click',reset);
-  $('[data-reset-repos]').forEach(button=>button.addEventListener('click',reset));
+  $$('[data-reset-repos]').forEach(button=>button.addEventListener('click',reset));
   if(more)more.addEventListener('click',()=>{const oldLimit=limit;limit+=12;render();const visible=$('.repo-card:not([hidden])',grid);const firstNew=visible[oldLimit]?.querySelector('.repo-name');firstNew?.focus();});
   grid.addEventListener('portfolio:repos-updated',()=>{cards=$$('.repo-card',grid);buttons.forEach(button=>{const key=button.dataset.repoFilter;const count=key==='all'?cards.length:cards.filter(c=>c.dataset.category===key).length;const span=button.querySelector('span');if(span)span.textContent=count;});render(false);});
   window.addEventListener('pageshow',()=>render(false));
