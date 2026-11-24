@@ -1,88 +1,65 @@
-/* Brand palette: ivory, espresso, and copper. Supporting tones are mixes of these three. */
+/* Editorial system: warm ivory, deep burgundy, muted stone, and a checked dark theme. */
 :root{
  color-scheme:light;
- --ivory:#FAF6EF;
- --espresso:#382724;
- --copper:#A66E51;
- --bg:var(--ivory);--surface:var(--ivory);--ink:var(--espresso);--text:var(--espresso);
- --muted:color-mix(in srgb,var(--espresso) 66%,var(--ivory));
- --line:color-mix(in srgb,var(--espresso) 16%,transparent);
- --soft:color-mix(in srgb,var(--copper) 10%,var(--ivory));
- --brand:var(--espresso);--accent:var(--copper);--paper:var(--ivory);--deep:var(--espresso);
- --action-bg:var(--espresso);--action-text:var(--ivory);
- --on-strong:var(--ivory);--on-strong-muted:color-mix(in srgb,var(--ivory) 76%,var(--copper));
- --focus:var(--copper);
- --source-bg:color-mix(in srgb,var(--copper) 11%,var(--ivory));
- --flow-bg:color-mix(in srgb,var(--copper) 16%,var(--ivory));
- --source-ink:var(--espresso);
- --live-bg:color-mix(in srgb,var(--copper) 9%,var(--ivory));
- --live-ink:var(--espresso);--live-line:color-mix(in srgb,var(--copper) 34%,var(--ivory));
- --progress-bg:color-mix(in srgb,var(--copper) 14%,var(--ivory));
- --progress-ink:var(--espresso);--progress-line:color-mix(in srgb,var(--copper) 44%,var(--ivory));
- --shadow:0 18px 45px color-mix(in srgb,var(--espresso) 10%,transparent);
- --shadow-strong:0 26px 65px color-mix(in srgb,var(--espresso) 17%,transparent);
- --display:"Instrument Serif",Georgia,"Times New Roman",serif;
+ --bg:#f7f3ed;--surface:#fffdf9;--ink:#211b1d;--text:#43383b;
+ --muted:#6c5d5a;--line:#e1d7ce;--soft:#efe7de;
+ --brand:#713549;--accent:#b78e7c;--paper:#eadfd7;
+ --deep:#2d1b23;--action-bg:#713549;--action-text:#fff9f5;
+ --on-strong:#fff9f5;--on-strong-muted:#e8d7d1;--focus:#8e4b61;
+ --source-bg:#eee4dc;--flow-bg:#e9ded6;--source-ink:#49353b;
+ --live-bg:#e9e0da;--live-ink:#563d47;--live-line:#d7c6be;
+ --progress-bg:#eee5d7;--progress-ink:#644b37;--progress-line:#d9c5aa;
+ --shadow:0 18px 45px #291a2014;--shadow-strong:0 26px 65px #291a2020;
+ --display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
  --serif:var(--display);--sans:"DM Sans",Inter,Arial,Helvetica,sans-serif;
 }
 html[data-theme=dark]{
  color-scheme:dark;
- --bg:var(--espresso);--surface:color-mix(in srgb,var(--espresso) 92%,var(--copper));
- --ink:var(--ivory);--text:color-mix(in srgb,var(--ivory) 91%,var(--copper));
- --muted:color-mix(in srgb,var(--ivory) 68%,var(--espresso));
- --line:color-mix(in srgb,var(--ivory) 19%,transparent);
- --soft:color-mix(in srgb,var(--espresso) 83%,var(--copper));
- --brand:var(--copper);--accent:var(--copper);--paper:var(--espresso);--deep:var(--espresso);
- --action-bg:var(--copper);--action-text:var(--espresso);
- --on-strong:var(--ivory);--on-strong-muted:color-mix(in srgb,var(--ivory) 78%,var(--copper));
- --focus:var(--copper);
- --source-bg:color-mix(in srgb,var(--espresso) 82%,var(--copper));
- --flow-bg:color-mix(in srgb,var(--espresso) 76%,var(--copper));
- --source-ink:var(--ivory);
- --live-bg:color-mix(in srgb,var(--espresso) 80%,var(--copper));
- --live-ink:var(--ivory);--live-line:color-mix(in srgb,var(--ivory) 22%,transparent);
- --progress-bg:color-mix(in srgb,var(--espresso) 72%,var(--copper));
- --progress-ink:var(--ivory);--progress-line:color-mix(in srgb,var(--ivory) 28%,transparent);
- --shadow:0 18px 45px color-mix(in srgb,var(--espresso) 55%,transparent);
- --shadow-strong:0 26px 65px color-mix(in srgb,var(--espresso) 76%,transparent);
+ --bg:#181415;--surface:#211a1d;--ink:#f6efe9;--text:#e1d5d0;
+ --muted:#bca9a5;--line:#514044;--soft:#2a2225;
+ --brand:#d9b3bf;--accent:#c5a18f;--paper:#382a2f;
+ --deep:#24181d;--action-bg:#d8b1bc;--action-text:#26191d;
+ --on-strong:#f6efe9;--on-strong-muted:#c9b7b2;--focus:#e1bdca;
+ --source-bg:#30252a;--flow-bg:#382a30;--source-ink:#eadde0;
+ --live-bg:#382b31;--live-ink:#ead6dc;--live-line:#60454e;
+ --progress-bg:#3b3128;--progress-ink:#f0d6b4;--progress-line:#70563e;
+ --shadow:0 18px 45px #0004;--shadow-strong:0 26px 65px #0006;
 }
 body{background:var(--bg);color:var(--text)}
-::selection{background:var(--copper);color:var(--espresso)}
+::selection{background:#d5b69f;color:#342724}
 .button.primary,.repo-filter.active,.filter.active,.project-view-buttons>button[aria-pressed=true],html[data-theme=dark] .button.primary,html[data-theme=dark] .filter.active,html[data-theme=dark] .repo-filter.active{background:var(--action-bg);border-color:var(--action-bg);color:var(--action-text)}
 .brand-mark i,html[data-theme=dark] .brand-mark i{background:var(--brand)}
-.brand-mark i:last-child,.brand-dot{color:var(--copper);background:transparent}
+.brand-mark i:last-child,.brand-dot{color:var(--brand);background:transparent}
 .brand-mark i:last-child{background:var(--accent)}
-.live-dot,.signature-project>span>i{background:var(--copper);box-shadow:0 0 0 4px color-mix(in srgb,var(--copper) 10%,transparent)}
+.live-dot,.signature-project>span>i{background:#a57070;box-shadow:0 0 0 4px #b78b7e18}
 .signature-stage.hero-art,.services-teaser,.contact-section,html[data-theme=dark] .contact-section{background:var(--deep)}
-.signature-stage-grid{background-image:linear-gradient(color-mix(in srgb,var(--copper) 5%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--copper) 5%,transparent) 1px,transparent 1px)}
-.signature-stage-grid:before{border-color:color-mix(in srgb,var(--copper) 25%,transparent)}
-.signature-stage-grid:after{border-color:color-mix(in srgb,var(--copper) 20%,transparent)}
-.signature-stage-number{color:color-mix(in srgb,var(--ivory) 5%,transparent)}
-.signature-stage-caption{color:var(--on-strong-muted)}
-.signature-portrait,.signature-portrait>span{background:var(--ivory);border-color:var(--ivory)}
-.signature-portrait>span{color:var(--espresso)}
-.signature-tool,.signature-project{background:var(--ivory);border-color:color-mix(in srgb,var(--copper) 20%,var(--ivory));color:var(--espresso)}
-.signature-project>img{background:var(--espresso)}.signature-project>span{color:var(--espresso)}
-.hero h1 em:after{border-color:var(--copper)}
+.signature-stage-grid{background-image:linear-gradient(#ead6c80c 1px,transparent 1px),linear-gradient(90deg,#ead6c80c 1px,transparent 1px)}
+.signature-stage-grid:before{border-color:#c39a793b}.signature-stage-grid:after{border-color:#c39a7930}
+.signature-stage-number{color:#f0d9c70d}.signature-stage-caption{color:var(--on-strong-muted)}
+.signature-portrait,.signature-portrait>span{background:#f8f0e7;border-color:#f8f0e7}
+.signature-portrait>span{color:#655046}
+.signature-tool,.signature-project{background:#faf2e9;border-color:#ead9ca;color:#4b3630}
+.signature-project>img{background:#342724}.signature-project>span{color:#533c33}
+.hero h1 em:after{border-color:var(--brand)}
 .services-teaser .eyebrow,.services-teaser-grid span{color:var(--on-strong-muted)}
 .services-teaser h2,.services-teaser-grid p,.contact-section h2{color:var(--on-strong)}
-.services-teaser-grid>a{border-top-color:color-mix(in srgb,var(--copper) 34%,transparent)}
-.services-teaser .button.cream{background:var(--ivory);color:var(--espresso)}
-.tool-logo,.report-placeholder>img,.report-load-prompt>img{background:var(--ivory);border-color:color-mix(in srgb,var(--espresso) 18%,var(--ivory))}
+.services-teaser-grid>a{border-top-color:#d1ad8e55}.services-teaser .button.cream{background:#f1e1d3;color:#382724}
+.tool-logo,.report-placeholder>img,.report-load-prompt>img{background:#fffaf4;border-color:#dfcfc2}
 .progress-badge,html[data-theme=dark] .progress-badge{background:var(--progress-bg);color:var(--progress-ink);border-color:var(--progress-line)}
 .access-badge.public-report,html[data-theme=dark] .access-badge.public-report{background:var(--live-bg);color:var(--live-ink);border-color:var(--live-line)}
 .visual-source,.engineering .visual-source,.apps .visual-source,.learning .visual-source,html[data-theme=dark] .visual-source,html[data-theme=dark] .engineering .visual-source,html[data-theme=dark] .apps .visual-source,html[data-theme=dark] .learning .visual-source{background:var(--source-bg);color:var(--source-ink)}
 .visual-flow,.automation .visual-source,html[data-theme=dark] .visual-flow,html[data-theme=dark] .automation .visual-source{background:var(--flow-bg);color:var(--source-ink)}
 .source-preview-bottom,.source-line,html[data-theme=dark] .source-preview-bottom{color:var(--muted)}
 .visual-image>img,.preview-image-wrap,html[data-theme=dark] .visual-image>img,html[data-theme=dark] .preview-image-wrap{background:var(--soft)}
-.project-cover-open{background:color-mix(in srgb,var(--espresso) 93%,transparent);color:var(--ivory)}
-.visual-type,.preview-enlarge,.cover-open{background:color-mix(in srgb,var(--ivory) 95%,transparent);color:var(--espresso);border-color:color-mix(in srgb,var(--copper) 35%,var(--ivory))}
-.image-viewer::backdrop,.project-finder::backdrop{background:color-mix(in srgb,var(--espresso) 85%,transparent)}
+.project-cover-open{background:#382724ed;color:#fffaf4}
+.visual-type{background:#fff8f0f2;color:#574137;border-color:#dbc5b5}
+.preview-enlarge,.cover-open{background:#fff8f0f2;color:#574137;border-color:#dbc5b5}
+.image-viewer::backdrop,.project-finder::backdrop{background:#261713d9}
 .tea-mark,html[data-theme=dark] .tea-mark{background:var(--paper)}
 .story-quote,.generic-cover{background:var(--soft)}
 .button:focus-visible,a:focus-visible,button:focus-visible,[tabindex]:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline-color:var(--focus)}
-h1,h2,h3{font-family:var(--display)}
-h1 em,h2 em,h3 em{color:var(--copper)}
 @media print{
- :root,html[data-theme=dark]{color-scheme:light;--bg:var(--ivory);--surface:var(--ivory);--ink:var(--espresso);--text:var(--espresso);--muted:color-mix(in srgb,var(--espresso) 66%,var(--ivory));--line:color-mix(in srgb,var(--espresso) 16%,transparent);--soft:color-mix(in srgb,var(--copper) 10%,var(--ivory))}
- .services-teaser{background:var(--ivory)}.services-teaser h2,.services-teaser p{color:var(--espresso)}
+  :root,html[data-theme=dark]{color-scheme:light;--bg:white;--surface:white;--ink:#211916;--text:#342724;--muted:#625047;--line:#cdbbb0;--soft:#f5eee8}
+  .services-teaser{background:white}
+  .services-teaser h2,.services-teaser p{color:#342724}
 }

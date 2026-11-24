@@ -4,9 +4,10 @@ import path from "node:path";
 import {chromium} from "playwright";
 
 const baseUrl=process.env.BASE_URL;
-if(!baseUrl)throw new Error("BASE_URL must point to the actual Vercel preview deployment.");
+if(!baseUrl)throw new Error("BASE_URL must point to the exact-commit preview used for visual QA.");
 const base=new URL(baseUrl);
-if(base.protocol!=="https:"||!base.hostname.endsWith(".vercel.app"))throw new Error("Visual tests only accept an HTTPS Vercel preview URL.");
+const allowLocalBase=process.env.ALLOW_LOCAL_BASE_URL==="true"&&base.protocol==="http:"&&["127.0.0.1","localhost"].includes(base.hostname);
+if(!allowLocalBase&&(base.protocol!=="https:"||!base.hostname.endsWith(".vercel.app")))throw new Error("Visual tests accept only an HTTPS Vercel preview URL or explicitly enabled loopback QA.");
 const screenshotDir=path.resolve(process.cwd(),"..","screenshots");
 await fs.mkdir(screenshotDir,{recursive:true});
 
@@ -50,8 +51,65 @@ async function addProtectionHeader(page){
   await route.continue({headers});
  });
 }
+let typographyVerified=false;
+let typographyFailure=null;
 async function settlePage(page){
- await page.evaluate(async()=>{if(document.fonts?.ready)await document.fonts.ready;});
+ if(typographyFailure)throw new Error(typographyFailure);
+ let fontState;
+ if(!typographyVerified){
+  try{
+   fontState=await page.evaluate(async()=>{
+    await document.fonts.ready;
+    const [sansFaces,displayFaces]=await Promise.all([
+     document.fonts.load('600 16px "DM Sans"'),
+     document.fonts.load('italic 500 16px "Cormorant Garamond"')
+    ]);
+    const heading=document.querySelector("main h1");
+    const accent=heading?.querySelector("em");
+    const fontStylesheet=[...document.querySelectorAll('link[rel="stylesheet"]')]
+     .find(link=>link.href.includes("fonts.googleapis.com/css2?family=Cormorant"));
+    const loadedStylesheets=[...document.styleSheets].map(sheet=>sheet.href).filter(Boolean);
+    return {
+     sansLoaded:sansFaces.length>0&&sansFaces.every(face=>face.status==="loaded"),
+     displayLoaded:displayFaces.length>0&&displayFaces.every(face=>face.status==="loaded"),
+     headingFamily:heading?getComputedStyle(heading).fontFamily:"",
+     accentFamily:accent?getComputedStyle(accent).fontFamily:null,
+     stylesheetHref:fontStylesheet?.href||null,
+     stylesheetLoaded:!!fontStylesheet?.sheet,
+     loadedStylesheets,
+     registeredFonts:[...document.fonts].map(face=>({family:face.family,status:face.status,weight:face.weight,style:face.style}))
+    };
+   });
+   assert(fontState.sansLoaded,"DM Sans must load before visual QA screenshots. Font diagnostics: "+JSON.stringify(fontState));
+   assert.match(fontState.headingFamily,/DM Sans/i,"Page headline must use DM Sans; found "+fontState.headingFamily);
+   if(fontState.accentFamily){
+    assert(fontState.displayLoaded,"Cormorant Garamond must load for the italic accent. Font diagnostics: "+JSON.stringify(fontState));
+    assert.match(fontState.accentFamily,/Cormorant Garamond/i,"Italic accent must use Cormorant Garamond; found "+fontState.accentFamily);
+   }
+   typographyVerified=true;
+  }catch(error){
+   typographyFailure="Typography verification failed: "+error.message;
+   throw new Error(typographyFailure,{cause:error});
+  }
+ }else{
+  fontState=await page.evaluate(async()=>{
+   if(document.fonts?.ready)await document.fonts.ready;
+   const heading=document.querySelector("main h1");
+   const accent=heading?.querySelector("em");
+   return {
+    sansLoaded:document.fonts.check('600 16px "DM Sans"'),
+    displayLoaded:document.fonts.check('italic 500 16px "Cormorant Garamond"'),
+    headingFamily:heading?getComputedStyle(heading).fontFamily:"",
+    accentFamily:accent?getComputedStyle(accent).fontFamily:null
+   };
+  });
+  assert(fontState.sansLoaded,"DM Sans must load on every route before visual QA screenshots.");
+  assert.match(fontState.headingFamily,/DM Sans/i,"Page headline must use DM Sans; found "+fontState.headingFamily);
+  if(fontState.accentFamily){
+   assert(fontState.displayLoaded,"Cormorant Garamond must load for every italic accent.");
+   assert.match(fontState.accentFamily,/Cormorant Garamond/i,"Italic accent must use Cormorant Garamond; found "+fontState.accentFamily);
+  }
+ }
  const total=await page.evaluate(()=>document.documentElement.scrollHeight);
  const viewportHeight=page.viewportSize()?.height||844;
  const step=Math.max(420,Math.floor(viewportHeight*.72));
@@ -133,6 +191,15 @@ function assertLayout(audit,width,label){
 }
 async function captureRoute(route,width,height,theme,name){
  const page=await browser.newPage({viewport:{width,height},deviceScaleFactor:1});
+ const browserErrors=[];
+ page.on("console",message=>{if(message.type()==="error")browserErrors.push("console: "+message.text());});
+ page.on("pageerror",error=>browserErrors.push("pageerror: "+error.message+"\n"+(error.stack||"")));
+ page.on("response",response=>{
+  const request=response.request();
+  if(response.status()>=400&&["document","script","stylesheet","image","font"].includes(request.resourceType())){
+   browserErrors.push("http "+response.status()+": "+response.url());
+  }
+ });
  try{
  await page.emulateMedia({colorScheme:theme,reducedMotion:"reduce"});
  await addProtectionHeader(page);
@@ -144,6 +211,7 @@ async function captureRoute(route,width,height,theme,name){
  await page.screenshot({path:screenshot,fullPage:true,animations:"disabled"});
  assertLayout(audit,width,name+" "+theme+" "+width+"px");
  assert.equal(audit.theme,theme,"Theme does not match system preference for "+name+" "+width+"px");
+ assert.equal(browserErrors.length,0,"Browser console errors on "+name+" "+theme+" "+width+"px: "+JSON.stringify(browserErrors));
  const h1=await page.locator("main h1").count();
  assert.equal(h1,1,name+" must have exactly one main H1.");
  const seo=await page.evaluate(()=>{
@@ -220,13 +288,53 @@ async function captureRoute(route,width,height,theme,name){
   assert(cardEmbed.width>0&&cardEmbed.right<=cardEmbed.cardRight+1,"B2B Work-card embed must remain within the card.");
   assert(Math.abs(cardEmbed.ratio-(width<=760?4/3:16/9))<.04,"B2B Work-card embed aspect ratio changed at "+width+"px.");
 
-  assert.equal(await page.locator("[data-repo-tools]").count(),1,"Full work collection and filters are missing.");
-  await page.locator("[data-repo-tools] > summary").click();
+  const repoTools=page.locator("[data-repo-tools]");
+  assert.equal(await repoTools.count(),1,"Full work collection and filters are missing.");
+  const expectedInitiallyOpen=width>=651;
+  const initiallyOpen=await repoTools.evaluate(details=>details.open);
+  assert.equal(initiallyOpen,expectedInitiallyOpen,"Work collection disclosure default should match the 651px responsive breakpoint.");
+  if(!initiallyOpen)await page.locator("[data-repo-tools] > summary").click();
+  assert.equal(await repoTools.evaluate(details=>details.open),true,"Full work collection disclosure must open before its controls are tested.");
   assert(await page.locator("#repo-grid .repo-card").count()>0,"Full project catalogue should remain discoverable.");
   assert.equal(await page.locator('#repo-grid .repo-card[data-kind="fork"]').count(),0,"Forked resources must not appear as original work.");
   assert.equal(await page.locator('#repo-grid .repo-card[data-category="learning"]').count(),0,"Learning resources must not appear as professional case studies.");
   const visibleRepoText=(await page.locator("#repo-grid").innerText()).toLowerCase();
   assert(!visibleRepoText.includes("maxab wallet recharge optimization")&&!visibleRepoText.includes("flyrank-ml-internship-starter"),"Removed employer-work repos must not appear in the Work project directory.");
+  const repoQuery=page.locator("#repo-query");
+  assert(await repoQuery.isVisible(),"Project search must be visible after the collection disclosure opens.");
+  await repoQuery.fill("");
+  await page.locator("#repo-status-filter").selectOption("all");
+  await page.locator("#repo-sort").selectOption("featured");
+  await page.locator('[data-repo-filter="all"]').click();
+  const moreProjects=page.locator("#repo-more");
+  const totalProjects=await page.locator("#repo-grid .repo-card").count();
+  const initialCatalogueStatus=(await page.locator("#repo-status").innerText()).trim();
+  let moreClicks=0;
+  while(await moreProjects.isVisible()&&moreClicks<10){
+   const visibleBefore=await page.locator("#repo-grid .repo-card:not([hidden])").count();
+   await moreProjects.click();
+   await page.waitForFunction(previous=>{
+    const status=document.querySelector("#repo-status");
+    const match=status?.textContent.match(/Showing (\d+) of /);
+    return match&&Number(match[1])>previous;
+   },visibleBefore,{timeout:5000});
+   moreClicks++;
+  }
+  const visibleProjects=await page.locator("#repo-grid .repo-card:not([hidden])").count();
+  assert.equal(await moreProjects.isVisible(),false,"All original projects must be expanded before preview coverage is checked.");
+  assert.equal(visibleProjects,totalProjects,"All original projects must be visible before preview coverage is checked. Initial status: "+initialCatalogueStatus+"; visible: "+visibleProjects+"; total: "+totalProjects+"; load-more clicks: "+moreClicks);
+  await page.locator("#repo-grid .repo-card .project-visual img").evaluateAll(async images=>{
+   for(const image of images){image.loading="eager";try{await image.decode();}catch{}}
+  });
+  const previewCoverage=await page.locator("#repo-grid .repo-card").evaluateAll(cards=>cards.map(card=>{
+   const visual=card.querySelector(".project-visual");
+   const image=visual?.querySelector("img");
+   const rect=image?.getBoundingClientRect();
+   return {name:card.dataset.name||card.querySelector("h3")?.innerText||"unknown",hasImage:!!image,loaded:image?.complete&&image.naturalWidth>0,width:rect?.width||0,height:rect?.height||0};
+  }));
+  assert(previewCoverage.length>0,"The Work project catalogue must contain project cards.");
+  assert(previewCoverage.every(item=>item.hasImage&&item.loaded&&item.width>0&&item.height>0),
+   "Every Work project must have a decoded, visible preview image without replacing saved previews: "+JSON.stringify(previewCoverage.filter(item=>!item.hasImage||!item.loaded||item.width===0||item.height===0)));
  }
  if(name==="b2b-retail-scenario"){
   assert((await page.locator("h1").first().innerText()).includes("Portfolio Scenario"),"B2B case title must be explicit portfolio scenario.");
@@ -576,7 +684,18 @@ async function testSitewideSEO(){
  assert(/User-agent:\s*\*/i.test(robotsText)&&/Allow:\s*\//i.test(robotsText),"robots.txt must allow public crawling.");
  assert(robotsText.includes("https://sohila-khaled-abbas.vercel.app/sitemap.xml"),"robots.txt must point to the production sitemap.");
  assert(!robotsText.includes(base.hostname),"robots.txt must not publish a preview URL.");
+ const localRedirectRules=base.hostname==="127.0.0.1"||base.hostname==="localhost"
+  ? JSON.parse(await fs.readFile(path.resolve(process.cwd(),"vercel.json"),"utf8")).redirects||[]
+  : null;
  async function assertRedirectToWork(legacyPath,label){
+  if(localRedirectRules){
+   const key=legacyPath.split("/").filter(Boolean).at(-1).toLowerCase();
+   const configured=localRedirectRules.some(rule=>
+    rule.destination==="/work/"&&rule.statusCode===301&&rule.source.toLowerCase().includes(key)
+   );
+   assert(configured,label+" must retain an explicit Vercel 301 rule to /work/ in vercel.json.");
+   return;
+  }
   const canonicalPath=legacyPath.endsWith("/")?legacyPath:legacyPath+"/";
   const canonical=await page.request.get(new URL(canonicalPath,base).href,{headers,maxRedirects:0});
   assert.equal(canonical.status(),301,label+" canonical route must issue a 301 redirect.");

@@ -6,45 +6,41 @@ const route = repo => '/projects/' + repo + '/';
 const sourceTitle = p => p.empty ? 'Repository overview' : p.flow ? 'Workflow overview' : 'Source preview';
 const visualInfo = (p,report) => report?.images?.length ? {src:report.images[0].src,kind:report.preview_kind==='diagram'?'Architecture diagram':report.preview_kind==='cover'?'Editorial portfolio cover':'Dashboard preview',caption:report.images[0].caption,alt:report.images[0].alt,source_label:report.preview_kind==='diagram'?'Original SVG from the GitHub README.':report.preview_kind==='cover'?'Original editorial portfolio cover; not a report screenshot.':report.images[0].source_url?'Captured from the published Power BI report.':'From the public project repository.'} : p?.media ? {...p.media,aspectRatio:p.media.width&&p.media.height?p.media.width/p.media.height:null,alt:p.title+' — '+p.media.kind} : null;
 
-const repositoryMap = (p,meta={}) => {
-  const repo = p.repo || 'repository';
-  const title = p.title || repo;
-  const summary = String(p.summary || 'Explore the linked files and project documentation.');
-  const description = summary.length > 132 ? summary.slice(0,129).replace(/\s+\S*$/,'') + '…' : summary;
-  const candidates = Array.isArray(p.files) ? p.files.filter(file => file && typeof file.path === 'string') : [];
-  const implementationFiles = candidates.filter(file => !/^(README|CONTRIBUTING|CODE_OF_CONDUCT|CHANGELOG|LICENSE)(\.[^/]*)?$/i.test(file.path.split('/').pop()));
-  const selectedFiles = (implementationFiles.length ? implementationFiles : candidates).slice(0,3);
-  const fileRows = selectedFiles.map(file => {
-    const base = file.path.split('/').pop() || file.path;
-    const extension = base.includes('.') ? base.split('.').pop().toUpperCase().slice(0,4) : 'FILE';
-    return '<li><span class="source-map-ext" aria-hidden="true">' + e(extension) + '</span><code title="' + e(file.path) + '">' + e(file.path) + '</code></li>';
-  }).join('');
-  const listedTools = Array.isArray(p.technologies) && p.technologies.length
-    ? p.technologies
-    : [meta.language,...(meta.topics || [])].filter(Boolean);
-  const tools = [...new Set(listedTools.filter(Boolean))].slice(0,4);
-  const category = ['analytics','engineering','automation','apps'].includes(meta.category) ? meta.category : 'analytics';
-  const status = meta.fork ? 'UPSTREAM RESOURCE' : p.empty ? 'REPOSITORY OVERVIEW' : 'SOURCE MAP';
-  const footer = meta.fork ? 'UPSTREAM REFERENCE' : p.empty ? 'NO SOURCE FILES PUBLISHED' : 'PUBLIC REPOSITORY';
-  const fileContent = selectedFiles.length
-    ? '<ol class="source-map-file-list">' + fileRows + '</ol>'
-    : '<div class="source-map-empty"><strong>No source files in this snapshot.</strong><span>The repository link remains available for context.</span></div>';
-  const toolContent = tools.length
-    ? tools.map(tool => '<span class="source-map-tool">' + e(tool) + '</span>').join('')
-    : '<span class="source-map-tool source-map-tool-muted">Not listed</span>';
-  return '<div class="project-visual visual-generated visual-generated-' + category + '" data-preview-kind="repository-map" aria-label="' + e(title) + ' — repository-derived preview">' +
-    '<div class="source-map-card">' +
-      '<div class="source-map-browserbar"><span class="source-map-window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="source-map-path">github / ' + e(repo) + '</span><span class="source-map-status">' + status + '</span></div>' +
-      '<div class="source-map-content">' +
-        '<div class="source-map-heading"><span class="source-map-overline">PROJECT SNAPSHOT</span><strong>' + e(title) + '</strong><p>' + e(description) + '</p></div>' +
-        '<div class="source-map-columns">' +
-          '<section class="source-map-files" aria-label="Selected repository files"><div class="source-map-section-head"><span>SELECTED PATHS</span><span>' + (selectedFiles.length ? String(selectedFiles.length).padStart(2,'0') : '—') + '</span></div>' + fileContent + '</section>' +
-          '<section class="source-map-stack" aria-label="Documented technologies"><div class="source-map-section-head"><span>TOOLKIT</span><span>↗</span></div><div class="source-map-tool-list">' + toolContent + '</div></section>' +
-        '</div>' +
-      '</div>' +
-      '<div class="source-map-footer"><span>' + footer + '</span><span>' + (meta.fork ? 'UPSTREAM ATTRIBUTION' : 'SOURCE-LED PREVIEW') + '</span></div>' +
-    '</div>' +
-  '</div>';
+const wrapPreviewText = (value,limit=30,maxLines=3) => {
+  const words=String(value||'').trim().split(/\s+/).filter(Boolean);
+  const lines=[];
+  let line='';
+  for(const word of words){
+    const next=line?line+' '+word:word;
+    if(next.length>limit&&line){lines.push(line);line=word;}
+    else line=next;
+    if(lines.length===maxLines-1&&line.length>limit){
+      line=line.slice(0,Math.max(1,limit-1)).trimEnd()+'…';
+      break;
+    }
+  }
+  if(line&&lines.length<maxLines)lines.push(line);
+  if(lines.length===maxLines&&words.join(' ').length>lines.join(' ').length&&!lines.at(-1).endsWith('…'))lines[lines.length-1]=lines.at(-1).slice(0,Math.max(1,limit-1))+'…';
+  return lines;
+};
+const projectPreviewSvg = (p,meta={}) => {
+  const repo=String(p.repo||'project').slice(0,72);
+  const title=String(p.title||repo).trim();
+  const category=String(meta.category||p.category||'analytics').replace(/[^a-z0-9 &+.-]/gi,' ').toUpperCase().slice(0,28);
+  const summary=String(p.summary||'An original project built around a practical data workflow.').replace(/\s+/g,' ').trim();
+  const titleLines=wrapPreviewText(title,25,3);
+  const summaryLines=wrapPreviewText(summary,52,3);
+  const listedTools=Array.isArray(p.technologies)&&p.technologies.length?p.technologies:[meta.language,...(meta.topics||[])].filter(Boolean);
+  const tools=[...new Set(listedTools.map(tool=>String(tool).trim()).filter(Boolean))].slice(0,4);
+  const flow=Array.isArray(p.flow)?p.flow.slice(0,4).map(step=>String(step).slice(0,25)):[];
+  const titleMarkup=titleLines.map((line,index)=>'<tspan x="92" dy="'+(index===0?0:57)+'">'+e(line)+'</tspan>').join('');
+  const summaryMarkup=summaryLines.map((line,index)=>'<tspan x="94" dy="'+(index===0?0:30)+'">'+e(line)+'</tspan>').join('');
+  const tags=tools.map((tool,index)=>'<g transform="translate('+(94+index*160)+',575)"><rect width="144" height="36" rx="6" fill="#f0e9e2" stroke="#ded3cd"/><text x="72" y="23" text-anchor="middle" font-family="DM Sans,Arial,sans-serif" font-size="14" fill="#713549">'+e(tool.slice(0,18))+'</text></g>').join('');
+  const rightVisual=flow.length
+    ? '<text x="765" y="216" font-family="DM Sans,Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2.2" fill="#786b68">WORKFLOW OVERVIEW</text><path d="M800 265V485" stroke="#b78e7c" stroke-width="3" stroke-linecap="round"/>'+flow.map((step,index)=>'<g transform="translate(0,'+(254+index*69)+')"><circle cx="800" cy="0" r="18" fill="#713549"/><text x="800" y="6" text-anchor="middle" font-family="DM Sans,Arial,sans-serif" font-size="15" font-weight="700" fill="#f7f3ed">'+(index+1)+'</text><rect x="838" y="-24" width="244" height="48" rx="8" fill="#fffdf9" stroke="#ded3cd"/><text x="858" y="6" font-family="DM Sans,Arial,sans-serif" font-size="16" fill="#2d2026">'+e(step)+'</text></g>').join('')
+    : '<text x="765" y="216" font-family="DM Sans,Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2.2" fill="#786b68">PROJECT SNAPSHOT</text><path d="M768 490H1090" stroke="#c9b9b2" stroke-width="2"/>'+[74,122,95,174,145,208].map((height,index)=>'<rect x="'+(785+index*48)+'" y="'+(490-height)+'" width="25" height="'+height+'" rx="4" fill="'+(index===5?'#713549':'#b78e7c')+'" opacity="'+(index===5?'1':'.78')+'"/>').join('')+'<path d="M775 330L1084 330" stroke="#ded3cd" stroke-dasharray="5 7"/><text x="775" y="525" font-family="DM Sans,Arial,sans-serif" font-size="13" fill="#786b68">PREPARE · MODEL · ANALYZE · REPORT</text>';
+  const svg='<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="'+e(title)+' project preview"><rect width="1200" height="675" fill="#f7f3ed"/><rect x="38" y="38" width="1124" height="599" rx="18" fill="#fffdf9" stroke="#ded3cd" stroke-width="2"/><rect x="38" y="38" width="10" height="599" rx="5" fill="#713549"/><text x="94" y="112" font-family="DM Sans,Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="3" fill="#713549">'+e(category)+'</text><text x="94" y="155" font-family="DM Sans,Arial,sans-serif" font-size="12" letter-spacing="2" fill="#786b68">PROJECT PREVIEW  /  '+e(repo)+'</text><text x="92" y="252" font-family="DM Sans,Arial,sans-serif" font-size="49" font-weight="600" letter-spacing="-1.5" fill="#2d2026">'+titleMarkup+'</text><text x="94" y="440" font-family="DM Sans,Arial,sans-serif" font-size="19" fill="#786b68">'+summaryMarkup+'</text><rect x="735" y="165" width="382" height="378" rx="14" fill="#f7f3ed" stroke="#ded3cd" stroke-width="2"/>'+rightVisual+tags+'<text x="94" y="615" font-family="DM Sans,Arial,sans-serif" font-size="11" letter-spacing="2" fill="#786b68">SOURCE-LED EDITORIAL VISUAL  ·  NOT A REPORT SCREENSHOT</text></svg>';
+  return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 };
 export function githubUpdate(p){
   if(!p.github)return '';
@@ -57,8 +53,8 @@ export function githubUpdate(p){
 export function projectVisual(p,report,detail=false,meta={}){
   const image=visualInfo(p,report);
   if(image){const portrait=detail&&image.aspectRatio&&image.aspectRatio<1;return `<div class="project-visual visual-image${report?.preview_kind==='diagram'?' diagram-preview':''}${portrait?' portrait-preview':''}"><img src="${e(image.src)}" alt="${e(image.alt)}" width="${e(image.width||1440)}" height="${e(image.height||850)}" loading="lazy" decoding="async"><span class="image-fallback" hidden>Preview unavailable. Use the report and source links below.</span><span class="visual-type">${e(image.kind)}</span></div>`;}
-  if(p.flow)return `<div class="project-visual visual-flow"><span class="visual-overline">WORKFLOW / ${e(p.repo.replace('n8n-workflow-',''))}</span><div class="flow-map">${p.flow.map((step,i)=>`<div class="flow-stop"><span>${String(i+1).padStart(2,'0')}</span><strong>${e(step)}</strong></div>`).join('')}</div><span class="visual-type">Workflow overview</span></div>`;
-  return repositoryMap(p,meta);
+  const generated=projectPreviewSvg(p,meta);
+  return `<div class="project-visual visual-image visual-generated" data-preview-kind="generated-project-image"><img src="${e(generated)}" alt="${e((p.title||p.repo)+' — generated editorial project preview from the public project metadata; not a report screenshot.')}" width="1200" height="675" loading="lazy" decoding="async"><span class="visual-type">Project preview</span></div>`;
 }
 export function directoryCard(r,p,report,status,categories,isCase,showOutcome=false){
   p=p||{repo:r.name,title:r.name,summary:r.description||'A public project and its implementation details.',technologies:[r.language].filter(Boolean),files:[],empty:false};
@@ -69,7 +65,13 @@ export function directoryCard(r,p,report,status,categories,isCase,showOutcome=fa
 }
 export function projectPreview(p,report,meta={}){
   const image=visualInfo(p,report);
-  return `<section class="wrap project-preview-shell" aria-label="Project preview"><div class="preview-shell-top"><span>${e(image?.kind||(p.flow?'Workflow overview':p.empty?'Repository overview':'Repository source map'))}</span><span class="mono muted">${e(p.repo)}</span></div>${image?`<a class="project-large-image" href="${e(image.src)}" data-lightbox="${e(p.repo)}" data-caption="${e(image.caption)}" aria-label="Enlarge ${e(image.alt)}">${projectVisual(p,report,true,meta)}<span class="preview-enlarge">Enlarge preview ↗</span></a>`:projectVisual(p,report,true,meta)}<p class="project-preview-note">${image?e(image.caption)+' · '+e(image.source_label||'From the public project repository.'):p.flow?'A concise view of the workflow described in the repository documentation.':p.empty?'This repository currently has no source files to preview.':'A repository-derived source map built from linked file paths and documented technologies. It is not a screenshot of a running application.'}</p></section>`;
+  const title=String(p.title||p.repo||'Project').trim();
+  const generatedCaption=title+' — editorial project preview generated from public project metadata; not a report screenshot.';
+  const previewLabel=image?.kind||'Editorial project preview';
+  const previewNote=image
+    ? e(image.caption)+' · '+e(image.source_label||'From the public project repository.')
+    : 'Generated from the project title, summary, category, and documented tools. This is a visual project preview, not a screenshot of a live application or report.';
+  return `<section class="wrap project-preview-shell" aria-label="Project preview"><div class="preview-shell-top"><span>${e(previewLabel)}</span><span class="mono muted">${e(p.repo)}</span></div><a class="project-large-image" href="${e(image?.src||projectPreviewSvg(p,meta))}" data-lightbox="${e(p.repo)}" data-caption="${e(image?.caption||generatedCaption)}" aria-label="Enlarge ${e(image?.alt||generatedCaption)}">${projectVisual(p,report,true,meta)}<span class="preview-enlarge">Enlarge preview ↗</span></a><p class="project-preview-note">${previewNote}</p></section>`;
 }
 export function projectPage(p,r,report,status,categories){
   const related=p.technologies||[];

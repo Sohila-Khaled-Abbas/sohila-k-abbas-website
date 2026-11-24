@@ -1,16 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
 <title id="title">Sohila Khaled Abbas — BI Developer and Data Analyst</title>
-<desc id="desc">Editorial portfolio cover in ivory, espresso, and copper, with the name Sohila Khaled Abbas and the role BI Developer and Data Analyst.</desc>
-<rect width="1200" height="630" fill="#FAF6EF"/><rect x="825" width="375" height="630" fill="#382724"/><path d="M0 0H1200V12H0Z" fill="#A66E51"/>
-<g fill="none" stroke="#A66E51" stroke-width="2" opacity=".62"><path d="M870 105H1150M870 525H1150M870 105V525M1150 105V525"/><circle cx="1010" cy="315" r="128"/><circle cx="1010" cy="315" r="92"/><path d="M882 315H1138M1010 187V443M920 225L1100 405M1100 225L920 405"/></g>
-<g fill="#A66E51"><rect x="72" y="66" width="12" height="12" rx="2"/><rect x="90" y="66" width="12" height="12" rx="2"/><rect x="72" y="84" width="12" height="12" rx="2"/><rect x="90" y="84" width="12" height="12" rx="2"/></g>
+<desc id="desc">Editorial portfolio cover in ivory and burgundy, with the name Sohila Khaled Abbas and the role BI Developer and Data Analyst.</desc>
+<rect width="1200" height="630" fill="#f7f3ed"/>
+<rect x="825" width="375" height="630" fill="#3c222a"/>
+<path d="M0 0H1200V12H0Z" fill="#743348"/>
+<g fill="none" stroke="#b78e7c" stroke-width="2" opacity=".55">
+<path d="M870 105H1150M870 525H1150M870 105V525M1150 105V525"/>
+<circle cx="1010" cy="315" r="128"/>
+<circle cx="1010" cy="315" r="92"/>
+<path d="M882 315H1138M1010 187V443M920 225L1100 405M1100 225L920 405"/>
+</g>
+<g fill="#743348"><rect x="72" y="66" width="12" height="12" rx="2"/><rect x="90" y="66" width="12" height="12" rx="2"/><rect x="72" y="84" width="12" height="12" rx="2"/><rect x="90" y="84" width="12" height="12" rx="2"/></g>
 <text x="126" y="91" fill="#382724" font-family="Arial,sans-serif" font-size="28" font-weight="700" letter-spacing="1">SOHILA.</text>
-<text x="72" y="177" fill="#A66E51" font-family="Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="3">REMOTE DATA / BUSINESS INTELLIGENCE</text>
-<text x="72" y="280" fill="#382724" font-family="Georgia,serif" font-size="68" font-weight="500">Sohila Khaled Abbas</text>
-<text x="72" y="368" fill="#A66E51" font-family="Georgia,serif" font-size="52" font-style="italic">BI Developer &amp; Data Analyst</text>
-<path d="M72 400H760" stroke="#A66E51" stroke-width="2"/>
-<text x="72" y="460" fill="#382724" font-family="Arial,sans-serif" font-size="25">Power BI · SQL · Data Modeling · Decision-ready reporting</text>
-<text x="72" y="526" fill="#382724" font-family="Arial,sans-serif" font-size="20">DAMIETTA, EGYPT / OPEN TO REMOTE ROLES</text>
-<text x="1010" y="486" fill="#FAF6EF" font-family="Georgia,serif" font-size="24" font-style="italic" text-anchor="middle">Clearer decisions</text>
-<text x="1010" y="514" fill="#FAF6EF" font-family="Georgia,serif" font-size="24" font-style="italic" text-anchor="middle">from data.</text>
+<text x="72" y="177" fill="#743348" font-family="Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="3">REMOTE DATA / BUSINESS INTELLIGENCE</text>
+<text x="72" y="280" fill="#382724" font-family="Georgia,serif" font-size="64" font-weight="500">Sohila Khaled Abbas</text>
+<text x="72" y="368" fill="#743348" font-family="Georgia,serif" font-size="48" font-style="italic">BI Developer &amp; Data Analyst</text>
+<path d="M72 400H760" stroke="#b78e7c" stroke-width="2"/>
+<text x="72" y="460" fill="#4b3b35" font-family="Arial,sans-serif" font-size="25">Power BI · SQL · Data Modeling · Decision-ready reporting</text>
+<text x="72" y="526" fill="#74635b" font-family="Arial,sans-serif" font-size="20">DAMIETTA, EGYPT  /  OPEN TO REMOTE ROLES</text>
+<text x="1010" y="486" fill="#f7f3ed" font-family="Georgia,serif" font-size="22" font-style="italic" text-anchor="middle">Clearer decisions</text>
+<text x="1010" y="514" fill="#f7f3ed" font-family="Georgia,serif" font-size="22" font-style="italic" text-anchor="middle">from data.</text>
 </svg>

@@ -35,6 +35,22 @@ jobs:
         run: |
           npx playwright install --with-deps chromium
           node --input-type=module -e "import {chromium} from 'playwright'; console.log('CHROME_PATH=' + chromium.executablePath())" >> "$GITHUB_ENV"
+      - name: Build local preview for responsive QA
+        id: local_preview
+        run: |
+          VERCEL_ENV=preview SITE_URL=https://sohila-khaled-abbas.vercel.app npm run build
+          PORT=4173 node scripts/serve.mjs > /tmp/portfolio-preview-server.log 2>&1 &
+          echo $! > /tmp/portfolio-preview-server.pid
+          for attempt in {1..30}; do
+            if curl --fail --silent --show-error http://127.0.0.1:4173/ >/dev/null; then
+              echo "url=http://127.0.0.1:4173" >> "$GITHUB_OUTPUT"
+              echo "Exact-commit local preview is ready for responsive Playwright QA."
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/portfolio-preview-server.log
+          exit 1
       - name: Check for the Vercel automation bypass secret
         id: protection
         if: github.ref != 'refs/heads/main'
@@ -54,7 +70,7 @@ jobs:
         env:
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
         run: |
-          preview_url="https://sohila-khaled-abbas-git-red-8f3800-sohila-khaled-abbas-projects.vercel.app"
+          preview_url="https://sohila-khaled-abbas-git-pre-72e3d6-sohila-khaled-abbas-projects.vercel.app"
           for attempt in {1..24}; do
             if curl --fail --silent --show-error --location --max-time 20               -H "x-vercel-protection-bypass: ${VERCEL_AUTOMATION_BYPASS_SECRET}"               --output /dev/null "$preview_url"; then
               echo "url=$preview_url" >> "$GITHUB_OUTPUT"
@@ -70,34 +86,23 @@ jobs:
         if: steps.protection.outputs.configured == 'false'
         run: echo "::notice::Build and content checks passed. Real-preview Playwright/Lighthouse checks were skipped because Vercel Deployment Protection needs a GitHub Actions bypass secret."
       - name: Responsive Playwright checks and full-page screenshots
-        if: steps.preview.outputs.url != ''
+        if: steps.local_preview.outputs.url != ''
         run: node tests/visual-preview.mjs
         env:
-          BASE_URL: ${{ steps.preview.outputs.url }}
+          BASE_URL: ${{ steps.local_preview.outputs.url }}
+          ALLOW_LOCAL_BASE_URL: 'true'
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
       - name: Build production-indexable site for Lighthouse
-        if: steps.preview.outputs.url != ''
-        run: |
-          SITE_URL=https://sohila-khaled-abbas.vercel.app npm run build
-          PORT=4173 node scripts/serve.mjs > /tmp/portfolio-lighthouse-server.log 2>&1 &
-          echo $! > /tmp/portfolio-lighthouse-server.pid
-          for attempt in {1..30}; do
-            if curl --fail --silent --show-error http://127.0.0.1:4173/ >/dev/null; then
-              echo "Local indexable build is ready for Lighthouse."
-              exit 0
-            fi
-            sleep 1
-          done
-          cat /tmp/portfolio-lighthouse-server.log
-          exit 1
+        if: steps.local_preview.outputs.url != ''
+        run: SITE_URL=https://sohila-khaled-abbas.vercel.app npm run build
       - name: Lighthouse CI — six routes mobile
-        if: steps.preview.outputs.url != ''
+        if: steps.local_preview.outputs.url != ''
         run: npx lhci autorun --config=./lighthouserc.cjs
         env:
           BASE_URL: http://127.0.0.1:4173
           LIGHTHOUSE_PRESET: mobile
       - name: Lighthouse CI — six routes desktop
-        if: steps.preview.outputs.url != ''
+        if: steps.local_preview.outputs.url != ''
         run: npx lhci autorun --config=./lighthouserc.cjs
         env:
           BASE_URL: http://127.0.0.1:4173

@@ -369,7 +369,7 @@ button,input,select,textarea{font:inherit}
 }
 @media print{
  @page{margin:14mm}
- body{background:var(--ivory)!important;color:var(--espresso)!important;font-size:10pt}
+ body{background:#fff!important;color:#211b1d!important;font-size:10pt}
  .header,.site-footer,.skip,.resume-actions,.theme-toggle,.nav-contact,.project-search-button,.toast{display:none!important}
  .editorial-resume{width:100%;max-width:none;padding:0}
  .resume-heading{grid-template-columns:1fr}
@@ -379,7 +379,7 @@ button,input,select,textarea{font:inherit}
  .timeline-entry{padding:8pt 0}
  .skill-grid{grid-template-columns:1fr 1fr}
  .skill-grid article{padding:6pt}
- a{color:var(--espresso);text-decoration:none}
+ a{color:#211b1d;text-decoration:none}
 }
 
 
@@ -534,7 +534,6 @@ button,input,select,textarea{font:inherit}
 .source-map-status{font-size:.72rem}
 .editorial-hero h1{max-width:15ch}
 @media(max-width:760px){
- .work-card-embed-shell{aspect-ratio:4/3}
  .editorial-hero-proof{font-size:.94rem}
  .editorial-trust-links{gap:.8rem 1rem}
  .work-card-embed-shell .report-load-prompt p{font-size:.78rem}
@@ -575,10 +574,12 @@ button,a,input,select,textarea,summary,[tabindex]:not([tabindex="-1"]){-webkit-t
  .dashboard-live-preview .report-load-prompt p,.report-page #interactive .report-load-prompt p,.story-report-experience .report-load-prompt p{font-size:.9rem}
 }
 
-/* Keep editorial secondary controls and source-map labels WCAG-readable. */
-.github-source-update details summary{color:var(--ink)!important;opacity:1}
-.repo-filter,.repo-filter>span,.source-map-status,.source-map-overline{color:var(--ink)!important;opacity:1}
 
-/* Brand heading system */
-h1,h2,h3{font-family:var(--display)}
-h1 em,h2 em,h3 em{color:var(--copper)}
+/* Mobile Work-card preview stays portrait-ish like the selected preview. */
+@media(max-width:760px){
+ .work-card-embed-shell{aspect-ratio:4/3}
+}
+
+/* Keep the selected typographic hierarchy explicit across the full cascade. */
+h1,h2,h3,h4{font-family:"DM Sans",Inter,Arial,Helvetica,sans-serif!important}
+h1 em,h2 em,h3 em,h4 em{font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif!important;font-style:italic}
