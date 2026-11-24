@@ -505,7 +505,7 @@ async function testB2BWorkCardEmbed(){
   assert((await frame.getAttribute("title")).includes("interactive Power BI report"));
   const geometry=await frame.evaluate(el=>{const f=el.getBoundingClientRect(),shell=el.closest(".report-embed-shell").getBoundingClientRect();return {left:f.left,right:f.right,width:f.width,shellLeft:shell.left,shellRight:shell.right,ratio:shell.width/shell.height};});
   assert(geometry.width>0&&geometry.left>=geometry.shellLeft-1&&geometry.right<=geometry.shellRight+1,"B2B Work-card iframe overflow at "+width+"px: "+JSON.stringify(geometry));
-  assert(Math.abs(geometry.ratio-16/9)<.04,"B2B Work-card aspect ratio must remain 16:9 at "+width+"px.");
+  assert(Math.abs(geometry.ratio-(width<=760?4/3:16/9))<.04,"B2B Work-card aspect ratio changed at "+width+"px: "+JSON.stringify(geometry));
   assert.equal((await card.locator(".report-scenario-disclaimer").innerText()).trim(),"Portfolio scenario. Report branding is from the practice dataset.");
   await page.close();
   console.log("PASS B2B Work-card click-to-load embed at "+width+"px.");
