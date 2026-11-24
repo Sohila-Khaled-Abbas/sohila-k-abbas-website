@@ -288,14 +288,21 @@ async function captureRoute(route,width,height,theme,name){
   assert(cardEmbed.width>0&&cardEmbed.right<=cardEmbed.cardRight+1,"B2B Work-card embed must remain within the card.");
   assert(Math.abs(cardEmbed.ratio-(width<=760?4/3:16/9))<.04,"B2B Work-card embed aspect ratio changed at "+width+"px.");
 
-  assert.equal(await page.locator("[data-repo-tools]").count(),1,"Full work collection and filters are missing.");
-  await page.locator("[data-repo-tools] > summary").click();
+  const repoTools=page.locator("[data-repo-tools]");
+  assert.equal(await repoTools.count(),1,"Full work collection and filters are missing.");
+  const expectedInitiallyOpen=width>=651;
+  const initiallyOpen=await repoTools.evaluate(details=>details.open);
+  assert.equal(initiallyOpen,expectedInitiallyOpen,"Work collection disclosure default should match the 651px responsive breakpoint.");
+  if(!initiallyOpen)await page.locator("[data-repo-tools] > summary").click();
+  assert.equal(await repoTools.evaluate(details=>details.open),true,"Full work collection disclosure must open before its controls are tested.");
   assert(await page.locator("#repo-grid .repo-card").count()>0,"Full project catalogue should remain discoverable.");
   assert.equal(await page.locator('#repo-grid .repo-card[data-kind="fork"]').count(),0,"Forked resources must not appear as original work.");
   assert.equal(await page.locator('#repo-grid .repo-card[data-category="learning"]').count(),0,"Learning resources must not appear as professional case studies.");
   const visibleRepoText=(await page.locator("#repo-grid").innerText()).toLowerCase();
   assert(!visibleRepoText.includes("maxab wallet recharge optimization")&&!visibleRepoText.includes("flyrank-ml-internship-starter"),"Removed employer-work repos must not appear in the Work project directory.");
-  await page.locator("#repo-query").fill("");
+  const repoQuery=page.locator("#repo-query");
+  assert(await repoQuery.isVisible(),"Project search must be visible after the collection disclosure opens.");
+  await repoQuery.fill("");
   await page.locator("#repo-status-filter").selectOption("all");
   await page.locator("#repo-sort").selectOption("featured");
   await page.locator('[data-repo-filter="all"]').click();
