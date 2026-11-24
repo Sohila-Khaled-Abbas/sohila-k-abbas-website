@@ -16,8 +16,10 @@ const expectedFeatured=[
  "Wuzzuf-Job-Market-Analysis"
 ];
 const viewports=[
+ {width:360,height:800},
  {width:390,height:844},
  {width:768,height:1024},
+ {width:1024,height:900},
  {width:1280,height:900}
 ];
 const wideWorkViewports=[{width:1440,height:960},{width:1920,height:1080}];
@@ -119,15 +121,33 @@ async function captureRoute(route,width,height,theme,name){
  assertLayout(audit,width,name+" "+theme+" "+width+"px");
  assert.equal(audit.theme,theme,"Theme does not match system preference for "+name+" "+width+"px");
  const h1=await page.locator("main h1").count();
- assert(h1>=1,name+" needs a visible main heading");
+ assert.equal(h1,1,name+" must have exactly one main H1.");
+ const seo=await page.evaluate(()=>{
+  const graph=[...document.querySelectorAll('script[type="application/ld+json"]')].flatMap(node=>{try{const data=JSON.parse(node.textContent);return data['@graph']||[data];}catch{return [];}});
+  return {title:document.title,description:document.querySelector('meta[name="description"]')?.content||'',canonical:document.querySelector('link[rel="canonical"]')?.href||'',lang:document.documentElement.lang,themeColor:document.querySelector('meta[name="theme-color"]')?.content||'',ogImage:document.querySelector('meta[property="og:image"]')?.content||'',ogWidth:document.querySelector('meta[property="og:image:width"]')?.content||'',ogHeight:document.querySelector('meta[property="og:image:height"]')?.content||'',twitter:document.querySelector('meta[name="twitter:card"]')?.content||'',robots:document.querySelector('meta[name="robots"]')?.content||'',types:graph.map(item=>item['@type'])};
+ });
+ assert(seo.title.length>0&&seo.title.length<60,name+" title must be under 60 characters: "+seo.title);
+ assert(seo.description.length>0&&seo.description.length<160,name+" meta description must be under 160 characters.");
+ assert.equal(seo.lang,"en",name+" document language must be English.");
+ assert(seo.canonical.startsWith("https://sohila-khaled-abbas.vercel.app/"),name+" canonical must point to production.");
+ assert.equal(seo.themeColor,"#f7f3ed",name+" theme-color metadata is missing.");
+ assert(seo.ogImage.endsWith("/social-card.svg")&&seo.ogWidth==="1200"&&seo.ogHeight==="630",name+" must use the 1200x630 editorial social image.");
+ assert.equal(seo.twitter,"summary_large_image",name+" Twitter card metadata is missing.");
+ assert(seo.types.includes("Person")&&seo.types.includes("WebSite")&&seo.types.includes("BreadcrumbList"),name+" needs Person, WebSite and Breadcrumb structured data.");
+ if(name==="b2b-retail-scenario"||name==="smart-supply-chain"||name==="wuzzuf-job-market")assert(seo.types.includes("CreativeWork"),name+" project page needs CreativeWork structured data.");
+ assert(seo.robots.includes("noindex"),"Protected Vercel previews must remain noindex.");
  if(name==="home"){
-  assert.equal((await page.locator(".editorial-hero h1").innerText()).replace(/\s+/g," ").trim(),"Business questions. Clearer decisions.","Homepage headline has changed.");
-  assert.equal((await page.locator(".editorial-hero .hero-actions a").nth(0).innerText()).trim(),"Explore case studies");
+  assert((await page.locator(".editorial-hero h1").innerText()).replace(/\s+/g," ").includes("BI Developer & Data Analyst"),"Homepage headline must identify the target role.");
+  assert((await page.locator(".editorial-hero-proof").innerText()).includes("500K+ order lines"),"Homepage needs a quantified proof line.");
+  assert.equal((await page.locator(".editorial-hero .hero-actions a").nth(0).innerText()).trim(),"View case studies");
   assert.equal(await page.locator(".editorial-hero .hero-actions a").nth(0).getAttribute("href"),"/work/#case-studies");
-  assert.equal((await page.locator(".editorial-hero .hero-actions a").nth(1).innerText()).trim(),"View resume");
-  assert.equal(await page.locator(".editorial-hero .hero-actions a").nth(1).getAttribute("href"),"/resume/");
-  assert((await page.locator(".editorial-location").innerText()).includes("Damietta, Egypt"));
-  assert((await page.locator(".editorial-location").innerText()).includes("Open to remote employee roles"));
+  assert.equal((await page.locator(".editorial-hero .hero-actions a").nth(1).innerText()).trim(),"Contact me");
+  assert.equal(await page.locator(".editorial-hero .hero-actions a").nth(1).getAttribute("href"),"/contact/");
+  const heroMeta=(await page.locator(".editorial-location").innerText()).toLowerCase();
+  assert(heroMeta.includes("open to remote roles")&&heroMeta.includes("cairo, egypt · utc+2")&&heroMeta.includes("english: excellent"),"Remote status, Cairo timezone and English level must be visible.");
+  assert((await page.locator(".editorial-role-line").innerText()).includes("Hire me for"),"Homepage must state what Sohila can be hired for.");
+  assert(await page.locator(".editorial-trust-links a[href='/resume/']").count()===1&&await page.locator(".editorial-trust-links a[href*='linkedin.com']").count()===1&&await page.locator(".editorial-trust-links a[href*='github.com']").count()===1,"CV, LinkedIn and GitHub links must be visible.");
+  assert(await page.locator(".editorial-trust-links .copy-email").count()===1,"Homepage needs a visible Copy email action.");
   const featured=await page.locator(".editorial-case-card[data-featured-case]").evaluateAll(cards=>cards.map(card=>card.dataset.featuredCase));
   assert.deepEqual(featured,expectedFeatured,"Homepage featured-case sequence changed.");
   assert.equal(await page.locator(".editorial-case-visual[data-lightbox]").count(),3,"Each featured case needs an enlargeable report preview.");
