@@ -569,7 +569,7 @@ async function testSitewideSEO(){
  const robots=await page.request.get(new URL("/robots.txt",base).href,{headers});
  assert.equal(robots.status(),200,"robots.txt must be served on the preview.");
  const robotsText=await robots.text();
- assert(/User-agent:\\s*\\*/i.test(robotsText)&&/Allow:\\s*\\//i.test(robotsText),"robots.txt must allow public crawling.");
+ assert(/User-agent:\s*\*/i.test(robotsText)&&/Allow:\s*\//i.test(robotsText),"robots.txt must allow public crawling.");
  assert(robotsText.includes("https://sohila-khaled-abbas.vercel.app/sitemap.xml"),"robots.txt must point to the production sitemap.");
  assert(!robotsText.includes(base.hostname),"robots.txt must not publish a preview URL.");
  const removed=await page.request.get(new URL("/projects/MaxAB_B2B_Retail_Wallet_Optimization",base).href,{headers,maxRedirects:0});
