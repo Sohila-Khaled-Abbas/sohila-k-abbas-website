@@ -1,7 +1,7 @@
 name: Portfolio site validation and preview UX
 on:
   push:
-    branches: [main, 'redesign/**', 'feat/**']
+    branches: [main, 'redesign/**', 'redesign-v2', 'feat/**']
     paths: ['portfolio-site/**', '.github/workflows/portfolio-site.yml', 'screenshots/**']
   pull_request:
     paths: ['portfolio-site/**', '.github/workflows/portfolio-site.yml', 'screenshots/**']
@@ -54,7 +54,7 @@ jobs:
         env:
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
         run: |
-          preview_url="https://sohila-khaled-abbas-git-fix-b8688c-sohila-khaled-abbas-projects.vercel.app"
+          preview_url="https://sohila-khaled-abbas-git-red-8f3800-sohila-khaled-abbas-projects.vercel.app"
           for attempt in {1..24}; do
             if curl --fail --silent --show-error --location --max-time 20               -H "x-vercel-protection-bypass: ${VERCEL_AUTOMATION_BYPASS_SECRET}"               --output /dev/null "$preview_url"; then
               echo "url=$preview_url" >> "$GITHUB_OUTPUT"
@@ -75,22 +75,35 @@ jobs:
         env:
           BASE_URL: ${{ steps.preview.outputs.url }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
-      - name: Lighthouse CI — homepage mobile
+      - name: Build production-indexable site for Lighthouse
+        if: steps.preview.outputs.url != ''
+        run: |
+          SITE_URL=https://sohila-khaled-abbas.vercel.app npm run build
+          PORT=4173 node scripts/serve.mjs > /tmp/portfolio-lighthouse-server.log 2>&1 &
+          echo $! > /tmp/portfolio-lighthouse-server.pid
+          for attempt in {1..30}; do
+            if curl --fail --silent --show-error http://127.0.0.1:4173/ >/dev/null; then
+              echo "Local indexable build is ready for Lighthouse."
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/portfolio-lighthouse-server.log
+          exit 1
+      - name: Lighthouse CI — six routes mobile
         if: steps.preview.outputs.url != ''
         run: npx lhci autorun --config=./lighthouserc.cjs
         env:
-          BASE_URL: ${{ steps.preview.outputs.url }}
+          BASE_URL: http://127.0.0.1:4173
           LIGHTHOUSE_PRESET: mobile
-          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
-      - name: Lighthouse CI — homepage desktop
+      - name: Lighthouse CI — six routes desktop
         if: steps.preview.outputs.url != ''
         run: npx lhci autorun --config=./lighthouserc.cjs
         env:
-          BASE_URL: ${{ steps.preview.outputs.url }}
+          BASE_URL: http://127.0.0.1:4173
           LIGHTHOUSE_PRESET: desktop
-          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
       - name: Print Lighthouse category scores
-        if: steps.preview.outputs.url != ''
+        if: always()
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs/promises';
@@ -98,36 +111,37 @@ jobs:
 
           for (const preset of ['mobile', 'desktop']) {
             const directory = path.resolve('lighthouse-reports', preset);
-            const manifest = JSON.parse(await fs.readFile(path.join(directory, 'manifest.json'), 'utf8'));
-            const report = manifest.find(item => item.isRepresentativeRun) || manifest[0];
-            if (!report?.jsonPath) throw new Error('No representative Lighthouse report for ' + preset);
-
-            const candidates = [
-              report.jsonPath,
-              path.resolve(report.jsonPath),
-              path.resolve(directory, path.basename(report.jsonPath))
-            ];
-            let lhr;
-            for (const candidate of [...new Set(candidates)]) {
-              try {
-                lhr = JSON.parse(await fs.readFile(candidate, 'utf8'));
-                break;
-              } catch {}
+            let manifest;
+            try {
+              manifest = JSON.parse(await fs.readFile(path.join(directory, 'manifest.json'), 'utf8'));
+            } catch {
+              console.warn('No Lighthouse manifest found for ' + preset + '; earlier QA steps may have prevented collection.');
+              continue;
             }
-            if (!lhr) throw new Error('Could not read the representative Lighthouse report for ' + preset);
+            if (!manifest.length) {
+              console.warn('No Lighthouse reports were generated for ' + preset + '.');
+              continue;
+            }
 
-            const score = key => {
-              const value = lhr.categories?.[key]?.score;
-              if (typeof value !== 'number') throw new Error('Missing Lighthouse category score: ' + key);
-              return Math.round(value * 100);
-            };
-            console.log(
-              'LHCI_SCORE ' + preset +
-              ' Performance=' + score('performance') +
-              ' Accessibility=' + score('accessibility') +
-              ' Best Practices=' + score('best-practices') +
-              ' SEO=' + score('seo')
-            );
+            for (const report of manifest) {
+              if (!report.jsonPath) throw new Error('Missing Lighthouse JSON path for ' + preset);
+              const candidates = [report.jsonPath, path.resolve(report.jsonPath), path.resolve(directory, path.basename(report.jsonPath))];
+              let lhr;
+              for (const candidate of [...new Set(candidates)]) {
+                try { lhr = JSON.parse(await fs.readFile(candidate, 'utf8')); break; } catch {}
+              }
+              if (!lhr) throw new Error('Could not read Lighthouse JSON for ' + (report.url || preset));
+              const score = key => {
+                const value = lhr.categories?.[key]?.score;
+                if (typeof value !== 'number') throw new Error('Missing Lighthouse category score: ' + key);
+                return Math.round(value * 100);
+              };
+              console.log('LHCI_SCORE ' + preset + ' URL=' + (report.url || lhr.finalDisplayedUrl) +
+                ' Performance=' + score('performance') +
+                ' Accessibility=' + score('accessibility') +
+                ' Best Practices=' + score('best-practices') +
+                ' SEO=' + score('seo'));
+            }
           }
           NODE
       - name: Upload screenshots and Lighthouse reports

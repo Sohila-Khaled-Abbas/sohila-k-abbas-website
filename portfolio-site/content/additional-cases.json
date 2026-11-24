@@ -45,23 +45,31 @@
     "takeaway": "Follow the repository from raw data and EDA to model design and report artifacts. It shows the analytical work behind an operations dashboard.",
     "caveat": "Repository dataset and analytical findings do not establish realized operational savings or a client engagement.",
     "stack": "Python · Pandas · Excel · Power BI · DAX",
-    "repo": "SMART-Supply-Chain-Insights-Dashboard"
+    "repo": "SMART-Supply-Chain-Insights-Dashboard",
+    "dataset_context": "The repository identifies the DataCo supply-chain dataset and includes the source data, field descriptions, a cleaned workbook, an exploratory notebook, a dimensional-model workbook, and Power BI artifacts. Its documented period is 2015–2018, covering 65,752 orders, 20,652 customers, and 118 products.",
+    "contribution": "Prepared and explored the data with Python and Pandas, organized cleaned data and a dimensional model in Excel, and built a five-page Power BI reporting experience with DAX measures.",
+    "model": "A star-schema model with a DAX calendar table and time-intelligence measures including month-to-date, quarter-to-date, year-to-date, and rolling metrics.",
+    "findings": "The report provides separate views for order fulfillment, customer and market patterns, product profitability, shipping operations, and time trends. The repository does not establish realized operational savings or a client deployment."
   },
   "retail": {
-    "title": "B2B retail & churn analytics",
-    "type": "BUSINESS INTELLIGENCE / EGYPTIAN RETAIL SCENARIO",
-    "intro": "A Power BI portfolio exploring retailer lifecycle, delivery performance, sales changes, and category mix in a B2B grocery-distribution scenario.",
-    "problem": "A sales drop can have several causes. Retention, delivery performance, and commercial mix need separate definitions and a shared reporting model.",
+    "title": "B2B Retail Analytics & Churn Diagnostic — Portfolio Scenario",
+    "type": "BUSINESS INTELLIGENCE / PORTFOLIO SCENARIO",
+    "intro": "A Power BI portfolio scenario exploring retailer lifecycle, delivery performance, sales movement, and category mix in an Egyptian B2B grocery-distribution context.",
+    "problem": "A change in sales can have several causes. Retention, delivery performance, and commercial mix need separate definitions and a shared reporting model before they can be reviewed together.",
     "approach": [
-      "Use a star schema to organize the analytical entities and facts.",
-      "Build DAX measures for performance and period comparisons.",
+      "Organize the analytical entities and transaction facts in a star-schema model.",
+      "Define DAX measures for performance, period comparisons, retailer activity, and lifecycle analysis.",
       "Explore delivery SLA, cohort retention, activation, and sales-drop decomposition.",
-      "Organize the reporting experience into executive, operations, retention, and commercial views."
+      "Arrange the report around executive, operations, retention, and commercial questions."
     ],
-    "takeaway": "The dashboard helps a retail manager decide where the next review should focus: retailer retention, delivery performance, sales movement, or category mix. These are the decisions the report is designed to support, not measured business outcomes.",
-    "caveat": "Shown as a portfolio scenario. Company naming in the repository does not establish a client relationship, and intended business benefits are not measured outcomes.",
+    "takeaway": "The report is designed to direct a review toward retailer retention, delivery performance, sales movement, or category mix. These are intended decision areas, not measured business outcomes.",
+    "caveat": "This is an independent portfolio scenario, not a client engagement. No employment, private company data access, verified operational impact, or real-world deployment is claimed.",
     "stack": "Power BI · DAX · SQL Server · Star schema",
-    "repo": "fmcg-sales-churn-drop-analysis-powerbi"
+    "repo": "fmcg-sales-churn-drop-analysis-powerbi",
+    "dataset_context": "The project is presented as an Egyptian B2B grocery-distribution portfolio scenario. The repository documents its report and implementation artifacts; no private client dataset provenance is asserted.",
+    "contribution": "The repository documents the Power BI report, SQL and Power Query preparation, semantic-model design, and DAX measures used to explore retailer lifecycle and commercial performance.",
+    "model": "A star-schema reporting model with measures for active retailers, purchase frequency, inactivity-based churn, cohort retention, delivery performance, and category movement.",
+    "findings": "The report separates lifecycle, delivery, and commercial signals so that each can be examined on its own terms. It does not report a measured change in a real business."
   },
   "deepclean": {
     "title": "DeepClean OS",
@@ -111,22 +119,6 @@
     "stack": "Python · Pandas · Airflow · SQL Server · Power BI · Docker",
     "repo": "national-insurance-data-warehouse"
   },
-  "searchml": {
-    "title": "Applied ML & search intelligence",
-    "type": "APPLIED MACHINE LEARNING / INTERNSHIP PORTFOLIO",
-    "intro": "A collection of search-intelligence notebooks, feature preparation, model-evaluation code, research writing, and workflow-agent experiments.",
-    "problem": "Prioritization models need more than a score: feature definitions, data splits, leakage checks, and evaluation context must be inspectable.",
-    "approach": [
-      "Prepare features and compare a heuristic baseline with a model-based approach.",
-      "Explore grouped evaluation splits and temporal-leakage assertions.",
-      "Keep notebooks, evaluation outputs, and research documentation together.",
-      "Document an n8n-based workflow-agent experiment and its execution flow."
-    ],
-    "takeaway": "Review the notebooks, evaluation scripts, and research materials to understand the methodology. This portfolio connects my analytics and automation work with a growing focus on machine learning.",
-    "caveat": "The website makes no independent claim about model performance or generalization. Evaluation details and the dataset assumptions belong to the linked repository.",
-    "stack": "Python · Machine learning · Feature engineering · Evaluation · n8n",
-    "repo": "flyrank-ml-internship-starter"
-  },
   "eur-egp": {
     "title": "EUR to EGP Rate Monitor",
     "type": "AUTOMATION / AI-ASSISTED API MONITORING",
@@ -163,5 +155,24 @@
     "caveat": "This is a completed Forage virtual job simulation, not employment at Commonwealth Bank or a paid client engagement. The Task 03 social-media records and engagement values are fictional. X API research was a feasibility exercise, sentiment labels were supplied by the simulation, and Task 04 is a proposed schema rather than a deployed database.",
     "stack": "Microsoft Excel · Excel Tables · SUMIFS / COUNTIFS · PivotTables · Data Quality · Data Privacy · Relational Database Design",
     "repo": "commonwealth-bank-intro-data-science"
+  },
+  "wuzzuf": {
+    "title": "Egypt’s Data Job Market",
+    "type": "BUSINESS INTELLIGENCE / EGYPTIAN JOB-MARKET ANALYSIS",
+    "intro": "A Power BI report exploring a saved January–March 2025 snapshot of job postings collected from Wuzzuf in Egypt.",
+    "problem": "Which roles and skills appear in the collected postings, where is hiring activity visible, and how should the available salary information be interpreted?",
+    "approach": [
+      "Use the prepared job-posting and salary extracts documented in the repository.",
+      "Structure the report around job roles, requested skills, companies, locations, salaries, and job duration.",
+      "Use DAX measures, interactive slicers, dynamic titles, conditional formatting, and tooltip pages to support exploration.",
+      "Keep the saved report snapshot and the limitations of the source extracts visible when interpreting the results."
+    ],
+    "takeaway": "In the documented report snapshot, Data Analyst is the most frequent job title, AI is the most requested skill, and New Cairo is the top hiring city. These are observations from the supplied snapshot, not current labour-market statistics.",
+    "caveat": "The report covers 217 postings collected during January–March 2025. Salary data is incomplete, the original Python collection source is not included in the tracked repository, and no automatic refresh schedule is documented.",
+    "dataset_context": "A saved extract of 217 Wuzzuf job postings collected in Egypt during January–March 2025, alongside salary-related Excel data. The repository contains prepared Excel extracts and the Power BI report.",
+    "contribution": "The repository documents a Python-based collection workflow, prepared Excel data extracts, and the Power BI report. The tracked repository does not include the original collection script.",
+    "model": "A Power BI reporting model with DAX measures, interactive slicers, dynamic titles, conditional formatting, tooltip pages, and geographic visuals.",
+    "findings": "The README records Data Analyst as the most common title, AI as the most requested skill, and New Cairo as the leading city in this particular dataset snapshot. Salary observations depend on the incomplete salary records.",
+    "repo": "Wuzzuf-Job-Market-Analysis"
   }
 }

@@ -3,35 +3,104 @@ const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 const externalIcon = '<svg class="icon"><use href="#external"/></svg>';
 
-// Remember the visitor’s preferred color theme.
+// Start with the no-flash pre-paint value, honor explicit choice, otherwise follow system preference.
 const themeButton = $('.theme-toggle');
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
   const chromeColor=document.querySelector('meta[name="theme-color"]');
-  if(chromeColor)chromeColor.content=theme==='dark'?'#211916':'#faf6ef';
-  themeButton.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+  if(chromeColor)chromeColor.content=theme==='dark'?'#382724':'#FAF6EF';
+  if(themeButton){
+    themeButton.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+    themeButton.setAttribute('aria-pressed', String(theme === 'dark'));
+    themeButton.setAttribute('title', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+  }
 }
-try { applyTheme(localStorage.getItem('sohila-theme') || 'light'); } catch { applyTheme('light'); }
-themeButton.addEventListener('click', () => {
-  const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+let savedTheme=null;
+try { savedTheme=localStorage.getItem('sohila-theme'); } catch { /* Use system preference. */ }
+const systemTheme=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+applyTheme(savedTheme==='dark'||savedTheme==='light'?savedTheme:(document.documentElement.dataset.theme||systemTheme));
+if(themeButton)themeButton.addEventListener('click',()=>{
+  const theme=document.documentElement.dataset.theme==='dark'?'light':'dark';
   applyTheme(theme);
-  try { localStorage.setItem('sohila-theme', theme); } catch { /* Theme still works for this visit. */ }
+  try { localStorage.setItem('sohila-theme',theme); } catch { /* Theme remains active for this visit. */ }
+});
+const systemPreference=window.matchMedia?.('(prefers-color-scheme: dark)');
+systemPreference?.addEventListener?.('change',event=>{
+  let explicit=null;
+  try { explicit=localStorage.getItem('sohila-theme'); } catch {}
+  if(explicit!=='dark'&&explicit!=='light')applyTheme(event.matches?'dark':'light');
 });
 
 const menuButton = $('.menu-toggle');
-function closeMenu() {
-  $('#navigation').classList.remove('open');
+const navigation = $('#navigation');
+const menuShell = menuButton.closest('.nav-shell');
+const temporarilyHidden = [...menuShell.querySelectorAll('.brand,.nav-actions button:not(.menu-toggle),.nav-actions a')];
+const originalTabIndexes = new Map(temporarilyHidden.map(element => [element, element.getAttribute('tabindex')]));
+function closeMenu(restoreFocus = false) {
+  navigation.classList.remove('open');
   menuButton.setAttribute('aria-expanded', 'false');
   menuButton.setAttribute('aria-label', 'Open menu');
+  temporarilyHidden.forEach(element => {
+    const original = originalTabIndexes.get(element);
+    if (original === null) element.removeAttribute('tabindex');
+    else element.setAttribute('tabindex', original);
+  });
+  if (restoreFocus) menuButton.focus({preventScroll:true});
+}
+function openMenu() {
+  navigation.classList.add('open');
+  menuButton.setAttribute('aria-expanded', 'true');
+  menuButton.setAttribute('aria-label', 'Close menu');
+  temporarilyHidden.forEach(element => element.setAttribute('tabindex', '-1'));
+  navigation.querySelector('a[href]')?.focus({preventScroll:true});
 }
 menuButton.addEventListener('click', () => {
-  const expanded = menuButton.getAttribute('aria-expanded') !== 'true';
-  $('#navigation').classList.toggle('open', expanded);
-  menuButton.setAttribute('aria-expanded', String(expanded));
-  menuButton.setAttribute('aria-label', expanded ? 'Close menu' : 'Open menu');
+  if (menuButton.getAttribute('aria-expanded') === 'true') closeMenu();
+  else openMenu();
 });
-$$('#navigation a').forEach(a => a.addEventListener('click', closeMenu));
-document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+$$('#navigation a').forEach(a => a.addEventListener('click', () => closeMenu()));
+let navigationTabDirection = 'forward';
+function visibleNavigationItems() {
+  return [...navigation.querySelectorAll('a[href]')].filter(item =>
+    item.getClientRects().length > 0 &&
+    getComputedStyle(item).visibility !== 'hidden' &&
+    item.tabIndex >= 0
+  );
+}
+window.addEventListener('keydown', event => {
+  if (menuButton.getAttribute('aria-expanded') !== 'true') return;
+  if (event.key === 'Escape') {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    closeMenu(true);
+    return;
+  }
+  if (event.key !== 'Tab') return;
+  navigationTabDirection = event.shiftKey ? 'backward' : 'forward';
+  const items = visibleNavigationItems();
+  if (!items.length) return;
+  const activeIndex = items.indexOf(document.activeElement);
+  if (event.shiftKey && activeIndex <= 0) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    items[items.length - 1].focus({preventScroll:true});
+  } else if (!event.shiftKey && (activeIndex === items.length - 1 || activeIndex < 0)) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    items[0].focus({preventScroll:true});
+  }
+}, true);
+navigation.addEventListener('focusout', event => {
+  if (menuButton.getAttribute('aria-expanded') !== 'true' || navigation.contains(event.relatedTarget)) return;
+  const direction = navigationTabDirection;
+  window.requestAnimationFrame(() => {
+    if (menuButton.getAttribute('aria-expanded') !== 'true' || navigation.contains(document.activeElement)) return;
+    const items = visibleNavigationItems();
+    if (!items.length) return;
+    const destination = direction === 'backward' ? items[items.length - 1] : items[0];
+    destination.focus({preventScroll:true});
+  });
+}, true);
 
 $$('.filter').forEach(button => button.addEventListener('click', () => {
   $$('.filter').forEach(item => {

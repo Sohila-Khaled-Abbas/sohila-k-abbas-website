@@ -4,8 +4,8 @@
   "home_sections": {
     "featured": [
       "fmcg-sales-churn-drop-analysis-powerbi",
-      "global-horizon-bank-dwh-project",
-      "egyptian-cosmetics-market"
+      "SMART-Supply-Chain-Insights-Dashboard",
+      "Wuzzuf-Job-Market-Analysis"
     ],
     "learning_in_public": [
       "python-learning-roadmap",
@@ -1651,82 +1651,9 @@
       }
     },
     {
-      "repo": "flyrank-ml-internship-starter",
-      "title": "Sohila Khaled Abbas · Applied ML & Search Intelligence Portfolio",
-      "summary": "Official portfolio, applied machine learning research paper, and autonomous decision-support agent for Sohila Khaled Abbas (Applied ML Intern & Search Intelligence Engineer at FlyRank AI | BI Developer).",
-      "technologies": [
-        "Python",
-        "Docker",
-        "n8n"
-      ],
-      "methods": [],
-      "flow": null,
-      "media": {
-        "src": "/project-media/ml-feature-importance.webp",
-        "kind": "Repository chart",
-        "caption": "A saved feature-importance chart from the ML project."
-      },
-      "live": "https://sohila-khaled-abbas.github.io/flyrank-ml-internship-starter/",
-      "presentation": null,
-      "files": [
-        {
-          "path": "README.md",
-          "size": 6428,
-          "url": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/README.md"
-        },
-        {
-          "path": "n8n/flyrank_content_refresh_workflow.json",
-          "size": 3475,
-          "url": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/n8n/flyrank_content_refresh_workflow.json"
-        },
-        {
-          "path": "about.html",
-          "size": 13032,
-          "url": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/about.html"
-        },
-        {
-          "path": "AGENTS.md",
-          "size": 654,
-          "url": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/AGENTS.md"
-        },
-        {
-          "path": "cases.html",
-          "size": 9395,
-          "url": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/cases.html"
-        },
-        {
-          "path": "CLAUDE.md",
-          "size": 654,
-          "url": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/CLAUDE.md"
-        },
-        {
-          "path": "DATA_USE.md",
-          "size": 2763,
-          "url": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/DATA_USE.md"
-        }
-      ],
-      "readme": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter/blob/main/README.md",
-      "source": "https://github.com/Sohila-Khaled-Abbas/flyrank-ml-internship-starter",
-      "empty": false,
-      "file_count": 92,
-      "source_branch": "main",
-      "tree_sha": "3693ff04c4a1af6a489d6f30de4bd55dc228a566",
-      "old_portfolio": false,
-      "github": {
-        "description": "Official portfolio, applied machine learning research paper, and autonomous decision-support agent for Sohila Khaled Abbas (Applied ML Intern & Search Intelligence Engineer at FlyRank AI | BI Developer).",
-        "updated_at": "2026-11-06T17:46:19Z",
-        "pushed_at": "2026-11-06T17:46:16Z",
-        "homepage": "https://sohila-khaled-abbas.github.io/flyrank-ml-internship-starter/",
-        "default_branch": "main",
-        "readme_excerpt": "[](https://sohila-khaled-abbas.github.io/flyrank-ml-internship-starter/) [](https://sohila-khaled-abbas.github.io/flyrank-ml-internship-starter/paper.html) [](https://aifluency.flyrank.ai/verify/sohilakhaled) [](LICENSE)",
-        "readme_sha": "94b13f0f91c9079647b5afd0f03236bcf1956443",
-        "fingerprint": "2026-11-06T17:46:16Z"
-      }
-    },
-    {
       "repo": "fmcg-sales-churn-drop-analysis-powerbi",
-      "title": "B2B Retail Analytics & Churn Diagnostic",
-      "summary": "Real-time insights into retailer behavior, operational performance, and customer lifecycle across the Maxab distribution network in Egypt.",
+      "title": "B2B Retail Analytics & Churn Diagnostic — Portfolio Scenario",
+      "summary": "A portfolio scenario exploring retailer sales, customer lifecycle, delivery performance, and commercial mix in an Egyptian B2B grocery-distribution context. The report is a practice project, not a client engagement.",
       "technologies": [
         "Power BI",
         "SQL",
@@ -1751,32 +1678,32 @@
           "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/README.md"
         },
         {
-          "path": "dashboards/Maxab Retail Performance & Churn Analytics Dashboard.pbix",
+          "path": "Power BI report.pbix",
           "size": 16787267,
           "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/dashboards/Maxab%20Retail%20Performance%20%26%20Churn%20Analytics%20Dashboard.pbix"
         },
         {
-          "path": "design/maxab-dashboard-wireframe.html",
+          "path": "Report wireframe.html",
           "size": 148952,
           "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/design/maxab-dashboard-wireframe.html"
         },
         {
-          "path": "src/Maxab Retail Performance & Churn Analytics Dashboard.pbip",
+          "path": "Power BI project.pbip",
           "size": 318,
           "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/src/Maxab%20Retail%20Performance%20%26%20Churn%20Analytics%20Dashboard.pbip"
         },
         {
-          "path": "themes/maxab-theme.json",
+          "path": "Power BI theme.json",
           "size": 3349,
           "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/themes/maxab-theme.json"
         },
         {
-          "path": "themes/Power BI Theme by BIBB.json",
+          "path": "Power BI theme.json",
           "size": 27567,
           "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/themes/Power%20BI%20Theme%20by%20BIBB.json"
         },
         {
-          "path": "src/Maxab Retail Performance & Churn Analytics Dashboard.SemanticModel/diagramLayout.json",
+          "path": "Power BI theme.json",
           "size": 8087,
           "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/src/Maxab%20Retail%20Performance%20%26%20Churn%20Analytics%20Dashboard.SemanticModel/diagramLayout.json"
         }
@@ -1798,7 +1725,7 @@
         "readme_sha": "7bf318c1bc3df6f461601ccfc92ccc1e87553053",
         "fingerprint": "2026-11-09T16:38:40Z"
       },
-      "decision_support": "Helps a sales manager spot retailers showing early churn signals and prioritize follow-up."
+      "decision_support": "A portfolio scenario for examining retailer retention, delivery performance, sales movement, and category mix."
     },
     {
       "repo": "forage-excel-skills-job-simulation",
@@ -3006,68 +2933,6 @@
         "readme_excerpt": "A Streamlit dashboard for exploring marketing campaign conversion, acquisition cost, return on investment, channel performance, and customer segments stored in PostgreSQL.",
         "readme_sha": "ce96823e1b5cd499324fefdcc8f2d051a0ae9913",
         "fingerprint": "2026-11-01T17:24:41Z"
-      }
-    },
-    {
-      "repo": "MaxAB_B2B_Retail_Wallet_Optimization",
-      "title": "MaxAB Wallet Recharge Optimization: Databricks & Power BI",
-      "summary": "Source files and documentation for MaxAB Wallet Recharge Optimization: Databricks & Power BI.",
-      "technologies": [
-        "Power BI",
-        "Python",
-        "SQL",
-        "Databricks",
-        "MySQL",
-        "DAX"
-      ],
-      "methods": [],
-      "flow": null,
-      "media": null,
-      "live": null,
-      "presentation": null,
-      "files": [
-        {
-          "path": "README.md",
-          "size": 4660,
-          "url": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization/blob/main/README.md"
-        },
-        {
-          "path": "databricks_sql/01_bronze.sql",
-          "size": 2607,
-          "url": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization/blob/main/databricks_sql/01_bronze.sql"
-        },
-        {
-          "path": "databricks_sql/02_silver.sql",
-          "size": 1025,
-          "url": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization/blob/main/databricks_sql/02_silver.sql"
-        },
-        {
-          "path": "docs/assumptions_log.md",
-          "size": 1031,
-          "url": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization/blob/main/docs/assumptions_log.md"
-        },
-        {
-          "path": "docs/data_dictionary.md",
-          "size": 0,
-          "url": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization/blob/main/docs/data_dictionary.md"
-        }
-      ],
-      "readme": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization/blob/main/README.md",
-      "source": "https://github.com/Sohila-Khaled-Abbas/MaxAB_B2B_Retail_Wallet_Optimization",
-      "empty": false,
-      "file_count": 10,
-      "source_branch": "main",
-      "tree_sha": "2a6a7b40d404eebc506d17cc14f2099ea63517b5",
-      "old_portfolio": false,
-      "github": {
-        "description": "",
-        "updated_at": "2026-02-25T22:39:26Z",
-        "pushed_at": "2026-02-25T22:39:22Z",
-        "homepage": null,
-        "default_branch": "main",
-        "readme_excerpt": "This project audits the operational efficiency and financial viability of wallet recharge mechanisms for MaxAB, a B2B retail platform. By ingesting raw operational logs and transaction data into a Databricks Lakehouse, this pipeline cleans, models, and serves data to a Power BI semantic model. The final dashboards provide actionable insights into agent logistics (transit vs. transaction times) and cost optimization (digital vs. manual recharge channels).",
-        "readme_sha": "262492d183e3072cfe5ccde05e2ca9ef1c1e0d3c",
-        "fingerprint": "2026-02-25T22:39:22Z"
       }
     },
     {
@@ -4734,7 +4599,8 @@
         "readme_excerpt": "A five-page business intelligence solution exploring order fulfillment, customer and market performance, product profitability, shipping operations, time trends, and fraud-related patterns.",
         "readme_sha": "9ad529b0c1ee192352363c3e5bfea291276f7e4f",
         "fingerprint": "2026-11-08T21:26:43Z"
-      }
+      },
+      "decision_support": "A structured view of order fulfillment, customer and market patterns, product profitability, and shipping operations."
     },
     {
       "repo": "Social-Media-Advertising-Dashboard",
@@ -5481,7 +5347,8 @@
         "readme_excerpt": "A Power BI report analyzing the Egyptian job market using a January–March 2025 Wuzzuf dataset, with views for job-market overview, role and skill analysis, and company insights.",
         "readme_sha": "3b8dc4262dfa7e3067c6899662fe97678947e309",
         "fingerprint": "2026-11-09T18:03:04Z"
-      }
+      },
+      "decision_support": "Explores role demand, requested skills, hiring locations, company activity, and limits in the available salary data."
     },
     {
       "repo": "yfinance-project",

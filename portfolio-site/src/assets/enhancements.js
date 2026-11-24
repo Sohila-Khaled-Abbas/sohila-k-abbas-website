@@ -77,6 +77,7 @@ document.querySelectorAll('[data-load-report]').forEach(button => button.addEven
   frame.setAttribute('allow', 'fullscreen');
   const shell = button.closest('.report-embed-shell');
   shell.querySelector('.report-embed-host').append(frame);
+  if (shell.closest('.dashboard-live-preview')) shell.closest('.dashboard-live-preview').classList.add('report-loaded');
   shell.querySelector('.report-load-prompt').hidden = true;
   frame.focus();
 }));
@@ -125,7 +126,4 @@ if (screenshotDialog) {
   });
 }
 
-document.querySelectorAll('[data-copy-page]').forEach(button => button.addEventListener('click', async () => {
-  try { await navigator.clipboard.writeText(location.origin + location.pathname); toast('Project link copied.'); }
-  catch { toast('Copy this page’s address from your browser.'); }
-}));
+// Page-link copying is handled by redesign.js, including its accessible manual-copy fallback.

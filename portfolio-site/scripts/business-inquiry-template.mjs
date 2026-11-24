@@ -26,25 +26,25 @@ export function businessInquiry(){
         <span class="eyebrow">PROJECT INQUIRY / START HERE</span>
         <h2 id="business-inquiry-title">Tell me about the<br><em>work you have in mind.</em></h2>
         <p class="public-inquiry-lead">Share the question, the data or tools involved, and the outcome you are working towards. You do not need a business verification invitation to get in touch.</p>
-        <form id="simple-project-inquiry" class="public-project-inquiry-form" method="post" action="/services/" aria-label="Project inquiry form"><input type="hidden" name="formStartedAt" value=""><input type="hidden" name="submissionId" value="">
+        <form id="simple-project-inquiry" class="public-project-inquiry-form" method="post" action="/services/" aria-label="Project inquiry form" novalidate><input type="hidden" name="formStartedAt" value=""><input type="hidden" name="submissionId" value="">
           <div class="public-inquiry-two-fields">
             <div class="inquiry-field">
               <label for="simple-inquiry-name">Your name *</label>
-              <input id="simple-inquiry-name" name="name" type="text" required minlength="2" maxlength="100" autocomplete="name">
+              <input id="simple-inquiry-name" name="name" type="text" required minlength="2" maxlength="100" autocomplete="name" aria-describedby="simple-inquiry-name-error"><p class="inquiry-error" id="simple-inquiry-name-error" hidden></p>
             </div>
             <div class="inquiry-field">
               <label for="simple-inquiry-email">Email address *</label>
-              <input id="simple-inquiry-email" name="email" type="email" required maxlength="254" autocomplete="email" inputmode="email">
+              <input id="simple-inquiry-email" name="email" type="email" required maxlength="254" autocomplete="email" inputmode="email" aria-describedby="simple-inquiry-email-error"><p class="inquiry-error" id="simple-inquiry-email-error" hidden></p>
             </div>
           </div>
           <div class="inquiry-field">
             <label for="simple-inquiry-description">Project description *</label>
-            <textarea id="simple-inquiry-description" name="description" rows="6" required minlength="25" maxlength="1800" placeholder="What are you trying to solve? Include any useful context about the data, tools, deliverables, or timeline."></textarea>
-            <p class="inquiry-hint">25–1,800 characters. Please do not include passwords, credentials, or confidential client data.</p>
+            <textarea id="simple-inquiry-description" name="description" rows="6" required minlength="25" maxlength="1800" placeholder="What are you trying to solve? Include any useful context about the data, tools, deliverables, or timeline." aria-describedby="simple-inquiry-description-hint simple-inquiry-description-error"></textarea><p class="inquiry-error" id="simple-inquiry-description-error" hidden></p>
+            <p class="inquiry-hint" id="simple-inquiry-description-hint">25–1,800 characters. Please do not include passwords, credentials, or confidential client data.</p>
           </div>
           <div class="inquiry-field">
             <label for="simple-inquiry-budget">Budget range (EGP) *</label>
-            <select id="simple-inquiry-budget" name="budgetRange" required>
+            <select id="simple-inquiry-budget" name="budgetRange" required aria-describedby="simple-inquiry-budget-hint simple-inquiry-budget-error">
               <option value="">Select a range</option>
               <option value="500 - 2,000 EGP">500 - 2,000 EGP</option>
               <option value="2,000 - 5,000 EGP">2,000 - 5,000 EGP</option>
@@ -53,7 +53,7 @@ export function businessInquiry(){
               <option value="25,000+ EGP">25,000+ EGP</option>
               <option value="Not sure yet">Not sure yet</option>
             </select>
-            <p class="inquiry-hint">Minimum project budget: 500 EGP. Projects below 500 EGP are not offered.</p>
+            <p class="inquiry-hint" id="simple-inquiry-budget-hint">Minimum project budget: 500 EGP. Projects below 500 EGP are not offered.</p><p class="inquiry-error" id="simple-inquiry-budget-error" hidden></p>
           </div>
           <div class="inquiry-honeypot" aria-hidden="true">
             <label for="simple-inquiry-website">Leave this field empty</label>

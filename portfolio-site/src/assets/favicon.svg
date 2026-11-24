@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <title>Sohila Khaled Abbas</title>
-  <rect width="64" height="64" rx="15" fill="#743348"/>
-  <g transform="rotate(-6 32 32)">
-    <path fill="#fff8f1" d="M11 11h18v18H11zM35 11h18v18H35zM11 35h18v18H11z"/>
-    <path fill="#c4a084" d="M35 35h18v18H35z"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+<title id="title">Sohila Khaled Abbas</title>
+<rect width="64" height="64" rx="15" fill="#382724"/>
+<g transform="rotate(-6 32 32)">
+<path fill="#FAF6EF" d="M11 11h18v18H11zM35 11h18v18H35zM11 35h18v18H11z"/>
+<path fill="#A66E51" d="M35 35h18v18H35z"/>
+</g>
 </svg>

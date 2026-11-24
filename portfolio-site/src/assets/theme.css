@@ -1,66 +1,88 @@
-/* Hero-derived palette: cocoa, parchment, ivory, copper and muted sand. */
+/* Brand palette: ivory, espresso, and copper. Supporting tones are mixes of these three. */
 :root{
-  color-scheme:light;
-  --bg:#faf6ef;--surface:#fffdf9;--ink:#342724;--text:#4b3b35;
-  --muted:#78675e;--line:#e2d4c8;--soft:#f0e6dc;
-  --brand:#382724;--accent:#c4a084;--copper:#a66e51;--paper:#f1e5d9;
-  --deep:#382724;--action-bg:#382724;--action-text:#fffaf4;
-  --on-strong:#f8f0e7;--on-strong-muted:#dcc7b7;--focus:#a66e51;
-  --source-bg:#f0e5da;--flow-bg:#eadbd1;--source-ink:#533c33;
-  --live-bg:#e9dfd5;--live-ink:#644a3d;--live-line:#d9c7b8;
-  --progress-bg:#f1e7d7;--progress-ink:#725333;--progress-line:#decaad;
-  --shadow:0 18px 45px #38272412;--shadow-strong:0 26px 65px #3827241c;
-  --display:"Instrument Serif",Georgia,"Times New Roman",serif;
-  --serif:var(--display);
-  --sans:"Inter",Arial,Helvetica,sans-serif;
+ color-scheme:light;
+ --ivory:#FAF6EF;
+ --espresso:#382724;
+ --copper:#A66E51;
+ --bg:var(--ivory);--surface:var(--ivory);--ink:var(--espresso);--text:var(--espresso);
+ --muted:color-mix(in srgb,var(--espresso) 66%,var(--ivory));
+ --line:color-mix(in srgb,var(--espresso) 16%,transparent);
+ --soft:color-mix(in srgb,var(--copper) 10%,var(--ivory));
+ --brand:var(--espresso);--accent:var(--copper);--paper:var(--ivory);--deep:var(--espresso);
+ --action-bg:var(--espresso);--action-text:var(--ivory);
+ --on-strong:var(--ivory);--on-strong-muted:color-mix(in srgb,var(--ivory) 76%,var(--copper));
+ --focus:var(--copper);
+ --source-bg:color-mix(in srgb,var(--copper) 11%,var(--ivory));
+ --flow-bg:color-mix(in srgb,var(--copper) 16%,var(--ivory));
+ --source-ink:var(--espresso);
+ --live-bg:color-mix(in srgb,var(--copper) 9%,var(--ivory));
+ --live-ink:var(--espresso);--live-line:color-mix(in srgb,var(--copper) 34%,var(--ivory));
+ --progress-bg:color-mix(in srgb,var(--copper) 14%,var(--ivory));
+ --progress-ink:var(--espresso);--progress-line:color-mix(in srgb,var(--copper) 44%,var(--ivory));
+ --shadow:0 18px 45px color-mix(in srgb,var(--espresso) 10%,transparent);
+ --shadow-strong:0 26px 65px color-mix(in srgb,var(--espresso) 17%,transparent);
+ --display:"Instrument Serif",Georgia,"Times New Roman",serif;
+ --serif:var(--display);--sans:"DM Sans",Inter,Arial,Helvetica,sans-serif;
 }
 html[data-theme=dark]{
-  color-scheme:dark;
-  --bg:#211916;--surface:#2b211d;--ink:#f7efe7;--text:#e7d9cd;
-  --muted:#bda99b;--line:#5c473d;--soft:#352821;
-  --brand:#e7c8af;--accent:#cba88a;--copper:#d4a17f;--paper:#3d2d25;
-  --deep:#2d1e1a;--action-bg:#d1a183;--action-text:#291b18;
-  --on-strong:#f8f0e7;--on-strong-muted:#d8c0ae;--focus:#e0af8c;
-  --source-bg:#392d27;--flow-bg:#45332b;--source-ink:#e8d7c9;
-  --live-bg:#49372e;--live-ink:#ead6c5;--live-line:#705546;
-  --progress-bg:#49392b;--progress-ink:#f0d5b0;--progress-line:#735a41;
-  --shadow:0 18px 45px #0003;--shadow-strong:0 26px 65px #0005;
+ color-scheme:dark;
+ --bg:var(--espresso);--surface:color-mix(in srgb,var(--espresso) 92%,var(--copper));
+ --ink:var(--ivory);--text:color-mix(in srgb,var(--ivory) 91%,var(--copper));
+ --muted:color-mix(in srgb,var(--ivory) 68%,var(--espresso));
+ --line:color-mix(in srgb,var(--ivory) 19%,transparent);
+ --soft:color-mix(in srgb,var(--espresso) 83%,var(--copper));
+ --brand:var(--copper);--accent:var(--copper);--paper:var(--espresso);--deep:var(--espresso);
+ --action-bg:var(--copper);--action-text:var(--espresso);
+ --on-strong:var(--ivory);--on-strong-muted:color-mix(in srgb,var(--ivory) 78%,var(--copper));
+ --focus:var(--copper);
+ --source-bg:color-mix(in srgb,var(--espresso) 82%,var(--copper));
+ --flow-bg:color-mix(in srgb,var(--espresso) 76%,var(--copper));
+ --source-ink:var(--ivory);
+ --live-bg:color-mix(in srgb,var(--espresso) 80%,var(--copper));
+ --live-ink:var(--ivory);--live-line:color-mix(in srgb,var(--ivory) 22%,transparent);
+ --progress-bg:color-mix(in srgb,var(--espresso) 72%,var(--copper));
+ --progress-ink:var(--ivory);--progress-line:color-mix(in srgb,var(--ivory) 28%,transparent);
+ --shadow:0 18px 45px color-mix(in srgb,var(--espresso) 55%,transparent);
+ --shadow-strong:0 26px 65px color-mix(in srgb,var(--espresso) 76%,transparent);
 }
 body{background:var(--bg);color:var(--text)}
-::selection{background:#d5b69f;color:#342724}
+::selection{background:var(--copper);color:var(--espresso)}
 .button.primary,.repo-filter.active,.filter.active,.project-view-buttons>button[aria-pressed=true],html[data-theme=dark] .button.primary,html[data-theme=dark] .filter.active,html[data-theme=dark] .repo-filter.active{background:var(--action-bg);border-color:var(--action-bg);color:var(--action-text)}
 .brand-mark i,html[data-theme=dark] .brand-mark i{background:var(--brand)}
 .brand-mark i:last-child,.brand-dot{color:var(--copper);background:transparent}
 .brand-mark i:last-child{background:var(--accent)}
-.live-dot,.signature-project>span>i{background:#a57070;box-shadow:0 0 0 4px #b78b7e18}
+.live-dot,.signature-project>span>i{background:var(--copper);box-shadow:0 0 0 4px color-mix(in srgb,var(--copper) 10%,transparent)}
 .signature-stage.hero-art,.services-teaser,.contact-section,html[data-theme=dark] .contact-section{background:var(--deep)}
-.signature-stage-grid{background-image:linear-gradient(#ead6c80c 1px,transparent 1px),linear-gradient(90deg,#ead6c80c 1px,transparent 1px)}
-.signature-stage-grid:before{border-color:#c39a793b}.signature-stage-grid:after{border-color:#c39a7930}
-.signature-stage-number{color:#f0d9c70d}.signature-stage-caption{color:var(--on-strong-muted)}
-.signature-portrait,.signature-portrait>span{background:#f8f0e7;border-color:#f8f0e7}
-.signature-portrait>span{color:#655046}
-.signature-tool,.signature-project{background:#faf2e9;border-color:#ead9ca;color:#4b3630}
-.signature-project>img{background:#342724}.signature-project>span{color:#533c33}
+.signature-stage-grid{background-image:linear-gradient(color-mix(in srgb,var(--copper) 5%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--copper) 5%,transparent) 1px,transparent 1px)}
+.signature-stage-grid:before{border-color:color-mix(in srgb,var(--copper) 25%,transparent)}
+.signature-stage-grid:after{border-color:color-mix(in srgb,var(--copper) 20%,transparent)}
+.signature-stage-number{color:color-mix(in srgb,var(--ivory) 5%,transparent)}
+.signature-stage-caption{color:var(--on-strong-muted)}
+.signature-portrait,.signature-portrait>span{background:var(--ivory);border-color:var(--ivory)}
+.signature-portrait>span{color:var(--espresso)}
+.signature-tool,.signature-project{background:var(--ivory);border-color:color-mix(in srgb,var(--copper) 20%,var(--ivory));color:var(--espresso)}
+.signature-project>img{background:var(--espresso)}.signature-project>span{color:var(--espresso)}
 .hero h1 em:after{border-color:var(--copper)}
 .services-teaser .eyebrow,.services-teaser-grid span{color:var(--on-strong-muted)}
 .services-teaser h2,.services-teaser-grid p,.contact-section h2{color:var(--on-strong)}
-.services-teaser-grid>a{border-top-color:#d1ad8e55}.services-teaser .button.cream{background:#f1e1d3;color:#382724}
-.tool-logo,.report-placeholder>img,.report-load-prompt>img{background:#fffaf4;border-color:#dfcfc2}
+.services-teaser-grid>a{border-top-color:color-mix(in srgb,var(--copper) 34%,transparent)}
+.services-teaser .button.cream{background:var(--ivory);color:var(--espresso)}
+.tool-logo,.report-placeholder>img,.report-load-prompt>img{background:var(--ivory);border-color:color-mix(in srgb,var(--espresso) 18%,var(--ivory))}
 .progress-badge,html[data-theme=dark] .progress-badge{background:var(--progress-bg);color:var(--progress-ink);border-color:var(--progress-line)}
 .access-badge.public-report,html[data-theme=dark] .access-badge.public-report{background:var(--live-bg);color:var(--live-ink);border-color:var(--live-line)}
 .visual-source,.engineering .visual-source,.apps .visual-source,.learning .visual-source,html[data-theme=dark] .visual-source,html[data-theme=dark] .engineering .visual-source,html[data-theme=dark] .apps .visual-source,html[data-theme=dark] .learning .visual-source{background:var(--source-bg);color:var(--source-ink)}
 .visual-flow,.automation .visual-source,html[data-theme=dark] .visual-flow,html[data-theme=dark] .automation .visual-source{background:var(--flow-bg);color:var(--source-ink)}
 .source-preview-bottom,.source-line,html[data-theme=dark] .source-preview-bottom{color:var(--muted)}
 .visual-image>img,.preview-image-wrap,html[data-theme=dark] .visual-image>img,html[data-theme=dark] .preview-image-wrap{background:var(--soft)}
-.project-cover-open{background:#382724ed;color:#fffaf4}
-.visual-type{background:#fff8f0f2;color:#574137;border-color:#dbc5b5}
-.preview-enlarge,.cover-open{background:#fff8f0f2;color:#574137;border-color:#dbc5b5}
-.image-viewer::backdrop,.project-finder::backdrop{background:#261713d9}
+.project-cover-open{background:color-mix(in srgb,var(--espresso) 93%,transparent);color:var(--ivory)}
+.visual-type,.preview-enlarge,.cover-open{background:color-mix(in srgb,var(--ivory) 95%,transparent);color:var(--espresso);border-color:color-mix(in srgb,var(--copper) 35%,var(--ivory))}
+.image-viewer::backdrop,.project-finder::backdrop{background:color-mix(in srgb,var(--espresso) 85%,transparent)}
 .tea-mark,html[data-theme=dark] .tea-mark{background:var(--paper)}
 .story-quote,.generic-cover{background:var(--soft)}
 .button:focus-visible,a:focus-visible,button:focus-visible,[tabindex]:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline-color:var(--focus)}
+h1,h2,h3{font-family:var(--display)}
+h1 em,h2 em,h3 em{color:var(--copper)}
 @media print{
-  :root,html[data-theme=dark]{color-scheme:light;--bg:white;--surface:white;--ink:#211916;--text:#342724;--muted:#625047;--line:#cdbbb0;--soft:#f5eee8}
-  .services-teaser{background:white}
-  .services-teaser h2,.services-teaser p{color:#342724}
+ :root,html[data-theme=dark]{color-scheme:light;--bg:var(--ivory);--surface:var(--ivory);--ink:var(--espresso);--text:var(--espresso);--muted:color-mix(in srgb,var(--espresso) 66%,var(--ivory));--line:color-mix(in srgb,var(--espresso) 16%,transparent);--soft:color-mix(in srgb,var(--copper) 10%,var(--ivory))}
+ .services-teaser{background:var(--ivory)}.services-teaser h2,.services-teaser p{color:var(--espresso)}
 }

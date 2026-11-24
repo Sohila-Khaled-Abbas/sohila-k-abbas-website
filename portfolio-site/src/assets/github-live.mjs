@@ -34,7 +34,7 @@ function apply(records,checkedAt){
     const r=records.find(r=>r.name===detail.dataset.githubProject);
     if(r){
       const time=detail.querySelector('time');if(time){time.dateTime=r.pushed_at||r.updated_at;time.textContent=date(r.pushed_at||r.updated_at);}
-      const description=detail.querySelector('[data-current-description]');if(description)description.textContent=r.description||'See the current repository documentation.';
+      const description=detail.querySelector('[data-current-description]');if(description)description.textContent=r.name==='fmcg-sales-churn-drop-analysis-powerbi'?'This page describes an independent Egyptian B2B retail portfolio scenario. No client relationship, private company data access, or measured operational impact is claimed.':(r.description||'See the current repository documentation.');
       const live=detail.querySelector('[data-current-website]');if(live){live.hidden=!r.homepage;if(r.homepage)live.href=r.homepage;}
     }
   }
