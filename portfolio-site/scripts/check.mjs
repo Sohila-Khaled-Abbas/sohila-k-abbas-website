@@ -115,7 +115,9 @@ assert(!home.includes('Data Tea')&&!home.includes('LEARNING IN PUBLIC')&&!home.i
 assert(!home.includes('class="home-testimonial-card"')&&!home.includes('data-motion-toggle'),'Decorative testimonial counters and obsolete motion controls must not be reintroduced.');
 assert(home.includes('Cormorant+Garamond')&&home.includes('DM+Sans'),'Homepage must use the editorial serif and sans-serif pairing.');
 assert(home.includes('href="/editorial.css"'),'Editorial presentation layer must load.');
-assert(home.includes('data-theme=')&&home.indexOf('localStorage.getItem(\'sohila-theme\')')<home.indexOf('href="/styles.css"'),'Explicit/system theme must be applied before CSS to prevent flash.');
+const themeBootPosition=home.indexOf('document.documentElement.dataset.theme=');
+const firstStylePosition=home.indexOf('rel="stylesheet"');
+assert(themeBootPosition>=0&&firstStylePosition>=0&&themeBootPosition<firstStylePosition,'Explicit/system theme must be applied before CSS to prevent flash.');
 assert(home.includes('<meta name="theme-color" content="#f7f3ed">'),'Browser chrome must match the editorial light canvas.');
 const caseTitles=[
  'B2B Retail Analytics &amp; Churn Diagnostic — Portfolio Scenario',
