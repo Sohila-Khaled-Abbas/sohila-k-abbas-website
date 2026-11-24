@@ -20,6 +20,7 @@ const viewports=[
  {width:768,height:1024},
  {width:1280,height:900}
 ];
+const wideWorkViewports=[{width:1440,height:960},{width:1920,height:1080}];
 const themes=["light","dark"];
 const pages=[
  {route:"/",name:"home"},
@@ -122,6 +123,29 @@ async function captureRoute(route,width,height,theme,name){
  if(name==="work"){
   const cards=await page.locator(".work-featured .pinned-case-card").evaluateAll(items=>items.map(card=>card.dataset.name));
   assert.deepEqual(cards,expectedFeatured,"Work page featured order changed.");
+  const featureMetrics=await page.locator(".work-featured .pinned-case-card").first().evaluate(card=>{
+   const rect=el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right,width:r.width,top:r.top,bottom:r.bottom,height:r.height};};
+   return {card:rect(card),media:rect(card.querySelector(".studio-project-cover")),visual:rect(card.querySelector(".project-visual")),image:rect(card.querySelector(".project-visual img")),copy:rect(card.querySelector(".studio-project-copy")),title:rect(card.querySelector("h3")),description:rect(card.querySelector(".project-card-description"))};
+  });
+  assert(featureMetrics.media.width>0&&featureMetrics.visual.width>0,"B2B preview frame must have a visible width.");
+  assert(featureMetrics.media.right<=featureMetrics.card.right+1,"B2B preview frame must remain inside its card.");
+  assert(featureMetrics.visual.right<=featureMetrics.media.right+1,"B2B report cover must remain inside its media column.");
+  assert(featureMetrics.image.right<=featureMetrics.visual.right+1,"B2B cover image must remain inside its fixed-ratio frame.");
+  assert(featureMetrics.title.width>0&&featureMetrics.title.height>0,"B2B card title must remain visible.");
+  assert(featureMetrics.description.right<=featureMetrics.copy.right+1,"B2B description must fit within the padded text column.");
+  if(width>=1000){
+   assert(featureMetrics.media.right<=featureMetrics.copy.left+1,"B2B media and text columns must not overlap at desktop widths.");
+   assert(featureMetrics.copy.right<=featureMetrics.card.right+1,"B2B title, description and tags must remain inside the card.");
+  }
+  if(width===390){
+   const supply=await page.locator(".work-featured .pinned-case-card").nth(1).evaluate(card=>{
+    const copy=card.querySelector(".studio-project-copy").getBoundingClientRect();
+    const desc=card.querySelector(".project-card-description").getBoundingClientRect();
+    const cardRect=card.getBoundingClientRect();
+    return {cardRight:cardRect.right,copyRight:copy.right,descriptionRight:desc.right};
+   });
+   assert(supply.descriptionRight<=supply.copyRight-8,"SMART Supply Chain description must retain right padding on mobile.");
+  }
   assert.equal(await page.locator("[data-repo-tools]").count(),1,"Full work collection and filters are missing.");
   await page.locator("[data-repo-tools] > summary").click();
   assert(await page.locator("#repo-grid .repo-card").count()>0,"Full project catalogue should remain discoverable.");
@@ -174,6 +198,8 @@ async function captureRoute(route,width,height,theme,name){
  if(name==="home"&&width===390){
   const menu=page.locator(".menu-toggle");
   assert.equal(await menu.getAttribute("aria-expanded"),"false");
+  assert.equal(await menu.getAttribute("aria-label"),"Open menu");
+  assert.equal(await menu.locator("svg.menu-icon").count(),1,"Mobile menu button must have a visible menu icon.");
   await menu.click();
   assert.equal(await menu.getAttribute("aria-expanded"),"true","Mobile navigation did not open.");
   assert(await page.locator("#navigation a[href='/contact/']").isVisible(),"Contact must appear in mobile navigation.");
@@ -225,6 +251,9 @@ async function testClipboard(){
  await successPage.waitForFunction(()=>Boolean(window.__copiedPage));
  assert.equal(await successPage.evaluate(()=>window.__copiedPage),url,"Copy page should copy the current case-study URL, not the homepage.");
  assert((await successPage.locator("[data-copy-page-status]").innerText()).includes("copied to the clipboard"));
+ await successPage.waitForTimeout(2400);
+ assert.equal((await successPage.locator("[data-copy-page-status]").innerText()).trim(),"","Copy success announcement should clear after approximately two seconds.");
+ assert.equal((await successPage.locator("[data-copy-page]").innerText()).trim(),"Copy page link","Copy button label should return after the success state.");
  await successPage.close();
 
  const failurePage=await browser.newPage({viewport:{width:390,height:844}});
@@ -319,8 +348,9 @@ async function testInquirySafety(){
 
 try{
  const matrix=[];
- for(const page of pages)for(const theme of themes)for(const viewport of viewports){
-  matrix.push(await captureRoute(page.route,viewport.width,viewport.height,theme,page.name));
+ for(const page of pages)for(const theme of themes){
+  const pageViewports=page.name==="work"?[...viewports,...wideWorkViewports]:viewports;
+  for(const viewport of pageViewports)matrix.push(await captureRoute(page.route,viewport.width,viewport.height,theme,page.name));
  }
  await testThemePersistence();
  await testPreviewDialog();

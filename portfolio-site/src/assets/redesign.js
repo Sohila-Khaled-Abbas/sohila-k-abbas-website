@@ -27,7 +27,9 @@
       button.textContent='Copied';
       button.setAttribute('aria-label','Page link copied');
       announce(button,'This page URL was copied to the clipboard.');
+      const status=button.parentElement.querySelector('[data-copy-page-status]');
       window.setTimeout(()=>{
+        if(status)status.textContent='';
         button.textContent='Copy page link';
         button.setAttribute('aria-label','Copy this page URL');
       },2200);

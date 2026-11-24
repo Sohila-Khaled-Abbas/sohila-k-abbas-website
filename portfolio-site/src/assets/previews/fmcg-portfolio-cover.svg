@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+<title id="title">B2B retail analytics portfolio scenario cover</title>
+<desc id="desc">Editorial cover artwork for a portfolio case study, not a screenshot of a client report.</desc>
+<rect width="1440" height="900" fill="#f7f3ed"/>
+<rect x="48" y="48" width="1344" height="804" fill="none" stroke="#d9c9bd" stroke-width="2"/>
+<path d="M944 48V852M48 704H1392" fill="none" stroke="#d9c9bd" stroke-width="2"/>
+<path d="M1018 48H1392V852H944V122Z" fill="#713549"/>
+<circle cx="1172" cy="362" r="182" fill="none" stroke="#e8d7d1" stroke-width="2" opacity=".5"/>
+<circle cx="1172" cy="362" r="127" fill="none" stroke="#e8d7d1" stroke-width="2" opacity=".42"/>
+<circle cx="1172" cy="362" r="70" fill="#d9b3bf" opacity=".82"/>
+<path d="M1010 596H1330M1050 635H1290M1090 674H1250" stroke="#e8d7d1" stroke-width="2" opacity=".5"/>
+<text x="112" y="144" fill="#713549" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" letter-spacing="5">CASE STUDY 01</text>
+<text x="112" y="330" fill="#211b1d" font-family="Georgia,'Times New Roman',serif" font-size="104" font-weight="400" letter-spacing="-4">B2B RETAIL</text>
+<text x="116" y="425" fill="#713549" font-family="Georgia,'Times New Roman',serif" font-size="66" font-style="italic">Analytics &amp; churn</text>
+<path d="M112 493H818" stroke="#b78e7c" stroke-width="3"/>
+<text x="112" y="556" fill="#43383b" font-family="Arial,Helvetica,sans-serif" font-size="23" font-weight="700" letter-spacing="4">PORTFOLIO SCENARIO</text>
+<text x="112" y="615" fill="#6c5d5a" font-family="Arial,Helvetica,sans-serif" font-size="22" letter-spacing="1">Power BI · SQL · Data modeling · DAX</text>
+<text x="112" y="780" fill="#713549" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="700" letter-spacing="3">BUSINESS INTELLIGENCE / REPORTING</text>
+<text x="1060" y="780" fill="#f6efe9" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" letter-spacing="2">INDEPENDENT WORK</text>
+</svg>

@@ -331,11 +331,9 @@
       },
       "images": [
         {
-          "src": "/previews/fmcg-live.webp",
-          "alt": "B2B Retail Analytics & Churn Diagnostic — portfolio scenario Power BI report overview",
-          "caption": "Saved Power BI report screenshot · portfolio scenario",
-          "source_url": "https://app.powerbi.com/view?r=eyJrIjoiNzE0MWUwYTgtZTlhZC00N2IxLWFmYzQtYmI2MzFkNjFhN2NjIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
-          "captured_on": "2026-10-30"
+          "src": "/previews/fmcg-portfolio-cover.svg",
+          "alt": "Neutral editorial cover for the B2B Retail Analytics and Churn Diagnostic portfolio scenario",
+          "caption": "Editorial cover · portfolio scenario, not a client-branded report screenshot"
         }
       ],
       "files": [
@@ -351,7 +349,8 @@
         }
       ],
       "source": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi",
-      "readme": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/README.md"
+      "readme": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/README.md",
+      "preview_kind": "cover"
     },
     {
       "repo": "world-economy-bi-project",
