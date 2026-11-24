@@ -153,6 +153,9 @@ function assertLayout(audit,width,label){
 }
 async function captureRoute(route,width,height,theme,name){
  const page=await browser.newPage({viewport:{width,height},deviceScaleFactor:1});
+ const browserErrors=[];
+ page.on("console",message=>{if(message.type()==="error")browserErrors.push("console: "+message.text());});
+ page.on("pageerror",error=>browserErrors.push("pageerror: "+error.message));
  try{
  await page.emulateMedia({colorScheme:theme,reducedMotion:"reduce"});
  await addProtectionHeader(page);
@@ -164,6 +167,7 @@ async function captureRoute(route,width,height,theme,name){
  await page.screenshot({path:screenshot,fullPage:true,animations:"disabled"});
  assertLayout(audit,width,name+" "+theme+" "+width+"px");
  assert.equal(audit.theme,theme,"Theme does not match system preference for "+name+" "+width+"px");
+ assert.equal(browserErrors.length,0,"Browser console errors on "+name+" "+theme+" "+width+"px: "+JSON.stringify(browserErrors));
  const h1=await page.locator("main h1").count();
  assert.equal(h1,1,name+" must have exactly one main H1.");
  const seo=await page.evaluate(()=>{
@@ -247,6 +251,14 @@ async function captureRoute(route,width,height,theme,name){
   assert.equal(await page.locator('#repo-grid .repo-card[data-category="learning"]').count(),0,"Learning resources must not appear as professional case studies.");
   const visibleRepoText=(await page.locator("#repo-grid").innerText()).toLowerCase();
   assert(!visibleRepoText.includes("maxab wallet recharge optimization")&&!visibleRepoText.includes("flyrank-ml-internship-starter"),"Removed employer-work repos must not appear in the Work project directory.");
+  const previewCoverage=await page.locator("#repo-grid .repo-card").evaluateAll(cards=>cards.map(card=>{
+   const visual=card.querySelector(".project-visual");
+   const rect=visual?.getBoundingClientRect();
+   return {name:card.dataset.name||card.querySelector("h3")?.innerText||"unknown",hasPreview:!!visual,width:rect?.width||0,height:rect?.height||0};
+  }));
+  assert(previewCoverage.length>0,"The Work project catalogue must contain project cards.");
+  assert(previewCoverage.every(item=>item.hasPreview&&item.width>0&&item.height>0),
+   "Every Work project must have a visible preview without replacing saved images: "+JSON.stringify(previewCoverage.filter(item=>!item.hasPreview||item.width===0||item.height===0)));
  }
  if(name==="b2b-retail-scenario"){
   assert((await page.locator("h1").first().innerText()).includes("Portfolio Scenario"),"B2B case title must be explicit portfolio scenario.");
