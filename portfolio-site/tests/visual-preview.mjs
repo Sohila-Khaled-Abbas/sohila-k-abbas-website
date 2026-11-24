@@ -186,6 +186,16 @@ async function captureRoute(route,width,height,theme,name){
   assert((await firstCover.getAttribute("src")).includes("fmcg-portfolio-cover.svg"),"B2B Work card must use its neutral portfolio cover, not the branded report screenshot.");
   assert((await firstCover.getAttribute("alt")).includes("Neutral editorial cover"),"B2B cover alternative text must identify the neutral scenario artwork.");
   assert.equal(await page.getByText(/MAXAB ANALYTICS|Built for Maxab Analytics|Welcome back, Sohila/i).count(),0,"The B2B Work card must not display client-branded report content.");
+  const b2bCard=page.locator(".work-featured .pinned-case-card").first();
+  const liveButton=b2bCard.locator(".work-card-live-preview [data-load-report]");
+  assert.equal(await liveButton.count(),1,"B2B Work card must include a click-to-load Power BI preview.");
+  assert.equal(await b2bCard.locator(".work-card-live-preview iframe").count(),0,"B2B Work-card iframe must not load before a click.");
+  assert.equal((await b2bCard.locator(".work-card-live-preview .report-scenario-disclaimer").innerText()).trim(),"Portfolio scenario. Report branding is from the practice dataset.");
+  assert(await b2bCard.locator(".work-card-live-preview a[href^='https://app.powerbi.com/view?r=']").count()===1,"B2B Work card needs a visible full-report fallback link.");
+  const cardEmbed=await b2bCard.locator(".work-card-embed-shell").evaluate(el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right,width:r.width,ratio:r.width/r.height,cardRight:el.closest(".pinned-case-card").getBoundingClientRect().right};});
+  assert(cardEmbed.width>0&&cardEmbed.right<=cardEmbed.cardRight+1,"B2B Work-card embed must remain within the card.");
+  assert(Math.abs(cardEmbed.ratio-(width<=760?4/3:16/9))<.04,"B2B Work-card embed aspect ratio changed at "+width+"px.");
+
   assert.equal(await page.locator("[data-repo-tools]").count(),1,"Full work collection and filters are missing.");
   await page.locator("[data-repo-tools] > summary").click();
   assert(await page.locator("#repo-grid .repo-card").count()>0,"Full project catalogue should remain discoverable.");
