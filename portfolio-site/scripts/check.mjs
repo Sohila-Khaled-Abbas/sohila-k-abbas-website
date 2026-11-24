@@ -103,12 +103,17 @@ assert(!work.includes('Power BI diploma'),'The retired diploma card must not ret
 assert(!work.includes('Data Tea')&&!work.includes('roadmap'),'Retired learning/community resources must not appear in Work');
 
 const home=documents.get(path.join(out,'index.html'));
-assert(home.includes('Business questions.')&&home.includes('Clearer decisions.'),'Homepage must lead with the BI and analytics case-study proposition.');
+assert(home.includes('BI Developer &amp; Data Analyst.')&&home.includes('Clearer decisions from data.'),'Homepage must lead with the recruiter-focused BI Developer and Data Analyst proposition.');
+assert(home.includes('500K+ order lines')&&home.includes('47K+ orders')&&home.includes('70K+ retailers'),'Homepage must show verified B2B retail proof.');
+assert(home.includes('Hire me for: BI reporting')&&home.includes('Power BI')&&home.includes('Data modeling'),'Homepage must explain the services recruiters can hire for.');
+assert(home.includes('Open to remote roles')&&home.includes('Cairo, Egypt · UTC+2')&&home.includes('English: Excellent'),'Homepage must show remote availability, Cairo timezone, and English level.');
+assert(home.includes('Copy email')&&home.includes('href="/resume/"')&&home.includes('LinkedIn')&&home.includes('GitHub'),'Homepage must expose direct contact and professional proof links.');
 const homeOrder=['id="hero-title"','id="capabilities"','id="case-studies"','id="approach"','id="experience-summary"','id="home-contact"'].map(marker=>home.indexOf(marker));
 assert(homeOrder.every(position=>position>=0)&&homeOrder.every((position,index)=>index===0||homeOrder[index-1]<position),'Homepage must follow identity → disciplines → case studies → approach → experience → contact.');
-assert(home.includes('Damietta, Egypt')&&home.includes('Open to remote employee roles'),'Homepage must identify location and remote employee availability.');
-assert(home.includes('Explore case studies')&&home.includes('href="/work/#case-studies"'),'Homepage must offer a case-study CTA.');
-assert(home.includes('View resume')&&home.includes('href="/resume/"'),'Homepage must offer the resume CTA.');
+assert(home.includes('Damietta, Egypt')&&home.includes('Open to remote roles'),'Homepage must identify location and remote availability.');
+assert(home.includes('View case studies')&&home.includes('href="/work/#case-studies"'),'Homepage must offer the primary case-study CTA.');
+assert(home.includes('Contact me')&&home.includes('href="/contact/"'),'Homepage must offer the primary contact CTA.');
+assert(home.includes('View CV')&&home.includes('href="/resume/"'),'Homepage must offer a direct CV link.');
 for(const term of ['Power BI','SQL','DAX','data modeling','Power Query','Analytics Engineer'])assert(home.includes(term),'Homepage is missing the verified discipline '+term);
 assert(!home.includes('Work with me')&&!home.includes('Fixed quote')&&!home.includes('You send your data or problem.'),'Homepage must not read as a freelance-services funnel.');
 assert(!home.includes('Data Tea')&&!home.includes('LEARNING IN PUBLIC')&&!home.includes('roadmap'),'Retired learning/community material must not appear on the homepage.');
@@ -263,7 +268,7 @@ for(const report of reports){
 }
 assert.equal(workProjects.find(project=>project.repo==='kickstarter-analytics-engineering')?.title,'Kickstarter Analytics Engineering Platform');
 assert(work.includes('Kickstarter Analytics Engineering Platform'));
-await fs.access(path.join(out,'social-card.png'));
+await fs.access(path.join(out,'social-card.svg'));
 
 console.log('PASS: '+htmlFiles.length+' generated HTML documents, valid local links and anchors, and the work-only route set.');
 console.log('PASS: '+workRepositories.length+' original client-work projects, '+workCases.length+' relevant case studies, '+reports.length+' dashboards, and no learning/community resources.');
