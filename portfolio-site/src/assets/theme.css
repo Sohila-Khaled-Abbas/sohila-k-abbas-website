@@ -29,7 +29,7 @@ body{background:var(--bg);color:var(--text)}
 ::selection{background:#d5b69f;color:#342724}
 .button.primary,.repo-filter.active,.filter.active,.project-view-buttons>button[aria-pressed=true],html[data-theme=dark] .button.primary,html[data-theme=dark] .filter.active,html[data-theme=dark] .repo-filter.active{background:var(--action-bg);border-color:var(--action-bg);color:var(--action-text)}
 .brand-mark i,html[data-theme=dark] .brand-mark i{background:var(--brand)}
-.brand-mark i:last-child,.brand-dot{color:var(--copper);background:transparent}
+.brand-mark i:last-child,.brand-dot{color:var(--brand);background:transparent}
 .brand-mark i:last-child{background:var(--accent)}
 .live-dot,.signature-project>span>i{background:#a57070;box-shadow:0 0 0 4px #b78b7e18}
 .signature-stage.hero-art,.services-teaser,.contact-section,html[data-theme=dark] .contact-section{background:var(--deep)}
@@ -40,7 +40,7 @@ body{background:var(--bg);color:var(--text)}
 .signature-portrait>span{color:#655046}
 .signature-tool,.signature-project{background:#faf2e9;border-color:#ead9ca;color:#4b3630}
 .signature-project>img{background:#342724}.signature-project>span{color:#533c33}
-.hero h1 em:after{border-color:var(--copper)}
+.hero h1 em:after{border-color:var(--brand)}
 .services-teaser .eyebrow,.services-teaser-grid span{color:var(--on-strong-muted)}
 .services-teaser h2,.services-teaser-grid p,.contact-section h2{color:var(--on-strong)}
 .services-teaser-grid>a{border-top-color:#d1ad8e55}.services-teaser .button.cream{background:#f1e1d3;color:#382724}
