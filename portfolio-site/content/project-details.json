@@ -1751,32 +1751,32 @@
           "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/README.md"
         },
         {
-          "path": "dashboards/Maxab Retail Performance & Churn Analytics Dashboard.pbix",
+          "path": "Power BI report.pbix",
           "size": 16787267,
           "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/dashboards/Maxab%20Retail%20Performance%20%26%20Churn%20Analytics%20Dashboard.pbix"
         },
         {
-          "path": "design/maxab-dashboard-wireframe.html",
+          "path": "Report wireframe.html",
           "size": 148952,
           "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/design/maxab-dashboard-wireframe.html"
         },
         {
-          "path": "src/Maxab Retail Performance & Churn Analytics Dashboard.pbip",
+          "path": "Power BI project.pbip",
           "size": 318,
           "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/src/Maxab%20Retail%20Performance%20%26%20Churn%20Analytics%20Dashboard.pbip"
         },
         {
-          "path": "themes/maxab-theme.json",
+          "path": "Power BI theme.json",
           "size": 3349,
           "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/themes/maxab-theme.json"
         },
         {
-          "path": "themes/Power BI Theme by BIBB.json",
+          "path": "Power BI theme.json",
           "size": 27567,
           "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/themes/Power%20BI%20Theme%20by%20BIBB.json"
         },
         {
-          "path": "src/Maxab Retail Performance & Churn Analytics Dashboard.SemanticModel/diagramLayout.json",
+          "path": "Power BI theme.json",
           "size": 8087,
           "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/src/Maxab%20Retail%20Performance%20%26%20Churn%20Analytics%20Dashboard.SemanticModel/diagramLayout.json"
         }
