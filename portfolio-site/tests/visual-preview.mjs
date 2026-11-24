@@ -130,7 +130,7 @@ async function captureRoute(route,width,height,theme,name){
  assert(seo.description.length>0&&seo.description.length<160,name+" meta description must be under 160 characters.");
  assert.equal(seo.lang,"en",name+" document language must be English.");
  assert(seo.canonical.startsWith("https://sohila-khaled-abbas.vercel.app/"),name+" canonical must point to production.");
- assert.equal(seo.themeColor,"#f7f3ed",name+" theme-color metadata is missing.");
+ assert.equal(seo.themeColor,theme==="dark"?"#181415":"#f7f3ed",name+" theme-color must match the active color scheme.");
  assert(seo.ogImage.endsWith("/social-card.svg")&&seo.ogWidth==="1200"&&seo.ogHeight==="630",name+" must use the 1200x630 editorial social image.");
  assert.equal(seo.twitter,"summary_large_image",name+" Twitter card metadata is missing.");
  assert(seo.types.includes("Person")&&seo.types.includes("WebSite")&&seo.types.includes("BreadcrumbList"),name+" needs Person, WebSite and Breadcrumb structured data.");
@@ -276,12 +276,13 @@ async function captureRoute(route,width,height,theme,name){
   await menu.click();
   assert.equal(await menu.getAttribute("aria-expanded"),"true","Mobile navigation did not open.");
   assert(await page.locator("#navigation a[href='/contact/']").isVisible(),"Contact must appear in mobile navigation.");
-  const firstNav=page.locator("#navigation a[href]").first();
+  const navItems=page.locator("#navigation a[href]");
+  const firstNav=navItems.first(),lastNav=navItems.last();
   assert(await firstNav.evaluate(el=>el===document.activeElement),"Opening the mobile menu should move focus into navigation.");
   await page.keyboard.press("Shift+Tab");
-  assert(await menu.evaluate(el=>el===document.activeElement),"Shift+Tab from the first menu item should wrap to the menu toggle.");
+  assert(await lastNav.evaluate(el=>el===document.activeElement),"Shift+Tab from the first menu link should wrap to the last menu link.");
   await page.keyboard.press("Tab");
-  assert(await firstNav.evaluate(el=>el===document.activeElement),"Tab from the menu toggle should wrap to the first navigation link.");
+  assert(await firstNav.evaluate(el=>el===document.activeElement),"Tab from the last menu link should wrap to the first menu link.");
   await page.keyboard.press("Escape");
   assert.equal(await menu.getAttribute("aria-expanded"),"false","Escape should close the mobile navigation.");
   assert(await menu.evaluate(el=>el===document.activeElement),"Closing the menu with Escape should restore focus to the toggle.");
@@ -496,7 +497,7 @@ async function testB2BWorkCardEmbed(){
   assert((await frame.getAttribute("title")).includes("interactive Power BI report"));
   const geometry=await frame.evaluate(el=>{const f=el.getBoundingClientRect(),shell=el.closest(".report-embed-shell").getBoundingClientRect();return {left:f.left,right:f.right,width:f.width,shellLeft:shell.left,shellRight:shell.right,ratio:shell.width/shell.height};});
   assert(geometry.width>0&&geometry.left>=geometry.shellLeft-1&&geometry.right<=geometry.shellRight+1,"B2B Work-card iframe overflow at "+width+"px: "+JSON.stringify(geometry));
-  assert(Math.abs(geometry.ratio-(width<=760?4/3:16/9))<.04,"B2B Work-card aspect ratio changed at "+width+"px.");
+  assert(Math.abs(geometry.ratio-16/9)<.04,"B2B Work-card aspect ratio must remain 16:9 at "+width+"px.");
   assert.equal((await card.locator(".report-scenario-disclaimer").innerText()).trim(),"Portfolio scenario. Report branding is from the practice dataset.");
   await page.close();
   console.log("PASS B2B Work-card click-to-load embed at "+width+"px.");
