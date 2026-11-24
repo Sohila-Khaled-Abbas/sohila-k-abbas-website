@@ -75,22 +75,35 @@ jobs:
         env:
           BASE_URL: ${{ steps.preview.outputs.url }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
-      - name: Lighthouse CI — homepage mobile
+      - name: Build production-indexable site for Lighthouse
+        if: steps.preview.outputs.url != ''
+        run: |
+          SITE_URL=https://sohila-khaled-abbas.vercel.app npm run build
+          PORT=4173 node scripts/serve.mjs > /tmp/portfolio-lighthouse-server.log 2>&1 &
+          echo $! > /tmp/portfolio-lighthouse-server.pid
+          for attempt in {1..30}; do
+            if curl --fail --silent --show-error http://127.0.0.1:4173/ >/dev/null; then
+              echo "Local indexable build is ready for Lighthouse."
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/portfolio-lighthouse-server.log
+          exit 1
+      - name: Lighthouse CI — six routes mobile
         if: steps.preview.outputs.url != ''
         run: npx lhci autorun --config=./lighthouserc.cjs
         env:
-          BASE_URL: ${{ steps.preview.outputs.url }}
+          BASE_URL: http://127.0.0.1:4173
           LIGHTHOUSE_PRESET: mobile
-          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
-      - name: Lighthouse CI — homepage desktop
+      - name: Lighthouse CI — six routes desktop
         if: steps.preview.outputs.url != ''
         run: npx lhci autorun --config=./lighthouserc.cjs
         env:
-          BASE_URL: ${{ steps.preview.outputs.url }}
+          BASE_URL: http://127.0.0.1:4173
           LIGHTHOUSE_PRESET: desktop
-          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
       - name: Print Lighthouse category scores
-        if: steps.preview.outputs.url != ''
+        if: always()
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs/promises';
