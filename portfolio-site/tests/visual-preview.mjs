@@ -50,27 +50,57 @@ async function addProtectionHeader(page){
   await route.continue({headers});
  });
 }
+let typographyVerified=false;
+let typographyFailure=null;
 async function settlePage(page){
- await page.waitForFunction(()=>[...document.querySelectorAll('link[rel="stylesheet"]')].some(link=>link.href.includes("fonts.googleapis.com/css2?family=Cormorant")&&link.sheet),{timeout:20000});
- const fontState=await page.evaluate(async()=>{
-  const [sansFaces,displayFaces]=await Promise.all([
-   document.fonts.load('600 16px "DM Sans"'),
-   document.fonts.load('italic 500 16px "Cormorant Garamond"')
-  ]);
-  const heading=document.querySelector("main h1");
-  const accent=heading?.querySelector("em");
-  return {
-   sansLoaded:sansFaces.length>0,
-   displayLoaded:displayFaces.length>0,
-   headingFamily:heading?getComputedStyle(heading).fontFamily:"",
-   accentFamily:accent?getComputedStyle(accent).fontFamily:null
-  };
- });
- assert(fontState.sansLoaded,"DM Sans must load before visual QA screenshots.");
- assert.match(fontState.headingFamily,/DM Sans/i,"Page headline must use DM Sans; found "+fontState.headingFamily);
- if(fontState.accentFamily){
-  assert(fontState.displayLoaded,"Cormorant Garamond must load for the italic accent.");
-  assert.match(fontState.accentFamily,/Cormorant Garamond/i,"Italic accent must use Cormorant Garamond; found "+fontState.accentFamily);
+ if(typographyFailure)throw new Error(typographyFailure);
+ let fontState;
+ if(!typographyVerified){
+  try{
+   await page.waitForFunction(()=>[...document.querySelectorAll('link[rel="stylesheet"]')].some(link=>link.href.includes("fonts.googleapis.com/css2?family=Cormorant")&&link.sheet),{timeout:12000});
+   fontState=await page.evaluate(async()=>{
+    const [sansFaces,displayFaces]=await Promise.all([
+     document.fonts.load('600 16px "DM Sans"'),
+     document.fonts.load('italic 500 16px "Cormorant Garamond"')
+    ]);
+    const heading=document.querySelector("main h1");
+    const accent=heading?.querySelector("em");
+    return {
+     sansLoaded:sansFaces.length>0,
+     displayLoaded:displayFaces.length>0,
+     headingFamily:heading?getComputedStyle(heading).fontFamily:"",
+     accentFamily:accent?getComputedStyle(accent).fontFamily:null
+    };
+   });
+   assert(fontState.sansLoaded,"DM Sans must load before visual QA screenshots.");
+   assert.match(fontState.headingFamily,/DM Sans/i,"Page headline must use DM Sans; found "+fontState.headingFamily);
+   if(fontState.accentFamily){
+    assert(fontState.displayLoaded,"Cormorant Garamond must load for the italic accent.");
+    assert.match(fontState.accentFamily,/Cormorant Garamond/i,"Italic accent must use Cormorant Garamond; found "+fontState.accentFamily);
+   }
+   typographyVerified=true;
+  }catch(error){
+   typographyFailure="Typography verification failed: "+error.message;
+   throw new Error(typographyFailure,{cause:error});
+  }
+ }else{
+  fontState=await page.evaluate(async()=>{
+   if(document.fonts?.ready)await document.fonts.ready;
+   const heading=document.querySelector("main h1");
+   const accent=heading?.querySelector("em");
+   return {
+    sansLoaded:document.fonts.check('600 16px "DM Sans"'),
+    displayLoaded:document.fonts.check('italic 500 16px "Cormorant Garamond"'),
+    headingFamily:heading?getComputedStyle(heading).fontFamily:"",
+    accentFamily:accent?getComputedStyle(accent).fontFamily:null
+   };
+  });
+  assert(fontState.sansLoaded,"DM Sans must load on every route before visual QA screenshots.");
+  assert.match(fontState.headingFamily,/DM Sans/i,"Page headline must use DM Sans; found "+fontState.headingFamily);
+  if(fontState.accentFamily){
+   assert(fontState.displayLoaded,"Cormorant Garamond must load for every italic accent.");
+   assert.match(fontState.accentFamily,/Cormorant Garamond/i,"Italic accent must use Cormorant Garamond; found "+fontState.accentFamily);
+  }
  }
  const total=await page.evaluate(()=>document.documentElement.scrollHeight);
  const viewportHeight=page.viewportSize()?.height||844;
