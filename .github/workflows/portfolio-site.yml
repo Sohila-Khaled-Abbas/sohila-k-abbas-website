@@ -120,7 +120,8 @@ jobs:
                 ' Best Practices=' + score('best-practices') +
                 ' SEO=' + score('seo'));
             }
-          }          NODE
+          }
+          NODE
       - name: Upload screenshots and Lighthouse reports
         if: always()
         uses: actions/upload-artifact@v4
