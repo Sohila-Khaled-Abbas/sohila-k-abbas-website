@@ -193,6 +193,12 @@ async function captureRoute(route,width,height,theme,name){
  const browserErrors=[];
  page.on("console",message=>{if(message.type()==="error")browserErrors.push("console: "+message.text());});
  page.on("pageerror",error=>browserErrors.push("pageerror: "+error.message));
+ page.on("response",response=>{
+  const request=response.request();
+  if(response.status()>=400&&["document","script","stylesheet","image","font"].includes(request.resourceType())){
+   browserErrors.push("http "+response.status()+": "+response.url());
+  }
+ });
  try{
  await page.emulateMedia({colorScheme:theme,reducedMotion:"reduce"});
  await addProtectionHeader(page);
