@@ -42,7 +42,8 @@ async function addProtectionHeader(page){
 async function settlePage(page){
  await page.evaluate(async()=>{if(document.fonts?.ready)await document.fonts.ready;});
  const total=await page.evaluate(()=>document.documentElement.scrollHeight);
- const step=Math.max(420,Math.floor(window.innerHeight*.72));
+ const viewportHeight=page.viewportSize()?.height||844;
+ const step=Math.max(420,Math.floor(viewportHeight*.72));
  for(let y=0;y<total;y+=step){
   await page.evaluate(scrollY=>window.scrollTo(0,scrollY),y);
   await page.waitForTimeout(45);
