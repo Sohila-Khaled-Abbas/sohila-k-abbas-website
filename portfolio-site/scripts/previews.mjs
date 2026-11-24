@@ -8,7 +8,7 @@ export function reportCard(r,status={},includeLivePreview=false) {
  const hasImage=Boolean(r.images?.length),preview=r.images?.[0];
  const caption=preview?.caption||(r.preview_kind==='diagram'?'Architecture diagram':r.preview_kind==='cover'?'Editorial portfolio cover':'Saved report preview');
  const previewLabel=r.preview_kind==='diagram'?'Source diagram':r.preview_kind==='cover'?'Editorial cover':'Saved report view';
- const cover=hasImage?`<a class="dashboard-cover" href="${e(preview.src)}" data-lightbox="${e(r.repo)}" data-caption="${e(caption)}" aria-label="Enlarge ${e(preview.alt||r.title)}">${image(r)}<span class="cover-open">Enlarge preview ↗</span></a>`:`<div class="dashboard-cover">${image(r)}</div>`;
+ const cover=hasImage?`<a class="dashboard-cover" href="${e(preview.src)}" data-lightbox="${e(r.repo)}" data-caption="${e(caption)}">${image(r)}<span class="cover-open">Enlarge preview ↗</span></a>`:`<div class="dashboard-cover">${image(r)}</div>`;
  const isPublic=r.live?.access==='public';
  const isGitHub=typeof r.source==='string'&&r.source.startsWith('https://github.com/');
  const links=[isPublic?link(r.live.url,'Open full report'):null,isGitHub?link(r.source,'GitHub repository'):null].filter(Boolean).join('');
