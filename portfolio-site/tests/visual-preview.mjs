@@ -26,13 +26,13 @@ const pages=[
  {route:"/",name:"home"},
  {route:"/work/",name:"work"},
  {route:"/dashboards/",name:"dashboards"},
- {route:"/projects/fmcg-sales-churn-drop-analysis-powerbi/",name:"b2b-retail-scenario"},
- {route:"/projects/SMART-Supply-Chain-Insights-Dashboard/",name:"smart-supply-chain"},
- {route:"/projects/Wuzzuf-Job-Market-Analysis/",name:"wuzzuf-job-market"},
  {route:"/about/",name:"about"},
  {route:"/resume/",name:"resume"},
  {route:"/contact/",name:"contact"},
- {route:"/services/",name:"services"}
+ {route:"/services/",name:"services"},
+ {route:"/projects/fmcg-sales-churn-drop-analysis-powerbi/",name:"b2b-retail-scenario"},
+ {route:"/projects/SMART-Supply-Chain-Insights-Dashboard/",name:"smart-supply-chain"},
+ {route:"/projects/Wuzzuf-Job-Market-Analysis/",name:"wuzzuf-job-market"}
 ];
 const browser=await chromium.launch({headless:true});
 
@@ -107,6 +107,7 @@ function assertLayout(audit,width,label){
 }
 async function captureRoute(route,width,height,theme,name){
  const page=await browser.newPage({viewport:{width,height},deviceScaleFactor:1});
+ try{
  await page.emulateMedia({colorScheme:theme,reducedMotion:"reduce"});
  await addProtectionHeader(page);
  const response=await page.goto(new URL(route,base).href,{waitUntil:"domcontentloaded",timeout:60000});
@@ -226,8 +227,8 @@ async function captureRoute(route,width,height,theme,name){
   assert.equal(await menu.getAttribute("aria-expanded"),"false","Escape should close the mobile navigation.");
  }
  console.log("PASS "+name+" "+theme+" "+width+"px — HTTP "+response.status()+", theme resolved, no horizontal overflow/clipped text. Screenshot: "+path.basename(screenshot));
- await page.close();
  return {page:name,theme,width,status:"PASS",screenshot:path.basename(screenshot)};
+ }finally{await page.close();}
 }
 async function testThemePersistence(){
  const page=await browser.newPage({viewport:{width:390,height:844}});
@@ -373,9 +374,17 @@ async function testInquirySafety(){
 
 try{
  const matrix=[];
+ const routeFailures=[];
  for(const page of pages)for(const theme of themes){
   const pageViewports=page.name==="work"?[...viewports,...wideWorkViewports]:viewports;
-  for(const viewport of pageViewports)matrix.push(await captureRoute(page.route,viewport.width,viewport.height,theme,page.name));
+  for(const viewport of pageViewports){
+   try{matrix.push(await captureRoute(page.route,viewport.width,viewport.height,theme,page.name));}
+   catch(error){
+    const failure={page:page.name,theme,width:viewport.width,message:error?.message||String(error)};
+    routeFailures.push(failure);
+    console.error("FAIL "+page.name+" "+theme+" "+viewport.width+"px — "+failure.message);
+   }
+  }
  }
  await testThemePersistence();
  await testPreviewDialog();
@@ -383,6 +392,7 @@ try{
  await testReportLoading();
  await testResumePrint();
  await testInquirySafety();
- await fs.writeFile(path.join(screenshotDir,"qa-matrix.json"),JSON.stringify(matrix,null,2));
+ await fs.writeFile(path.join(screenshotDir,"qa-matrix.json"),JSON.stringify({passed:matrix,failures:routeFailures},null,2));
+ if(routeFailures.length)throw new Error("Responsive page QA recorded "+routeFailures.length+" failure(s): "+JSON.stringify(routeFailures));
  console.log("PASS visual QA — "+matrix.length+" page/theme/viewport screenshots across "+pages.length+" routes, "+themes.length+" themes, and "+viewports.length+" viewport widths.");
 }finally{await browser.close();}
