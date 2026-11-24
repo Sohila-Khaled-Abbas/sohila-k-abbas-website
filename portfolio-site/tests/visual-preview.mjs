@@ -83,8 +83,18 @@ async function inspectLayout(page){
    const rect=element.getBoundingClientRect();
    const style=getComputedStyle(element);
    return {tag:element.tagName.toLowerCase(),className:typeof element.className==="string"?element.className:"",text:element.textContent.trim().replace(/\\s+/g," ").slice(0,65),left:Math.round(rect.left),right:Math.round(rect.right),width:Math.round(rect.width),position:style.position,overflowX:style.overflowX};
-  }).filter(item=>item.right>width+1&&item.left<width+1).sort((a,b)=>b.right-a.right).slice(0,16);
-  return {width,rootWidth,bodyWidth,clipped,overflowCandidates,theme:document.documentElement.dataset.theme,background:getComputedStyle(document.body).backgroundColor};
+  }).filter(item=>item.right>width+1).sort((a,b)=>b.right-a.right).slice(0,30);
+  const overflowingScrollContainers=[...document.querySelectorAll("body *")].map(element=>{
+   const style=getComputedStyle(element);
+   return {tag:element.tagName.toLowerCase(),className:typeof element.className==="string"?element.className:"",id:element.id||"",text:element.textContent.trim().replace(/\\s+/g," ").slice(0,65),left:Math.round(element.getBoundingClientRect().left),right:Math.round(element.getBoundingClientRect().right),scrollWidth:element.scrollWidth,clientWidth:element.clientWidth,position:style.position,transform:style.transform,overflowX:style.overflowX};
+  }).filter(item=>item.scrollWidth>item.clientWidth+2||item.left>width).slice(0,35);
+  const pseudoOverflow=[...document.querySelectorAll("body *")].flatMap(element=>["::before","::after"].map(pseudo=>{
+   const style=getComputedStyle(element,pseudo);
+   if(style.content==="none"||style.display==="none"||style.position==="static")return null;
+   const left=Number.parseFloat(style.left)||0,widthValue=Number.parseFloat(style.width)||0;
+   return {parent:element.tagName.toLowerCase()+"."+String(element.className||""),pseudo,left,width:widthValue,position:style.position,transform:style.transform,content:style.content};
+  })).filter(item=>item&&item.left+item.width>width).slice(0,20);
+  return {width,rootWidth,bodyWidth,clipped,overflowCandidates,overflowingScrollContainers,pseudoOverflow,theme:document.documentElement.dataset.theme,background:getComputedStyle(document.body).backgroundColor};
  });
 }
 function assertLayout(audit,width,label){
