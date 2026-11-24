@@ -251,14 +251,18 @@ async function captureRoute(route,width,height,theme,name){
   assert.equal(await page.locator('#repo-grid .repo-card[data-category="learning"]').count(),0,"Learning resources must not appear as professional case studies.");
   const visibleRepoText=(await page.locator("#repo-grid").innerText()).toLowerCase();
   assert(!visibleRepoText.includes("maxab wallet recharge optimization")&&!visibleRepoText.includes("flyrank-ml-internship-starter"),"Removed employer-work repos must not appear in the Work project directory.");
+  await page.locator("#repo-grid .repo-card .project-visual img").evaluateAll(async images=>{
+   for(const image of images){image.loading="eager";try{await image.decode();}catch{}}
+  });
   const previewCoverage=await page.locator("#repo-grid .repo-card").evaluateAll(cards=>cards.map(card=>{
    const visual=card.querySelector(".project-visual");
-   const rect=visual?.getBoundingClientRect();
-   return {name:card.dataset.name||card.querySelector("h3")?.innerText||"unknown",hasPreview:!!visual,width:rect?.width||0,height:rect?.height||0};
+   const image=visual?.querySelector("img");
+   const rect=image?.getBoundingClientRect();
+   return {name:card.dataset.name||card.querySelector("h3")?.innerText||"unknown",hasImage:!!image,loaded:image?.complete&&image.naturalWidth>0,width:rect?.width||0,height:rect?.height||0};
   }));
   assert(previewCoverage.length>0,"The Work project catalogue must contain project cards.");
-  assert(previewCoverage.every(item=>item.hasPreview&&item.width>0&&item.height>0),
-   "Every Work project must have a visible preview without replacing saved images: "+JSON.stringify(previewCoverage.filter(item=>!item.hasPreview||item.width===0||item.height===0)));
+  assert(previewCoverage.every(item=>item.hasImage&&item.loaded&&item.width>0&&item.height>0),
+   "Every Work project must have a decoded, visible preview image without replacing saved previews: "+JSON.stringify(previewCoverage.filter(item=>!item.hasImage||!item.loaded||item.width===0||item.height===0)));
  }
  if(name==="b2b-retail-scenario"){
   assert((await page.locator("h1").first().innerText()).includes("Portfolio Scenario"),"B2B case title must be explicit portfolio scenario.");
