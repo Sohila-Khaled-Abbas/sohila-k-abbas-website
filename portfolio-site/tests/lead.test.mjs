@@ -61,6 +61,32 @@ test('standard leads are validated and forwarded through the configured webhook'
   assert.equal(sent.body.secret,secret);
 });
 
+test('Contact sends the exact Apps Script payload for a test EGP budget without contacting Google',async()=>{
+  const contact={...base,budgetRange:'500 - 2,000 EGP',sourcePage:'/contact/'};
+  let sent;
+  const response=await handleLead(request(contact),{
+    env,now,fetchImpl:async(url,options)=>{
+      sent={url,body:JSON.parse(options.body)};
+      return mockFetch();
+    }
+  });
+  assert.equal(response.status,200);
+  assert.equal(sent.url,env.LEAD_WEBHOOK_URL);
+  assert.deepEqual(Object.keys(sent.body).sort(),[
+    'secret','submissionId','rateKey','name','email','project','budget','sourcePage','type','notes'
+  ].sort());
+  assert.equal(sent.body.name,contact.name);
+  assert.equal(sent.body.email,contact.email);
+  assert.equal(sent.body.project,contact.description);
+  assert.equal(sent.body.budget,'500 - 2,000 EGP');
+  assert.equal(sent.body.sourcePage,'/contact/');
+  assert.equal(sent.body.type,'standard');
+  assert.equal(sent.body.submissionId,contact.submissionId);
+  assert.equal(sent.body.notes,'');
+  assert.equal(sent.body.secret,secret);
+  assert.match(sent.body.rateKey,/^[0-9a-f]{64}$/);
+});
+
 test('the six exact EGP budget ranges are accepted and legacy or unlisted values are rejected',async()=>{
   assert.deepEqual(allowedBudgets,[
     '500 - 2,000 EGP',
