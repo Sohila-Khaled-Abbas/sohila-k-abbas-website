@@ -119,22 +119,6 @@
     "stack": "Python · Pandas · Airflow · SQL Server · Power BI · Docker",
     "repo": "national-insurance-data-warehouse"
   },
-  "searchml": {
-    "title": "Applied ML & search intelligence",
-    "type": "APPLIED MACHINE LEARNING / INTERNSHIP PORTFOLIO",
-    "intro": "A collection of search-intelligence notebooks, feature preparation, model-evaluation code, research writing, and workflow-agent experiments.",
-    "problem": "Prioritization models need more than a score: feature definitions, data splits, leakage checks, and evaluation context must be inspectable.",
-    "approach": [
-      "Prepare features and compare a heuristic baseline with a model-based approach.",
-      "Explore grouped evaluation splits and temporal-leakage assertions.",
-      "Keep notebooks, evaluation outputs, and research documentation together.",
-      "Document an n8n-based workflow-agent experiment and its execution flow."
-    ],
-    "takeaway": "Review the notebooks, evaluation scripts, and research materials to understand the methodology. This portfolio connects my analytics and automation work with a growing focus on machine learning.",
-    "caveat": "The website makes no independent claim about model performance or generalization. Evaluation details and the dataset assumptions belong to the linked repository.",
-    "stack": "Python · Machine learning · Feature engineering · Evaluation · n8n",
-    "repo": "flyrank-ml-internship-starter"
-  },
   "eur-egp": {
     "title": "EUR to EGP Rate Monitor",
     "type": "AUTOMATION / AI-ASSISTED API MONITORING",
