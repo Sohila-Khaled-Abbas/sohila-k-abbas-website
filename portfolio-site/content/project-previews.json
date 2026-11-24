@@ -36,7 +36,7 @@
     {
       "repo": "Wuzzuf-Job-Market-Analysis",
       "title": "Egypt’s Data Job Market",
-      "description": "A published interactive Power BI report exploring 217 Wuzzuf job postings in Egypt from January–March 2025, with analysis of job trends, in-demand titles and skills, hiring locations and companies, salary indicators, and job duration.",
+      "description": "A Power BI report based on 217 Wuzzuf job postings collected in Egypt during January–March 2025, exploring roles, requested skills, hiring locations, company activity, and available salary fields.",
       "format": "Power BI",
       "live": {
         "url": "https://app.powerbi.com/view?r=eyJrIjoiMGNjZmFlOWItMWU3My00ZjM4LTlhYjQtMWY5N2QzOGQwMTAyIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
@@ -322,8 +322,8 @@
     },
     {
       "repo": "fmcg-sales-churn-drop-analysis-powerbi",
-      "title": "FMCG Sales & Retailer Lifecycle",
-      "description": "An Egyptian B2B portfolio scenario exploring sales, churn, delivery, and commercial metrics.",
+      "title": "B2B Retail Analytics & Churn Diagnostic — Portfolio Scenario",
+      "description": "A Power BI portfolio scenario exploring retailer sales, customer lifecycle, delivery performance, and commercial mix in an Egyptian B2B grocery-distribution context. No client relationship or measured operational impact is claimed.",
       "format": "Power BI",
       "live": {
         "url": "https://app.powerbi.com/view?r=eyJrIjoiNzE0MWUwYTgtZTlhZC00N2IxLWFmYzQtYmI2MzFkNjFhN2NjIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
@@ -332,20 +332,20 @@
       "images": [
         {
           "src": "/previews/fmcg-live.webp",
-          "alt": "FMCG Sales & Retailer Lifecycle — published Power BI home view",
-          "caption": "Published Power BI home view",
+          "alt": "B2B Retail Analytics & Churn Diagnostic — portfolio scenario Power BI report overview",
+          "caption": "Saved Power BI report screenshot · portfolio scenario",
           "source_url": "https://app.powerbi.com/view?r=eyJrIjoiNzE0MWUwYTgtZTlhZC00N2IxLWFmYzQtYmI2MzFkNjFhN2NjIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
           "captured_on": "2026-10-30"
         }
       ],
       "files": [
         {
-          "label": "Maxab Retail Performance & Churn Analytics Dashboard.pbix",
+          "label": "Power BI report.pbix",
           "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/dashboards/Maxab%20Retail%20Performance%20%26%20Churn%20Analytics%20Dashboard.pbix",
           "format": "PBIX"
         },
         {
-          "label": "Maxab Retail Performance & Churn Analytics Dashboard.pbip",
+          "label": "Power BI project.pbip",
           "url": "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi/blob/main/src/Maxab%20Retail%20Performance%20%26%20Churn%20Analytics%20Dashboard.pbip",
           "format": "PBIP"
         }

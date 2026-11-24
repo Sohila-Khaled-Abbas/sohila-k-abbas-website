@@ -4,8 +4,8 @@
   "home_sections": {
     "featured": [
       "fmcg-sales-churn-drop-analysis-powerbi",
-      "global-horizon-bank-dwh-project",
-      "egyptian-cosmetics-market"
+      "SMART-Supply-Chain-Insights-Dashboard",
+      "Wuzzuf-Job-Market-Analysis"
     ],
     "learning_in_public": [
       "python-learning-roadmap",
@@ -1725,8 +1725,8 @@
     },
     {
       "repo": "fmcg-sales-churn-drop-analysis-powerbi",
-      "title": "B2B Retail Analytics & Churn Diagnostic",
-      "summary": "Real-time insights into retailer behavior, operational performance, and customer lifecycle across the Maxab distribution network in Egypt.",
+      "title": "B2B Retail Analytics & Churn Diagnostic — Portfolio Scenario",
+      "summary": "A portfolio scenario exploring retailer sales, customer lifecycle, delivery performance, and commercial mix in an Egyptian B2B grocery-distribution context. The report is a practice project, not a client engagement.",
       "technologies": [
         "Power BI",
         "SQL",
@@ -1798,7 +1798,7 @@
         "readme_sha": "7bf318c1bc3df6f461601ccfc92ccc1e87553053",
         "fingerprint": "2026-11-09T16:38:40Z"
       },
-      "decision_support": "Helps a sales manager spot retailers showing early churn signals and prioritize follow-up."
+      "decision_support": "A portfolio scenario for examining retailer retention, delivery performance, sales movement, and category mix."
     },
     {
       "repo": "forage-excel-skills-job-simulation",
@@ -4734,7 +4734,8 @@
         "readme_excerpt": "A five-page business intelligence solution exploring order fulfillment, customer and market performance, product profitability, shipping operations, time trends, and fraud-related patterns.",
         "readme_sha": "9ad529b0c1ee192352363c3e5bfea291276f7e4f",
         "fingerprint": "2026-11-08T21:26:43Z"
-      }
+      },
+      "decision_support": "A structured view of order fulfillment, customer and market patterns, product profitability, and shipping operations."
     },
     {
       "repo": "Social-Media-Advertising-Dashboard",
@@ -5481,7 +5482,8 @@
         "readme_excerpt": "A Power BI report analyzing the Egyptian job market using a January–March 2025 Wuzzuf dataset, with views for job-market overview, role and skill analysis, and company insights.",
         "readme_sha": "3b8dc4262dfa7e3067c6899662fe97678947e309",
         "fingerprint": "2026-11-09T18:03:04Z"
-      }
+      },
+      "decision_support": "Explores role demand, requested skills, hiring locations, company activity, and limits in the available salary data."
     },
     {
       "repo": "yfinance-project",
