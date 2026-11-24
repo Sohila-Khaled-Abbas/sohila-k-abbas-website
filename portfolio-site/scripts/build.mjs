@@ -101,7 +101,9 @@ async function write(route,pageTitle,description,body){
     '/recruiters/':'Hire Sohila | BI Developer & Data Analyst',
     '/404.html':'Page not found | Sohila'
   };
-  const seoTitle=titleOverrides[route]||(pageTitle.slice(0,43).trimEnd()+' | Sohila');
+  const seoBaseTitle=pageTitle.replace(/\\s+[—–-]\\s+(?:Portfolio Scenario|Dashboard)$/i,'').trim();
+  const seoFallbackTitle=(seoBaseTitle.length<=43?seoBaseTitle:seoBaseTitle.slice(0,43).replace(/\\s+\\S*$/,'').trimEnd())+' | Sohila';
+  const seoTitle=titleOverrides[route]||seoFallbackTitle;
   const seoDescription=description.length<=159?description:description.slice(0,156).trimEnd()+'…';
   const robotsMeta=process.env.VERCEL_ENV==='preview'?'<meta name="robots" content="noindex,nofollow">':'';
   const personId=origin?origin+'/#person':'#person';
