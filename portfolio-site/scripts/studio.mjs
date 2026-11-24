@@ -65,7 +65,13 @@ export function directoryCard(r,p,report,status,categories,isCase,showOutcome=fa
 }
 export function projectPreview(p,report,meta={}){
   const image=visualInfo(p,report);
-  return `<section class="wrap project-preview-shell" aria-label="Project preview"><div class="preview-shell-top"><span>${e(image?.kind||(p.flow?'Workflow overview':p.empty?'Repository overview':'Repository source map'))}</span><span class="mono muted">${e(p.repo)}</span></div>${image?`<a class="project-large-image" href="${e(image.src)}" data-lightbox="${e(p.repo)}" data-caption="${e(image.caption)}" aria-label="Enlarge ${e(image.alt)}">${projectVisual(p,report,true,meta)}<span class="preview-enlarge">Enlarge preview ↗</span></a>`:projectVisual(p,report,true,meta)}<p class="project-preview-note">${image?e(image.caption)+' · '+e(image.source_label||'From the public project repository.'):p.flow?'A concise view of the workflow described in the repository documentation.':p.empty?'This repository currently has no source files to preview.':'A repository-derived source map built from linked file paths and documented technologies. It is not a screenshot of a running application.'}</p></section>`;
+  const title=String(p.title||p.repo||'Project').trim();
+  const generatedCaption=title+' — editorial project preview generated from public project metadata; not a report screenshot.';
+  const previewLabel=image?.kind||'Editorial project preview';
+  const previewNote=image
+    ? e(image.caption)+' · '+e(image.source_label||'From the public project repository.')
+    : 'Generated from the project title, summary, category, and documented tools. This is a visual project preview, not a screenshot of a live application or report.';
+  return `<section class="wrap project-preview-shell" aria-label="Project preview"><div class="preview-shell-top"><span>${e(previewLabel)}</span><span class="mono muted">${e(p.repo)}</span></div><a class="project-large-image" href="${e(image?.src||projectPreviewSvg(p,meta))}" data-lightbox="${e(p.repo)}" data-caption="${e(image?.caption||generatedCaption)}" aria-label="Enlarge ${e(image?.alt||generatedCaption)}">${projectVisual(p,report,true,meta)}<span class="preview-enlarge">Enlarge preview ↗</span></a><p class="project-preview-note">${previewNote}</p></section>`;
 }
 export function projectPage(p,r,report,status,categories){
   const related=p.technologies||[];
