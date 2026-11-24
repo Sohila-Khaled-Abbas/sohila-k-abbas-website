@@ -171,6 +171,8 @@ async function captureRoute(route,width,height,theme,name){
   assert(await page.locator("#repo-grid .repo-card").count()>0,"Full project catalogue should remain discoverable.");
   assert.equal(await page.locator('#repo-grid .repo-card[data-kind="fork"]').count(),0,"Forked resources must not appear as original work.");
   assert.equal(await page.locator('#repo-grid .repo-card[data-category="learning"]').count(),0,"Learning resources must not appear as professional case studies.");
+  const visibleRepoText=(await page.locator("#repo-grid").innerText()).toLowerCase();
+  assert(!visibleRepoText.includes("maxab wallet recharge optimization")&&!visibleRepoText.includes("flyrank-ml-internship-starter"),"Removed employer-work repos must not appear in the Work project directory.");
  }
  if(name==="b2b-retail-scenario"){
   assert((await page.locator("h1").first().innerText()).includes("Portfolio Scenario"),"B2B case title must be explicit portfolio scenario.");
@@ -193,6 +195,19 @@ async function captureRoute(route,width,height,theme,name){
   assert(await page.locator(".dashboard-cover[data-lightbox]").count()>0,"Dashboard screenshot needs full-size enlarge action.");
   assert(await page.locator("#preview-dialog").count()===1,"Native image dialog must be present.");
   assert((await page.locator("main").innerText()).includes("A screenshot is a saved report view"),"Static previews must be distinguished from interactive reports.");
+  const liveCards=page.locator('.dashboard-card[data-access="live"]');
+  assert(await liveCards.count()>0,"Published Power BI reports must remain listed.");
+  assert.equal(await page.locator(".dashboard-live-preview [data-load-report]").count(),await liveCards.count(),"Every public Power BI report needs its own lazy-load preview.");
+  assert.equal(await page.locator(".dashboard-live-preview iframe").count(),0,"Dashboard iframes must stay unloaded until the visitor clicks.");
+  const cardData=await liveCards.evaluateAll(items=>items.map(card=>({title:card.querySelector("h2")?.innerText.trim(),url:card.querySelector("[data-load-report]")?.dataset.loadReport,full:card.querySelector('a[href^="https://app.powerbi.com/view?r="]')?.getAttribute("href"),source:card.dataset.sourceUrl,github:card.querySelector('a[href^="https://github.com/"]')?.getAttribute("href")})));
+  assert(cardData.every(card=>card.title&&card.url?.startsWith("https://app.powerbi.com/view?r=")&&card.full===card.url),"Each live card must expose its matching full-report URL.");
+  for(const card of cardData)if(card.source.startsWith("https://github.com/"))assert.equal(card.github,card.source,"Repository-backed live dashboards must include their GitHub link.");
+  for(const card of await page.locator('.dashboard-card:not([data-access="live"])').all()){
+   assert.equal(await card.locator("[data-load-report]").count(),0,"Reports without public live links must not show an embed control.");
+   const source=await card.getAttribute("data-source-url");
+   if(source?.startsWith("https://github.com/"))assert.equal(await card.locator('a[href^="https://github.com/"]').getAttribute("href"),source,"Static reports must keep their GitHub link.");
+  }
+  assert.equal(await page.getByText(/MaxAB Wallet Recharge Optimization/i).count(),0,"The removed wallet project must not appear in Dashboards.");
  }
  if(name==="resume"){
   assert(await page.locator("[data-print-resume]").count()===1,"Resume should have print/save PDF action.");
@@ -207,8 +222,15 @@ async function captureRoute(route,width,height,theme,name){
  }
  if(name==="contact"){
   assert(await page.locator('a[href^="mailto:"]').count()>=1,"Contact email link is missing.");
+  assert(await page.locator('a[href*="linkedin.com/in/sohilakabbas"]').count()>=1,"Contact LinkedIn link is missing.");
+  assert(await page.locator('a[href="https://github.com/Sohila-Khaled-Abbas"]').count()>=1,"Contact GitHub link is missing.");
   assert(await page.locator(".copy-email").count()===1,"Existing copy-email behavior must remain.");
   assert(await page.locator('a[href="/services/#business-inquiry"]').count()===1,"Existing verified inquiry route must remain available without being the primary CTA.");
+  const form=page.locator("#simple-project-inquiry");
+  assert.equal(await form.count(),1,"Contact must restore the public project inquiry form.");
+  assert.equal(await form.getAttribute("method"),"post");
+  assert.equal(await form.getAttribute("action"),"/contact/");
+  assert.equal(await form.locator('[name="budgetRange"]').count(),1,"Contact EGP budget field is missing.");
  }
  if(name==="services"){
   assert.equal(await page.locator("#simple-project-inquiry").getAttribute("method"),"post","Public inquiry method changed.");
@@ -334,6 +356,64 @@ async function testReportLoading(){
  await page.close();
  console.log("PASS click-to-load public Power BI embed, iframe title, and original source link.");
 }
+async function testB2BProjectPageEmbed(){
+ const page=await browser.newPage({viewport:{width:390,height:844}});
+ await page.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
+ await page.route("https://app.powerbi.com/**",route=>route.abort());
+ await addProtectionHeader(page);
+ await page.goto(new URL("/projects/fmcg-sales-churn-drop-analysis-powerbi/",base).href,{waitUntil:"domcontentloaded"});
+ const chapter=page.locator('[data-story-chapter="result"]');
+ assert.equal(await chapter.count(),1,"B2B case page must show its result chapter.");
+ await chapter.click();
+ await page.locator("#story-result").waitFor({state:"visible"});
+ const note=page.locator("#story-result .report-scenario-disclaimer");
+ assert.equal((await note.innerText()).replace(/\\s+/g," ").trim(),"Portfolio scenario. Report branding is from the practice dataset.");
+ const button=page.locator("#story-result [data-load-report]");
+ assert.equal(await button.count(),1,"B2B project page needs a click-to-load live report.");
+ assert.equal(await page.locator("#story-result iframe").count(),0,"B2B iframe must remain absent before the user clicks.");
+ const url=await button.getAttribute("data-load-report");
+ assert(url?.startsWith("https://app.powerbi.com/view?r="),"B2B iframe must use the existing published URL.");
+ await button.click();
+ const frame=page.locator("#story-result iframe");
+ await frame.waitFor({state:"attached"});
+ assert((await frame.getAttribute("title")).includes("interactive Power BI report"),"B2B iframe needs an accessible title.");
+ assert.equal(await frame.getAttribute("src"),url);
+ const geometry=await frame.evaluate(el=>{const a=el.getBoundingClientRect(),b=el.closest(".report-embed-shell").getBoundingClientRect();return {left:a.left,right:a.right,width:a.width,shellLeft:b.left,shellRight:b.right,shellWidth:b.width};});
+ assert(geometry.width>0&&geometry.left>=geometry.shellLeft-1&&geometry.right<=geometry.shellRight+1,"B2B iframe overflows its responsive shell: "+JSON.stringify(geometry));
+ assert(await page.locator('#story-result a[href^="https://github.com/"]').count()>0,"B2B GitHub source link must remain.");
+ await page.close();
+ console.log("PASS B2B project-page disclaimer, click-to-load iframe, accessible title, GitHub source and mobile containment.");
+}
+async function testDashboardCardEmbeds(){
+ for(const width of [390,768,1280,1920]){
+  const page=await browser.newPage({viewport:{width,height:900}});
+  await page.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
+  await page.route("https://app.powerbi.com/**",route=>route.abort());
+  await addProtectionHeader(page);
+  await page.goto(new URL("/dashboards/",base).href,{waitUntil:"domcontentloaded"});
+  const cards=page.locator('.dashboard-card[data-access="live"]');
+  const count=await cards.count();
+  assert(count>0,"Dashboard page should include public live-report cards.");
+  for(let i=0;i<count;i++){
+   const card=cards.nth(i),button=card.locator("[data-load-report]");
+   assert.equal(await card.locator("iframe").count(),0,"Dashboard iframes must not be loaded without a click.");
+   const title=(await card.locator("h2").innerText()).trim();
+   const url=await button.getAttribute("data-load-report");
+   assert(url?.startsWith("https://app.powerbi.com/view?r="),"Dashboard button must use a valid published URL.");
+   assert.equal(await button.getAttribute("data-report-title"),title,"Embed button needs a report-specific accessible title.");
+   assert.equal(await card.locator('a[href^="https://app.powerbi.com/view?r="]').getAttribute("href"),url,"Open full report link should match the embed URL.");
+  }
+  const card=cards.first(),button=card.locator("[data-load-report]");
+  await button.click();
+  const frame=card.locator("iframe");
+  await frame.waitFor({state:"attached"});
+  assert((await frame.getAttribute("title")).includes("interactive Power BI report"),"Dashboard iframe title is required.");
+  const box=await frame.evaluate(el=>{const f=el.getBoundingClientRect(),c=el.closest(".dashboard-card").getBoundingClientRect();return {left:f.left,right:f.right,width:f.width,cardLeft:c.left,cardRight:c.right};});
+  assert(box.width>0&&box.left>=box.cardLeft-1&&box.right<=box.cardRight+1,"Dashboard iframe overflows at "+width+"px: "+JSON.stringify(box));
+  await page.close();
+  console.log("PASS Dashboard live iframe at "+width+"px.");
+ }
+}
 async function testResumePrint(){
  const page=await browser.newPage({viewport:{width:1280,height:900}});
  await page.addInitScript(()=>{window.__printCalled=false;window.print=()=>{window.__printCalled=true;};});
@@ -391,6 +471,42 @@ async function testInquirySafety(){
  console.log("PASS existing public form behavior with mocked /api/lead, exact EGP options, validation, retry, and protected API rejection.");
 }
 
+async function testContactInquiryPayload(){
+ const page=await browser.newPage({viewport:{width:390,height:844}});
+ await page.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
+ await addProtectionHeader(page);
+ await page.goto(new URL("/contact/",base).href,{waitUntil:"domcontentloaded"});
+ const captured=[];
+ await page.route("**/api/lead",async route=>{
+  assert.equal(route.request().method(),"POST","Contact form must keep its existing /api/lead POST.");
+  captured.push(route.request().postDataJSON());
+  await route.fulfill({status:200,contentType:"application/json",body:JSON.stringify({ok:true,message:"Mock Contact QA success."})});
+ });
+ await page.locator("#simple-inquiry-name").fill("QA Contact");
+ await page.locator("#simple-inquiry-email").fill("qa.contact@example.com");
+ await page.locator("#simple-inquiry-description").fill("QA only: verify the Contact form payload without sending to the live Apps Script endpoint.");
+ const budget=page.locator("#simple-inquiry-budget");
+ assert.deepEqual(await budget.locator("option").evaluateAll(items=>items.slice(1).map(x=>x.textContent.trim())),["500 - 2,000 EGP","2,000 - 5,000 EGP","5,000 - 10,000 EGP","10,000 - 25,000 EGP","25,000+ EGP","Not sure yet"]);
+ assert((await budget.evaluate(el=>el.parentElement.innerText)).includes("Minimum project budget: 500 EGP"));
+ await budget.selectOption({label:"500 - 2,000 EGP"});
+ await page.waitForTimeout(2200);
+ await page.locator("#simple-inquiry-submit").click();
+ await page.locator("#simple-inquiry-result").waitFor({state:"visible"});
+ assert.equal(captured.length,1,"One mocked request should be sent.");
+ const payload=captured[0];
+ assert.deepEqual(Object.keys(payload).sort(),["budgetRange","description","email","formStartedAt","name","sourcePage","submissionId","type","websiteFax"].sort(),"Apps Script request field names must remain unchanged.");
+ assert.equal(payload.type,"standard");
+ assert.equal(payload.name,"QA Contact");
+ assert.equal(payload.email,"qa.contact@example.com");
+ assert.equal(payload.budgetRange,"500 - 2,000 EGP");
+ assert.equal(payload.sourcePage,"/contact/");
+ assert.equal(typeof payload.formStartedAt,"number");
+ assert.equal(typeof payload.submissionId,"string");
+ assert.equal(payload.websiteFax,"");
+ await page.close();
+ console.log("PASS Contact form EGP validation and unchanged /api/lead payload. Mocked request only; no real Apps Script submission.");
+}
+
 try{
  const matrix=[];
  const routeFailures=[];
@@ -409,6 +525,9 @@ try{
  await testPreviewDialog();
  await testClipboard();
  await testReportLoading();
+ await testB2BProjectPageEmbed();
+ await testDashboardCardEmbeds();
+ await testContactInquiryPayload();
  await testResumePrint();
  await testInquirySafety();
  await fs.writeFile(path.join(screenshotDir,"qa-matrix.json"),JSON.stringify({passed:matrix,failures:routeFailures},null,2));
