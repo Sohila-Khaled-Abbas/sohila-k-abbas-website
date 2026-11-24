@@ -543,3 +543,19 @@ button,input,select,textarea{font:inherit}
 @media(prefers-reduced-motion:reduce){
  .editorial-hero *,.work-card-live-preview *{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
 }
+
+
+/* WCAG contrast and consistent interaction affordances. */
+.github-source-update details summary{color:var(--ink);font-size:1rem}
+.github-source-update details summary:hover{color:var(--brand)}
+.repo-filter,.gallery-filters button,.story-chapters a,.header nav a,.nav-actions button{min-height:44px}
+button,a,input,select,textarea,summary,[tabindex]:not([tabindex="-1"]){-webkit-tap-highlight-color:transparent}
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{outline:3px solid var(--brand);outline-offset:3px;box-shadow:0 0 0 2px var(--surface)}
+.header nav a[aria-current="page"]{color:var(--brand);text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
+.editorial-resume p{font-size:1rem;line-height:1.65}
+.editorial-resume h2{font-size:clamp(1.5rem,2.3vw,2rem);margin:1.1rem 0}
+.resume-section{scroll-margin-top:6rem}
+@media(max-width:760px){
+ .header nav a{min-height:48px}
+ .repo-filter,.gallery-filters button{min-height:44px}
+}
