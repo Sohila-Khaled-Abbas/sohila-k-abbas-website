@@ -296,6 +296,11 @@ async function testReportLoading(){
  await page.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
  await addProtectionHeader(page);
  await page.goto(new URL("/dashboards/fmcg-sales-churn-drop-analysis-powerbi/",base).href,{waitUntil:"domcontentloaded"});
+ // Public report is intentionally inside the guided story's third chapter.
+ const reportChapter=page.locator('[data-story-chapter="result"]');
+ assert.equal(await reportChapter.count(),1,"Project story must provide an Explore the work / report chapter.");
+ await reportChapter.click();
+ await page.locator("#story-result").waitFor({state:"visible"});
  const disclaimer=page.locator(".report-scenario-disclaimer");
  assert.equal(await disclaimer.count(),1,"The public B2B report embed must be preceded by a practice-dataset disclaimer.");
  assert.equal((await disclaimer.innerText()).replace(/\\s+/g," ").trim(),"Portfolio scenario. Report branding is from the practice dataset.");
@@ -304,6 +309,7 @@ async function testReportLoading(){
  assert((await reportCover.getAttribute("alt")).includes("Neutral editorial cover"),"B2B cover must not claim to be a report screenshot.");
  const button=page.locator("[data-load-report]");
  assert.equal(await button.count(),1,"Public report needs an explicit load control.");
+ assert(await button.isVisible(),"Load interactive report control must be visible after selecting the report chapter.");
  assert.equal(await page.locator("iframe").count(),0,"Power BI iframe must not be created before visitor request.");
  const reportUrl=await button.getAttribute("data-load-report");
  assert(reportUrl?.startsWith("https://app.powerbi.com/view?r="),"Only the existing verified public Power BI report may be loaded.");
