@@ -40,7 +40,15 @@ const browser=await chromium.launch({headless:true});
 
 async function addProtectionHeader(page){
  const bypass=process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
- if(bypass)await page.setExtraHTTPHeaders({"x-vercel-protection-bypass":bypass});
+ if(!bypass)return;
+ const previewOrigin=new URL(base).origin;
+ await page.route("**/*",async route=>{
+  const request=new URL(route.request().url());
+  const headers={...route.request().headers()};
+  if(request.origin===previewOrigin)headers["x-vercel-protection-bypass"]=bypass;
+  else delete headers["x-vercel-protection-bypass"];
+  await route.continue({headers});
+ });
 }
 async function settlePage(page){
  await page.evaluate(async()=>{if(document.fonts?.ready)await document.fonts.ready;});
