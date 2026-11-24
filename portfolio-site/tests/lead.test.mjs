@@ -79,7 +79,7 @@ test('Contact sends the exact Apps Script payload for a test EGP budget without 
   assert.equal(sent.body.email,contact.email);
   assert.equal(sent.body.project,contact.description);
   assert.equal(sent.body.budget,'500 - 2,000 EGP');
-  assert.equal(sent.body.sourcePage,'/contact/');
+  assert.equal(sent.body.sourcePage,'/services/'); // preserve the deployed Apps Script allow-list
   assert.equal(sent.body.type,'standard');
   assert.equal(sent.body.submissionId,contact.submissionId);
   assert.equal(sent.body.notes,'');
