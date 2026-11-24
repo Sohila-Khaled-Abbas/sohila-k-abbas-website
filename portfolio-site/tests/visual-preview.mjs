@@ -57,11 +57,6 @@ async function settlePage(page){
  let fontState;
  if(!typographyVerified){
   try{
-   await page.waitForFunction(
-    ()=>[...document.querySelectorAll('link[rel="stylesheet"]')].some(link=>link.href.includes("fonts.googleapis.com/css2?family=Cormorant")),
-    null,
-    {timeout:12000}
-   );
    fontState=await page.evaluate(async()=>{
     await document.fonts.ready;
     const [sansFaces,displayFaces]=await Promise.all([
@@ -72,13 +67,15 @@ async function settlePage(page){
     const accent=heading?.querySelector("em");
     const fontStylesheet=[...document.querySelectorAll('link[rel="stylesheet"]')]
      .find(link=>link.href.includes("fonts.googleapis.com/css2?family=Cormorant"));
+    const loadedStylesheets=[...document.styleSheets].map(sheet=>sheet.href).filter(Boolean);
     return {
-     sansLoaded:sansFaces.length>0,
-     displayLoaded:displayFaces.length>0,
+     sansLoaded:sansFaces.length>0&&sansFaces.every(face=>face.status==="loaded"),
+     displayLoaded:displayFaces.length>0&&displayFaces.every(face=>face.status==="loaded"),
      headingFamily:heading?getComputedStyle(heading).fontFamily:"",
      accentFamily:accent?getComputedStyle(accent).fontFamily:null,
      stylesheetHref:fontStylesheet?.href||null,
      stylesheetLoaded:!!fontStylesheet?.sheet,
+     loadedStylesheets,
      registeredFonts:[...document.fonts].map(face=>({family:face.family,status:face.status,weight:face.weight,style:face.style}))
     };
    });
