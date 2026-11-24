@@ -32,19 +32,54 @@ systemPreference?.addEventListener?.('change',event=>{
 });
 
 const menuButton = $('.menu-toggle');
-function closeMenu() {
-  $('#navigation').classList.remove('open');
+const navigation = $('#navigation');
+const menuShell = menuButton.closest('.nav-shell');
+const temporarilyHidden = [...menuShell.querySelectorAll('.brand,.nav-actions button:not(.menu-toggle)')];
+const originalTabIndexes = new Map(temporarilyHidden.map(element => [element, element.getAttribute('tabindex')]));
+function closeMenu(restoreFocus = false) {
+  navigation.classList.remove('open');
   menuButton.setAttribute('aria-expanded', 'false');
   menuButton.setAttribute('aria-label', 'Open menu');
+  temporarilyHidden.forEach(element => {
+    const original = originalTabIndexes.get(element);
+    if (original === null) element.removeAttribute('tabindex');
+    else element.setAttribute('tabindex', original);
+  });
+  if (restoreFocus) menuButton.focus({preventScroll:true});
+}
+function openMenu() {
+  navigation.classList.add('open');
+  menuButton.setAttribute('aria-expanded', 'true');
+  menuButton.setAttribute('aria-label', 'Close menu');
+  temporarilyHidden.forEach(element => element.setAttribute('tabindex', '-1'));
+  navigation.querySelector('a[href]')?.focus({preventScroll:true});
 }
 menuButton.addEventListener('click', () => {
-  const expanded = menuButton.getAttribute('aria-expanded') !== 'true';
-  $('#navigation').classList.toggle('open', expanded);
-  menuButton.setAttribute('aria-expanded', String(expanded));
-  menuButton.setAttribute('aria-label', expanded ? 'Close menu' : 'Open menu');
+  if (menuButton.getAttribute('aria-expanded') === 'true') closeMenu();
+  else openMenu();
 });
-$$('#navigation a').forEach(a => a.addEventListener('click', closeMenu));
-document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+$('#navigation a').forEach(a => a.addEventListener('click', () => closeMenu()));
+document.addEventListener('keydown', event => {
+  if (menuButton.getAttribute('aria-expanded') !== 'true') return;
+  if (event.key === 'Escape') {
+    event.preventDefault();
+    closeMenu(true);
+    return;
+  }
+  if (event.key !== 'Tab') return;
+  const items = [...navigation.querySelectorAll('a[href]'), menuButton];
+  const first = items[0], last = items[items.length - 1];
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  } else if (!items.includes(document.activeElement)) {
+    event.preventDefault();
+    first.focus();
+  }
+});
 
 $$('.filter').forEach(button => button.addEventListener('click', () => {
   $$('.filter').forEach(item => {
