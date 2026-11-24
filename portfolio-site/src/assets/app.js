@@ -67,7 +67,7 @@ document.addEventListener('keydown', event => {
     return;
   }
   if (event.key !== 'Tab') return;
-  const items = [...navigation.querySelectorAll('a[href]'), menuButton];
+  const items = [...navigation.querySelectorAll('a[href]')];
   const first = items[0], last = items[items.length - 1];
   if (event.shiftKey && document.activeElement === first) {
     event.preventDefault();
