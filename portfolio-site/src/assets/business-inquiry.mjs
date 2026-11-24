@@ -34,9 +34,38 @@ if(publicForm){
   const errorBox=publicForm.querySelector('#simple-inquiry-error');
   const errorMessage=errorBox.querySelector('.inquiry-error-message');
   const submit=publicForm.querySelector('#simple-inquiry-submit');
+  const fields={
+    name:publicForm.querySelector('#simple-inquiry-name'),
+    email:publicForm.querySelector('#simple-inquiry-email'),
+    description:publicForm.querySelector('#simple-inquiry-description'),
+    budgetRange:publicForm.querySelector('#simple-inquiry-budget')
+  };
   let sent=false,failed=false;
   setChallenge(publicForm);
 
+  function clearFieldErrors(){
+    for(const [name,field] of Object.entries(fields)){
+      field.removeAttribute('aria-invalid');
+      const message=publicForm.querySelector('#simple-inquiry-'+name+'-error');
+      if(message){message.hidden=true;message.textContent='';}
+    }
+  }
+  function showInlineErrors(messages={}){
+    clearFieldErrors();
+    const entries=Object.entries(messages);
+    if(!entries.length)return;
+    errorMessage.textContent='Please correct the highlighted fields.';
+    errorBox.hidden=false;
+    result.hidden=true;
+    for(const [name,message] of entries){
+      const field=fields[name];
+      const target=publicForm.querySelector('#simple-inquiry-'+name+'-error');
+      if(field)field.setAttribute('aria-invalid','true');
+      if(target){target.textContent=message;target.hidden=false;}
+    }
+    failed=true;
+    fields[entries[0][0]]?.focus({preventScroll:true});
+  }
   function showError(message){
     errorMessage.textContent=message||'Your inquiry could not be sent. Please try again.';
     errorBox.hidden=false;
@@ -44,10 +73,29 @@ if(publicForm){
     failed=true;
     errorBox.focus({preventScroll:true});
   }
+  function validate(){
+    const errors={};
+    const name=fields.name.value.trim();
+    const email=fields.email.value.trim();
+    const description=fields.description.value.trim();
+    const budget=fields.budgetRange.value;
+    if(name.length<2||name.length>100)errors.name='Enter your name using 2–100 characters.';
+    if(!email||!fields.email.checkValidity())errors.email='Enter a valid email address.';
+    if(description.length<25||description.length>1800)errors.description='Describe the project in 25–1,800 characters.';
+    if(!['500 - 2,000 EGP','2,000 - 5,000 EGP','5,000 - 10,000 EGP','10,000 - 25,000 EGP','25,000+ EGP','Not sure yet'].includes(budget))errors.budgetRange='Choose one of the listed EGP budget ranges (minimum 500 EGP).';
+    return errors;
+  }
 
-  publicForm.addEventListener('input',()=>{
+  publicForm.addEventListener('input',event=>{
     errorBox.hidden=true;
     result.hidden=true;
+    const field=event.target;
+    const name=Object.keys(fields).find(key=>fields[key]===field);
+    if(name){
+      field.removeAttribute('aria-invalid');
+      const message=publicForm.querySelector('#simple-inquiry-'+name+'-error');
+      if(message){message.hidden=true;message.textContent='';}
+    }
     if(sent||failed){
       setChallenge(publicForm);
       sent=false;
@@ -56,41 +104,58 @@ if(publicForm){
       submit.textContent='Send project inquiry';
     }
   });
+  publicForm.addEventListener('change',event=>{
+    const name=Object.keys(fields).find(key=>fields[key]===event.target);
+    if(name){
+      fields[name].removeAttribute('aria-invalid');
+      const message=publicForm.querySelector('#simple-inquiry-'+name+'-error');
+      if(message){message.hidden=true;message.textContent='';}
+    }
+  });
 
   publicForm.addEventListener('submit',async event=>{
     event.preventDefault();
-    if(!publicForm.reportValidity())return;
+    const errors=validate();
+    if(Object.keys(errors).length){showInlineErrors(errors);return;}
     errorBox.hidden=true;
     result.hidden=true;
+    clearFieldErrors();
     submit.disabled=true;
     submit.textContent='Sending inquiry…';
-    const fields=Object.fromEntries(new FormData(publicForm));
+    publicForm.setAttribute('aria-busy','true');
+    const controls=[...publicForm.querySelectorAll('input,textarea,select')];
+    const fieldsData=Object.fromEntries(new FormData(publicForm));
     const payload={
       type:'standard',
-      name:fields.name,
-      email:fields.email,
-      description:fields.description,
-      budgetRange:fields.budgetRange,
-      websiteFax:fields.websiteFax,
-      formStartedAt:Number(fields.formStartedAt),
-      submissionId:fields.submissionId,
+      name:fieldsData.name,
+      email:fieldsData.email,
+      description:fieldsData.description,
+      budgetRange:fieldsData.budgetRange,
+      websiteFax:fieldsData.websiteFax,
+      formStartedAt:Number(fieldsData.formStartedAt),
+      submissionId:fieldsData.submissionId,
       sourcePage:location.pathname
     };
+    controls.forEach(control=>control.disabled=true);
     try{
       const {response,data}=await postLead(payload);
       if(!response.ok||!data.ok){
-        showError(data.message||'Your inquiry could not be sent. Please try again.');
+        if(data.errors&&Object.keys(data.errors).length)showInlineErrors(data.errors);
+        else showError(data.message||'Your inquiry could not be sent. Please try again.');
         return;
       }
       result.querySelector('p').textContent='Your inquiry has been received. Thank you for reaching out.';
       result.hidden=false;
       sent=true;
+      setChallenge(publicForm);
       result.focus({preventScroll:true});
     }catch(error){
       showError(error.message||'The inquiry service is temporarily unavailable. Please try again.');
     }finally{
+      controls.forEach(control=>control.disabled=false);
       submit.disabled=false;
       submit.textContent=sent?'Send another inquiry':'Send project inquiry';
+      publicForm.removeAttribute('aria-busy');
     }
   });
 }
