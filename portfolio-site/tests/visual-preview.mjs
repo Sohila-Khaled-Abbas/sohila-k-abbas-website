@@ -432,7 +432,7 @@ async function testDashboardCardEmbeds(){
  await loadPage.goto(new URL("/dashboards/",base).href,{waitUntil:"domcontentloaded"});
  const cards=loadPage.locator('.dashboard-card[data-access="live"]');
  const count=await cards.count();
- assert(count>=11,"All public Power BI reports must remain listed; found "+count+".");
+ assert.equal(count,12,"All 12 public Power BI reports must remain listed; found "+count+".");
  const loadedTitles=[];
  for(let i=0;i<count;i++){
   const card=cards.nth(i),button=card.locator("[data-load-report]");
@@ -645,8 +645,9 @@ async function testContactInquiryPayload(){
 try{
  const matrix=[];
  const routeFailures=[];
- for(const page of pages)for(const theme of themes){
-  const pageViewports=page.name==="work"?[...viewports,...wideWorkViewports]:viewports;
+ const requiredWideRoutes=new Set(["work","dashboards","contact","resume","b2b-retail-scenario"]);
+for(const page of pages)for(const theme of themes){
+  const pageViewports=requiredWideRoutes.has(page.name)?[...viewports,...wideWorkViewports]:viewports;
   for(const viewport of pageViewports){
    try{matrix.push(await captureRoute(page.route,viewport.width,viewport.height,theme,page.name));}
    catch(error){
