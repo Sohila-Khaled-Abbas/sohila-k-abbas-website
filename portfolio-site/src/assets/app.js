@@ -59,7 +59,15 @@ menuButton.addEventListener('click', () => {
   else openMenu();
 });
 $('#navigation a').forEach(a => a.addEventListener('click', () => closeMenu()));
-document.addEventListener('keydown', event => {
+let navigationTabDirection = 'forward';
+function visibleNavigationItems() {
+  return [...navigation.querySelectorAll('a[href]')].filter(item =>
+    item.getClientRects().length > 0 &&
+    getComputedStyle(item).visibility !== 'hidden' &&
+    item.tabIndex >= 0
+  );
+}
+window.addEventListener('keydown', event => {
   if (menuButton.getAttribute('aria-expanded') !== 'true') return;
   if (event.key === 'Escape') {
     event.preventDefault();
@@ -68,11 +76,8 @@ document.addEventListener('keydown', event => {
     return;
   }
   if (event.key !== 'Tab') return;
-  const items = [...navigation.querySelectorAll('a[href]')].filter(item =>
-    item.getClientRects().length > 0 &&
-    getComputedStyle(item).visibility !== 'hidden' &&
-    item.tabIndex >= 0
-  );
+  navigationTabDirection = event.shiftKey ? 'backward' : 'forward';
+  const items = visibleNavigationItems();
   if (!items.length) return;
   const activeIndex = items.indexOf(document.activeElement);
   if (event.shiftKey && activeIndex <= 0) {
@@ -84,6 +89,17 @@ document.addEventListener('keydown', event => {
     event.stopImmediatePropagation();
     items[0].focus({preventScroll:true});
   }
+}, true);
+navigation.addEventListener('focusout', event => {
+  if (menuButton.getAttribute('aria-expanded') !== 'true' || navigation.contains(event.relatedTarget)) return;
+  const direction = navigationTabDirection;
+  window.requestAnimationFrame(() => {
+    if (menuButton.getAttribute('aria-expanded') !== 'true' || navigation.contains(document.activeElement)) return;
+    const items = visibleNavigationItems();
+    if (!items.length) return;
+    const destination = direction === 'backward' ? items[items.length - 1] : items[0];
+    destination.focus({preventScroll:true});
+  });
 }, true);
 
 $$('.filter').forEach(button => button.addEventListener('click', () => {

@@ -76,6 +76,8 @@ for(const [file,html] of documents){
 }
 const requiredRoutes=['index.html','work/index.html','dashboards/index.html','about/index.html','resume/index.html','recruiters/index.html','services/index.html','contact/index.html','404.html'];
 for(const route of requiredRoutes)assert(documents.has(path.join(out,route)),'Missing required work-focused route: '+route);
+const notFoundHtml=documents.get(path.join(out,'404.html'));
+assert(notFoundHtml.includes('href="/work/"')&&notFoundHtml.includes('href="/contact/"'),'Custom 404 must link back to Work and Contact.');
 for(const route of ['learning/index.html','learn/index.html','posts/index.html','community/index.html','credentials/index.html','templates/index.html']){
   assert(!documents.has(path.join(out,route)),'Retired public route must not be generated: '+route);
 }

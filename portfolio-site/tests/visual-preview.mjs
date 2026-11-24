@@ -304,9 +304,13 @@ async function captureRoute(route,width,height,theme,name){
   const firstNav=navItems.first(),lastNav=navItems.last();
   assert(await firstNav.evaluate(el=>el===document.activeElement),"Opening the mobile menu should move focus into navigation.");
   await page.keyboard.press("Shift+Tab");
-  assert(await lastNav.evaluate(el=>el===document.activeElement),"Shift+Tab from the first menu link should wrap to the last menu link.");
+  await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+  const shiftTabFocus=await page.evaluate(()=>({tag:document.activeElement?.tagName,href:document.activeElement?.getAttribute("href"),text:document.activeElement?.textContent?.trim(),menuOpen:document.querySelector(".menu-toggle")?.getAttribute("aria-expanded")}));
+  assert(await lastNav.evaluate(el=>el===document.activeElement),"Shift+Tab from the first menu link should wrap to the last menu link. Actual focus: "+JSON.stringify(shiftTabFocus));
   await page.keyboard.press("Tab");
-  assert(await firstNav.evaluate(el=>el===document.activeElement),"Tab from the last menu link should wrap to the first menu link.");
+  await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+  const tabFocus=await page.evaluate(()=>({tag:document.activeElement?.tagName,href:document.activeElement?.getAttribute("href"),text:document.activeElement?.textContent?.trim(),menuOpen:document.querySelector(".menu-toggle")?.getAttribute("aria-expanded")}));
+  assert(await firstNav.evaluate(el=>el===document.activeElement),"Tab from the last menu link should wrap to the first menu link. Actual focus: "+JSON.stringify(tabFocus));
   await page.keyboard.press("Escape");
   assert.equal(await menu.getAttribute("aria-expanded"),"false","Escape should close the mobile navigation.");
   assert(await menu.evaluate(el=>el===document.activeElement),"Closing the menu with Escape should restore focus to the toggle.");
