@@ -296,6 +296,18 @@ for(const cssFile of files.filter(file=>file.endsWith('.css'))){
 const paletteTheme=await fs.readFile(path.join(out,'theme.css'),'utf8');
 assert(paletteTheme.includes('--ivory:#FAF6EF')&&paletteTheme.includes('--espresso:#382724')&&paletteTheme.includes('--copper:#A66E51'),'The exact approved brand palette must remain the source of theme colors.');
 assert(paletteTheme.includes('--display:"Instrument Serif"'),'Instrument Serif must be the site display font.');
+
+const brandArtworkFiles=[
+ path.join(root,'src/assets/favicon.svg'),
+ path.join(root,'src/assets/social-card.svg'),
+ path.join(root,'src/assets/previews/fmcg-portfolio-cover.svg'),
+ path.resolve(root,'../public/favicon.svg')
+];
+for(const artworkFile of brandArtworkFiles){
+ const artwork=await fs.readFile(artworkFile,'utf8');
+ for(const match of artwork.matchAll(/#[0-9a-f]{3,8}\b/gi))assert(paletteLiterals.has(match[0].toLowerCase()),'Off-palette brand artwork color '+match[0]+' found in '+artworkFile);
+}
+
 const socialCard=await fs.readFile(path.join(out,'social-card.png'));
 assert.equal(socialCard.subarray(0,8).toString('hex'),'89504e470d0a1a0a','Social sharing image must be a PNG.');
 assert.equal(socialCard.readUInt32BE(16),1200,'Social image width must be 1200px.');
