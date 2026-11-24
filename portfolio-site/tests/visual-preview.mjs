@@ -117,6 +117,8 @@ async function captureRoute(route,width,height,theme,name){
   const featured=await page.locator(".editorial-case-card[data-featured-case]").evaluateAll(cards=>cards.map(card=>card.dataset.featuredCase));
   assert.deepEqual(featured,expectedFeatured,"Homepage featured-case sequence changed.");
   assert.equal(await page.locator(".editorial-case-visual[data-lightbox]").count(),3,"Each featured case needs an enlargeable report preview.");
+  const b2bCaption=await page.locator('[data-featured-case="fmcg-sales-churn-drop-analysis-powerbi"] figcaption').innerText();
+  assert(b2bCaption.includes("Editorial cover")&&!b2bCaption.includes("Saved report image"),"B2B homepage visual must be described as a neutral cover, not a report screenshot.");
   assert.equal(await page.locator(".editorial-hero-portrait img").count(),1,"Keep the genuine owner portrait.");
   assert.equal(await page.locator(".editorial-home-contact").count(),0,"No stale freelance services section should return.");
  }
