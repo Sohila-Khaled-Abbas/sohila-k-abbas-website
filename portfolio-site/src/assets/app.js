@@ -8,7 +8,7 @@ const themeButton = $('.theme-toggle');
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
   const chromeColor=document.querySelector('meta[name="theme-color"]');
-  if(chromeColor)chromeColor.content=theme==='dark'?'#181415':'#f7f3ed';
+  if(chromeColor)chromeColor.content=theme==='dark'?'#382724':'#FAF6EF';
   if(themeButton){
     themeButton.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
     themeButton.setAttribute('aria-pressed', String(theme === 'dark'));
@@ -58,7 +58,7 @@ menuButton.addEventListener('click', () => {
   if (menuButton.getAttribute('aria-expanded') === 'true') closeMenu();
   else openMenu();
 });
-$('#navigation a').forEach(a => a.addEventListener('click', () => closeMenu()));
+$$('#navigation a').forEach(a => a.addEventListener('click', () => closeMenu()));
 let navigationTabDirection = 'forward';
 function visibleNavigationItems() {
   return [...navigation.querySelectorAll('a[href]')].filter(item =>

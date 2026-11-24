@@ -154,7 +154,7 @@ async function captureRoute(route,width,height,theme,name){
  assert(seo.description.length>0&&seo.description.length<160,name+" meta description must be under 160 characters.");
  assert.equal(seo.lang,"en",name+" document language must be English.");
  assert(seo.canonical.startsWith("https://sohila-khaled-abbas.vercel.app/"),name+" canonical must point to production.");
- assert.equal(seo.themeColor,theme==="dark"?"#181415":"#f7f3ed",name+" theme-color must match the active color scheme.");
+ assert.equal(seo.themeColor,theme==="dark"?"#382724":"#FAF6EF",name+" theme-color must match the active color scheme.");
  assert(seo.ogImage.endsWith("/social-card.png")&&seo.ogType==="image/png"&&seo.ogWidth==="1200"&&seo.ogHeight==="630",name+" must use the 1200x630 editorial social image.");
  assert.equal(seo.twitter,"summary_large_image",name+" Twitter card metadata is missing.");
  assert(seo.types.includes("Person")&&seo.types.includes("WebSite")&&seo.types.includes("BreadcrumbList"),name+" needs Person, WebSite and Breadcrumb structured data.");

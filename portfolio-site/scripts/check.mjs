@@ -45,6 +45,10 @@ assert.equal(workRepositories.length,originalCount,'Forked resources must not en
 assert(workRepositories.every(repository=>!repository.fork),'Forked resources must be excluded from public client-work listings');
 const explicitlyExcludedRepos=['docker-hadoop','enterprise-hr-analytics','sql-server-data-platform'];
 assert(explicitlyExcludedRepos.every(repo=>!workNames.has(repo)),'Course, training-lab, and employer/client-delivery repositories must be excluded from Work');
+const confirmedForkExclusions=['Machine-Learning-and-Data-Science-Resourses','linux','data-engineering-roadmap','awesome-public-datasets','tidytuesday','AnshLambaYoutube','awesome','awesome-vba','awesome-postgres','awesome-github','AI_tools_nontechnical','awesome-data-engineering','Obsidian-Vault-Roadmap','bootdev','dbt-datacamp-course-note','udemy-networking-fundamentals'];
+const unavailableRepositoryExclusions=['n8n-workflows'];
+for(const name of [...confirmedForkExclusions,...unavailableRepositoryExclusions])assert.equal(isClientWorkRepository({name,fork:false,description:'Excluded repository'}),false,'A forked or unavailable resource must stay excluded from Work: '+name);
+assert([...confirmedForkExclusions,...unavailableRepositoryExclusions].every(name=>!workNames.has(name)),'Forked and unavailable repositories must not be published in Work');
 assert.equal(reports.filter(report=>report.live?.access==='public').length,12,'All 12 public Power BI reports must remain available, including the legacy dashboard-only report');
 assert(workRepositories.every(repository=>['analytics','engineering','automation','apps'].includes(category(repository))),'Only work-focused categories may be published');
 assert.equal(workProjects.length,workRepositories.length,'Every published work repository needs a project detail record');
@@ -57,6 +61,7 @@ for(const [file,html] of documents){
   assert.equal(ids.length,new Set(ids).size,'Duplicate id: '+file);
   assert.equal([...html.matchAll(/<h1\b/g)].length,1,'One H1 is required: '+file);
   assert(html.includes('name="description"'),'Missing description: '+file);
+  assert(html.includes('family=Instrument+Serif'),'Instrument Serif must load on every generated page: '+file);
   for(const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)){
     const value=match[1];
     if(/^(https?:|mailto:|tel:|data:)/.test(value))continue;
@@ -280,6 +285,17 @@ for(const report of reports){
 }
 assert.equal(workProjects.find(project=>project.repo==='kickstarter-analytics-engineering')?.title,'Kickstarter Analytics Engineering Platform');
 assert(work.includes('Kickstarter Analytics Engineering Platform'));
+const contactHtml=documents.get(path.join(out,'contact/index.html'));
+assert(/<form[^>]*id="simple-project-inquiry"[^>]*novalidate/.test(contactHtml),'Contact form must route invalid data through the inline validator.');
+for(const field of ['name','email','description','budgetRange'])assert(contactHtml.includes('id="simple-inquiry-'+field+'-error"'),'Contact field is missing its inline error target: '+field);
+const paletteLiterals=new Set(['#faf6ef','#382724','#a66e51']);
+for(const cssFile of files.filter(file=>file.endsWith('.css'))){
+ const css=await fs.readFile(cssFile,'utf8');
+ for(const match of css.matchAll(/#[0-9a-f]{3,8}\b/gi))assert(paletteLiterals.has(match[0].toLowerCase()),'Off-palette CSS literal '+match[0]+' found in '+cssFile);
+}
+const paletteTheme=await fs.readFile(path.join(out,'theme.css'),'utf8');
+assert(paletteTheme.includes('--ivory:#FAF6EF')&&paletteTheme.includes('--espresso:#382724')&&paletteTheme.includes('--copper:#A66E51'),'The exact approved brand palette must remain the source of theme colors.');
+assert(paletteTheme.includes('--display:"Instrument Serif"'),'Instrument Serif must be the site display font.');
 const socialCard=await fs.readFile(path.join(out,'social-card.png'));
 assert.equal(socialCard.subarray(0,8).toString('hex'),'89504e470d0a1a0a','Social sharing image must be a PNG.');
 assert.equal(socialCard.readUInt32BE(16),1200,'Social image width must be 1200px.');
