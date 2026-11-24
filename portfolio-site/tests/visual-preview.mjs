@@ -295,10 +295,27 @@ async function captureRoute(route,width,height,theme,name){
   assert.equal(await page.locator('#repo-grid .repo-card[data-category="learning"]').count(),0,"Learning resources must not appear as professional case studies.");
   const visibleRepoText=(await page.locator("#repo-grid").innerText()).toLowerCase();
   assert(!visibleRepoText.includes("maxab wallet recharge optimization")&&!visibleRepoText.includes("flyrank-ml-internship-starter"),"Removed employer-work repos must not appear in the Work project directory.");
+  await page.locator("#repo-query").fill("");
+  await page.locator("#repo-status-filter").selectOption("all");
+  await page.locator("#repo-sort").selectOption("featured");
+  await page.locator('[data-repo-filter="all"]').click();
   const moreProjects=page.locator("#repo-more");
+  const totalProjects=await page.locator("#repo-grid .repo-card").count();
+  const initialCatalogueStatus=(await page.locator("#repo-status").innerText()).trim();
   let moreClicks=0;
-  while(await moreProjects.isVisible()&&moreClicks<10){await moreProjects.click();moreClicks++;}
+  while(await moreProjects.isVisible()&&moreClicks<10){
+   const visibleBefore=await page.locator("#repo-grid .repo-card:not([hidden])").count();
+   await moreProjects.click();
+   await page.waitForFunction(previous=>{
+    const status=document.querySelector("#repo-status");
+    const match=status?.textContent.match(/Showing (\\d+) of /);
+    return match&&Number(match[1])>previous;
+   },visibleBefore,{timeout:5000});
+   moreClicks++;
+  }
+  const visibleProjects=await page.locator("#repo-grid .repo-card:not([hidden])").count();
   assert.equal(await moreProjects.isVisible(),false,"All original projects must be expanded before preview coverage is checked.");
+  assert.equal(visibleProjects,totalProjects,"All original projects must be visible before preview coverage is checked. Initial status: "+initialCatalogueStatus+"; visible: "+visibleProjects+"; total: "+totalProjects+"; load-more clicks: "+moreClicks);
   await page.locator("#repo-grid .repo-card .project-visual img").evaluateAll(async images=>{
    for(const image of images){image.loading="eager";try{await image.decode();}catch{}}
   });
