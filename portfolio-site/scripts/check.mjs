@@ -37,8 +37,13 @@ const workRepositories=catalog.repositories.filter(repository=>
 const workNames=new Set(workRepositories.map(repository=>repository.name));
 const workProjects=details.projects.filter(project=>workNames.has(project.repo));
 const workCases=Object.values(sourceCases).filter(item=>workNames.has(item.repo));
+const hiddenDashboardRepos=new Set(["world-economy-bi-project","O-List-E-Commerce-Data-Analytics","S-OP_Dashboard","marketing_campaigns_analysis","streampulse","pixelfed-analytics-engineering","kickstarter-analytics-engineering","egyptian-cosmetics-market"]);
+const hiddenDashboardRecords=previewSource.reports.filter(report=>report.hidden===true);
+assert.deepEqual(hiddenDashboardRecords.map(report=>report.repo).sort(),[...hiddenDashboardRepos].sort(),'Only the eight explicitly in-progress dashboard records should be hidden');
+assert(hiddenDashboardRecords.every(report=>Array.isArray(report.files)&&report.files.length>0),'Hidden dashboard records must retain their repository files and source links');
 const legacyDashboardOnlyRepos=new Set(['mobile-technical-support-analytics']);
-const reports=previewSource.reports.filter(report=>workNames.has(report.repo)||legacyDashboardOnlyRepos.has(report.repo));
+const reports=previewSource.reports.filter(report=>!report.hidden&&(workNames.has(report.repo)||legacyDashboardOnlyRepos.has(report.repo)));
+assert.equal(reports.length,12,'Only the 12 completed dashboards should remain visible');
 const originalCount=workRepositories.filter(repository=>!repository.fork).length;
 assert(workRepositories.length>0,'The work-only catalogue must contain projects');
 assert.equal(workRepositories.length,originalCount,'Forked resources must not enter the client-work catalogue');
@@ -56,6 +61,17 @@ assert.equal(workProjects.length,workRepositories.length,'Every published work r
 const files=await walk(out);
 const htmlFiles=files.filter(file=>file.endsWith('.html'));
 const documents=new Map(await Promise.all(htmlFiles.map(async file=>[file,await fs.readFile(file,'utf8')])));
+const manifest=JSON.parse(await fs.readFile(path.join(out,'site-manifest.json'),'utf8'));
+assert.equal(manifest.dashboardCount,reports.length,'Generated site manifest must count only visible dashboards');
+for(const repo of hiddenDashboardRepos){
+  assert(!manifest.pages.includes('/dashboards/'+repo+'/'),'Hidden dashboard route must not enter the generated route manifest: '+repo);
+  assert(!documents.has(path.join(out,'dashboards',repo,'index.html')),'Hidden dashboard detail page must not be generated: '+repo);
+}
+try{
+  const sitemap=await fs.readFile(path.join(out,'sitemap.xml'),'utf8');
+  for(const repo of hiddenDashboardRepos)assert(!sitemap.includes('/dashboards/'+repo+'/'),'Hidden dashboard route must not enter the sitemap: '+repo);
+}catch(error){if(error.code!=='ENOENT')throw error;}
+
 for(const [file,html] of documents){
   const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);
   assert.equal(ids.length,new Set(ids).size,'Duplicate id: '+file);
@@ -114,6 +130,14 @@ assert(!work.includes('Power BI diploma'),'The retired diploma card must not ret
 assert(!work.includes('Data Tea')&&!work.includes('roadmap'),'Retired learning/community resources must not appear in Work');
 
 const home=documents.get(path.join(out,'index.html'));
+
+// The current Home layout intentionally has no dashboard-count strip; do not add one or alter its copy.
+for(const report of hiddenDashboardRecords){
+  assert(!home.includes('href="/dashboards/'+report.repo+'/'),'Homepage must not link to a hidden dashboard route: '+report.repo);
+  assert(!work.includes('href="/dashboards/'+report.repo+'/'),'Work page must not link to a hidden dashboard route: '+report.repo);
+}
+assert(home.includes('href="/projects/pixelfed-analytics-engineering/"'),'Preserve PixelFed in the existing homepage Currently Building feature until the owner approves a change');
+
 assert(home.includes('BI Developer &amp; Data Analyst.')&&home.includes('Clearer decisions from data.'),'Homepage must lead with the recruiter-focused BI Developer and Data Analyst proposition.');
 assert(home.includes('500K+ order lines')&&home.includes('47K+ orders')&&home.includes('70K+ retailers'),'Homepage must show verified B2B retail proof.');
 assert(home.includes('Role focus: BI reporting')&&home.includes('Power BI')&&home.includes('Data modeling'),'Homepage must explain the services recruiters can hire for.');
@@ -261,6 +285,8 @@ assert(resumeHtml&&resumeHtml.includes('Print / save as PDF'),'Public resume rou
 assert(resumeHtml.includes(profile.email)&&resumeHtml.includes(profile.linkedin)&&resumeHtml.includes(profile.github),'Resume must retain approved professional contact links.');
 assert(resumeHtml.includes('Open to remote employee roles'),'Resume must indicate target work arrangement.');
 const dashboardHtml=documents.get(path.join(out,'dashboards/index.html'));
+assert(dashboardHtml.includes(reports.length+' reporting projects'),'Dashboard gallery count must match the visible report set');
+for(const report of hiddenDashboardRecords)assert(!dashboardHtml.includes(report.title),'Hidden project must not appear in the dashboard gallery or global search: '+report.repo);
 assert(dashboardHtml.includes('dashboard-preview-figure')&&dashboardHtml.includes('data-lightbox'),'Dashboard gallery must have captions and full-size, accessible preview links.');
 assert(dashboardHtml.includes('Saved report view'),'Dashboard preview must distinguish a screenshot from a live report.');
 assert(dashboardHtml.includes('Interactive public reports load only when requested'),'Dashboard gallery must explain click-to-load report behavior.');
@@ -273,6 +299,9 @@ for(const imageTag of dashboardCoverTags.slice(0,2)){
 for(const imageTag of dashboardCoverTags.slice(2))assert(imageTag.includes('loading="lazy"')&&imageTag.includes('width="')&&imageTag.includes('height="'),'Below-the-fold Dashboard previews must remain lazy while reserving their dimensions.');
 
 const aboutHtml=documents.get(path.join(out,'about/index.html'));
+for(const report of hiddenDashboardRecords)assert(!aboutHtml.includes('href="/dashboards/'+report.repo+'/'),'About page must not link to hidden dashboard route: '+report.repo);
+assert(!aboutHtml.includes('20 reports')&&!aboutHtml.includes('20 dashboards'),'About page must not retain an outdated dashboard total');
+
 assert(aboutHtml.includes(profile.headline.replaceAll('&','&amp;')),'About must show the owner’s current professional headline');
 assert.equal(policy.automatic_experience_import,false,'Experience changes require owner confirmation');
 assert.equal(createHash('sha256').update(JSON.stringify(profile.experience)).digest('hex'),policy.experience_sha256,'Owner-selected experience changed without an approved revision');

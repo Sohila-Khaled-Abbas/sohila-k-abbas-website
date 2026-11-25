@@ -16,6 +16,8 @@ const expectedFeatured=[
  "SMART-Supply-Chain-Insights-Dashboard",
  "Wuzzuf-Job-Market-Analysis"
 ];
+const hiddenDashboardRepos=["world-economy-bi-project","O-List-E-Commerce-Data-Analytics","S-OP_Dashboard","marketing_campaigns_analysis","streampulse","pixelfed-analytics-engineering","kickstarter-analytics-engineering","egyptian-cosmetics-market"];
+const hiddenDashboardTitles=["World Economy","Olist E-commerce","Sales & Operations Planning","Marketing Campaigns","StreamPulse Analytics","PixelFed Analytics Engineering","Kickstarter Analytics Engineering","Egyptian Cosmetics Analytics"];
 const viewports=[
  {width:360,height:800},
  {width:390,height:844},
@@ -269,6 +271,8 @@ async function captureRoute(route,width,height,theme,name){
   assert(await page.locator(".editorial-trust-links .copy-email").count()===1,"Homepage needs a visible Copy email action.");
   const featured=await page.locator(".editorial-case-card[data-featured-case]").evaluateAll(cards=>cards.map(card=>card.dataset.featuredCase));
   assert.deepEqual(featured,expectedFeatured,"Homepage featured-case sequence changed.");
+   assert.equal(await page.locator('.current-work-card[href="/projects/pixelfed-analytics-engineering/"]').count(),1,"Keep the existing PixelFed Currently Building feature intact; it is a separate project-story link.");
+   for(const repo of hiddenDashboardRepos)assert.equal(await page.locator('a[href="/dashboards/'+repo+'/"]').count(),0,"Homepage must not link to hidden dashboard route "+repo);
   assert.equal(await page.locator(".editorial-case-visual[data-lightbox]").count(),3,"Each featured case needs an enlargeable report preview.");
   const b2bCaption=await page.locator('[data-featured-case="fmcg-sales-churn-drop-analysis-powerbi"] figcaption').innerText();
   assert(b2bCaption.includes("Editorial cover")&&!b2bCaption.includes("Saved report image"),"B2B homepage visual must be described as a neutral cover, not a report screenshot.");
@@ -280,9 +284,18 @@ async function captureRoute(route,width,height,theme,name){
   assert.deepEqual(cards,expectedFeatured,"Work page featured order changed.");
   const featureMetrics=await page.locator(".work-featured .pinned-case-card").first().evaluate(card=>{
    const rect=el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right,width:r.width,top:r.top,bottom:r.bottom,height:r.height};};
-   return {card:rect(card),media:rect(card.querySelector(".studio-project-cover")),visual:rect(card.querySelector(".project-visual")),image:rect(card.querySelector(".project-visual img")),copy:rect(card.querySelector(".studio-project-copy")),title:rect(card.querySelector("h3")),description:rect(card.querySelector(".project-card-description"))};
+   const media=card.querySelector(".studio-project-cover");
+   const visual=card.querySelector(".project-visual");
+   const image=card.querySelector(".project-visual img");
+   const visualRect=visual.getBoundingClientRect();
+   return {card:rect(card),media:rect(media),mediaAlignSelf:getComputedStyle(media).alignSelf,visual:rect(visual),visualRatio:visualRect.width/visualRect.height,image:rect(image),copy:rect(card.querySelector(".studio-project-copy")),title:rect(card.querySelector("h3")),description:rect(card.querySelector(".project-card-description"))};
   });
   assert(featureMetrics.media.width>0&&featureMetrics.visual.width>0,"B2B preview frame must have a visible width.");
+  assert.equal(featureMetrics.mediaAlignSelf,"start","B2B media column must align to the top of its grid cell.");
+  assert(Math.abs(featureMetrics.media.top-featureMetrics.card.top)<1,"B2B media column must start at the top of the featured card.");
+  assert(Math.abs(featureMetrics.visual.top-featureMetrics.media.top)<1,"B2B image wrapper must have no blank space above it.");
+  assert(Math.abs(featureMetrics.visualRatio-1.6)<.025,"B2B cover wrapper must match the source image's 16:10 aspect ratio: "+featureMetrics.visualRatio);
+  assert(Math.abs(featureMetrics.image.top-featureMetrics.visual.top)<1,"B2B source image must sit at the top of its 16:10 wrapper.");
   assert(featureMetrics.media.right<=featureMetrics.card.right+1,"B2B preview frame must remain inside its card.");
   assert(featureMetrics.visual.right<=featureMetrics.media.right+1,"B2B report cover must remain inside its media column.");
   assert(featureMetrics.image.right<=featureMetrics.visual.right+1,"B2B cover image must remain inside its fixed-ratio frame.");
@@ -390,6 +403,23 @@ async function captureRoute(route,width,height,theme,name){
   assert(content.toLowerCase().includes("salary data is incomplete"),"Salary data limitation must be explicit.");
  }
  if(name==="dashboards"){
+   const reportCards=page.locator("[data-report-card]");
+   assert.equal(await reportCards.count(),12,"Dashboard gallery must contain exactly the 12 visible reports.");
+   assert.equal((await page.locator("#dashboard-status").innerText()).trim(),"Showing 12 of 12 reporting projects","Initial dashboard counter must use the visible report total.");
+   for(const [filter,expected] of [["all",12],["live",12],["screenshots",12],["files",0]]){
+    await page.locator('[data-dashboard-filter="'+filter+'"]').click();
+    assert.equal(await page.locator("[data-report-card]:not([hidden])").count(),expected,"Dashboard filter count is wrong for "+filter);
+    assert.equal((await page.locator("#dashboard-status").innerText()).trim(),"Showing "+expected+" of 12 reporting projects","Dashboard live counter is wrong for "+filter);
+   }
+   await page.locator('[data-dashboard-filter="all"]').click();
+   for(const query of hiddenDashboardTitles){
+    await page.locator("#dashboard-query").fill(query);
+    assert.equal(await page.locator("[data-report-card]:not([hidden])").count(),0,"Dashboard search must not return hidden project "+query);
+   }
+   await page.locator("[data-reset-dashboards]").click();
+   assert.equal(await page.locator("[data-report-card]:not([hidden])").count(),12,"Dashboard reset must restore the 12 visible reports.");
+   assert.equal((await page.locator("#dashboard-status").innerText()).trim(),"Showing 12 of 12 reporting projects","Dashboard reset must restore the visible report count.");
+
   await page.locator('.dashboard-card[data-has-images="true"] .dashboard-cover img').evaluateAll(images=>Promise.all(images.slice(0,2).map(image=>image.decode().catch(()=>null))));
   const dashboardImages=await page.locator('.dashboard-card[data-has-images="true"] .dashboard-cover img').evaluateAll(images=>images.map(image=>({src:image.getAttribute("src"),loading:image.getAttribute("loading"),priority:image.getAttribute("fetchpriority"),width:Number(image.getAttribute("width"))||0,height:Number(image.getAttribute("height"))||0,loaded:image.complete&&image.naturalWidth>0,renderedWidth:image.getBoundingClientRect().width,renderedHeight:image.getBoundingClientRect().height})));
   assert(dashboardImages.length>=2,"Dashboard gallery must retain its saved report previews.");
