@@ -181,9 +181,19 @@ export function servicesPage(profile){
   ];
   const stepsMarkup=steps.map(step=>'<li class="how-i-work-step"><span class="eyebrow">'+step[0]+'</span><h2>'+step[1]+'</h2><p>'+step[2]+'</p></li>').join('');
   const capabilitiesMarkup=serviceAreas.map((service,index)=>'<article><span class="eyebrow">0'+(index+1)+' / '+service[0]+'</span><h3>'+service[1]+'</h3><p>'+service[2]+'</p><ul>'+service[3].map(item=>'<li>'+item+'</li>').join('')+'</ul></article>').join('');
+  const inquiryMarkup=businessInquiry()
+    .replace('id="business-inquiry" class="wrap page-section business-inquiry-section"','id="how-i-work-inquiry" class="wrap page-section business-inquiry-section how-i-work-inquiry"')
+    .replace('PROJECT INQUIRY / START HERE','REMOTE ROLE / BI CONVERSATION')
+    .replace('Tell me about the<br><em>work you have in mind.</em>','Tell me about the<br><em>role or BI challenge.</em>')
+    .replace('Share the question, the data or tools involved, and the outcome you are working towards. You do not need a business verification invitation to get in touch.','Share the business question, reporting context, or remote role you would like to discuss. The existing inquiry workflow remains available for a straightforward follow-up.')
+    .replace('Project description *','Role or BI challenge *')
+    .replace('What are you trying to solve? Include any useful context about the data, tools, deliverables, or timeline.','What decision, reporting need, or remote role should we discuss? Include the data, tools, team context, or responsibilities.')
+    .replace('Send project inquiry','Send inquiry')
+    .replace('<option value="Not sure yet">Not sure yet</option>','<option value="Not sure yet" selected>Not sure yet</option>');
   return intro('WORKING APPROACH / BUSINESS INTELLIGENCE','How I work','I approach BI work as a collaborative team process: understand the decision, validate the data, shape a traceable model, deliver a useful report, and document the handover.')
     +'<section class="wrap page-section how-i-work-process" aria-labelledby="how-i-work-process-title"><div class="section-label"><span>FROM BUSINESS QUESTION TO HANDOVER</span><span class="mono muted">A CLEAR, REVIEWABLE PROCESS</span></div><div class="editorial-section-heading"><h2 id="how-i-work-process-title">Make every step<br><em>clear and traceable.</em></h2><p>The report is the visible output. The definitions, validation, and handover behind it are just as important.</p></div><ol class="how-i-work-steps">'+stepsMarkup+'</ol></section>'
     +'<section class="wrap page-section how-i-work-capabilities" aria-labelledby="how-i-work-capabilities-title"><div class="section-label"><span>TOOLS &amp; CONTRIBUTION</span></div><div class="editorial-section-heading"><h2 id="how-i-work-capabilities-title">The work around<br><em>the report.</em></h2><p>Depending on the team and data environment, I can contribute across reporting, data foundations, and practical automation.</p></div><div class="how-i-work-capability-grid">'+capabilitiesMarkup+'</div></section>'
+    +inquiryMarkup
     +'<section id="business-inquiry" class="wrap page-section how-i-work-contact" aria-labelledby="how-i-work-contact-title"><div><span class="eyebrow">CONTACT / REMOTE ROLE OPPORTUNITIES</span><h2 id="how-i-work-contact-title">Have a BI role<br><em>in mind?</em></h2><p>I’m open to remote Data Analyst and BI Developer roles. Email is the simplest way to discuss a team, role, or reporting problem.</p><div class="service-primary-actions">'+link('mailto:'+profile.email,'Email me','button primary')+link('/contact/','Contact details')+'</div></div></section>';
 }
 

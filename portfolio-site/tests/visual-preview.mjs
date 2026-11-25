@@ -225,11 +225,17 @@ async function captureRoute(route,width,height,theme,name){
   if(width>=1024)assert(heroBounds.actionsBottom<=height&&heroBounds.leadBottom<=height,"Desktop intro and buttons must be visible without scrolling at "+width+"px.");
  }
  if(name==="services"){
-  const serviceView=await page.evaluate(()=>({title:document.querySelector("main h1")?.innerText.trim()||"",steps:document.querySelectorAll(".how-i-work-step").length,body:document.querySelector("main")?.innerText||"",email:document.querySelector('#business-inquiry a[href^=\"mailto:\"]')?.getAttribute("href")||""}));
+  const serviceView=await page.evaluate(()=>{
+   const budget=document.querySelector("#simple-inquiry-budget");
+   const budgetField=budget?.closest(".inquiry-field");
+   return {title:document.querySelector("main h1")?.innerText.trim()||"",steps:document.querySelectorAll(".how-i-work-step").length,body:document.querySelector("main")?.innerText||"",email:document.querySelector('#business-inquiry a[href^="mailto:"]')?.getAttribute("href")||"",budgetDisplay:budgetField?getComputedStyle(budgetField).display:"missing",budgetValue:budget?.value||""};
+  });
   assert.equal(serviceView.title,"How I work","Services route must be retitled How I work.");
   assert.equal(serviceView.steps,5,"How I work must show all five delivery stages.");
   assert(serviceView.email.startsWith("mailto:"),"How I work must provide a direct contact link.");
-  assert(!/Budget range \(EGP\)|500 - 2,000 EGP|Minimum project budget|Minimum budget or compensation/i.test(serviceView.body),"Services page must not display EGP tiers or budget minimums.");
+  assert.equal(serviceView.budgetDisplay,"none","Hide pricing UI without deleting the original form field.");
+  assert.equal(serviceView.budgetValue,"Not sure yet","Keep the hidden budget field valid for the original backend.");
+  assert(!/Budget range \(EGP\)|500 - 2,000 EGP|Minimum project budget|Minimum budget or compensation/i.test(serviceView.body),"Services page must not visibly display EGP tiers or budget minimums.");
  }
  const seo=await page.evaluate(()=>{
   const graph=[...document.querySelectorAll('script[type="application/ld+json"]')].flatMap(node=>{try{const data=JSON.parse(node.textContent);return data['@graph']||[data];}catch{return [];}});

@@ -161,8 +161,11 @@ assert(serviceHtml.includes('<h1>How I work</h1>'),'Services route must be retit
 for(const marker of ['01 / BUSINESS QUESTION','02 / DATA REVIEW','03 / MODEL & METRICS','04 / REPORT','05 / HANDOVER'])assert(serviceHtml.includes(marker),'How I work is missing process stage: '+marker);
 assert(serviceHtml.includes('href="mailto:'+profile.email+'"')&&serviceHtml.includes('Email me'),'How I work must offer direct email contact.');
 assert(serviceHtml.includes('id="business-inquiry"'),'Preserve the existing business-inquiry anchor as a simple contact destination.');
-for(const priceText of ['Budget range (EGP)','500 - 2,000 EGP','2,000 - 5,000 EGP','5,000 - 10,000 EGP','10,000 - 25,000 EGP','25,000+ EGP','Minimum project budget','Minimum budget or compensation'])assert(!serviceHtml.includes(priceText),'Services page must not display legacy pricing: '+priceText);
-assert(!serviceHtml.includes('id="simple-project-inquiry"')&&!serviceHtml.includes('id="project-brief"'),'Legacy inquiry form markup must not be displayed on How I work; it remains in the source and Contact flow.');
+assert(serviceHtml.includes('id="simple-project-inquiry" class="public-project-inquiry-form" method="post" action="/services/"'),'How I work must retain the original public inquiry form and POST action.');
+assert(serviceHtml.includes('id="project-brief" class="business-inquiry-form" method="post" action="/services/"'),'How I work must retain the protected inquiry form and POST action.');
+assert(serviceHtml.includes('<option value="Not sure yet" selected>Not sure yet</option>'),'Keep the existing budget field valid for the backend while its pricing UI is hidden.');
+const howIWorkCss=await fs.readFile(path.join(root,'src/assets/editorial.css'),'utf8');
+assert(howIWorkCss.includes('.how-i-work-inquiry .public-inquiry-layout .inquiry-field:has(#simple-inquiry-budget){display:none!important}'),'Hide only the visible EGP budget field on How I work; preserve its form and backend markup.');
 const inquiryTemplate=await fs.readFile(path.join(root,'scripts/business-inquiry-template.mjs'),'utf8');
 assert(inquiryTemplate.includes('id="simple-project-inquiry"')&&inquiryTemplate.includes('id="project-brief"'),'Keep existing public and invitation-only form templates in the codebase.');
 const contactHtml=documents.get(path.join(out,'contact/index.html'));

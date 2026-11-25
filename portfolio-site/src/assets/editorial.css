@@ -626,3 +626,6 @@ h1 em,h2 em,h3 em,h4 em{font-family:"Cormorant Garamond",Georgia,"Times New Roma
  .how-i-work-step{padding:18px}
  .how-i-work-contact{padding:1.45rem}
 }
+
+/* Keep the public inquiry workflow, but remove the visible freelance budget selector from How I work. */
+.how-i-work-inquiry .public-inquiry-layout .inquiry-field:has(#simple-inquiry-budget){display:none!important}
