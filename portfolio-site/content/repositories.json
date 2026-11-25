@@ -1,6 +1,6 @@
 {
   "owner": "Sohila-Khaled-Abbas",
-  "checked_on": "2026-11-24",
+  "checked_on": "2026-11-25",
   "repositories": [
     {
       "id": 979615270,
@@ -111,6 +111,38 @@
       "homepage": null,
       "parent_url": "https://github.com/anshlambagit/AnshLambaYoutube",
       "parent_name": "anshlambagit/AnshLambaYoutube"
+    },
+    {
+      "id": 1470760790,
+      "name": "apache-airflow-data-pipelines",
+      "url": "https://github.com/Sohila-Khaled-Abbas/apache-airflow-data-pipelines",
+      "description": "Apache Airflow 3 portfolio: ETL/ELT pipelines, Asset-driven scheduling, PySpark transformations over MinIO, PostgreSQL data warehousing, multi-executor infrastructure, and CI/CD DAG integrity guardrails. Published as learning evidence for Apache Airflow: The Hands-On Guide course.",
+      "language": "Python",
+      "topics": [
+        "airflow-3",
+        "apache-airflow",
+        "ci-cd",
+        "data-engineering",
+        "data-pipelines",
+        "docker",
+        "elt",
+        "etl",
+        "kubernetes",
+        "learning-portfolio",
+        "minio",
+        "postgresql",
+        "pyspark",
+        "udemy"
+      ],
+      "fork": false,
+      "archived": false,
+      "private": false,
+      "updated_at": "2026-11-24T20:42:48Z",
+      "pushed_at": "2026-11-24T22:13:46Z",
+      "default_branch": "master",
+      "homepage": "https://www.udemy.com/course/the-ultimate-hands-on-course-to-master-apache-airflow/",
+      "parent_url": null,
+      "parent_name": null
     },
     {
       "id": 1182801266,
@@ -1946,7 +1978,7 @@
       "name": "sohila-k-abbas-website",
       "url": "https://github.com/Sohila-Khaled-Abbas/sohila-k-abbas-website",
       "description": "This repository contains the source code for a personal data portfolio website built for Sohila Khaled Abbas — a recognized BI Developer, Data Analytics Engineer, and Top 200 Arabic-Speaking Influencer in data education.",
-      "language": "TypeScript",
+      "language": "JavaScript",
       "topics": [
         "css",
         "javascript",
@@ -1965,8 +1997,8 @@
       "fork": false,
       "archived": false,
       "private": false,
-      "updated_at": "2026-11-24T18:15:58Z",
-      "pushed_at": "2026-11-24T18:15:58Z",
+      "updated_at": "2026-11-24T21:03:25Z",
+      "pushed_at": "2026-11-24T21:03:25Z",
       "default_branch": "main",
       "homepage": "https://sohila-khaled-abbas.vercel.app/",
       "parent_url": null,
