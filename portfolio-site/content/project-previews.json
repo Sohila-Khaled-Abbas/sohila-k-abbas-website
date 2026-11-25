@@ -369,7 +369,8 @@
         }
       ],
       "source": "https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project",
-      "readme": "https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project/blob/main/README.md"
+      "readme": "https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project/blob/main/README.md",
+      "hidden": true
     },
     {
       "repo": "O-List-E-Commerce-Data-Analytics",
@@ -386,7 +387,8 @@
         }
       ],
       "source": "https://github.com/Sohila-Khaled-Abbas/O-List-E-Commerce-Data-Analytics",
-      "readme": "https://github.com/Sohila-Khaled-Abbas/O-List-E-Commerce-Data-Analytics/blob/main/README.md"
+      "readme": "https://github.com/Sohila-Khaled-Abbas/O-List-E-Commerce-Data-Analytics/blob/main/README.md",
+      "hidden": true
     },
     {
       "repo": "S-OP_Dashboard",
@@ -403,7 +405,8 @@
         }
       ],
       "source": "https://github.com/Sohila-Khaled-Abbas/S-OP_Dashboard",
-      "readme": "https://github.com/Sohila-Khaled-Abbas/S-OP_Dashboard/blob/master/README.md"
+      "readme": "https://github.com/Sohila-Khaled-Abbas/S-OP_Dashboard/blob/master/README.md",
+      "hidden": true
     },
     {
       "repo": "marketing_campaigns_analysis",
@@ -435,7 +438,8 @@
         }
       ],
       "source": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis",
-      "readme": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis/blob/main/README.md"
+      "readme": "https://github.com/Sohila-Khaled-Abbas/marketing_campaigns_analysis/blob/main/README.md",
+      "hidden": true
     },
     {
       "repo": "streampulse",
@@ -452,7 +456,8 @@
         }
       ],
       "source": "https://github.com/Sohila-Khaled-Abbas/streampulse",
-      "readme": "https://github.com/Sohila-Khaled-Abbas/streampulse/blob/main/README.md"
+      "readme": "https://github.com/Sohila-Khaled-Abbas/streampulse/blob/main/README.md",
+      "hidden": true
     },
     {
       "repo": "pixelfed-analytics-engineering",
@@ -469,7 +474,8 @@
         }
       ],
       "source": "https://github.com/Sohila-Khaled-Abbas/pixelfed-analytics-engineering",
-      "readme": "https://github.com/Sohila-Khaled-Abbas/pixelfed-analytics-engineering/blob/main/README.md"
+      "readme": "https://github.com/Sohila-Khaled-Abbas/pixelfed-analytics-engineering/blob/main/README.md",
+      "hidden": true
     },
     {
       "repo": "kickstarter-analytics-engineering",
@@ -486,7 +492,8 @@
         }
       ],
       "source": "https://github.com/Sohila-Khaled-Abbas/kickstarter-analytics-engineering",
-      "readme": "https://github.com/Sohila-Khaled-Abbas/kickstarter-analytics-engineering/blob/main/README.md"
+      "readme": "https://github.com/Sohila-Khaled-Abbas/kickstarter-analytics-engineering/blob/main/README.md",
+      "hidden": true
     },
     {
       "repo": "enterprise-hr-analytics",
@@ -520,7 +527,8 @@
         }
       ],
       "source": "https://github.com/Sohila-Khaled-Abbas/egyptian-cosmetics-market",
-      "readme": "https://github.com/Sohila-Khaled-Abbas/egyptian-cosmetics-market/blob/master/README.md"
+      "readme": "https://github.com/Sohila-Khaled-Abbas/egyptian-cosmetics-market/blob/master/README.md",
+      "hidden": true
     },
     {
       "repo": "pwc-switzerland-virtual-case",

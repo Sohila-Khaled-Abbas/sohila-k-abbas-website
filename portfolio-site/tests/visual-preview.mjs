@@ -16,6 +16,8 @@ const expectedFeatured=[
  "SMART-Supply-Chain-Insights-Dashboard",
  "Wuzzuf-Job-Market-Analysis"
 ];
+const hiddenDashboardRepos=["world-economy-bi-project","O-List-E-Commerce-Data-Analytics","S-OP_Dashboard","marketing_campaigns_analysis","streampulse","pixelfed-analytics-engineering","kickstarter-analytics-engineering","egyptian-cosmetics-market"];
+const hiddenDashboardTitles=["World Economy","Olist E-commerce","Sales & Operations Planning","Marketing Campaigns","StreamPulse Analytics","PixelFed Analytics Engineering","Kickstarter Analytics Engineering","Egyptian Cosmetics Analytics"];
 const viewports=[
  {width:360,height:800},
  {width:390,height:844},
@@ -269,6 +271,7 @@ async function captureRoute(route,width,height,theme,name){
   assert(await page.locator(".editorial-trust-links .copy-email").count()===1,"Homepage needs a visible Copy email action.");
   const featured=await page.locator(".editorial-case-card[data-featured-case]").evaluateAll(cards=>cards.map(card=>card.dataset.featuredCase));
   assert.deepEqual(featured,expectedFeatured,"Homepage featured-case sequence changed.");
+   for(const repo of hiddenDashboardRepos)assert.equal(await page.locator('a[href="/dashboards/'+repo+'/"]').count(),0,"Homepage must not link to hidden dashboard route "+repo);
   assert.equal(await page.locator(".editorial-case-visual[data-lightbox]").count(),3,"Each featured case needs an enlargeable report preview.");
   const b2bCaption=await page.locator('[data-featured-case="fmcg-sales-churn-drop-analysis-powerbi"] figcaption').innerText();
   assert(b2bCaption.includes("Editorial cover")&&!b2bCaption.includes("Saved report image"),"B2B homepage visual must be described as a neutral cover, not a report screenshot.");
@@ -276,13 +279,32 @@ async function captureRoute(route,width,height,theme,name){
   assert.equal(await page.locator(".editorial-home-contact").count(),0,"No stale freelance services section should return.");
  }
  if(name==="work"){
+  for(const repo of ["world-economy-bi-project","O-List-E-Commerce-Data-Analytics","S-OP_Dashboard","marketing_campaigns_analysis","streampulse","pixelfed-analytics-engineering","kickstarter-analytics-engineering","egyptian-cosmetics-market"]){
+   assert.equal(await page.locator('[data-name="'+repo+'"]').count(),0,"Hidden project must not appear in the Work catalogue: "+repo);
+   assert.equal(await page.locator('a[href="/projects/'+repo+'/"]').count(),0,"Work must not link to a hidden project story: "+repo);
+   assert.equal(await page.locator('a[href="/dashboards/'+repo+'/"]').count(),0,"Work must not link to a hidden dashboard route: "+repo);
+  }
+
   const cards=await page.locator(".work-featured .pinned-case-card").evaluateAll(items=>items.map(card=>card.dataset.name));
   assert.deepEqual(cards,expectedFeatured,"Work page featured order changed.");
   const featureMetrics=await page.locator(".work-featured .pinned-case-card").first().evaluate(card=>{
    const rect=el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right,width:r.width,top:r.top,bottom:r.bottom,height:r.height};};
-   return {card:rect(card),media:rect(card.querySelector(".studio-project-cover")),visual:rect(card.querySelector(".project-visual")),image:rect(card.querySelector(".project-visual img")),copy:rect(card.querySelector(".studio-project-copy")),title:rect(card.querySelector("h3")),description:rect(card.querySelector(".project-card-description"))};
+   const media=card.querySelector(".studio-project-cover");
+   const visual=card.querySelector(".project-visual");
+   const image=card.querySelector(".project-visual img");
+   const copy=card.querySelector(".studio-project-copy");
+   const label=card.querySelector(".project-card-meta");
+   const mediaRect=media.getBoundingClientRect();
+   const visualRect=visual.getBoundingClientRect();
+   return {card:rect(card),media:rect(media),mediaAlignSelf:getComputedStyle(media).alignSelf,mediaRatio:mediaRect.width/mediaRect.height,visual:rect(visual),visualRatio:visualRect.width/visualRect.height,image:rect(image),copy:rect(copy),label:rect(label),title:rect(card.querySelector("h3")),description:rect(card.querySelector(".project-card-description"))};
   });
   assert(featureMetrics.media.width>0&&featureMetrics.visual.width>0,"B2B preview frame must have a visible width.");
+  assert.equal(featureMetrics.mediaAlignSelf,"start","B2B media column must align to the top of its grid cell.");
+  if(width>=1000)assert(Math.abs(featureMetrics.media.top-featureMetrics.label.top)<1,"B2B media column must align with the BI & analytics label.");
+  assert(Math.abs(featureMetrics.visual.top-featureMetrics.media.top-1)<1,"B2B image wrapper must have no blank space above the image beyond its 1px frame border.");
+  assert(Math.abs(featureMetrics.mediaRatio-1.6)<.025,"B2B media column must match the source image's 16:10 aspect ratio: "+featureMetrics.mediaRatio);
+  assert(Math.abs(featureMetrics.visualRatio-1.6)<.025,"B2B cover wrapper must match the source image's 16:10 aspect ratio: "+featureMetrics.visualRatio);
+  assert(Math.abs(featureMetrics.image.top-featureMetrics.visual.top)<1,"B2B source image must sit at the top of its 16:10 wrapper.");
   assert(featureMetrics.media.right<=featureMetrics.card.right+1,"B2B preview frame must remain inside its card.");
   assert(featureMetrics.visual.right<=featureMetrics.media.right+1,"B2B report cover must remain inside its media column.");
   assert(featureMetrics.image.right<=featureMetrics.visual.right+1,"B2B cover image must remain inside its fixed-ratio frame.");
@@ -390,6 +412,23 @@ async function captureRoute(route,width,height,theme,name){
   assert(content.toLowerCase().includes("salary data is incomplete"),"Salary data limitation must be explicit.");
  }
  if(name==="dashboards"){
+   const reportCards=page.locator("[data-report-card]");
+   assert.equal(await reportCards.count(),12,"Dashboard gallery must contain exactly the 12 visible reports.");
+   assert.equal((await page.locator("#dashboard-status").innerText()).trim(),"Showing 12 of 12 reporting projects","Initial dashboard counter must use the visible report total.");
+   for(const [filter,expected] of [["all",12],["live",12],["screenshots",12],["files",0]]){
+    await page.locator('[data-dashboard-filter="'+filter+'"]').click();
+    assert.equal(await page.locator("[data-report-card]:not([hidden])").count(),expected,"Dashboard filter count is wrong for "+filter);
+    assert.equal((await page.locator("#dashboard-status").innerText()).trim(),"Showing "+expected+" of 12 reporting projects","Dashboard live counter is wrong for "+filter);
+   }
+   await page.locator('[data-dashboard-filter="all"]').click();
+   for(const query of hiddenDashboardTitles){
+    await page.locator("#dashboard-query").fill(query);
+    assert.equal(await page.locator("[data-report-card]:not([hidden])").count(),0,"Dashboard search must not return hidden project "+query);
+   }
+   await page.locator("[data-reset-dashboards]").click();
+   assert.equal(await page.locator("[data-report-card]:not([hidden])").count(),12,"Dashboard reset must restore the 12 visible reports.");
+   assert.equal((await page.locator("#dashboard-status").innerText()).trim(),"Showing 12 of 12 reporting projects","Dashboard reset must restore the visible report count.");
+
   await page.locator('.dashboard-card[data-has-images="true"] .dashboard-cover img').evaluateAll(images=>Promise.all(images.slice(0,2).map(image=>image.decode().catch(()=>null))));
   const dashboardImages=await page.locator('.dashboard-card[data-has-images="true"] .dashboard-cover img').evaluateAll(images=>images.map(image=>({src:image.getAttribute("src"),loading:image.getAttribute("loading"),priority:image.getAttribute("fetchpriority"),width:Number(image.getAttribute("width"))||0,height:Number(image.getAttribute("height"))||0,loaded:image.complete&&image.naturalWidth>0,renderedWidth:image.getBoundingClientRect().width,renderedHeight:image.getBoundingClientRect().height})));
   assert(dashboardImages.length>=2,"Dashboard gallery must retain its saved report previews.");
@@ -573,6 +612,45 @@ async function testReportLoading(){
  console.log("PASS click-to-load public Power BI embed, iframe title, and original source link.");
 }
 async function testB2BProjectPageEmbed(){
+ for(const theme of ["light","dark"]){
+  for(const width of [360,390,768,1024,1280,1920]){
+   const page=await browser.newPage({viewport:{width,height:900}});
+   await page.emulateMedia({colorScheme:theme,reducedMotion:"reduce"});
+   await addProtectionHeader(page);
+   await page.goto(new URL("/dashboards/",base).href,{waitUntil:"domcontentloaded"});
+   const cards=page.locator('.dashboard-card[data-access="live"]');
+   const panelMetrics=await cards.evaluateAll(items=>items.map(card=>{
+    const shell=card.querySelector(".dashboard-live-preview .report-embed-shell");
+    const prompt=shell?.querySelector(".report-load-prompt");
+    const icon=prompt?.querySelector("img");
+    const heading=prompt?.querySelector("h2");
+    const button=prompt?.querySelector("[data-load-report]");
+    const rect=element=>{
+     const r=element?.getBoundingClientRect();
+     return r?{top:r.top,bottom:r.bottom,left:r.left,right:r.right,width:r.width,height:r.height}:null;
+    };
+    return {
+     title:card.querySelector(".dashboard-card-copy h2")?.innerText.trim()||"unknown",
+     shell:rect(shell),prompt:rect(prompt),icon:rect(icon),heading:rect(heading),button:rect(button),
+     direction:prompt?getComputedStyle(prompt).flexDirection:null,
+     promptHeight:prompt?.clientHeight||0,
+     promptScrollHeight:prompt?.scrollHeight||0
+    };
+   }));
+   assert.equal(panelMetrics.length,12,"All 12 live Dashboard cards need an interactive preview panel.");
+   for(const item of panelMetrics){
+    assert(item.shell&&item.prompt&&item.icon&&item.heading&&item.button,"Interactive preview panel elements are missing for "+item.title+".");
+    assert.equal(item.direction,"column","Dashboard preview content must stack vertically for "+item.title+" at "+width+"px ("+theme+").");
+    assert(item.icon.width>0&&item.icon.height>0&&item.icon.top>=item.shell.top-1&&item.icon.bottom<=item.shell.bottom+1,"Power BI icon is clipped in "+item.title+" at "+width+"px ("+theme+"): "+JSON.stringify(item));
+    assert(item.heading.width>0&&item.heading.height>0&&item.heading.top>=item.prompt.top-1&&item.heading.bottom<=item.prompt.bottom+1,"Interactive report heading is clipped in "+item.title+" at "+width+"px ("+theme+").");
+    assert(item.button.width>0&&item.button.height>0&&item.button.top>=item.prompt.top-1&&item.button.bottom<=item.shell.bottom-1,"Load live preview button is clipped in "+item.title+" at "+width+"px ("+theme+"): "+JSON.stringify(item));
+    assert(item.promptScrollHeight<=item.promptHeight+2,"Dashboard preview prompt content overflows its panel in "+item.title+" at "+width+"px ("+theme+"): "+JSON.stringify(item));
+   }
+   await page.close();
+   console.log("PASS Dashboard-card icon, heading, and full Load button at "+width+"px ("+theme+").");
+  }
+ }
+
  for(const width of [360,390,768,1024,1280,1920]){
   const page=await browser.newPage({viewport:{width,height:900}});
   await page.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
