@@ -98,7 +98,7 @@ async function write(route,pageTitle,description,body){
     '/about/':'About Sohila | BI Developer & Data Analyst',
     '/resume/':'BI Developer Resume | Sohila Khaled Abbas',
     '/contact/':'Contact Sohila | Remote BI & Data Analyst',
-    '/services/':'BI & Analytics Services | Sohila',
+    '/services/':'How I work | Sohila',
     '/recruiters/':'Hire Sohila | BI Developer & Data Analyst',
     '/404.html':'Page not found | Sohila'
   };
@@ -142,7 +142,7 @@ for(const report of reports){
 await write('/about/','About Sohila | BI Developer | Data Analyst | Analytics Engineer','Sohila Khaled Abbas is a BI Developer and Data Analyst based in Damietta, Egypt, open to remote employee roles. Explore her experience, skills, and BI reporting projects.',about(profile));
 await write('/resume/','Resume | Sohila Khaled Abbas','Resume for Sohila Khaled Abbas: BI Developer, Data Analyst, Power BI reporting, SQL, DAX, data modeling, applied analytics experience, education, and technical skills.',resumePage(profile));
 await write('/recruiters/','For hiring teams — skills & project evidence','A concise overview of Sohila Khaled Abbas’s BI development experience, reporting projects, analytics engineering work, and remote collaboration details.',recruiterPage(profile,recruiterGuide,projectDetails));
-await write('/services/','Work with Sohila','Remote collaboration in Power BI reporting, data engineering, and workflow automation. Prepare a project brief.',servicesPage());
+await write('/services/','How I work | Sohila','A structured BI workflow: business question, data review, modeling, Power BI reporting, and team handover for remote roles.',servicesPage(profile));
 await write('/contact/','Contact Sohila | Remote Data Analyst & BI Developer Roles','Contact Sohila Khaled Abbas about remote Data Analyst and BI Developer roles, Power BI reporting, SQL, DAX, and analytics engineering.',contact(profile));
 for(const project of projectDetails){
  const repo=ordered.find(r=>r.name===project.repo),caseStudy=byRepo.get(project.repo);

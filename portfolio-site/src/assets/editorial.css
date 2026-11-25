@@ -583,3 +583,46 @@ button,a,input,select,textarea,summary,[tabindex]:not([tabindex="-1"]){-webkit-t
 /* Keep the selected typographic hierarchy explicit across the full cascade. */
 h1,h2,h3,h4{font-family:"DM Sans",Inter,Arial,Helvetica,sans-serif!important}
 h1 em,h2 em,h3 em,h4 em{font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif!important;font-style:italic}
+
+
+/* Recruiter-first hero, evidence lines, and employer-focused working process. */
+@media(min-width:851px){
+ .editorial-hero{padding-block:clamp(2.5rem,6vw,5.5rem)}
+ .editorial-hero h1{font-size:clamp(3.1rem,5.8vw,6rem)}
+}
+.editorial-hero-actions{margin:1.15rem 0 .1rem}
+.editorial-hero-actions .button{min-height:44px}
+.featured-case-proof{margin:1rem 0 1.15rem;padding:.85rem 1rem;border-left:2px solid var(--accent);background:var(--soft);color:var(--muted);font-size:.78rem;line-height:1.75;overflow-wrap:anywhere}
+.featured-case-proof strong{color:var(--ink);font-weight:700}
+.studio-project-card .featured-case-proof{font-size:10px;line-height:1.75;padding:9px 11px;margin:0 0 17px}
+.featured-case-proof .proof-divider{color:var(--accent)}
+.how-i-work-process,.how-i-work-capabilities{padding-block:2.8rem}
+.how-i-work-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;list-style:none;padding:0;margin:1.5rem 0 0}
+.how-i-work-step{min-width:0;padding:19px 16px;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+.how-i-work-step>.eyebrow{display:block;font-size:.62rem;line-height:1.5}
+.how-i-work-step h2{margin:1.1rem 0 .65rem;font-size:clamp(1.1rem,1.45vw,1.45rem);line-height:1.2;letter-spacing:-.035em}
+.how-i-work-step p,.how-i-work-capability-grid p{font-size:.79rem;line-height:1.8;color:var(--muted)}
+.how-i-work-capability-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-top:1.5rem}
+.how-i-work-capability-grid>article{padding:22px;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+.how-i-work-capability-grid h3{margin:1rem 0 .55rem;font-size:1.3rem}
+.how-i-work-capability-grid ul{margin:1rem 0 0;padding-left:1.1rem;color:var(--text);font-size:.76rem;line-height:1.9}
+.how-i-work-contact{scroll-margin-top:90px;padding:2.2rem;border:1px solid var(--line);border-radius:5px;background:var(--soft)}
+.how-i-work-contact>div{max-width:680px}
+.how-i-work-contact h2{margin:1rem 0;font-size:clamp(2rem,4vw,3.4rem);line-height:1.05;letter-spacing:-.05em}
+.how-i-work-contact h2 em{color:var(--brand)}
+.how-i-work-contact p{max-width:58ch;margin:0 0 1.25rem;color:var(--muted);font-size:.9rem;line-height:1.8}
+@media(max-width:1050px){
+ .how-i-work-steps{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:850px){
+ .how-i-work-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .how-i-work-capability-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+ .editorial-hero-actions{gap:.55rem}
+ .editorial-hero-actions .button{flex:1 1 100%;justify-content:center}
+ .featured-case-proof{font-size:.73rem}
+ .how-i-work-steps,.how-i-work-capability-grid{grid-template-columns:minmax(0,1fr)}
+ .how-i-work-step{padding:18px}
+ .how-i-work-contact{padding:1.45rem}
+}

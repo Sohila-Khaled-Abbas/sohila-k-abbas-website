@@ -214,6 +214,23 @@ async function captureRoute(route,width,height,theme,name){
  assert.equal(browserErrors.length,0,"Browser console errors on "+name+" "+theme+" "+width+"px: "+JSON.stringify(browserErrors));
  const h1=await page.locator("main h1").count();
  assert.equal(h1,1,name+" must have exactly one main H1.");
+ if(name==="home"){
+  const heroBounds=await page.evaluate(()=>{
+   const h1=document.querySelector(".editorial-hero h1");
+   const actions=h1?.nextElementSibling;
+   const lead=document.querySelector(".editorial-hero-lead");
+   return {actionsAreNext:actions?.classList.contains("editorial-hero-actions")||false,actionsBottom:actions?.getBoundingClientRect().bottom??Infinity,leadBottom:lead?.getBoundingClientRect().bottom??Infinity};
+  });
+  assert.equal(heroBounds.actionsAreNext,true,"The two requested buttons and email action must sit immediately below the H1.");
+  if(width>=1024)assert(heroBounds.actionsBottom<=height&&heroBounds.leadBottom<=height,"Desktop intro and buttons must be visible without scrolling at "+width+"px.");
+ }
+ if(name==="services"){
+  const serviceView=await page.evaluate(()=>({title:document.querySelector("main h1")?.innerText.trim()||"",steps:document.querySelectorAll(".how-i-work-step").length,body:document.querySelector("main")?.innerText||"",email:document.querySelector('#business-inquiry a[href^=\"mailto:\"]')?.getAttribute("href")||""}));
+  assert.equal(serviceView.title,"How I work","Services route must be retitled How I work.");
+  assert.equal(serviceView.steps,5,"How I work must show all five delivery stages.");
+  assert(serviceView.email.startsWith("mailto:"),"How I work must provide a direct contact link.");
+  assert(!/Budget range \(EGP\)|500 - 2,000 EGP|Minimum project budget|Minimum budget or compensation/i.test(serviceView.body),"Services page must not display EGP tiers or budget minimums.");
+ }
  const seo=await page.evaluate(()=>{
   const graph=[...document.querySelectorAll('script[type="application/ld+json"]')].flatMap(node=>{try{const data=JSON.parse(node.textContent);return data['@graph']||[data];}catch{return [];}});
   return {title:document.title,description:document.querySelector('meta[name="description"]')?.content||'',canonical:document.querySelector('link[rel="canonical"]')?.href||'',lang:document.documentElement.lang,themeColor:document.querySelector('meta[name="theme-color"]')?.content||'',ogImage:document.querySelector('meta[property="og:image"]')?.content||'',ogType:document.querySelector('meta[property="og:image:type"]')?.content||'',ogWidth:document.querySelector('meta[property="og:image:width"]')?.content||'',ogHeight:document.querySelector('meta[property="og:image:height"]')?.content||'',twitter:document.querySelector('meta[name="twitter:card"]')?.content||'',robots:document.querySelector('meta[name="robots"]')?.content||'',types:graph.map(item=>item['@type'])};
@@ -231,14 +248,18 @@ async function captureRoute(route,width,height,theme,name){
  if(name==="home"){
   assert((await page.locator(".editorial-hero h1").innerText()).replace(/\s+/g," ").includes("BI Developer & Data Analyst"),"Homepage headline must identify the target role.");
   assert((await page.locator(".editorial-hero-proof").innerText()).includes("500K+ order lines"),"Homepage needs a quantified proof line.");
-  assert.equal((await page.locator(".editorial-hero .hero-actions a").nth(0).innerText()).trim(),"View case studies");
-  assert.equal(await page.locator(".editorial-hero .hero-actions a").nth(0).getAttribute("href"),"/work/#case-studies");
-  assert.equal((await page.locator(".editorial-hero .hero-actions a").nth(1).innerText()).trim(),"Contact me");
-  assert.equal(await page.locator(".editorial-hero .hero-actions a").nth(1).getAttribute("href"),"/contact/");
+  assert.equal(await page.locator(".editorial-hero .hero-actions a").count(),2,"Homepage must have exactly the two requested primary buttons.");
+  assert.equal((await page.locator(".editorial-hero .hero-actions a").nth(0).innerText()).trim(),"View resume");
+  assert.equal(await page.locator(".editorial-hero .hero-actions a").nth(0).getAttribute("href"),"/resume/");
+  assert.equal((await page.locator(".editorial-hero .hero-actions a").nth(1).innerText()).trim(),"See case studies");
+  assert.equal(await page.locator(".editorial-hero .hero-actions a").nth(1).getAttribute("href"),"/work/#case-studies");
+  const emailButton=page.locator(".editorial-trust-links a[href^='mailto:']");
+  assert.equal(await emailButton.innerText(),"Email me","Homepage must keep a simple, direct email button.");
+  assert.equal(await emailButton.count(),1);
   const heroMeta=(await page.locator(".editorial-location").innerText()).toLowerCase();
-  assert(heroMeta.includes("open to remote roles")&&heroMeta.includes("cairo, egypt · utc+2")&&heroMeta.includes("english: excellent"),"Remote status, Cairo timezone and English level must be visible.");
-  assert((await page.locator(".editorial-role-line").innerText()).includes("Hire me for"),"Homepage must state what Sohila can be hired for.");
-  assert(await page.locator(".editorial-trust-links a[href='/resume/']").count()===1&&await page.locator(".editorial-trust-links a[href*='linkedin.com']").count()===1&&await page.locator(".editorial-trust-links a[href*='github.com']").count()===1,"CV, LinkedIn and GitHub links must be visible.");
+  assert(heroMeta.includes("open to remote roles")&&heroMeta.includes("cairo, egypt · utc+2")&&heroMeta.includes("et overlap")&&heroMeta.includes("english: excellent"),"Remote status, Cairo timezone and English level must be visible.");
+  assert((await page.locator(".editorial-role-line").innerText()).includes("Role focus"),"Homepage must state what Sohila can be hired for.");
+  assert(await page.locator(".editorial-hero-actions a[href='/resume/']").count()===1&&await page.locator(".editorial-trust-links a[href*='linkedin.com']").count()===1&&await page.locator(".editorial-trust-links a[href*='github.com']").count()===1,"Resume, LinkedIn and GitHub links must be visible.");
   assert(await page.locator(".editorial-trust-links .copy-email").count()===1,"Homepage needs a visible Copy email action.");
   const featured=await page.locator(".editorial-case-card[data-featured-case]").evaluateAll(cards=>cards.map(card=>card.dataset.featuredCase));
   assert.deepEqual(featured,expectedFeatured,"Homepage featured-case sequence changed.");
@@ -276,6 +297,15 @@ async function captureRoute(route,width,height,theme,name){
   }
   const firstCover=page.locator(".work-featured .pinned-case-card").first().locator(".project-visual img");
   assert((await firstCover.getAttribute("src")).includes("fmcg-portfolio-cover.svg"),"B2B Work card must use its neutral portfolio cover, not the branded report screenshot.");
+  await page.locator(".work-featured .pinned-case-card .project-visual img").evaluateAll(images=>Promise.all(images.map(image=>image.decode().catch(()=>null))));
+  const previewStates=await page.locator(".work-featured .pinned-case-card .project-visual img").evaluateAll(images=>images.map(img=>({src:img.getAttribute("src"),loaded:img.complete&&img.naturalWidth>0,loading:img.getAttribute("loading")})));
+  assert.equal(previewStates.length,3,"All featured Work cards must retain an existing image preview.");
+  assert(previewStates.every(item=>item.loaded),"Featured Work previews must be loaded, not empty placeholders: "+JSON.stringify(previewStates));
+  assert(previewStates.every(item=>item.loading==="eager"),"Pinned featured previews must load eagerly above the fold.");
+  for(const card of await page.locator(".work-featured .pinned-case-card").all()){
+   const proof=await card.locator(".featured-case-proof").innerText();
+   assert(proof.includes("Business question:")&&proof.includes("Tool:")&&proof.includes("Result:"),"Every featured Work case needs a question/tool/result proof line.");
+  }
   assert((await firstCover.getAttribute("alt")).includes("Neutral editorial cover"),"B2B cover alternative text must identify the neutral scenario artwork.");
   assert.equal(await page.getByText(/MAXAB ANALYTICS|Built for Maxab Analytics|Welcome back, Sohila/i).count(),0,"The B2B Work card must not display client-branded report content.");
   const b2bCard=page.locator(".work-featured .pinned-case-card").first();
@@ -728,7 +758,7 @@ async function testInquirySafety(){
  const page=await browser.newPage({viewport:{width:390,height:844}});
  await page.emulateMedia({colorScheme:"light",reducedMotion:"reduce"});
  await addProtectionHeader(page);
- await page.goto(new URL("/services/",base).href,{waitUntil:"domcontentloaded"});
+ await page.goto(new URL("/contact/",base).href,{waitUntil:"domcontentloaded"});
  const leadCalls=[];
  let attempt=0;
  await page.route("**/api/lead",async route=>{
@@ -768,7 +798,7 @@ async function testInquirySafety(){
  });
  assert.equal(protectedApi.status,403,"Private inquiry endpoint must reject without invitation.");
  await page.close();
- console.log("PASS existing public form behavior with mocked /api/lead, exact EGP options, validation, retry, and protected API rejection.");
+ console.log("PASS Contact form behavior with mocked /api/lead, exact EGP options, validation, retry, and protected API rejection.");
 }
 
 async function testContactInquiryPayload(){
