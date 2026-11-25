@@ -116,15 +116,18 @@ assert(!work.includes('Data Tea')&&!work.includes('roadmap'),'Retired learning/c
 const home=documents.get(path.join(out,'index.html'));
 assert(home.includes('BI Developer &amp; Data Analyst.')&&home.includes('Clearer decisions from data.'),'Homepage must lead with the recruiter-focused BI Developer and Data Analyst proposition.');
 assert(home.includes('500K+ order lines')&&home.includes('47K+ orders')&&home.includes('70K+ retailers'),'Homepage must show verified B2B retail proof.');
-assert(home.includes('Hire me for: BI reporting')&&home.includes('Power BI')&&home.includes('Data modeling'),'Homepage must explain the services recruiters can hire for.');
-assert(home.includes('Open to remote roles')&&home.includes('Cairo, Egypt · UTC+2')&&home.includes('English: Excellent'),'Homepage must show remote availability, Cairo timezone, and English level.');
-assert(home.includes('Copy email')&&home.includes('href="/resume/"')&&home.includes('LinkedIn')&&home.includes('GitHub'),'Homepage must expose direct contact and professional proof links.');
+assert(home.includes('Role focus: BI reporting')&&home.includes('Power BI')&&home.includes('Data modeling'),'Homepage must explain the services recruiters can hire for.');
+assert(home.includes('Open to remote roles')&&home.includes('Cairo, Egypt · UTC+2')&&home.includes('ET overlap')&&home.includes('English: Excellent'),'Homepage must show remote availability, Cairo timezone, ET overlap, and English level.');
+assert(home.includes('Copy email')&&home.includes('href="/resume/"')&&home.includes('href="mailto:'+profile.email+'"')&&home.includes('Email me')&&home.includes('LinkedIn')&&home.includes('GitHub'),'Homepage must expose resume, direct email, and professional proof links.');
+const heroButtonPosition=home.indexOf('class="hero-actions editorial-hero-actions"');
+const heroLeadPosition=home.indexOf('class="editorial-hero-lead"');
+assert(heroButtonPosition>home.indexOf('id="hero-title"')&&heroLeadPosition>heroButtonPosition,'Resume, case-study, and email buttons must sit directly below the homepage headline and before the intro.');
 const homeOrder=['id="hero-title"','id="capabilities"','id="case-studies"','id="approach"','id="experience-summary"','id="home-contact"'].map(marker=>home.indexOf(marker));
 assert(homeOrder.every(position=>position>=0)&&homeOrder.every((position,index)=>index===0||homeOrder[index-1]<position),'Homepage must follow identity → disciplines → case studies → approach → experience → contact.');
 assert(home.includes('Damietta, Egypt')&&home.includes('Open to remote roles'),'Homepage must identify location and remote availability.');
-assert(home.includes('View case studies')&&home.includes('href="/work/#case-studies"'),'Homepage must offer the primary case-study CTA.');
-assert(home.includes('Contact me')&&home.includes('href="/contact/"'),'Homepage must offer the primary contact CTA.');
-assert(home.includes('View CV')&&home.includes('href="/resume/"'),'Homepage must offer a direct CV link.');
+assert(home.includes('See case studies')&&home.includes('href="/work/#case-studies"'),'Homepage must offer the case-study CTA directly below the headline.');
+assert(home.includes('href="/contact/"'),'Homepage must retain a direct Contact route.');
+assert(home.includes('View resume')&&home.includes('href="/resume/"'),'Homepage must offer a direct resume button.');
 for(const term of ['Power BI','SQL','DAX','data modeling','Power Query','Analytics Engineer'])assert(home.includes(term),'Homepage is missing the verified discipline '+term);
 assert(!home.includes('Work with me')&&!home.includes('Fixed quote')&&!home.includes('You send your data or problem.'),'Homepage must not read as a freelance-services funnel.');
 assert(!home.includes('Data Tea')&&!home.includes('LEARNING IN PUBLIC')&&!home.includes('roadmap'),'Retired learning/community material must not appear on the homepage.');
@@ -141,6 +144,9 @@ const caseTitles=[
  'Wuzzuf Job Market Analysis'
 ];
 for(const title of caseTitles)assert(home.includes(title),'Homepage is missing selected evidence-backed project '+title);
+for(const proofText of ['47K+ orders analyzed','65,752 orders analyzed','217 postings; Data Analyst was the most common title'])assert(home.includes(proofText),'Homepage is missing source-backed featured case proof: '+proofText);
+assert(home.includes('featured-case-proof')&&work.includes('featured-case-proof'),'Home and Work must both show a question, tool, and result proof line on every featured case study.');
+assert(work.includes('/previews/fmcg-portfolio-cover.svg')&&work.includes('fetchpriority="high"'),'Keep the original B2B Retail preview and prioritize its initial load on Work.');
 assert(!home.includes('Maxab distribution network')&&!home.includes('Real-time insights into retailer behavior'),'B2B scenario must not imply a Maxab engagement.');
 
 const styles=await fs.readFile(path.join(out,'enhancements.css'),'utf8');
@@ -151,32 +157,22 @@ assert(redesignStyles.includes('prefers-reduced-motion:reduce'),'The redesign mu
 assert(!/\.studio-project-card \.project-card-description\{[^}]*-webkit-line-clamp/.test(studioStyles),'Project card descriptions must not be clipped');
 
 const serviceHtml=documents.get(path.join(out,'services/index.html'));
-assert(serviceHtml.includes('id="simple-project-inquiry" class="public-project-inquiry-form" method="post" action="/services/"'),'Public inquiry form must retain the POST fallback');
-assert(serviceHtml.includes('id="project-brief" class="business-inquiry-form" method="post" action="/services/" hidden'),'Verified enterprise inquiry form must retain its POST fallback');
-assert(serviceHtml.includes('<label for="simple-inquiry-budget">Budget range (EGP) *</label>'),'Public project budget label must use EGP');
-const expectedPublicBudgets=[
-  '500 - 2,000 EGP',
-  '2,000 - 5,000 EGP',
-  '5,000 - 10,000 EGP',
-  '10,000 - 25,000 EGP',
-  '25,000+ EGP',
-  'Not sure yet'
-];
-for(const budget of expectedPublicBudgets)assert(serviceHtml.includes('<option value="'+budget+'">'+budget+'</option>'),'Missing exact public EGP budget option: '+budget);
-assert(serviceHtml.includes('Minimum project budget: 500 EGP. Projects below 500 EGP are not offered.'),'Public budget helper must explain the 500 EGP minimum');
-assert(!serviceHtml.includes('USD')&&!serviceHtml.includes('Under $500')&&!serviceHtml.includes('$500–'),'Services page must not display legacy USD pricing');
-assert(serviceHtml.includes('Currency (EGP) *')&&serviceHtml.includes('Minimum budget or compensation (EGP) *')&&serviceHtml.includes('Maximum budget or compensation (EGP) *'),'Invitation-only budgets must identify EGP');
-assert((serviceHtml.match(/min="500"/g)||[]).length>=2,'Both invitation-only budget amounts must enforce the 500 EGP HTML minimum');
-const inquiryRules=await fs.readFile(path.join(root,'src/assets/inquiry-rules.mjs'),'utf8');
-assert(inquiryRules.includes("export const currencies = ['EGP'];"),'Invitation-only inquiries must accept EGP only');
-assert(inquiryRules.includes("Number(value[key])<500"),'Invitation-only server validation must enforce the 500 EGP minimum');
+assert(serviceHtml.includes('<h1>How I work</h1>'),'Services route must be retitled How I work.');
+for(const marker of ['01 / BUSINESS QUESTION','02 / DATA REVIEW','03 / MODEL & METRICS','04 / REPORT','05 / HANDOVER'])assert(serviceHtml.includes(marker),'How I work is missing process stage: '+marker);
+assert(serviceHtml.includes('href="mailto:'+profile.email+'"')&&serviceHtml.includes('Email me'),'How I work must offer direct email contact.');
+assert(serviceHtml.includes('id="business-inquiry"'),'Preserve the existing business-inquiry anchor as a simple contact destination.');
+assert(serviceHtml.includes('id="simple-project-inquiry" class="public-project-inquiry-form" method="post" action="/services/"'),'How I work must retain the original public inquiry form and POST action.');
+assert(serviceHtml.includes('id="project-brief" class="business-inquiry-form" method="post" action="/services/"'),'How I work must retain the protected inquiry form and POST action.');
+assert(serviceHtml.includes('<option value="Not sure yet" selected>Not sure yet</option>'),'Keep the existing budget field valid for the backend while its pricing UI is hidden.');
+const howIWorkCss=await fs.readFile(path.join(root,'src/assets/editorial.css'),'utf8');
+assert(howIWorkCss.includes('.how-i-work-inquiry .public-inquiry-layout .inquiry-field:has(#simple-inquiry-budget){display:none!important}'),'Hide only the visible EGP budget field on How I work; preserve its form and backend markup.');
+const inquiryTemplate=await fs.readFile(path.join(root,'scripts/business-inquiry-template.mjs'),'utf8');
+assert(inquiryTemplate.includes('id="simple-project-inquiry"')&&inquiryTemplate.includes('id="project-brief"'),'Keep existing public and invitation-only form templates in the codebase.');
 const contactHtml=documents.get(path.join(out,'contact/index.html'));
 assert(contactHtml.includes('CONTACT / REMOTE ROLE OPPORTUNITIES')&&contactHtml.includes('href="/resume/"'),'Contact page must prioritize recruiter conversations and the resume.');
-assert(contactHtml.includes('href="/services/#business-inquiry"'),'Preserve the existing verified business inquiry path as a secondary contact option.');
-assert(serviceHtml.indexOf('Power BI dashboards')<serviceHtml.indexOf('ALSO AVAILABLE'),'Power BI reporting must lead the Services page');
-assert(serviceHtml.includes('href="#simple-project-inquiry"')&&serviceHtml.includes('Start a project'),'Services page must offer a clear project-inquiry action');
-for(const id of ['service-0','service-1','service-2'])assert(serviceHtml.includes('id="'+id+'"'),'A work-focused service section was removed: '+id);
-assert(serviceHtml.indexOf('ALSO AVAILABLE')<serviceHtml.indexOf('Data engineering'),'Data engineering must remain a supporting service');
+assert(contactHtml.includes('href="/services/#business-inquiry"')&&contactHtml.includes('Email about a role or project'),'Contact page must retain the Services contact path with accurate wording.');
+assert(contactHtml.includes('id="simple-project-inquiry" class="public-project-inquiry-form" method="post" action="/contact/"'),'Keep the working public contact form on the Contact page.');
+
 const inquiryScript=await fs.readFile(path.join(root,'src/assets/business-inquiry.mjs'),'utf8');
 const leadRoute=await fs.readFile(path.join(root,'api/lead.mjs'),'utf8');
 const leadHandler=await fs.readFile(path.join(root,'server/lead.mjs'),'utf8');
