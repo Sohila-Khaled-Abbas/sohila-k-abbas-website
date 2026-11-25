@@ -1,6 +1,6 @@
 # Verified business inquiries
 
-The inquiry form at `/services/#business-inquiry` is approval-only. Visitors cannot self-register, mark their own business verified, change the approved identity, or prepare an inquiry without an active private invitation. The production registry starts empty; no example or test business is approved.
+The inquiry form at `/services/#how-i-work-inquiry` is approval-only. Visitors cannot self-register, mark their own business verified, change the approved identity, or prepare an inquiry without an active private invitation. The production registry starts empty; no example or test business is approved.
 
 Public communication is through Sohila's email, LinkedIn, and GitHub. Her personal phone is absent from the current website and the preserved React contact component. The old CV archive link has been removed from the public résumé.
 

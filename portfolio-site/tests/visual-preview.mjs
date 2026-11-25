@@ -304,10 +304,11 @@ async function captureRoute(route,width,height,theme,name){
   const firstCover=page.locator(".work-featured .pinned-case-card").first().locator(".project-visual img");
   assert((await firstCover.getAttribute("src")).includes("fmcg-portfolio-cover.svg"),"B2B Work card must use its neutral portfolio cover, not the branded report screenshot.");
   await page.locator(".work-featured .pinned-case-card .project-visual img").evaluateAll(images=>Promise.all(images.map(image=>image.decode().catch(()=>null))));
-  const previewStates=await page.locator(".work-featured .pinned-case-card .project-visual img").evaluateAll(images=>images.map(img=>({src:img.getAttribute("src"),loaded:img.complete&&img.naturalWidth>0,loading:img.getAttribute("loading")})));
+  const previewStates=await page.locator(".work-featured .pinned-case-card .project-visual img").evaluateAll(images=>images.map(img=>({src:img.getAttribute("src"),loaded:img.complete&&img.naturalWidth>0,loading:img.getAttribute("loading"),priority:img.getAttribute("fetchpriority"),width:Number(img.getAttribute("width"))||0,height:Number(img.getAttribute("height"))||0,renderedWidth:img.getBoundingClientRect().width,renderedHeight:img.getBoundingClientRect().height})));
   assert.equal(previewStates.length,3,"All featured Work cards must retain an existing image preview.");
-  assert(previewStates.every(item=>item.loaded),"Featured Work previews must be loaded, not empty placeholders: "+JSON.stringify(previewStates));
-  assert(previewStates.every(item=>item.loading==="eager"),"Pinned featured previews must load eagerly above the fold.");
+  assert(previewStates.every(item=>item.loaded&&item.renderedWidth>0&&item.renderedHeight>0),"Featured Work previews must be decoded and visibly sized, not empty placeholders: "+JSON.stringify(previewStates));
+  assert(previewStates.every(item=>item.loading==="eager"&&item.priority==="high"&&item.width>0&&item.height>0),"Pinned featured previews must load eagerly with high priority and reserved dimensions: "+JSON.stringify(previewStates));
+  assert.equal(previewStates[0].src,"/previews/fmcg-portfolio-cover.svg","The B2B card must keep its existing lowercase SVG asset path.");
   for(const card of await page.locator(".work-featured .pinned-case-card").all()){
    const proof=await card.locator(".featured-case-proof").innerText();
    assert(proof.includes("Business question:")&&proof.includes("Tool:")&&proof.includes("Result:"),"Every featured Work case needs a question/tool/result proof line.");
@@ -389,6 +390,11 @@ async function captureRoute(route,width,height,theme,name){
   assert(content.toLowerCase().includes("salary data is incomplete"),"Salary data limitation must be explicit.");
  }
  if(name==="dashboards"){
+  await page.locator('.dashboard-card[data-has-images="true"] .dashboard-cover img').evaluateAll(images=>Promise.all(images.slice(0,2).map(image=>image.decode().catch(()=>null))));
+  const dashboardImages=await page.locator('.dashboard-card[data-has-images="true"] .dashboard-cover img').evaluateAll(images=>images.map(image=>({src:image.getAttribute("src"),loading:image.getAttribute("loading"),priority:image.getAttribute("fetchpriority"),width:Number(image.getAttribute("width"))||0,height:Number(image.getAttribute("height"))||0,loaded:image.complete&&image.naturalWidth>0,renderedWidth:image.getBoundingClientRect().width,renderedHeight:image.getBoundingClientRect().height})));
+  assert(dashboardImages.length>=2,"Dashboard gallery must retain its saved report previews.");
+  assert(dashboardImages.slice(0,2).every(image=>image.loading==="eager"&&image.priority==="high"&&image.width>0&&image.height>0&&image.loaded&&image.renderedWidth>0&&image.renderedHeight>0),"The first Dashboard row must eagerly load visible, dimensioned previews: "+JSON.stringify(dashboardImages.slice(0,2)));
+  assert(dashboardImages.slice(2).every(image=>image.loading==="lazy"&&image.width>0&&image.height>0),"Below-the-fold Dashboard previews must remain lazy and reserve their dimensions.");
   assert(await page.locator(".dashboard-preview-figure").count()>0,"Dashboard gallery needs large previews with captions.");
   assert(await page.locator(".dashboard-cover[data-lightbox]").count()>0,"Dashboard screenshot needs full-size enlarge action.");
   assert(await page.locator("#preview-dialog").count()===1,"Native image dialog must be present.");
@@ -423,7 +429,7 @@ async function captureRoute(route,width,height,theme,name){
   assert(await page.locator('a[href*="linkedin.com/in/sohilakabbas"]').count()>=1,"Contact LinkedIn link is missing.");
   assert(await page.locator('a[href="https://github.com/Sohila-Khaled-Abbas"]').count()>=1,"Contact GitHub link is missing.");
   assert(await page.locator(".copy-email").count()===1,"Existing copy-email behavior must remain.");
-  assert(await page.locator('a[href="/services/#business-inquiry"]').count()===1,"Existing verified inquiry route must remain available without being the primary CTA.");
+  assert(await page.locator('a[href="/contact/#simple-project-inquiry"]').count()===1,"Role inquiries must link to the real Contact form anchor.");
   const form=page.locator("#simple-project-inquiry");
   assert.equal(await form.count(),1,"Contact must restore the public project inquiry form.");
   assert.equal(await form.getAttribute("method"),"post");
