@@ -333,7 +333,9 @@
         {
           "src": "/previews/fmcg-portfolio-cover.svg",
           "alt": "Neutral editorial cover for the B2B Retail Analytics and Churn Diagnostic portfolio scenario",
-          "caption": "Editorial cover · portfolio scenario, not a client-branded report screenshot"
+          "caption": "Editorial cover · portfolio scenario, not a client-branded report screenshot",
+          "width": 1440,
+          "height": 900
         }
       ],
       "files": [

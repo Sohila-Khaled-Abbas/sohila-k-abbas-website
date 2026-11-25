@@ -27,7 +27,7 @@ function featuredProofMarkup(repo){
 }
 
 const sourceTitle = p => p.empty ? 'Repository overview' : p.flow ? 'Workflow overview' : 'Source preview';
-const visualInfo = (p,report) => report?.images?.length ? {src:report.images[0].src,kind:report.preview_kind==='diagram'?'Architecture diagram':report.preview_kind==='cover'?'Editorial portfolio cover':'Dashboard preview',caption:report.images[0].caption,alt:report.images[0].alt,source_label:report.preview_kind==='diagram'?'Original SVG from the GitHub README.':report.preview_kind==='cover'?'Original editorial portfolio cover; not a report screenshot.':report.images[0].source_url?'Captured from the published Power BI report.':'From the public project repository.'} : p?.media ? {...p.media,aspectRatio:p.media.width&&p.media.height?p.media.width/p.media.height:null,alt:p.title+' — '+p.media.kind} : null;
+const visualInfo = (p,report) => report?.images?.length ? {src:report.images[0].src,width:report.images[0].width,height:report.images[0].height,kind:report.preview_kind==='diagram'?'Architecture diagram':report.preview_kind==='cover'?'Editorial portfolio cover':'Dashboard preview',caption:report.images[0].caption,alt:report.images[0].alt,source_label:report.preview_kind==='diagram'?'Original SVG from the GitHub README.':report.preview_kind==='cover'?'Original editorial portfolio cover; not a report screenshot.':report.images[0].source_url?'Captured from the published Power BI report.':'From the public project repository.'} : p?.media ? {...p.media,aspectRatio:p.media.width&&p.media.height?p.media.width/p.media.height:null,alt:p.title+' — '+p.media.kind} : null;
 
 const wrapPreviewText = (value,limit=30,maxLines=3) => {
   const words=String(value||'').trim().split(/\s+/).filter(Boolean);
@@ -169,7 +169,7 @@ const serviceAreas=[
  ['Data engineering','A foundation you can trace.','SQL and Python workflows that connect source data, quality checks, and warehouse-ready models.', ['ETL / ELT workflows','Data quality & validation','Star and galaxy schema modeling'],'SQL'],
  ['Automation & AI','Make the repeatable work repeatable.','n8n integrations, document and knowledge pipelines, and practical AI-assisted workflows.', ['API & application integrations','RAG and document workflows','Operational notes & runbooks'],'n8n'],
 ];
-export function servicesTeaser(){return `<section class="services-teaser"><div class="wrap"><span class="eyebrow">WORKING APPROACH</span><h2>Clear questions.<br><em>Traceable reporting.</em></h2><div class="services-teaser-grid">${serviceAreas.slice(0,3).map((s,i)=>`<a href="/services/#service-${i}"><span>0${i+1} / ${s[0]}</span><p>${s[1]}</p>${icon}</a>`).join('')}</div>${link('/services/','How I work','button cream')}</div></section>`;}
+export function servicesTeaser(){return `<section class="services-teaser"><div class="wrap"><span class="eyebrow">WORKING APPROACH</span><h2>Clear questions.<br><em>Traceable reporting.</em></h2><div class="services-teaser-grid">${serviceAreas.slice(0,3).map((s,i)=>`<a href="/services/#how-i-work-capabilities-title"><span>0${i+1} / ${s[0]}</span><p>${s[1]}</p>${icon}</a>`).join('')}</div>${link('/services/','How I work','button cream')}</div></section>`;}
 
 export function servicesPage(profile){
   const steps=[

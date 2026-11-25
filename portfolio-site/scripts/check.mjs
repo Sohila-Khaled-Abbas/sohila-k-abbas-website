@@ -147,6 +147,14 @@ for(const title of caseTitles)assert(home.includes(title),'Homepage is missing s
 for(const proofText of ['47K+ orders analyzed','65,752 orders analyzed','217 postings; Data Analyst was the most common title'])assert(home.includes(proofText),'Homepage is missing source-backed featured case proof: '+proofText);
 assert(home.includes('featured-case-proof')&&work.includes('featured-case-proof'),'Home and Work must both show a question, tool, and result proof line on every featured case study.');
 assert(work.includes('/previews/fmcg-portfolio-cover.svg')&&work.includes('fetchpriority="high"'),'Keep the original B2B Retail preview and prioritize its initial load on Work.');
+const b2bCoverPath=path.join(out,'previews','fmcg-portfolio-cover.svg');
+const b2bCoverArtwork=await fs.readFile(b2bCoverPath,'utf8');
+assert(b2bCoverArtwork.includes('<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900"'),'B2B cover must be copied to the exact lowercase /previews path with its intrinsic dimensions.');
+const firstPinnedStart=work.indexOf('<article class="pinned-case-card');
+const firstPinnedEnd=work.indexOf('</article>',firstPinnedStart);
+const firstPinned=work.slice(firstPinnedStart,firstPinnedEnd);
+const b2bImage=firstPinned.match(/<img src="\/previews\/fmcg-portfolio-cover\.svg"[^>]+>/)?.[0]||'';
+assert(b2bImage.includes('width="1440"')&&b2bImage.includes('height="900"')&&b2bImage.includes('loading="eager"')&&b2bImage.includes('fetchpriority="high"'),'First B2B Work card must reserve the correct image size and prioritize the committed preview.');
 assert(!home.includes('Maxab distribution network')&&!home.includes('Real-time insights into retailer behavior'),'B2B scenario must not imply a Maxab engagement.');
 
 const styles=await fs.readFile(path.join(out,'enhancements.css'),'utf8');
@@ -170,7 +178,9 @@ const inquiryTemplate=await fs.readFile(path.join(root,'scripts/business-inquiry
 assert(inquiryTemplate.includes('id="simple-project-inquiry"')&&inquiryTemplate.includes('id="project-brief"'),'Keep existing public and invitation-only form templates in the codebase.');
 const contactHtml=documents.get(path.join(out,'contact/index.html'));
 assert(contactHtml.includes('CONTACT / REMOTE ROLE OPPORTUNITIES')&&contactHtml.includes('href="/resume/"'),'Contact page must prioritize recruiter conversations and the resume.');
-assert(contactHtml.includes('href="/services/#business-inquiry"')&&contactHtml.includes('Email about a role or project'),'Contact page must retain the Services contact path with accurate wording.');
+assert(contactHtml.includes('href="/contact/#simple-project-inquiry"')&&contactHtml.includes('Email about a role or project'),'Contact page must direct role inquiries to the real Contact form anchor.');
+for(const html of documents.values())assert(!html.includes('href="/services/#business-inquiry"'),'Generated pages must not link to the removed Services inquiry anchor.');
+for(const html of documents.values())assert(!/href="\/services\/#service-\d+"/.test(html),'Generated pages must not link to retired service-card anchors.');
 assert(contactHtml.includes('id="simple-project-inquiry" class="public-project-inquiry-form" method="post" action="/contact/"'),'Keep the working public contact form on the Contact page.');
 
 const inquiryScript=await fs.readFile(path.join(root,'src/assets/business-inquiry.mjs'),'utf8');
@@ -254,6 +264,13 @@ const dashboardHtml=documents.get(path.join(out,'dashboards/index.html'));
 assert(dashboardHtml.includes('dashboard-preview-figure')&&dashboardHtml.includes('data-lightbox'),'Dashboard gallery must have captions and full-size, accessible preview links.');
 assert(dashboardHtml.includes('Saved report view'),'Dashboard preview must distinguish a screenshot from a live report.');
 assert(dashboardHtml.includes('Interactive public reports load only when requested'),'Dashboard gallery must explain click-to-load report behavior.');
+const dashboardCoverTags=[...dashboardHtml.matchAll(/<a class="dashboard-cover"[^>]*>[\s\S]*?<img[^>]+>/g)].map(match=>match[0]);
+assert(dashboardCoverTags.length>=2,'Dashboard gallery must keep its existing first-row report previews.');
+for(const imageTag of dashboardCoverTags.slice(0,2)){
+  assert(imageTag.includes('loading="eager"')&&imageTag.includes('fetchpriority="high"'),'The first Dashboard row must eagerly load its existing preview images.');
+  assert(imageTag.includes('width="')&&imageTag.includes('height="'),'Dashboard card previews must reserve their layout dimensions.');
+}
+for(const imageTag of dashboardCoverTags.slice(2))assert(imageTag.includes('loading="lazy"')&&imageTag.includes('width="')&&imageTag.includes('height="'),'Below-the-fold Dashboard previews must remain lazy while reserving their dimensions.');
 
 const aboutHtml=documents.get(path.join(out,'about/index.html'));
 assert(aboutHtml.includes(profile.headline.replaceAll('&','&amp;')),'About must show the owner’s current professional headline');
