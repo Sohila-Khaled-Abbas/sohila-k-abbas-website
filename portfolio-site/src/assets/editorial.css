@@ -124,6 +124,9 @@ button,input,select,textarea{font:inherit}
 .pinned-case-card .studio-project-copy{padding:0}
 .pinned-case-card .studio-project-copy h3{font-size:clamp(1.7rem,2.8vw,2.4rem)}
 .pinned-case-card .project-card-meta{font-size:.69rem}
+.work-featured .studio-spotlight-grid>.studio-project-card:first-child{align-items:start}
+.work-featured .studio-spotlight-grid>.studio-project-card:first-child .studio-project-cover{align-self:start;aspect-ratio:16/10;padding:0}
+.work-featured .studio-spotlight-grid>.studio-project-card:first-child .project-visual{align-self:start;width:100%;height:auto;min-height:0;aspect-ratio:16/10}
 .repository-section{padding-top:2rem}
 .repo-tools-disclosure{border:1px solid var(--line);background:var(--surface)}
 .repo-tools-disclosure>summary{display:flex;justify-content:space-between;align-items:center;gap:1rem;min-height:64px;padding:1rem 1.2rem;color:var(--ink);font-weight:700;cursor:pointer}
@@ -470,13 +473,13 @@ button,input,select,textarea{font:inherit}
   grid-template-columns:minmax(0,1fr);
  }
  .work-featured .studio-spotlight-grid>.studio-project-card:first-child>.studio-project-cover{
-  aspect-ratio:4/3;
+  aspect-ratio:16/10;
   height:auto;
   border-right:0;
   border-bottom:1px solid var(--line);
  }
  .work-featured .studio-spotlight-grid>.studio-project-card:first-child .project-visual{
-  aspect-ratio:4/3;
+  aspect-ratio:16/10;
   height:auto;
  }
  .work-featured .pinned-case-card .studio-project-copy{
@@ -629,3 +632,46 @@ h1 em,h2 em,h3 em,h4 em{font-family:"Cormorant Garamond",Georgia,"Times New Roma
 
 /* Keep the public inquiry workflow, but remove the visible freelance budget selector from How I work. */
 .how-i-work-inquiry .public-inquiry-layout .inquiry-field:has(#simple-inquiry-budget){display:none!important}
+
+
+@media(min-width:801px){
+ .work-featured .studio-spotlight-grid>.studio-project-card:first-child .studio-project-copy{
+  padding:0;
+ }
+}
+
+
+/* Dashboard-card embed prompt: stack all content and reserve enough vertical room. */
+.dashboard-live-preview .report-embed-shell{
+ min-height:22rem;
+}
+
+@media(min-width:1440px){
+ .dashboard-live-preview .report-embed-shell{
+  min-height:24rem;
+ }
+}
+.dashboard-live-preview .report-load-prompt{
+ flex-direction:column;
+ gap:.6rem;
+}
+.dashboard-live-preview .report-load-prompt>img,
+.dashboard-live-preview .report-load-prompt>h2,
+.dashboard-live-preview .report-load-prompt>p,
+.dashboard-live-preview .report-load-prompt>.button{
+ flex:0 0 auto;
+}
+.dashboard-live-preview .report-load-prompt>h2{
+ margin:.15rem 0;
+}
+.dashboard-live-preview .report-load-prompt>p{
+ margin:.2rem auto;
+}
+.dashboard-live-preview .report-load-prompt>.button{
+ margin-top:.2rem;
+}
+
+/* Restore the responsive embed ratio after the visitor loads the report. */
+.dashboard-live-preview .report-embed-shell:has(iframe){
+ min-height:0;
+}
