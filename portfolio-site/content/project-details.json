@@ -278,12 +278,12 @@
       "github": {
         "description": "Apache Airflow 3 portfolio: ETL/ELT pipelines, Asset-driven scheduling, PySpark transformations over MinIO, PostgreSQL data warehousing, multi-executor infrastructure, and CI/CD DAG integrity guardrails. Published as learning evidence for Apache Airflow: The Hands-On Guide course.",
         "updated_at": "2026-11-24T20:42:48Z",
-        "pushed_at": "2026-11-24T22:13:46Z",
+        "pushed_at": "2026-11-25T19:22:18Z",
         "homepage": "https://www.udemy.com/course/the-ultimate-hands-on-course-to-master-apache-airflow/",
         "default_branch": "master",
         "readme_excerpt": "[](https://airflow.apache.org/) [](https://www.python.org/) [](https://spark.apache.org/) [](https://min.io/) [](https://www.postgresql.org/) [](https://www.docker.com/) [](https://github.com/Sohila-Khaled-Abbas/apache-airflow-data-pipelines/actions/workflows/ci.yml) [](LICENSE) [](CONTRIBUTING.md)",
         "readme_sha": "0ff9e1535f06cdab4b51e8128fbfd4237d017e53",
-        "fingerprint": "2026-11-24T22:13:46Z"
+        "fingerprint": "2026-11-25T19:22:18Z"
       }
     },
     {
@@ -4176,12 +4176,12 @@
       "github": {
         "description": "Comprehensive learning repository and documentation hub for the 81-lecture Microsoft Power BI Data Analysis Diploma by Eng. Essam Elsayed (MCT). Includes organized datasets, Power Query M code cheatsheet, and real-world case studies.",
         "updated_at": "2026-11-11T21:57:16Z",
-        "pushed_at": "2026-11-22T23:29:20Z",
+        "pushed_at": "2026-11-25T17:02:20Z",
         "homepage": "https://www.youtube.com/playlist?list=PLkYJ59mAhUsMbZQ4AmBmGt0EEyrTrg5mX",
         "default_branch": "main",
         "readme_excerpt": "[](https://www.youtube.com/@EssamMCT) [](CURRICULUM.md) [](https://powerbi.microsoft.com/desktop/) [](MLANGUAGECHEATSHEET.md)",
         "readme_sha": "908cb4eb969ea4307f8197af39bbada4515c7b39",
-        "fingerprint": "2026-11-22T23:29:20Z"
+        "fingerprint": "2026-11-25T17:02:20Z"
       },
       "auto_generated": false,
       "featured": true
@@ -4902,13 +4902,13 @@
       "old_portfolio": false,
       "github": {
         "description": "This repository contains the source code for a personal data portfolio website built for Sohila Khaled Abbas — a recognized BI Developer, Data Analytics Engineer, and Top 200 Arabic-Speaking Influencer in data education.",
-        "updated_at": "2026-11-24T21:03:25Z",
-        "pushed_at": "2026-11-24T21:03:25Z",
+        "updated_at": "2026-11-25T17:26:22Z",
+        "pushed_at": "2026-11-25T17:26:22Z",
         "homepage": "https://sohila-khaled-abbas.vercel.app/",
         "default_branch": "main",
         "readme_excerpt": "Data Analyst & BI Developer | SQL, Python, Power BI, DAX & Power Query | ETL/ELT & Analytics Engineering",
         "readme_sha": "16c85e4db64c08946831796971383efe8ff34842",
-        "fingerprint": "2026-11-24T21:03:25Z"
+        "fingerprint": "2026-11-25T17:26:22Z"
       }
     },
     {
