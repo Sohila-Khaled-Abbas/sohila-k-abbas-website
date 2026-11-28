@@ -359,12 +359,12 @@
       "github": {
         "description": "An end-to-end data engineering and analytics project analyzing historical Apple Inc. (AAPL) stock market data up to the present day, to extract actionable business insights and investment strategies.",
         "updated_at": "2026-11-12T03:44:33Z",
-        "pushed_at": "2026-11-26T03:59:28Z",
+        "pushed_at": "2026-11-28T03:45:40Z",
         "homepage": null,
         "default_branch": "main",
         "readme_excerpt": "An end-to-end financial analytics and data engineering system spanning 1980–present.",
         "readme_sha": "3e47085f3649438762949859c956db40b1f6caf7",
-        "fingerprint": "2026-11-26T03:59:28Z"
+        "fingerprint": "2026-11-28T03:45:40Z"
       }
     },
     {
@@ -4981,12 +4981,12 @@
       "github": {
         "description": "Config files for my GitHub profile.",
         "updated_at": "2026-11-12T10:46:59Z",
-        "pushed_at": "2026-11-27T10:58:42Z",
+        "pushed_at": "2026-11-28T10:20:45Z",
         "homepage": "https://github.com/Sohila-Khaled-Abbas",
         "default_branch": "main",
         "readme_excerpt": "Nearly 2 years building BI solutions · Power BI dashboards · Reporting · Analytics projects",
         "readme_sha": "835ed0db513434d9c3012bfc4de569b38c8f781a",
-        "fingerprint": "2026-11-27T10:58:42Z"
+        "fingerprint": "2026-11-28T10:20:45Z"
       }
     },
     {
